@@ -3,24 +3,24 @@ import csv
 import gzip
 import pymysql
 import sys
-from datetime import date, timedelta 
-import os 
+from datetime import date, timedelta
+import os
 import time
 
-""" This script to download gzfiles on the BMRA data from elexonportal website for a specified date range. 
+""" This script to download gzfiles on the BMRA data from elexonportal website for a specified date range.
 """
 
 
 def tibcoDownload(dateIn, urlBase, fileBase):
     """ Function to download Tibco Relay data from elexon and parse it to base raw format in MySQL database """
-    
+
     ##1 download and open data from Elexon
     #Add specified data onto the base URL
     dateStr = str(dateIn.year)+'-'+str('%02d' %(int(dateIn.month),))+'-'+str('%02d' %(int(dateIn.day),))+'.gz'
     url1 = urlBase+dateStr
     fileName = fileBase+dateStr
     #Try downloading file
-    try: 
+    try:
         u = urllib.request.urlopen(url1)
         urllib.request.urlretrieve(url1, fileName)
         print('Downloading:'+dateStr)
@@ -29,16 +29,16 @@ def tibcoDownload(dateIn, urlBase, fileBase):
         l = len(url1)
         return 1
     return 0
-    
-    
+
+
 def tibcoDownloadHH(dateIn, urlBase, fileBase, filesProcessed):
     """ Function to download Tibco Relay data from elexon and parse it to base raw format in MySQL database """
     dateStr = str(dateIn.year)+'-'+str('%02d' %(int(dateIn.month),))+'-'+str('%02d' %(int(dateIn.day),))
     hhFileExt = listOfHHfileExtentions()
     processedFiles = os.listdir(filesProcessed)
-    
+
     f = 0
-    
+
     for hh in hhFileExt:
         fullFileName = dateStr+hh
         filePath = fileBase+fullFileName
@@ -52,18 +52,18 @@ def tibcoDownloadHH(dateIn, urlBase, fileBase, filesProcessed):
             except:
                 print('Failed to Open URL: '+ulr1)
                 f =+ 1
-    
+
     return 0
-            
-        
-        
+
+
+
     ##1 download and open data from Elexon
     #Add specified data onto the base URL
     dateStr = str(dateIn.year)+'-'+str('%02d' %(int(dateIn.month),))+'-'+str('%02d' %(int(dateIn.day),))+'.gz'
     url1 = urlBase+dateStr
     fileName = fileBase+dateStr
     #Try downloading file
-    try: 
+    try:
         u = urllib.request.urlopen(url1)
         urllib.request.urlretrieve(url1, fileName)
         print('Downloading:'+dateStr)
@@ -72,32 +72,32 @@ def tibcoDownloadHH(dateIn, urlBase, fileBase, filesProcessed):
         l = len(url1)
         return 1
     return 0
- 
+
 if  __name__ == "__main__":
     ## Variables
-    
+
     #Dates are inclusive and will download daily tibco file for each day between the two dates
     sdate = date(2015,6,10)
     edate = date(2015,11,11)
-    
+
     #url
-    urlBase = 'https://downloads.elexonportal.co.uk/bmradataarchive/download?key=***REMOVED***&filename=tib_messages.'	
-    
+    urlBase = 'https://downloads.elexonportal.co.uk/bmradataarchive/download?key=***REMOVED***&filename=tib_messages.'
+
     #Folder to which gzip files are saved
-    
+
     fileBase = 'D:\\bmrs Tibco Raw\\'
-    
+
     #Set up list of dates to extract
     dates = []
     dates.append(edate)
     while dates[len(dates)-1] >= sdate:
         dates.append(dates[len(dates)-1] - timedelta(days =1))
-    
+
     errorLog = []  #Complete list of lines that did not insert
     tFails = 0  #Total Failures to insert
-    
-    
-    
+
+
+
     ## Loop through Days in dates varibale
     errors = []
     for d in dates:
@@ -106,7 +106,7 @@ if  __name__ == "__main__":
         if err == 1:
             tFails += 1
         #time.sleep(10)
-    
+
 def listOfHHfileExtentions():
     hhFiles = [ '.00.00-00.30.gz',
                 '.00.30-01.00.gz',
@@ -156,5 +156,5 @@ def listOfHHfileExtentions():
                 '.22.30-23.00.gz',
                 '.23.00-23.30.gz',
                 '.23.30-00.00.gz',]
-        
+
     return hhFiles
