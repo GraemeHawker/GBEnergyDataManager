@@ -18,20 +18,19 @@ print(socket.gethostname())
 
 print(config[socket.gethostname()]['host'])
 
-urllib.request.urlretrieve('https://downloads.elexonportal.co.uk/bmradataarchive/download?key=8bjll9hlkqh7gb8&filename=tib_messages.2018-09-15.gz',config[socket.gethostname()]['dataDirectory'])
+urllib.request.urlretrieve('https://downloads.elexonportal.co.uk/bmradataarchive/download?key=8bjll9hlkqh7gb8&filename=tib_messages.2018-09-15.gz',config[socket.gethostname()]['dataDirectory']+'test')
 
 
 for filename in filename_list:
     try:
-        #u = urllib.request.urlopen(url1)
         remote_url = (config['Elexon']['urlBase']
             + '?key='
             + config['Elexon']['key']
-            + '&filename=tib_messages.'
+            + '&filename='
             + filename)
         urllib.request.urlretrieve(
             remote_url,
-            config[socket.gethostname()]['dataDirectory'])
+            config[socket.gethostname()]['dataDirectory'] + filename)
         print('Downloading:' + filename)
     except:
         print('Failed to Open URL: ' + remote_url)
