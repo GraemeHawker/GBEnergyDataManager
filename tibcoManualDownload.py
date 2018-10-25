@@ -1,28 +1,32 @@
 import datetime as dt
-import downloadFunctions as dF
 import urllib.request
 import socket
 import configparser
 import gzip
+import pymysql
+import downloadFunctions as dF
 
-startDate = dt.date(2018,9,15)
-endDate = dt.date(2018,9,15)
+
+START_DATE = dt.date(2018, 9, 15)
+END_DATE = dt.date(2018, 9, 15)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
 local_config = config[socket.gethostname()]
 
 conn = pymysql.connect(host=local_config['host'],
-                    port=local_config['host'],
-                    user=local_config['db_user'],
-                    passwd=local_config['db_passwd'],
-                    db=local_config['db'])
+                       port=local_config['host'],
+                       user=local_config['db_user'],
+                       passwd=local_config['db_passwd'],
+                       db=local_config['db'])
+
+
 cur = conn.cursor()
 
 connSys = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='imGoingToCambridge2015', db='tibcosystem')
 curSys = connSys.cursor()
 
-filename_list = dF.getTibcoDailyFilenames(startDate, endDate)
+filename_list = dF.getTibcoDailyFilenames(START_DATE, END_DATE)
 
 #print(filename_list)
 #print(socket.gethostname())
@@ -46,8 +50,8 @@ for filename in filename_list:
 '''
 
 for filename in filename_list:
-    f = gzip.open(local_config['dataDirectory'] + filename,'rb')
-    file_content = f.read().decode('utf-8','ignore')
+    f = gzip.open(local_config['dataDirectory'] + filename, 'rb')
+    file_content = f.read().decode('utf-8', 'ignore')
     dataArray = [entry for entry in file_content.split('}')]
     le = len(dataArray)
     tm = dt.datetime.now()
