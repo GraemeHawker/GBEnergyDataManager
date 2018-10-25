@@ -28,29 +28,10 @@ def getTibcoDailyFilenames(date_start, date_end = None):
     curr_date = date_start
     while curr_date <= date_end:
         filename_list.append(
-            str(curr_date.year)
+            'tib_messages.'
+            +str(curr_date.year)
             +'-'+str('%02d' %(int(curr_date.month),))
             +'-'+str('%02d' %(int(curr_date.day),))+'.gz')
         curr_date += dt.timedelta(days=1)
 
     return filename_list
-
-
-def downloadTibcoDailyFile(dateIn, urlBase, fileBase):
-    """ Function to download Tibco Relay data from elexon and parse it to base raw format in MySQL database """
-
-    ##1 download and open data from Elexon
-    #Add specified data onto the base URL
-    dateStr = str(dateIn.year)+'-'+str('%02d' %(int(dateIn.month),))+'-'+str('%02d' %(int(dateIn.day),))+'.gz'
-    url1 = urlBase+dateStr
-    fileName = fileBase+dateStr
-    #Try downloading file
-    try:
-        u = urllib.request.urlopen(url1)
-        urllib.request.urlretrieve(url1, fileName)
-        print('Downloading:'+dateStr)
-    except:
-        print('Failed to Open URL: '+url1)
-        l = len(url1)
-        return 1
-    return 0
