@@ -1,10 +1,14 @@
+"""
+
+"""
+
 import datetime as dt
 import urllib.request
 import socket
 import configparser
 import gzip
 import pymysql
-import downloadFunctions as dF
+import download_functions as df
 
 
 START_DATE = dt.date(2018, 9, 15)
@@ -14,26 +18,32 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 local_config = config[socket.gethostname()]
 
+"""
 conn = pymysql.connect(host=local_config['host'],
-                       port=local_config['host'],
+                       port=int(local_config['port']),
                        user=local_config['db_user'],
                        passwd=local_config['db_passwd'],
-                       db=local_config['db'])
+                       db=local_config['db_tibcodata'])
 
 
 cur = conn.cursor()
-
-connSys = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='***REMOVED***', db='tibcosystem')
+"""
+"""
+connSys = pymysql.connect(host='127.0.0.1',
+                          port=3306,
+                          user='root',
+                          passwd='***REMOVED***',
+                          db='tibcosystem')
 curSys = connSys.cursor()
+"""
 
-filename_list = dF.getTibcoDailyFilenames(START_DATE, END_DATE)
+filename_list = df.get_tibco_daily_filenames(START_DATE, END_DATE)
 
 #print(filename_list)
 #print(socket.gethostname())
-#print(config[socket.gethostname()]['host'])
+print(config[socket.gethostname()]['host'])
 #urllib.request.urlretrieve('https://downloads.elexonportal.co.uk/bmradataarchive/download?key=***REMOVED***&filename=tib_messages.2018-09-15.gz',config[socket.gethostname()]['dataDirectory']+'test')
 
-'''
 for filename in filename_list:
     try:
         remote_url = (config['Elexon']['urlBase']
@@ -47,7 +57,8 @@ for filename in filename_list:
         print('Downloading:' + filename)
     except:
         print('Failed to Open URL: ' + remote_url)
-'''
+
+subjects = set()
 
 for filename in filename_list:
     f = gzip.open(local_config['dataDirectory'] + filename, 'rb')
@@ -71,14 +82,20 @@ for filename in filename_list:
             subject  =  r[r.find('subject=')+8:r.find(',',r.find('subject=')+8,len(r))]
             message  =  r[r.find('message={')+9:len(r)]
             subjectPart = subject.split('.')
+            print(subject)
+            subjectShort = subjectPart[2:]
+            #print(subjectShort)
+            subjects.add(subjectShort[0])
 
+print(subjects)
+"""
             if gmt != 'GMT':
                 print('hold')
 
             e = 1
     ##          Process BMU specific data
             if subjectPart[1] == 'BM':
-                subjectShort = subjectPart[2:]
+
 
                 # Check if BMU ID already existists in database
                 if subjectShort[0] not in bmuL:
@@ -103,7 +120,7 @@ for filename in filename_list:
                     e =db.enterBMebocf(subjectShort[0], subjectShort[-2], recieved, gmt, message, cur)
 
 
-## Prcess system data
+            # Prcess system data
             elif subjectPart[1] == 'SYSTEM':
                 subjectShort = subjectPart[2:]
 
@@ -149,6 +166,6 @@ for filename in filename_list:
                     print('hold')
                     input('Hold...')
                     print('holding')
-
+"""
 #https://downloads.elexonportal.co.uk/bmradataarchive/download?key=***REMOVED***&filename=tib_messages.2018-09-15.gz
 #https://downloads.elexonportal.co.uk/bmradataarchive/download?key=***REMOVED***&filename=tib_messages.2018-01-01.gz
