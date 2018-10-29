@@ -1,6 +1,10 @@
+"""
+Helper functions for managing downloads
+
+"""
 import datetime as dt
 
-def getTibcoDailyFilenames(date_start, date_end = None):
+def get_tibco_daily_filenames(date_start, date_end=None):
     """
     Generates filenames for daily tibco files between two dates (inclusive)
     if no end date specified, only returns single filename for given date
