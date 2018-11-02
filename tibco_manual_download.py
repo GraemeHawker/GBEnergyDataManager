@@ -9,10 +9,11 @@ import configparser
 import gzip
 import pymysql
 import download_functions as df
+import upload_functions as uf
 
 
-START_DATE = dt.date(2018, 9, 15)
-END_DATE = dt.date(2018, 9, 15)
+START_DATE = dt.date(2018, 10, 29)
+END_DATE = dt.date(2018, 10, 29)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -42,23 +43,27 @@ filename_list = df.get_tibco_daily_filenames(START_DATE, END_DATE)
 #print(filename_list)
 #print(socket.gethostname())
 print(config[socket.gethostname()]['host'])
-#urllib.request.urlretrieve('https://downloads.elexonportal.co.uk/bmradataarchive/download?key=8bjll9hlkqh7gb8&filename=tib_messages.2018-09-15.gz',config[socket.gethostname()]['dataDirectory']+'test')
 
+#urllib.request.urlretrieve('https://downloads.elexonportal.co.uk/bmradataarchive/download?key=8bjll9hlkqh7gb8&filename=tib_messages.2018-09-15.gz',config[socket.gethostname()]['dataDirectory']+'test')
+'''
 for filename in filename_list:
     try:
         remote_url = (config['Elexon']['urlBase']
-            + '?key='
-            + config['Elexon']['key']
-            + '&filename='
-            + filename)
+                      + '?key='
+                      + config['Elexon']['key']
+                      + '&filename='
+                      + filename)
         urllib.request.urlretrieve(
             remote_url,
             local_config['dataDirectory'] + filename)
         print('Downloading:' + filename)
     except:
         print('Failed to Open URL: ' + remote_url)
-
+'''
 subjects = set()
+tibco_types = set()
+BMUIDs = set()
+BM_data_types = set()
 
 for filename in filename_list:
     f = gzip.open(local_config['dataDirectory'] + filename, 'rb')
@@ -66,7 +71,7 @@ for filename in filename_list:
     dataArray = [entry for entry in file_content.split('}')]
     le = len(dataArray)
     tm = dt.datetime.now()
-    print(filename + ' HH contains: '+str(le)+' rows. Time is: '+str(tm.time()))
+    #print(filename + ' HH contains: '+str(le)+' rows. Time is: '+str(tm.time()))
     t = 0
     rowCount = 0
     for r in dataArray:
@@ -75,19 +80,52 @@ for filename in filename_list:
         #Check if row is empty (will usually designate end of the file)
         if r not in ('', '\n', '\r\n'):
             #If line starts with newline character: remove
-            if r[0:1] is '\n': r = r[1:]
-            if r[0:2] == '\r\n': r = r[2:]
+            if r[0:1] == '\n':
+                r = r[1:]
+            if r[0:2] == '\r\n':
+                r = r[2:]
             recieved = r[0:19]
             gmt = r[20:23]
-            subject  =  r[r.find('subject=')+8:r.find(',',r.find('subject=')+8,len(r))]
-            message  =  r[r.find('message={')+9:len(r)]
+            subject = r[r.find('subject=')+8:r.find(',',
+                                                    r.find('subject=')+8,
+                                                    len(r))
+                        ]
+            message = r[r.find('message={')+9:len(r)]
             subjectPart = subject.split('.')
-            print(subject)
+            #print(subject)
             subjectShort = subjectPart[2:]
             #print(subjectShort)
-            subjects.add(subjectShort[0])
+            subjects.add(str(subjectPart))
 
-print(subjects)
+            subject_list = subject.split('.')
+            tibco_type = subject_list[1] #should be 'BM' or 'SYSTEM'
+            tibco_types.add(tibco_type)
+            if tibco_type == 'BM':
+                BMUID = subject_list[2]
+                BMUIDs.add(BMUID)
+                BM_data_type = subject_list[3]
+                BM_data_types.add(BM_data_type)
+                '''
+                if 'CNQPS-4' in BMUID and BM_data_type == 'FPN':
+                    message_list = message.split(',')
+                    print(#message_list[0].split('=')[1],
+                          message_list[4].split('=')[1],
+                          )
+                '''
+                uf.insert_bm_data(BMUID, BM_data_type, message)
+            elif tibco_type == 'SYSTEM':
+                uf.insert_system_data(message)
+            elif tibco_type == 'DYNAMIC':
+                BMUID = subject_list[2]
+                BMUIDs.add(BMUID)
+                dynamic_data_type = subject_list[1]
+                uf.insert_dynamic_data(BMUID, BM_data_type, message)
+            else:
+                raise ValueError('Tibco message subject type %s not found' % tibco_type)
+
+
+
+#print(sorted(BM_data_types))
 """
             if gmt != 'GMT':
                 print('hold')
