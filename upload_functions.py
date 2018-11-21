@@ -2,6 +2,8 @@
 Helper functions for uploading data to database
 
 """
+__author__ = 'graeme.hawker'
+
 import datetime as dt
 
 def message_to_dict(raw_message):
@@ -23,24 +25,44 @@ def message_to_dict(raw_message):
             message_type: string
                 the tibco message type, one of ['BM','SYSTEM','DYNAMIC']
             message_subtype: string
-                the subtype
+                the subtype of the message
                 for message_type == 'BM', one of
-                    ['FPN','QPN','']
+                    ['FPN','QPN','MEL','MIL']
                 for message_type == 'SYSTEM', one of
+                    []
                 for message_type == 'DYNAMIC', one of
-
+                    []
+            data_pairs: dict
+                time/value pairs ordered by integer key
+                each consisting of a timestamp and float value
 
     """
     message_dict = dict()
 
     message_parts = raw_message.split(',')
 
-    received_time_string = message_parts[0].split[' '][0]
-    message_dict['received_time'] = dt.datetime(received_time_string.split[':'])
+    received_time_string = message_parts[0].split(' ')[0]
+    message_dict['received_time'] = dt.datetime(
+        *[int(x) for x in received_time_string.split(':')[:-2]])
 
-    message_type_list = message_parts[0].split[' '][1].split('.')
+    message_type_list = message_parts[0].split(' ')[1].split('.')
     message_dict['message_type'] = message_type_list[1]
-    message_dict['message_subtype'] = message_type_list[2]
+    if message_dict['message_type'] == 'BM':
+        message_dict['bmu_id'] = message_type_list[2]
+        message_dict['message_subtype'] = message_type_list[3]
+    elif message_dict['message_type'] == 'SYSTEM':
+        message_dict['message_subtype'] = message_type_list[2]
+    else:
+        raise ValueError('message type %s not recognised' % message_dict['message_type'])
+
+    key_values = raw_message[raw_message.find('{')+1:raw_message.rfind('}')]
+    for key_value in key_values.split(','):
+        key, value = key_value.split('=')
+        print(key, value)
+        if key == 'SD':
+            message_dict['SD'] = value
+        elif key == 'SP':
+            message_dict['SP'] = value
 
     return message_dict
 
