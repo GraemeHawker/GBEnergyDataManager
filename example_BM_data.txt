@@ -1,0 +1,60 @@
+SYSTEM Data
+General parameters:
+  SD: Settlement Date, formatted yyyy:MM:dd:hh:mm:ss:GMT
+  SP: Settlement Period, integer between 1 and 50 inclusive
+
+2017:03:29:00:00:37:GMT: subject=BMRA.SYSTEM.MID, message={MI=APXMIDP,SD=2017:03:29:00:00:00:GMT,SP=2,M1=34.58,M2=223.7}
+2017:03:29:00:00:52:GMT: subject=BMRA.SYSTEM.FREQ, message={TS=2017:03:28:23:58:00:GMT,SF=50.058}
+2017:03:29:00:01:08:GMT: subject=BMRA.SYSTEM.INDO, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,VD=24016.0}
+2017:03:29:00:01:09:GMT: subject=BMRA.SYSTEM.ITSDO, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,VD=26085.0}
+2017:03:29:00:01:10:GMT: subject=BMRA.SYSTEM.FUELINST, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,TS=2017:03:28:23:55:00:GMT,FT=CCGT,FG=10374}
+2017:03:29:00:01:10:GMT: subject=BMRA.SYSTEM.FUELHH, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,FT=CCGT,FG=10418}
+2017:03:29:00:01:24:GMT: subject=BMRA.SYSTEM.NONBM, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,NB=0}
+
+BM Data
+General parameters:
+  SD: Settlement Date, formatted yyyy:MM:dd:hh:mm:ss:GMT
+  SP: Settlement Period, integer between 1 and 50 inclusive
+
+FPN / QPN
+  Final Physical Notification / Quiescent Physical Notification
+  Message consists of multiple (1<=n<inf) timestamp and power value pairs
+  Parameters:
+    NP: Number of points, integer
+    TS: Timestamp of point, formatted yyyy:MM:dd:hh:mm:ss:GMT
+    VP: Power value in MW, float
+
+  Example entries:
+2017:03:29:00:02:03:GMT: subject=BMRA.BM.T_ABTH9.FPN, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VP=0.0,TS=2017:03:29:01:30:00:GMT,VP=0.0}
+2017:03:29:00:02:17:GMT: subject=BMRA.BM.E_ABERDARE.QPN, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VP=0.0,TS=2017:03:29:01:30:00:GMT,VP=0.0}
+
+MEL / MIL
+  Maximum Export Limit / Minimum Import Limit
+  Message consists of multiple (1<=n<inf) timestamp and power value pairs
+  Parameters:
+    NP: Number of points, integer
+    TS: Timestamp of point, formatted yyyy:MM:dd:hh:mm:ss:GMT
+    VE: (maximum export) power value in MW, float
+    VF: (minimum import) power value in MW, float
+
+  Example entries:
+2017:03:29:00:02:16:GMT: subject=BMRA.BM.T_SIZB-2.MEL, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VE=602.0,TS=2017:03:29:01:30:00:GMT,VE=602.0}
+2017:03:29:00:01:51:GMT: subject=BMRA.BM.T_DRAXX-1.MIL, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VF=0.0,TS=2017:03:29:01:30:00:GMT,VF=0.0}
+
+BOD
+  Bid/Offer Data
+  Message consists of bid/offer data pairs, multiple entries for each
+  BOD pairs may extend from -5 to +5 e.g. up to 11 operating points
+  Parameters:
+    NN:
+    OP:
+    BP:
+    NP:
+    TS:
+    VB:
+2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-4, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-4,OP=45.0,BP=-250.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-645.0,TS=2017:03:29:01:30:00:GMT,VB=-645.0}
+2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-3, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-3,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-255.0,TS=2017:03:29:01:30:00:GMT,VB=-255.0}
+2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-2, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-2,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-95.0,TS=2017:03:29:01:30:00:GMT,VB=-95.0}
+2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-1, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-1,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-95.0,TS=2017:03:29:01:30:00:GMT,VB=-95.0}
+2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.1, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=1,OP=150.0,BP=0.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=645.0,TS=2017:03:29:01:30:00:GMT,VB=645.0}
+2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.2, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=2,OP=500.0,BP=0.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=645.0,TS=2017:03:29:01:30:00:GMT,VB=645.0}
