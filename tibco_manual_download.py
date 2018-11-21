@@ -12,14 +12,14 @@ import download_functions as df
 import upload_functions as uf
 
 
-START_DATE = dt.date(2018, 10, 29)
-END_DATE = dt.date(2018, 10, 29)
+START_DATE = dt.date(2017, 4, 21)
+END_DATE = dt.date(2018, 11, 15)
 
 config = configparser.ConfigParser()
 config.read('config.ini')
 local_config = config[socket.gethostname()]
 
-"""
+
 conn = pymysql.connect(host=local_config['host'],
                        port=int(local_config['port']),
                        user=local_config['db_user'],
@@ -28,15 +28,15 @@ conn = pymysql.connect(host=local_config['host'],
 
 
 cur = conn.cursor()
-"""
-"""
+
+'''
 connSys = pymysql.connect(host='127.0.0.1',
                           port=3306,
                           user='root',
                           passwd='***REMOVED***',
                           db='tibcosystem')
 curSys = connSys.cursor()
-"""
+'''
 
 filename_list = df.get_tibco_daily_filenames(START_DATE, END_DATE)
 
@@ -64,8 +64,10 @@ subjects = set()
 tibco_types = set()
 BMUIDs = set()
 BM_data_types = set()
+system_data_types = set()
 
 for filename in filename_list:
+    print('Processing:' + filename)
     f = gzip.open(local_config['dataDirectory'] + filename, 'rb')
     file_content = f.read().decode('utf-8', 'ignore')
     dataArray = [entry for entry in file_content.split('}')]
@@ -84,7 +86,7 @@ for filename in filename_list:
                 r = r[1:]
             if r[0:2] == '\r\n':
                 r = r[2:]
-            recieved = r[0:19]
+            received = r[0:19]
             gmt = r[20:23]
             subject = r[r.find('subject=')+8:r.find(',',
                                                     r.find('subject=')+8,
@@ -112,16 +114,28 @@ for filename in filename_list:
                           message_list[4].split('=')[1],
                           )
                 '''
-                uf.insert_bm_data(BMUID, BM_data_type, message)
+                uf.insert_bm_data(BMUID, BM_data_type, received, gmt, message, cur)
             elif tibco_type == 'SYSTEM':
+                #print(subject_list)
+                system_data_type = subject_list[2]
+                system_data_types.add(system_data_type)
                 uf.insert_system_data(message)
             elif tibco_type == 'DYNAMIC':
                 BMUID = subject_list[2]
                 BMUIDs.add(BMUID)
                 dynamic_data_type = subject_list[1]
                 uf.insert_dynamic_data(BMUID, BM_data_type, message)
+            elif tibco_type == 'BP':
+                pass
             else:
                 raise ValueError('Tibco message subject type %s not found' % tibco_type)
+    f.close()
+    conn.commit()
+    #connSys.commit()
+
+#print(BM_data_types)
+#print(system_data_types)
+
 
 
 
