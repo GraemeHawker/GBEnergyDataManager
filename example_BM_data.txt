@@ -1,4 +1,5 @@
-Message begins with timestamp (yyyy:MM:dd:hh:mm:ss:GMT) of message received time
+Each message begins with timestamp (yyyy:MM:dd:hh:mm:ss:GMT) of message received time
+Example lines given below are exactly as seen in raw data file
 
 SYSTEM Data
 General parameters:
@@ -6,11 +7,29 @@ General parameters:
   SP: Settlement Period, integer between 1 and 50 inclusive
 
 2017:03:29:00:00:37:GMT: subject=BMRA.SYSTEM.MID, message={MI=APXMIDP,SD=2017:03:29:00:00:00:GMT,SP=2,M1=34.58,M2=223.7}
+
+FREQ
+  System frequency data
+  Parameters:
+    SF: System frequency (Hz)
 2017:03:29:00:00:52:GMT: subject=BMRA.SYSTEM.FREQ, message={TS=2017:03:28:23:58:00:GMT,SF=50.058}
+
+INDO
 2017:03:29:00:01:08:GMT: subject=BMRA.SYSTEM.INDO, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,VD=24016.0}
+
+ITSDO
 2017:03:29:00:01:09:GMT: subject=BMRA.SYSTEM.ITSDO, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,VD=26085.0}
 2017:03:29:00:01:10:GMT: subject=BMRA.SYSTEM.FUELINST, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,TS=2017:03:28:23:55:00:GMT,FT=CCGT,FG=10374}
+
+FUELHH
+  Half-hourly system-level generation by fuel type
+  Parameters:
+    FT: Fuel type
+    FG: Total generation level (MW)
+
 2017:03:29:00:01:10:GMT: subject=BMRA.SYSTEM.FUELHH, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,FT=CCGT,FG=10418}
+
+NONBM
 2017:03:29:00:01:24:GMT: subject=BMRA.SYSTEM.NONBM, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,NB=0}
 
 BM Data
