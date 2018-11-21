@@ -4,6 +4,47 @@ Helper functions for uploading data to database
 """
 import datetime as dt
 
+def message_to_dict(raw_message):
+    """
+    Converts a raw message string to a dictionary with
+    key/value pairs and metadata
+
+    Parameters
+    ----------
+    raw_message : string
+        the BM data string
+
+    Returns
+    -------
+    message_dict: dict
+        a dictionary containing key/value pairs and metadata:
+            received_time: datetime
+                the timestamp of the message
+            message_type: string
+                the tibco message type, one of ['BM','SYSTEM','DYNAMIC']
+            message_subtype: string
+                the subtype
+                for message_type == 'BM', one of
+                    ['FPN','QPN','']
+                for message_type == 'SYSTEM', one of
+                for message_type == 'DYNAMIC', one of
+
+
+    """
+    message_dict = dict()
+
+    message_parts = raw_message.split(',')
+
+    received_time_string = message_parts[0].split[' '][0]
+    message_dict['received_time'] = dt.datetime(received_time_string.split[':'])
+
+    message_type_list = message_parts[0].split[' '][1].split('.')
+    message_dict['message_type'] = message_type_list[1]
+    message_dict['message_subtype'] = message_type_list[2]
+
+    return message_dict
+
+
 def split_message(raw_message):
     """
     Takes a BM relevant message

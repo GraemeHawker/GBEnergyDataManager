@@ -1,3 +1,5 @@
+Message begins with timestamp (yyyy:MM:dd:hh:mm:ss:GMT) of message received time
+
 SYSTEM Data
 General parameters:
   SD: Settlement Date, formatted yyyy:MM:dd:hh:mm:ss:GMT
@@ -18,9 +20,9 @@ General parameters:
 
 FPN / QPN
   Final Physical Notification / Quiescent Physical Notification
-  Message consists of multiple (1<=n<inf) timestamp and power value pairs
+  Message consists of 2 timestamp and power value pairs, relating to elbow points
   Parameters:
-    NP: Number of points, integer
+    NP: Number of points, integer (expected=2)
     TS: Timestamp of point, formatted yyyy:MM:dd:hh:mm:ss:GMT
     VP: Power value in MW, float
 
@@ -29,10 +31,10 @@ FPN / QPN
 2017:03:29:00:02:17:GMT: subject=BMRA.BM.E_ABERDARE.QPN, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VP=0.0,TS=2017:03:29:01:30:00:GMT,VP=0.0}
 
 MEL / MIL
-  Maximum Export Limit / Minimum Import Limit
-  Message consists of multiple (1<=n<inf) timestamp and power value pairs
+  Maximum Export Limit / Maximum Import Limit
+  Message consists of 2 timestamp and power value pairs, relating to elbow points
   Parameters:
-    NP: Number of points, integer
+    NP: Number of points, integer (expected=2)
     TS: Timestamp of point, formatted yyyy:MM:dd:hh:mm:ss:GMT
     VE: (maximum export) power value in MW, float
     VF: (minimum import) power value in MW, float
@@ -43,15 +45,15 @@ MEL / MIL
 
 BOD
   Bid/Offer Data
-  Message consists of bid/offer data pairs, multiple entries for each
-  BOD pairs may extend from -5 to +5 e.g. up to 11 operating points
+  Message consists of 2 bid/offer data pairs (settlement period start and settlement period end)
+  BOD pairs may extend from -5 to +5 e.g. up to 10 operating points each with 2 bid/offer pairs
   Parameters:
-    NN:
-    OP:
-    BP:
-    NP:
-    TS:
-    VB:
+    NN: Bid-offer pair number, integer (in range -5 to 5)
+    OP: Offer price (£/MWh)
+    BP: Bid price (£/MWh)
+    NP: Number of points, integer (expected=2)
+    TS: Timestamp
+    VB: Bid volume
 2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-4, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-4,OP=45.0,BP=-250.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-645.0,TS=2017:03:29:01:30:00:GMT,VB=-645.0}
 2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-3, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-3,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-255.0,TS=2017:03:29:01:30:00:GMT,VB=-255.0}
 2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-2, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-2,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-95.0,TS=2017:03:29:01:30:00:GMT,VB=-95.0}
