@@ -6,6 +6,8 @@ General parameters:
   SD: Settlement Date, formatted yyyy:MM:dd:hh:mm:ss:GMT
   SP: Settlement Period, integer between 1 and 50 inclusive
 
+MID
+
 2017:03:29:00:00:37:GMT: subject=BMRA.SYSTEM.MID, message={MI=APXMIDP,SD=2017:03:29:00:00:00:GMT,SP=2,M1=34.58,M2=223.7}
 
 FREQ
