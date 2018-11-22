@@ -2,8 +2,6 @@
 Helper functions for uploading data to database
 
 """
-__author__ = 'graeme.hawker'
-
 import datetime as dt
 
 def message_to_dict(raw_message):
@@ -40,7 +38,6 @@ def message_to_dict(raw_message):
     message_dict = dict()
 
     message_parts = raw_message.split(',')
-
     received_time_string = message_parts[0].split(' ')[0]
     message_dict['received_time'] = dt.datetime(
         *[int(x) for x in received_time_string.split(':')[:-2]])
@@ -58,12 +55,35 @@ def message_to_dict(raw_message):
     key_values = raw_message[raw_message.find('{')+1:raw_message.rfind('}')]
     for key_value in key_values.split(','):
         key, value = key_value.split('=')
-        print(key, value)
-        if key == 'SD':
-            message_dict['SD'] = value
-        elif key == 'SP':
-            message_dict['SP'] = value
-
+        key = key.strip()
+        if key == 'SD':     #settlement date
+            message_dict['SD'] = dt.datetime(*[int(x) for x in value.split(':')[:3]])
+        elif key == 'SP':   #settlement period
+            message_dict['SP'] = int(value)
+        elif message_dict['message_subtype'] == 'BOD' and key == 'NN':
+            message_dict['NN'] = int(value)
+        elif message_dict['message_subtype'] == 'BOD' and key == 'BP':
+            message_dict['BP'] = float(value)
+        elif message_dict['message_subtype'] == 'BOD' and key == 'OP':
+            message_dict['OP'] = float(value)
+        elif key == 'NP':   #process data pairs
+            message_dict['data_pairs'] = dict()
+            pair_count = 1
+            for pair_timestamp, pair_value in zip(
+                    key_values.split(',')[-2*int(value):][0::2],
+                    key_values.split(',')[-2*int(value):][1::2]):
+                message_dict['data_pairs'][pair_count] = {
+                    'timestamp' : dt.datetime(
+                        *[int(x) for x in pair_timestamp.split('=')[1]
+                          .split(':')[:-2]]),
+                    pair_value.split('=')[0]: float(pair_value.split('=')[1])}
+                pair_count += 1
+            break   #pairs should be the final part of the message
+        else:
+            raise ValueError('message key %s not recognised for \
+                             message type %s and message subtype %s' %
+                             (key, message_dict['message_type'],
+                              message_dict['message_subtype']))
     return message_dict
 
 
@@ -173,7 +193,6 @@ def insert_bm_data(BMUID, BM_data_type, received, gmt, message, cur):
     if BM_data_type in ['FPN', 'QPN', 'MEL', 'MIL']:
         #e = db.enterBMphys(subjectShort[0], subjectShort[-1], recieved, gmt, message, cur)
         query_part_1 = "INSERT INTO tibcodata."+BM_data_type.lower()
-
         query_part_2 = """
         (bmu_id, recieved, settlement_day, settlement_period, start_time, start_level, end_time, end_level)
         VALUES
