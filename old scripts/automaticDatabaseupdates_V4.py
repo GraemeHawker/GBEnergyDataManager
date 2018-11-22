@@ -63,10 +63,10 @@ cur.execute("SELECT bmu_id FROM tibcodata.bmu")
 bmuL=[]
 
 
-for bmu in cur.fetchall(): 
+for bmu in cur.fetchall():
     bmuL.append(bmu[0])
-    
-    
+
+
 
 
 ## Get dates to update
@@ -92,9 +92,9 @@ for d in datesToProcess:
      downloadErrors.append(err)
      if err == 1:
          tDownloadFails += 1
-    
-    
-    
+
+
+
 ## For each HH folder downloaded
 for dfile in os.listdir(dataDirectory):
     f = gzip.open(dataDirectory+dfile,'rb')
@@ -105,7 +105,7 @@ for dfile in os.listdir(dataDirectory):
     print(dfile+' HH contains: '+str(le)+' rows. Time is: '+str(tm.time()))
     t=0
     rowCount = 0
-    
+
     for r in dataArray:
         rowCount += 1
         #print(rowCount)
@@ -119,26 +119,26 @@ for dfile in os.listdir(dataDirectory):
             subject  =  r[r.find('subject=')+8:r.find(',',r.find('subject=')+8,len(r))]
             message  =  r[r.find('message={')+9:len(r)]
             subjectPart = subject.split('.')
-            
+
             if gmt != 'GMT':
                 print('hold')
-                
+
             e = 1
     ##          Process BMU specific data
             if subjectPart[1] == 'BM':
                 subjectShort = subjectPart[2:]
-            
+
                 # Check if BMU ID already existists in database
                 if subjectShort[0] not in bmuL:
                     try:
                         cur.execute(addBMU, subjectShort[0])
                         bmuL.append(subjectShort[0])
-                    except: 
+                    except:
                         print('Cant insert new BMU into Database')
-    
-            
-                
-                # Find the table in which data must be put 
+
+
+
+                # Find the table in which data must be put
                 if subjectShort[-1] in ['FPN', 'QPN', 'MEL', 'MIL']:
                     e = db.enterBMphys(subjectShort[0], subjectShort[-1], recieved, gmt, message, cur)
                 elif subjectShort[-2] in ['BOD']:
@@ -149,12 +149,12 @@ for dfile in os.listdir(dataDirectory):
                     e =db.enterBMboav(subjectShort[0], subjectShort[-2], recieved, gmt, message, cur)
                 elif subjectShort[-2] in ['EBOCF']:
                     e =db.enterBMebocf(subjectShort[0], subjectShort[-2], recieved, gmt, message, cur)
-    
+
 
 ## Prcess system data
             elif subjectPart[1] == 'SYSTEM':
                 subjectShort = subjectPart[2:]
-            
+
 
                 if subjectShort[0] in ['WINDFOR']:
                     e = sdb.enterWindForecast(recieved, message, curSys)
@@ -163,24 +163,24 @@ for dfile in os.listdir(dataDirectory):
                 elif subjectShort[0] in ['FUELINST']:
                     e = sdb.enterOutturnByFuelTypeInst(message, curSys)
                 elif subjectShort[0] in ['NDF', 'TSDF', 'MELNGC', 'IMBALNGC', 'INDGEN','INDDEM']:
-                    e = sdb.enterZoneForecasts(subjectShort[0], recieved, message, curSys)        
+                    e = sdb.enterZoneForecasts(subjectShort[0], recieved, message, curSys)
                 elif subjectShort[0] in ['TEMP']:
                     e = sdb.enterTempData(message, curSys)
                 elif subjectShort[0] in ['FREQ']:
-                    e = sdb.enterFrequency(message, curSys)    
+                    e = sdb.enterFrequency(message, curSys)
                 elif subjectShort[0] in ['INDO', 'ITSDO']:
-                    e = sdb.enterDemandOutTurn(subjectShort[0], message, curSys)    
+                    e = sdb.enterDemandOutTurn(subjectShort[0], message, curSys)
                 elif subjectShort[0] in ['NONBM']:
-                    e = sdb.enterNonBMstor(message, curSys)                    
+                    e = sdb.enterNonBMstor(message, curSys)
                 elif subjectShort[0] in ['INDOD']:
                     e = sdb.enterEnergyOutTurn(message, curSys)
                 elif subjectShort[0] in ['SYSWARN']:
-                    e = sdb.enterSysWarn(message, curSys)   
+                    e = sdb.enterSysWarn(message, curSys)
                 elif subjectShort[0] in ['SYSMSG']:
-                    e = sdb.enterSysMsg(message, curSys)  
+                    e = sdb.enterSysMsg(message, curSys)
                 elif subjectShort[0] in ['TBOD']:
                     e = sdb.enterSysTotalBODs(message, curSys)
-                elif  subjectShort[0] in ['MID']:   
+                elif  subjectShort[0] in ['MID']:
                     e = sdb.enterMid(message, curSys)
                 elif  subjectShort[0] in ['LOLP']:
                     e = sdb.enterLolp(message, curSys)
@@ -197,7 +197,7 @@ for dfile in os.listdir(dataDirectory):
                     print('hold')
                     input('Hold...')
                     print('holding')
-                    
+
 
     ## Update Period Mels in the p114 database
 
@@ -208,18 +208,17 @@ for dfile in os.listdir(dataDirectory):
     connSys.commit()
     f.close()
     os.rename(dataDirectory+dfile, proccesedDirectory+dfile)
-    
+
 bmuQuerry = """SELECT bmu_id from bmu WHERE bmu_id LIKE 'T_%' OR bmu_id LIKE 'E_%'OR bmu_id LIKE 'M_%' """
 
 cur.execute(bmuQuerry)
 bmus = cur.fetchall()
 
 bmuL = []
-for b in bmus: 
+for b in bmus:
     bmuL.append(b[0])
 
 
 reviewFolder = "D:\\USERS\\seb09186\\ShareFile\\My Files & Folders\\BM Daily Reviews\\csv\\"
 
 bmExcel_3.createDailyCsv(bmuL, yesterday, cur, curSys, reviewFolder)
-
