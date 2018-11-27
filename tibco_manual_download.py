@@ -29,22 +29,8 @@ conn = pymysql.connect(host=local_config['host'],
 
 cur = conn.cursor()
 
-'''
-connSys = pymysql.connect(host='127.0.0.1',
-                          port=3306,
-                          user='root',
-                          passwd='imGoingToCambridge2015',
-                          db='tibcosystem')
-curSys = connSys.cursor()
-'''
-
 filename_list = df.get_tibco_daily_filenames(START_DATE, END_DATE)
 
-#print(filename_list)
-#print(socket.gethostname())
-print(config[socket.gethostname()]['host'])
-
-#urllib.request.urlretrieve('https://downloads.elexonportal.co.uk/bmradataarchive/download?key=8bjll9hlkqh7gb8&filename=tib_messages.2018-09-15.gz',config[socket.gethostname()]['dataDirectory']+'test')
 '''
 for filename in filename_list:
     try:
@@ -60,6 +46,8 @@ for filename in filename_list:
     except:
         print('Failed to Open URL: ' + remote_url)
 '''
+
+#for the purposes of reviewing file contents
 subjects = set()
 tibco_types = set()
 BMUIDs = set()
@@ -73,7 +61,6 @@ for filename in filename_list:
     dataArray = [entry for entry in file_content.split('}')]
     le = len(dataArray)
     tm = dt.datetime.now()
-    #print(filename + ' HH contains: '+str(le)+' rows. Time is: '+str(tm.time()))
     t = 0
     rowCount = 0
     for r in dataArray:
@@ -90,8 +77,7 @@ for filename in filename_list:
             gmt = r[20:23]
             subject = r[r.find('subject=')+8:r.find(',',
                                                     r.find('subject=')+8,
-                                                    len(r))
-                        ]
+                                                    len(r))]
             message = r[r.find('message={')+9:len(r)]
             subjectPart = subject.split('.')
             #print(subject)
