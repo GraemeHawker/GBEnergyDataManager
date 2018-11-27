@@ -9,6 +9,10 @@ def get_tibco_daily_filenames(date_start, date_end=None):
     Generates filenames for daily tibco files between two dates (inclusive)
     if no end date specified, only returns single filename for given date
 
+    Example url:
+https://downloads.elexonportal.co.uk/bmradataarchive/download?\
+key=INSERT_KEY&filename=tib_messages.2018-09-15.gz
+
     Parameters
     ----------
     date_start : datetime
