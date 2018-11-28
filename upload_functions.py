@@ -3,6 +3,63 @@ Helper functions for uploading data to database
 
 """
 import datetime as dt
+from itertools import zip_longest
+from data_definitions import ACCEPTED_MESSAGES, FIELD_CASTING_FUNCS
+
+def message_part_to_points(raw_message_part,
+                           no_points,
+                           message_type,
+                           message_subtype):
+    """
+    For part of a message string containing multiple datapoints
+    splits string into individual datapoints and inserts
+    key,value pairs into dictionary
+
+    Parameters
+    ----------
+    raw_message_part : string
+        the BM datapoints substring
+
+    no_points: integer
+        the number of datapoints contained
+
+    message_type: string
+        the BMRA message type (e.g. 'BM')
+
+    message_subtype: string
+        the BMRA message sub-type (e.g. 'FPN')
+    """
+
+    data_dict = dict()
+    data_set_count = 1
+
+    #subdivide into iterables each containing single set of key,value pairs
+    #see https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
+    if len(raw_message_part.split(','))%no_points != 0:
+        raise ValueError("Unexpected number of key/value pairs %s"
+                         % raw_message_part)
+    data_length = len(raw_message_part.split(','))//no_points
+    for data_set in zip_longest(*[iter(raw_message_part.split(','))]*data_length,
+                                fillvalue='error'):
+        data_dict[data_set_count] = dict()
+        for data_point in data_set:
+            if data_point == 'error':
+                raise ValueError("Unexpected number of key/value pairs %s"
+                                 % raw_message_part)
+            key, value = data_point.split('=')
+            if key.strip() in ACCEPTED_MESSAGES[message_type][message_subtype]:
+                data_dict[data_set_count][key.strip()] = FIELD_CASTING_FUNCS[
+                    key.strip()](value.strip())
+            else:
+                raise ValueError('message key %s not recognised for \
+                message type %s and message subtype %s %s' %
+                                 (key, message_type,
+                                  message_subtype,
+                                  raw_message_part))
+        data_set_count += 1
+    #if message_subtype == 'IMBALNGC': print(data_dict)
+    return data_dict
+
 
 def message_to_dict(raw_message):
     """
@@ -25,9 +82,9 @@ def message_to_dict(raw_message):
             message_subtype: string
                 the subtype of the message
                 for message_type == 'BM', one of
-                    ['FPN','QPN','MEL','MIL']
+                    ['FPN', 'QPN', 'MEL', 'MIL', 'BOD']
                 for message_type == 'SYSTEM', one of
-                    []
+                    ['MID', 'FREQ']
                 for message_type == 'DYNAMIC', one of
                     []
             data_pairs: dict
@@ -43,49 +100,65 @@ def message_to_dict(raw_message):
         *[int(x) for x in received_time_string.split(':')[:-2]])
 
     message_type_list = message_parts[0].split(' ')[1].split('.')
-    message_dict['message_type'] = message_type_list[1]
-    if message_dict['message_type'] == 'BM':
+    message_type = message_type_list[1]
+    message_dict['message_type'] = message_type
+    if message_type == 'BM':
         message_dict['bmu_id'] = message_type_list[2]
-        message_dict['message_subtype'] = message_type_list[3]
-    elif message_dict['message_type'] == 'SYSTEM':
-        message_dict['message_subtype'] = message_type_list[2]
+        message_subtype = message_type_list[3]
+        message_dict['message_subtype'] = message_subtype
+    elif message_type == 'SYSTEM':
+        message_subtype = message_type_list[2]
+        message_dict['message_subtype'] = message_subtype
     else:
-        raise ValueError('message type %s not recognised' % message_dict['message_type'])
+        raise ValueError('message type %s not recognised' % message_type)
+
+    if message_subtype not in ACCEPTED_MESSAGES[message_type]:
+        raise ValueError('message subtype %s not recognised for \
+                         message type %s %s' %
+                         (message_subtype,
+                          message_type,
+                          raw_message))
 
     key_values = raw_message[raw_message.find('{')+1:raw_message.rfind('}')]
     for key_value in key_values.split(','):
         key, value = key_value.split('=')
         key = key.strip()
-        if key == 'SD':     #settlement date
-            message_dict['SD'] = dt.datetime(*[int(x) for x in value.split(':')[:3]])
-        elif key == 'SP':   #settlement period
-            message_dict['SP'] = int(value)
-        elif message_dict['message_subtype'] == 'BOD' and key == 'NN':
-            message_dict['NN'] = int(value)
-        elif message_dict['message_subtype'] == 'BOD' and key == 'BP':
-            message_dict['BP'] = float(value)
-        elif message_dict['message_subtype'] == 'BOD' and key == 'OP':
-            message_dict['OP'] = float(value)
-        elif key == 'NP':   #process data pairs
-            message_dict['data_pairs'] = dict()
-            pair_count = 1
-            for pair_timestamp, pair_value in zip(
-                    key_values.split(',')[-2*int(value):][0::2],
-                    key_values.split(',')[-2*int(value):][1::2]):
-                message_dict['data_pairs'][pair_count] = {
-                    'timestamp' : dt.datetime(
-                        *[int(x) for x in pair_timestamp.split('=')[1]
-                          .split(':')[:-2]]),
-                    pair_value.split('=')[0]: float(pair_value.split('=')[1])}
-                pair_count += 1
-            break   #pairs should be the final part of the message
+        if key in ['NP', 'NR']:   #process multiple datapoints
+            raw_message_part = raw_message[raw_message.rfind(key):-1]
+            raw_message_part = raw_message_part[raw_message_part.find(',')+1:]
+            message_dict['data_points'] = message_part_to_points(
+                raw_message_part,
+                int(value.strip()),
+                message_type,
+                message_subtype)
+
+            break   #datapoints should be the final part of the message
+        elif key in ACCEPTED_MESSAGES[message_type][message_subtype]:
+            message_dict[key] = FIELD_CASTING_FUNCS[key](value)
         else:
             raise ValueError('message key %s not recognised for \
-                             message type %s and message subtype %s' %
+            message type %s and message subtype %s %s' %
                              (key, message_dict['message_type'],
-                              message_dict['message_subtype']))
+                              message_dict['message_subtype'],
+                              raw_message))
+
     return message_dict
 
+def dict_to_sql(message_dict):
+    """
+    Converts a message dictionary to SQL INSERT query strings
+
+    Parameters
+    ----------
+    message_dict : dict
+        the BM data dictionary
+
+    Returns
+    -------
+    query : list
+        a list of SQL INSERT query strings
+    """
+    pass
 
 def split_message(raw_message):
     """
