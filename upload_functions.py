@@ -102,7 +102,7 @@ def message_to_dict(raw_message):
     message_type_list = message_parts[0].split(' ')[1].split('.')
     message_type = message_type_list[1]
     message_dict['message_type'] = message_type
-    if message_type == 'BM':
+    if message_type in ['BM', 'DYNAMIC']:
         message_dict['bmu_id'] = message_type_list[2]
         message_subtype = message_type_list[3]
         message_dict['message_subtype'] = message_subtype
@@ -110,7 +110,8 @@ def message_to_dict(raw_message):
         message_subtype = message_type_list[2]
         message_dict['message_subtype'] = message_subtype
     else:
-        raise ValueError('message type %s not recognised' % message_type)
+        raise ValueError('message type %s not recognised %s' % (message_type,
+                                                                raw_message))
 
     if message_subtype not in ACCEPTED_MESSAGES[message_type]:
         raise ValueError('message subtype %s not recognised for \
