@@ -135,12 +135,12 @@ class DataProcessingTestCase(unittest.TestCase):
         """
         test conversion of MEL raw data string to dictionary
         """
-        input_str = '2017:03:29:00:02:16:GMT: subject=BMRA.BM.T_SIZB-2.MEL, \
+        input_str = '2017:03:29:00:02:16:GMT: subject=BMRA.BM.T_SIZB2.MEL, \
         message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,\
         TS=2017:03:29:01:00:00:GMT,VE=602.0,TS=2017:03:29:01:30:00:GMT,VE=602.0}'
         expected_dict = {'received_time' : dt.datetime(2017, 3, 29, 0, 2, 16),
                          'message_type' : 'BM',
-                         'bmu_id' : 'T_SIZB-2',
+                         'bmu_id' : 'T_SIZB2',
                          'message_subtype' : 'MEL',
                          'SD' : dt.datetime(2017, 3, 29),
                          'SP' : 5,
@@ -157,12 +157,12 @@ class DataProcessingTestCase(unittest.TestCase):
         """
         test conversion of MIL raw data string to dictionary
         """
-        input_str = '2017:03:29:00:01:51:GMT: subject=BMRA.BM.T_DRAXX-1.MIL, \
+        input_str = '2017:03:29:00:01:51:GMT: subject=BMRA.BM.T_DRAXX1.MIL, \
         message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,\
         TS=2017:03:29:01:00:00:GMT,VF=0.0,TS=2017:03:29:01:30:00:GMT,VF=0.0}'
         expected_dict = {'received_time' : dt.datetime(2017, 3, 29, 0, 1, 51),
                          'message_type' : 'BM',
-                         'bmu_id' : 'T_DRAXX-1',
+                         'bmu_id' : 'T_DRAXX1',
                          'message_subtype' : 'MIL',
                          'SD' : dt.datetime(2017, 3, 29),
                          'SP' : 5,
@@ -179,26 +179,90 @@ class DataProcessingTestCase(unittest.TestCase):
         """
         test conversion of BOD raw data string to dictionary
         """
-        input_str = '2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-4, \
-        message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-4,OP=45.0,\
-        BP=-250.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-645.0,\
-        TS=2017:03:29:01:30:00:GMT,VB=-645.0}'
+        input_str = '2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX1.BOD.4, \
+        message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=4,OP=45.0,\
+        BP=250.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=645.0,\
+        TS=2017:03:29:01:30:00:GMT,VB=645.0}'
         expected_dict = {'received_time' : dt.datetime(2017, 3, 29, 0, 2, 2),
                          'message_type' : 'BM',
-                         'bmu_id' : 'T_DRAXX-1',
+                         'bmu_id' : 'T_DRAXX1',
                          'message_subtype' : 'BOD',
                          'SD' : dt.datetime(2017, 3, 29),
                          'SP' : 5,
-                         'NN' : -4,
-                         'BP' : -250.0,
+                         'NN' : 4,
+                         'BP' : 250.0,
                          'OP' : 45.0,
                          'data_points':
                          {1:
                           {'TS' : dt.datetime(2017, 3, 29, 1),
-                           'VB' : -645.0},
+                           'VB' : 645.0},
                           2:
                           {'TS' : dt.datetime(2017, 3, 29, 1, 30),
-                           'VB' : -645.0}}}
+                           'VB' : 645.0}}}
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_ebocf_to_dict(self):
+        """
+        test conversion of EBOCF raw data string to dictionary
+        """
+        input_str = '2017:04:21:00:21:54:GMT: subject=BMRA.BM.T_EECL-1.EBOCF.1,\
+         message={SD=2017:04:21:00:00:00:GMT,SP=2,NN=1,OC=4.95,BC=0.0}'
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 21, 54),
+                         'message_type' : 'BM',
+                         'bmu_id' : 'T_EECL-1',
+                         'message_subtype' : 'EBOCF',
+                         'SD' : dt.datetime(2017, 4, 21),
+                         'SP' : 2,
+                         'NN' : 1,
+                         'OC' : 4.95,
+                         'BC' : 0.0
+                         }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_boav_to_dict(self):
+        """
+        test conversion of BOAV raw data string to dictionary
+        """
+        input_str = '2017:04:21:00:21:54:GMT: subject=BMRA.BM.T_EECL-1.BOAV.1, \
+        message={SD=2017:04:21:00:00:00:GMT,SP=2,NN=1,NK=88365,OV=0.0833,BV=0.0,SA=L}'
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 21, 54),
+                         'message_type' : 'BM',
+                         'bmu_id' : 'T_EECL-1',
+                         'message_subtype' : 'BOAV',
+                         'SD' : dt.datetime(2017, 4, 21),
+                         'SP' : 2,
+                         'NN' : 1,
+                         'NK' : 88365,
+                         'OV' : 0.0833,
+                         'BV' : 0.0,
+                         'SA' : False
+                         }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_disptav_to_dict(self):
+        """
+        test conversion of DISPTAV raw data string to dictionary
+        """
+        input_str = '2017:04:21:00:21:54:GMT: subject=BMRA.BM.T_EECL-1.DISPTAV.1, \
+        message={SD=2017:04:21:00:00:00:GMT,SP=2,NN=1,OV=0.0833,\
+        P1=0.0833,P2=0.0,P3=0.0,BV=0.0,P4=0.0,P5=0.0,P6=0.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 21, 54),
+                         'message_type' : 'BM',
+                         'bmu_id' : 'T_EECL-1',
+                         'message_subtype' : 'DISPTAV',
+                         'SD' : dt.datetime(2017, 4, 21),
+                         'SP' : 2,
+                         'NN' : 1,
+                         'OV' : 0.0833,
+                         'BV' : 0.0,
+                         'P1' : 0.0833,
+                         'P2' : 0.0,
+                         'P3' : 0.0,
+                         'P4' : 0.0,
+                         'P5' : 0.0,
+                         'P6' : 0.0
+                         }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
     def test_mid_to_dict(self):
@@ -219,6 +283,174 @@ class DataProcessingTestCase(unittest.TestCase):
                         }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
+    def test_tbod_to_dict(self):
+        """
+        test conversion of MID raw data string to dictionary
+        """
+        input_str = '2017:04:21:00:21:54:GMT: subject=BMRA.SYSTEM.TBOD, \
+        message={SD=2017:04:21:00:00:00:GMT,SP=2,OT=49472.0,BT=-48434.5}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 21, 54),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'TBOD',
+                         'SD' : dt.datetime(2017, 4, 21),
+                         'SP' : 2,
+                         'OT' : 49472.0,
+                         'BT' : -48434.5
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_disebsp_to_dict(self):
+        """
+        test conversion of DISEBSP raw data string to dictionary
+        """
+        input_str = '2017:04:21:00:21:54:GMT: subject=BMRA.SYSTEM.DISEBSP, \
+        message={SD=2017:04:21:00:00:00:GMT,SP=2,PB=29.83277,PS=29.83277,PD=N,\
+        BD=F,A3=0.0,A6=0.0,NI=-18.3724,AO=223.2374,AB=-221.4425,T1=223.2374,\
+        T2=-203.0701,PP=222.5202,PC=-80.051,J1=-225.0,J2=205.0,J3=-225.0,\
+        J4=205.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 21, 54),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'DISEBSP',
+                         'SD' : dt.datetime(2017, 4, 21),
+                         'SP' : 2,
+                         'PB' : 29.83277,
+                         'PS' : 29.83277,
+                         'PD' : 'N',
+                         'BD' : False,
+                         'A3' : 0.0,
+                         'A6' : 0.0,
+                         'NI' : -18.3724,
+                         'AO' : 223.2374,
+                         'AB' : -221.4425,
+                         'T1' : 223.2374,
+                         'T2' : -203.0701,
+                         'PP' : 222.5202,
+                         'PC' : -80.051,
+                         'J1' : -225.0,
+                         'J2' : 205.0,
+                         'J3' : -225.0,
+                         'J4' : 205.0
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_sel_to_dict(self):
+        """
+        test conversion of SEL raw data string to dictionary
+        """
+        input_str = '2017:04:21:01:21:21:GMT: subject=BMRA.DYNAMIC.T_ROCK-1.SEL, \
+        message={TE=2017:04:21:01:20:00:GMT,SE=240.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 1, 21, 21),
+                         'message_type' : 'DYNAMIC',
+                         'message_subtype' : 'SEL',
+                         'bmu_id' : 'T_ROCK-1',
+                         'TE' : dt.datetime(2017, 4, 21, 1, 20),
+                         'SE' : 240.0
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_mnzt_to_dict(self):
+        """
+        test conversion of MNZT raw data string to dictionary
+        """
+        input_str = '2017:04:21:01:21:54:GMT: subject=BMRA.DYNAMIC.T_STAY-2.MNZT, \
+        message={TE=2017:04:21:01:21:00:GMT,MN=360}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 1, 21, 54),
+                         'message_type' : 'DYNAMIC',
+                         'message_subtype' : 'MNZT',
+                         'bmu_id' : 'T_STAY-2',
+                         'TE' : dt.datetime(2017, 4, 21, 1, 21),
+                         'MN' : 360
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_ndz_to_dict(self):
+        """
+        test conversion of NDZ raw data string to dictionary
+        """
+        input_str = '2017:04:21:01:21:55:GMT: subject=BMRA.DYNAMIC.T_STAY-2.NDZ, \
+        message={TE=2017:04:21:01:21:00:GMT,DZ=58}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 1, 21, 55),
+                         'message_type' : 'DYNAMIC',
+                         'message_subtype' : 'NDZ',
+                         'bmu_id' : 'T_STAY-2',
+                         'TE' : dt.datetime(2017, 4, 21, 1, 21),
+                         'DZ' : 58
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_rure_to_dict(self):
+        """
+        test conversion of RURE raw data string to dictionary
+        """
+        input_str = '2017:04:21:01:22:19:GMT: subject=BMRA.DYNAMIC.T_STAY-2.RURE, \
+        message={TE=2017:04:21:01:21:00:GMT,U1=8.4,UB=45,U2=0.2,UC=48,U3=17.5}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 1, 22, 19),
+                         'message_type' : 'DYNAMIC',
+                         'message_subtype' : 'RURE',
+                         'bmu_id' : 'T_STAY-2',
+                         'TE' : dt.datetime(2017, 4, 21, 1, 21),
+                         'U1' : 8.4,
+                         'UB' : 45,
+                         'U2' : 0.2,
+                         'UC' : 48,
+                         'U3' : 17.5
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_mzt_to_dict(self):
+        """
+        test conversion of MZT raw data string to dictionary
+        """
+        input_str = '2017:04:21:02:20:27:GMT: subject=BMRA.DYNAMIC.T_FOYE-2.MZT, \
+        message={TE=2017:04:21:02:19:00:GMT,MZ=30}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 2, 20, 27),
+                         'message_type' : 'DYNAMIC',
+                         'message_subtype' : 'MZT',
+                         'bmu_id' : 'T_FOYE-2',
+                         'TE' : dt.datetime(2017, 4, 21, 2, 19),
+                         'MZ' : 30
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_ntb_to_dict(self):
+        """
+        test conversion of NTB raw data string to dictionary
+        """
+        input_str = '2017:04:21:02:20:44:GMT: subject=BMRA.DYNAMIC.T_FOYE-2.NTB, \
+        message={TE=2017:04:21:02:19:00:GMT,DB=2}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 2, 20, 44),
+                         'message_type' : 'DYNAMIC',
+                         'message_subtype' : 'NTB',
+                         'bmu_id' : 'T_FOYE-2',
+                         'TE' : dt.datetime(2017, 4, 21, 2, 19),
+                         'DB' : 2
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_nto_to_dict(self):
+        """
+        test conversion of NTO raw data string to dictionary
+        """
+        input_str = '2017:04:21:02:20:44:GMT: subject=BMRA.DYNAMIC.T_FOYE-2.NTO, \
+        message={TE=2017:04:21:02:19:00:GMT,DO=2}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 2, 20, 44),
+                         'message_type' : 'DYNAMIC',
+                         'message_subtype' : 'NTO',
+                         'bmu_id' : 'T_FOYE-2',
+                         'TE' : dt.datetime(2017, 4, 21, 2, 19),
+                         'DO' : 2
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
     def test_freq_to_dict(self):
         """
         test conversion of FREQ raw data string to dictionary
@@ -234,11 +466,48 @@ class DataProcessingTestCase(unittest.TestCase):
                         }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
+    def test_ispstack_to_dict(self):
+        """
+        test conversion of ISPSTACK raw data string to dictionary
+        """
+        input_str = '2017:04:21:00:21:54:GMT: subject=BMRA.SYSTEM.ISPSTACK, \
+        message={SD=2017:04:21:00:00:00:GMT,SP=2,BO=O,SN=1,CI=T_HUMR-1,\
+        NK=112149,NN=1,CF=F,SO=F,PF=F,RI=F,UP=49.49,IP=49.49,IV=12.6424,\
+        DA=12.6424,AV=12.6424,NV=0.0,PV=0.0,FP=49.49,TM=1.0,TV=0.0,TC=0.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 21, 54),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'ISPSTACK',
+                         'SD' : dt.datetime(2017, 4, 21),
+                         'SP' : 2,
+                         'BO' : 'O',
+                         'SN' : 1,
+                         'CI' : 'T_HUMR-1',
+                         'NK' : 112149,
+                         'NN' : 1,
+                         'CF' : False,
+                         'SO' : False,
+                         'PF' : False,
+                         'RI' : False,
+                         'UP' : 49.49,
+                         'IP' : 49.49,
+                         'IV' : 12.6424,
+                         'DA' : 12.6424,
+                         'AV' : 12.6424,
+                         'NV' : 0.0,
+                         'PV' : 0.0,
+                         'FP' : 49.49,
+                         'TM' : 1.0,
+                         'TV' : 0.0,
+                         'TC' : 0.0
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
     def test_boalf_to_dict(self):
         """
         test conversion of BOALF raw data string to dictionary
         """
-        input_str = '2017:04:21:00:00:43:GMT: subject=BMRA.BM.T_SCCL-1.BOALF, \
+        input_str = '2017:04:21:00:00:43:GMT: subject=BMRA.BM.T_SCCL1.BOALF, \
         message={NK=52908,SO=T,PF=F,TA=2017:04:20:23:59:00:GMT,AD=F,NP=4,\
         TS=2017:04:21:00:05:00:GMT,VA=367.0,TS=2017:04:21:00:09:00:GMT,\
         VA=310.0,TS=2017:04:21:00:35:00:GMT,VA=310.0,\
@@ -247,7 +516,7 @@ class DataProcessingTestCase(unittest.TestCase):
         expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 0, 43),
                          'message_type' : 'BM',
                          'message_subtype' : 'BOALF',
-                         'bmu_id' : 'T_SCCL-1',
+                         'bmu_id' : 'T_SCCL1',
                          'NK' : 52908,
                          'SO' : True,
                          'PF' : False,
@@ -765,6 +1034,916 @@ dt.datetime(2017, 4, 21, 0, 15), 'VD': 21227.0}, 58: {'SD': dt.datetime(2017, 4,
                          'ZI': 'B1',
                          'data_points': {1: {'TP': dt.datetime(2017, 4, 20, 22, 45), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 1, 'VI': 636.0}, 2: {'TP': dt.datetime(2017, 4, 20, 23, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 2, 'VI': 660.0}, 3: {'TP': dt.datetime(2017, 4, 20, 23, 45), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 3, 'VI': 634.0}, 4: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 4, 'VI': 634.0}, 5: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 5, 'VI': 652.0}, 6: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 6, 'VI': 672.0}, 7: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 7, 'VI': 685.0}, 8: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 8, 'VI': 692.0}, 9: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 9, 'VI': 695.0}, 10: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 10, 'VI': 687.0}, 11: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 11, 'VI': 664.0}, 12: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 12, 'VI': 639.0}, 13: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 13, 'VI': 629.0}, 14: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 14, 'VI': 646.0}, 15: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 15, 'VI': 676.0}, 16: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 16, 'VI': 659.0}, 17: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 17, 'VI': 646.0}, 18: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 18, 'VI': 648.0}, 19: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 19, 'VI': 659.0}, 20: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 20, 'VI': 692.0}, 21: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 21, 'VI': 698.0}, 22: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 22, 'VI': 698.0}, 23: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 23, 'VI': 680.0}, 24: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 24, 'VI': 704.0}, 25: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 25, 'VI': 689.0}, 26: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 26, 'VI': 719.0}, 27: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 27, 'VI': 742.0}, 28: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 28, 'VI': 758.0}, 29: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 29, 'VI': 758.0}, 30: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 30, 'VI': 764.0}, 31: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 31, 'VI': 790.0}, 32: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 32, 'VI': 795.0}, 33: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 33, 'VI': 809.0}, 34: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 34, 'VI': 819.0}, 35: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 35, 'VI': 805.0}, 36: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 36, 'VI': 778.0}, 37: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 37, 'VI': 749.0}, 38: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 38, 'VI': 715.0}, 39: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 39, 'VI': 678.0}, 40: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 40, 'VI': 627.0}, 41: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 41, 'VI': 562.0}, 42: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 42, 'VI': 499.0}, 43: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 43, 'VI': 467.0}, 44: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 44, 'VI': 436.0}, 45: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 45, 'VI': 345.0}, 46: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 46, 'VI': 321.0}, 47: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 47, 'VI': 315.0}, 48: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 21, 0, 0), 'SP': 48, 'VI': 313.0}, 49: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 1, 'VI': 304.0}, 50: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 2, 'VI': 299.0}, 51: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 3, 'VI': 288.0}, 52: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 4, 'VI': 267.0}, 53: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 5, 'VI': 265.0}, 54: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 6, 'VI': 260.0}, 55: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 7, 'VI': 254.0}, 56: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 8, 'VI': 251.0}, 57: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 9, 'VI': 248.0}, 58: {'TP': dt.datetime(2017, 4, 21, 0, 15), 'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 10, 'VI': 240.0}}
                         }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_indgen_to_dict(self):
+        """
+        test conversion of INDGEN raw data string to dictionary
+        """
+        input_str = '2017:04:21:00:17:42:GMT: subject=BMRA.SYSTEM.INDGEN.B14, \
+        message={ZI=B14,NR=58,\
+        TP=2017:04:20:22:45:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=1,VG=255.0,\
+        TP=2017:04:20:23:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=2,VG=255.0,\
+        TP=2017:04:20:23:45:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=3,VG=255.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=4,VG=353.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=5,VG=375.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=6,VG=357.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=7,VG=255.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=8,VG=255.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=9,VG=255.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=10,VG=255.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=11,VG=390.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=12,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=13,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=14,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=15,VG=430.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=16,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=17,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=18,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=19,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=20,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=21,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=22,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=23,VG=431.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=24,VG=432.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=25,VG=434.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=26,VG=435.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=27,VG=435.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=28,VG=435.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=29,VG=434.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=30,VG=432.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=31,VG=430.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=32,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=33,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=34,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=35,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=36,VG=429.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=37,VG=430.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=38,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=39,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=40,VG=426.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=41,VG=426.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=42,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=43,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=44,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=45,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=46,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=47,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=48,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=1,VG=427.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=2,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=3,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=4,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=5,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=6,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=7,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=8,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=9,VG=428.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=10,VG=428.0}'
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 17, 42),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'INDGEN',
+                         'ZI': 'B14',
+                         'data_points': {
+                              1: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                  'SP': 1,
+                                  'TP': dt.datetime(2017, 4, 20, 22, 45),
+                                  'VG': 255.0},
+                              2: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                  'SP': 2,
+                                  'TP': dt.datetime(2017, 4, 20, 23, 15),
+                                  'VG': 255.0},
+                              3: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                  'SP': 3,
+                                  'TP': dt.datetime(2017, 4, 20, 23, 45),
+                                  'VG': 255.0},
+                              4: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                  'SP': 4,
+                                  'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                  'VG': 353.0},
+                              5: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                  'SP': 5,
+                                  'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                  'VG': 375.0},
+                              6: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                  'SP': 6,
+                                  'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                  'VG': 357.0},
+                              7: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                  'SP': 7,
+                                  'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                  'VG': 255.0},
+                              8: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                  'SP': 8,
+                                  'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                  'VG': 255.0},
+                              9: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                  'SP': 9,
+                                  'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                  'VG': 255.0},
+                              10: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 10,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 255.0},
+                              11: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 11,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 390.0},
+                              12: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 12,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              13: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 13,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              14: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 14,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              15: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 15,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 430.0},
+                              16: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 16,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              17: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 17,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              18: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 18,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              19: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 19,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              20: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 20,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              21: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 21,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              22: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 22,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              23: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 23,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 431.0},
+                              24: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 24,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 432.0},
+                              25: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 25,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 434.0},
+                              26: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 26,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 435.0},
+                              27: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 27,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 435.0},
+                              28: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 28,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 435.0},
+                              29: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 29,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 434.0},
+                              30: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 30,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 432.0},
+                              31: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 31,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 430.0},
+                              32: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 32,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              33: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 33,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              34: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 34,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              35: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 35,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              36: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 36,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 429.0},
+                              37: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 37,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 430.0},
+                              38: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 38,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              39: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 39,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              40: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 40,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 426.0},
+                              41: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 41,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 426.0},
+                              42: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 42,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              43: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 43,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              44: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 44,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              45: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 45,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              46: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 46,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              47: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 47,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              48: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                                   'SP': 48,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              49: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 1,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 427.0},
+                              50: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 2,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              51: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 3,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              52: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 4,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              53: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 5,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              54: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 6,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              55: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 7,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              56: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 8,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              57: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 9,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0},
+                              58: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                                   'SP': 10,
+                                   'TP': dt.datetime(2017, 4, 21, 0, 15),
+                                   'VG': 428.0}
+                                    }}
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_melngc_to_dict(self):
+        """
+        test conversion of MELNGC raw data string to dictionary
+        """
+        input_str = '2017:04:21:00:19:12:GMT: subject=BMRA.SYSTEM.MELNGC.B1, \
+        message={ZI=B1,NR=58,\
+        TP=2017:04:20:22:45:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=1,VM=-895.0,\
+        TP=2017:04:20:23:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=2,VM=-910.0,\
+        TP=2017:04:20:23:45:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=3,VM=-881.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=4,VM=-896.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=5,VM=-908.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=6,VM=-922.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=7,VM=-933.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=8,VM=-941.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=9,VM=-944.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=10,VM=-939.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=11,VM=-923.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=12,VM=-900.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=13,VM=-872.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=14,VM=-841.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=15,VM=-812.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=16,VM=-796.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=17,VM=-781.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=18,VM=-780.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=19,VM=-784.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=20,VM=-793.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=21,VM=-810.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=22,VM=-826.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=23,VM=-848.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=24,VM=-867.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=25,VM=-885.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=26,VM=-904.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=27,VM=-918.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=28,VM=-921.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=29,VM=-921.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=30,VM=-923.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=31,VM=-923.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=32,VM=-915.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=33,VM=-902.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=34,VM=-883.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=35,VM=-866.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=36,VM=-850.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=37,VM=-831.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=38,VM=-809.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=39,VM=-783.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=40,VM=-745.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=41,VM=-707.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=42,VM=-670.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=43,VM=-647.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=44,VM=-632.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=45,VM=-626.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=46,VM=-624.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=47,VM=-623.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=48,VM=-623.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=1,VM=-618.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=2,VM=-617.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=3,VM=-607.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=4,VM=-601.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=5,VM=-599.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=6,VM=-595.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=7,VM=-591.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=8,VM=-589.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=9,VM=-587.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=10,VM=-580.0}'
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 19, 12),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'MELNGC',
+                         'ZI': 'B1',
+                         'data_points': {
+                 1: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 1,
+                     'TP': dt.datetime(2017, 4, 20, 22, 45),
+                     'VM': -895.0},
+                 2: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 2,
+                     'TP': dt.datetime(2017, 4, 20, 23, 15),
+                     'VM': -910.0},
+                 3: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 3,
+                     'TP': dt.datetime(2017, 4, 20, 23, 45),
+                     'VM': -881.0},
+                 4: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 4,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VM': -896.0},
+                 5: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 5,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VM': -908.0},
+                 6: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 6,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VM': -922.0},
+                 7: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 7,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VM': -933.0},
+                 8: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 8,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VM': -941.0},
+                 9: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 9,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VM': -944.0},
+                 10: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 10,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -939.0},
+                 11: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 11,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -923.0},
+                 12: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 12,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -900.0},
+                 13: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 13,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -872.0},
+                 14: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 14,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -841.0},
+                 15: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 15,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -812.0},
+                 16: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 16,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -796.0},
+                 17: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 17,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -781.0},
+                 18: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 18,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -780.0},
+                 19: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 19,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -784.0},
+                 20: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 20,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -793.0},
+                 21: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 21,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -810.0},
+                 22: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 22,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -826.0},
+                 23: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 23,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -848.0},
+                 24: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 24,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -867.0},
+                 25: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 25,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -885.0},
+                 26: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 26,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -904.0},
+                 27: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 27,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -918.0},
+                 28: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 28,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -921.0},
+                 29: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 29,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -921.0},
+                 30: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 30,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -923.0},
+                 31: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 31,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -923.0},
+                 32: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 32,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -915.0},
+                 33: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 33,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -902.0},
+                 34: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 34,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -883.0},
+                 35: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 35,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -866.0},
+                 36: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 36,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -850.0},
+                 37: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 37,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -831.0},
+                 38: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 38,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -809.0},
+                 39: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 39,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -783.0},
+                 40: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 40,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -745.0},
+                 41: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 41,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -707.0},
+                 42: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 42,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -670.0},
+                 43: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 43,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -647.0},
+                 44: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 44,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -632.0},
+                 45: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 45,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -626.0},
+                 46: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 46,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -624.0},
+                 47: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 47,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -623.0},
+                 48: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 48,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -623.0},
+                 49: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 1,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -618.0},
+                 50: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 2,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -617.0},
+                 51: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 3,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -607.0},
+                 52: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 4,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -601.0},
+                 53: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 5,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -599.0},
+                 54: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 6,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -595.0},
+                 55: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 7,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -591.0},
+                 56: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 8,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -589.0},
+                 57: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 9,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VM': -587.0},
+                 58: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 10,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                       'VM': -580.0}}}
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_inddem_to_dict(self):
+        """
+        test conversion of INDDEM raw data string to dictionary
+        """
+        input_str = '2017:04:21:00:20:44:GMT: subject=BMRA.SYSTEM.INDDEM.B1, \
+        message={ZI=B1,NR=58,\
+        TP=2017:04:20:22:45:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=1,VD=-99.0,\
+        TP=2017:04:20:23:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=2,VD=-98.0,\
+        TP=2017:04:20:23:45:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=3,VD=-100.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=4,VD=-100.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=5,VD=-98.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=6,VD=-101.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=7,VD=-105.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=8,VD=-103.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=9,VD=-94.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=10,VD=-93.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=11,VD=-94.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=12,VD=-97.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=13,VD=-101.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=14,VD=-109.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=15,VD=-121.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=16,VD=-131.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=17,VD=-144.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=18,VD=-149.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=19,VD=-150.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=20,VD=-149.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=21,VD=-150.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=22,VD=-150.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=23,VD=-151.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=24,VD=-152.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=25,VD=-151.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=26,VD=-147.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=27,VD=-145.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=28,VD=-140.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=29,VD=-133.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=30,VD=-131.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=31,VD=-131.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=32,VD=-128.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=33,VD=-129.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=34,VD=-132.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=35,VD=-135.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=36,VD=-130.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=37,VD=-127.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=38,VD=-125.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=39,VD=-125.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=40,VD=-125.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=41,VD=-134.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=42,VD=-131.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=43,VD=-129.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=44,VD=-121.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=45,VD=-120.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=46,VD=-115.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=47,VD=-110.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=48,VD=-107.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=1,VD=-99.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=2,VD=-99.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=3,VD=-100.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=4,VD=-101.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=5,VD=-98.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=6,VD=-99.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=7,VD=-104.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=8,VD=-101.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=9,VD=-94.0,\
+        TP=2017:04:21:00:15:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=10,VD=-92.0}'
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 0, 20, 44),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'INDDEM',
+                         'ZI': 'B1',
+                         'data_points': {1: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 1,
+                     'TP': dt.datetime(2017, 4, 20, 22, 45),
+                     'VD': -99.0},
+                 2: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 2,
+                     'TP': dt.datetime(2017, 4, 20, 23, 15),
+                     'VD': -98.0},
+                 3: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 3,
+                     'TP': dt.datetime(2017, 4, 20, 23, 45),
+                     'VD': -100.0},
+                 4: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 4,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VD': -100.0},
+                 5: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 5,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VD': -98.0},
+                 6: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 6,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VD': -101.0},
+                 7: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 7,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VD': -105.0},
+                 8: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 8,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VD': -103.0},
+                 9: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                     'SP': 9,
+                     'TP': dt.datetime(2017, 4, 21, 0, 15),
+                     'VD': -94.0},
+                 10: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 10,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -93.0},
+                 11: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 11,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -94.0},
+                 12: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 12,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -97.0},
+                 13: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 13,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -101.0},
+                 14: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 14,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -109.0},
+                 15: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 15,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -121.0},
+                 16: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 16,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -131.0},
+                 17: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 17,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -144.0},
+                 18: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 18,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -149.0},
+                 19: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 19,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -150.0},
+                 20: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 20,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -149.0},
+                 21: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 21,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -150.0},
+                 22: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 22,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -150.0},
+                 23: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 23,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -151.0},
+                 24: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 24,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -152.0},
+                 25: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 25,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -151.0},
+                 26: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 26,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -147.0},
+                 27: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 27,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -145.0},
+                 28: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 28,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -140.0},
+                 29: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 29,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -133.0},
+                 30: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 30,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -131.0},
+                 31: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 31,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -131.0},
+                 32: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 32,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -128.0},
+                 33: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 33,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -129.0},
+                 34: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 34,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -132.0},
+                 35: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 35,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -135.0},
+                 36: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 36,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -130.0},
+                 37: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 37,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -127.0},
+                 38: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 38,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -125.0},
+                 39: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 39,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -125.0},
+                 40: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 40,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -125.0},
+                 41: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 41,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -134.0},
+                 42: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 42,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -131.0},
+                 43: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 43,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -129.0},
+                 44: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 44,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -121.0},
+                 45: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 45,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -120.0},
+                 46: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 46,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -115.0},
+                 47: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 47,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -110.0},
+                 48: {'SD': dt.datetime(2017, 4, 21, 0, 0),
+                      'SP': 48,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -107.0},
+                 49: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 1,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -99.0},
+                 50: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 2,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -99.0},
+                 51: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 3,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -100.0},
+                 52: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 4,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -101.0},
+                 53: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 5,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -98.0},
+                 54: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 6,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -99.0},
+                 55: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 7,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -104.0},
+                 56: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 8,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -101.0},
+                 57: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 9,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -94.0},
+                 58: {'SD': dt.datetime(2017, 4, 22, 0, 0),
+                      'SP': 10,
+                      'TP': dt.datetime(2017, 4, 21, 0, 15),
+                      'VD': -92.0}
+                         }}
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
 if __name__ == '__main__':
