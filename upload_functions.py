@@ -107,7 +107,16 @@ def message_to_dict(raw_message):
         message_subtype = message_type_list[3]
         message_dict['message_subtype'] = message_subtype
     elif message_type == 'SYSTEM':
-        message_subtype = message_type_list[2]
+        if message_type_list[2] in ACCEPTED_MESSAGES[message_type]:
+            message_subtype = message_type_list[2]
+        elif len(message_type_list) > 3 and message_type_list[3] in ACCEPTED_MESSAGES[message_type]:
+            #for the system messages which also have an associated BMU ID
+            #in the header
+            message_subtype = message_type_list[3]
+            message_dict['bmu_id'] = message_type_list[2]
+        else:
+            raise ValueError('Valid subtype not found for message type %s %s' %
+                             (message_type, raw_message))
         message_dict['message_subtype'] = message_subtype
     else:
         raise ValueError('message type %s not recognised %s' % (message_type,
