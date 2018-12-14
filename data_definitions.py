@@ -41,6 +41,7 @@ ACCEPTED_MESSAGES = {
         'MELNGC': ['SD', 'SP', 'ZI', 'TP', 'VM'],
         'MID' : ['SD', 'SP', 'MI', 'M1', 'M2'],
         'NDF' : ['ZI', 'TP', 'SD', 'SP', 'VD'],
+        'NDFD' : ['TP', 'SD', 'SP', 'VD'],
         'NETBSAD' : ['SD', 'SP', 'A7', 'A8', 'A11', 'A3', 'A9', 'A10', 'A12', 'A6'],
         'NONBM' : ['SD', 'SP', 'TP', 'NB'],
         'OCNMFD' : ['SD', 'TP', 'SP', 'VM'],
@@ -48,6 +49,7 @@ ACCEPTED_MESSAGES = {
         'SOSO' : ['TT', 'ST', 'TD', 'IC', 'TQ', 'PT'],
         'TBOD' : ['SD', 'SP', 'OT', 'BT'],
         'TSDF' : ['ZI', 'TP', 'SD', 'SP', 'VD'],
+        'TSDFD' : ['TP', 'SD', 'SP', 'VD'],
         'UOU2T14D' : ['TP', 'SD', 'FT', 'OU'],
         'WINDFOR': ['SD', 'SP', 'TP', 'VG', 'TR']
         },
