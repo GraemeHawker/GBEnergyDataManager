@@ -847,7 +847,7 @@ class DataProcessingTestCase(unittest.TestCase):
 
     def test_ndf_to_dict(self):
         """
-        test conversion of LOLP raw data string to dictionary
+        test conversion of NDFD raw data string to dictionary
         """
         input_str = '2017:04:21:00:16:29:GMT: subject=BMRA.SYSTEM.NDF.N,\
          message={ZI=N,NR=58,\
@@ -998,6 +998,139 @@ dt.datetime(2017, 4, 22, 0, 0), 'SP': 8, 'TP': dt.datetime(2017, 4, 21, 0, 15),
 'VD': 21644.0}, 57: {'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 9, 'TP':
 dt.datetime(2017, 4, 21, 0, 15), 'VD': 21227.0}, 58: {'SD': dt.datetime(2017, 4,
 22, 0, 0), 'SP': 10, 'TP': dt.datetime(2017, 4, 21, 0, 15), 'VD': 21000.0}}}
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_ndfd_to_dict(self):
+        """
+        test conversion of NDFD raw data string to dictionary
+        """
+        input_str = '2017:04:21:13:45:37:GMT: subject=BMRA.SYSTEM.NDFD, \
+        message={TP=2017:04:21:13:45:00:GMT,NR=13,\
+        SD=2017:04:23:00:00:00:GMT,SP=3,VD=30950.0,\
+        SD=2017:04:24:00:00:00:GMT,SP=3,VD=34400.0,\
+        SD=2017:04:25:00:00:00:GMT,SP=3,VD=34700.0,\
+        SD=2017:04:26:00:00:00:GMT,SP=3,VD=35690.0,\
+        SD=2017:04:27:00:00:00:GMT,SP=3,VD=35700.0,\
+        SD=2017:04:28:00:00:00:GMT,SP=3,VD=35330.0,\
+        SD=2017:04:29:00:00:00:GMT,SP=3,VD=30090.0,\
+        SD=2017:04:30:00:00:00:GMT,SP=3,VD=29400.0,\
+        SD=2017:05:01:00:00:00:GMT,SP=3,VD=31410.0,\
+        SD=2017:05:02:00:00:00:GMT,SP=3,VD=33770.0,\
+        SD=2017:05:03:00:00:00:GMT,SP=3,VD=33500.0,\
+        SD=2017:05:04:00:00:00:GMT,SP=3,VD=32710.0,\
+        SD=2017:05:05:00:00:00:GMT,SP=3,VD=32360.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 13, 45, 37),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'NDFD',
+                         'TP': dt.datetime(2017,4,21,13,45),
+                         'data_points': {
+                  1: {'SD': dt.datetime(2017, 4, 23, 0, 0),
+                      'SP': 3,
+                      'VD': 30950.0},
+                  2: {'SD': dt.datetime(2017, 4, 24, 0, 0),
+                      'SP': 3,
+                      'VD': 34400.0},
+                  3: {'SD': dt.datetime(2017, 4, 25, 0, 0),
+                      'SP': 3,
+                      'VD': 34700.0},
+                  4: {'SD': dt.datetime(2017, 4, 26, 0, 0),
+                      'SP': 3,
+                      'VD': 35690.0},
+                  5: {'SD': dt.datetime(2017, 4, 27, 0, 0),
+                      'SP': 3,
+                      'VD': 35700.0},
+                  6: {'SD': dt.datetime(2017, 4, 28, 0, 0),
+                      'SP': 3,
+                      'VD': 35330.0},
+                  7: {'SD': dt.datetime(2017, 4, 29, 0, 0),
+                      'SP': 3,
+                      'VD': 30090.0},
+                  8: {'SD': dt.datetime(2017, 4, 30, 0, 0),
+                      'SP': 3,
+                      'VD': 29400.0},
+                  9: {'SD': dt.datetime(2017, 5, 1, 0, 0),
+                      'SP': 3,
+                      'VD': 31410.0},
+                  10: {'SD': dt.datetime(2017, 5, 2, 0, 0),
+                       'SP': 3,
+                       'VD': 33770.0},
+                  11: {'SD': dt.datetime(2017, 5, 3, 0, 0),
+                       'SP': 3,
+                       'VD': 33500.0},
+                  12: {'SD': dt.datetime(2017, 5, 4, 0, 0),
+                       'SP': 3,
+                       'VD': 32710.0},
+                  13: {'SD': dt.datetime(2017, 5, 5, 0, 0),
+                       'SP': 3,
+                       'VD': 32360.0}}}
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_tsdfd_to_dict(self):
+        """
+        test conversion of TSDFD raw data string to dictionary
+        """
+        input_str = '2017:04:21:13:45:53:GMT: subject=BMRA.SYSTEM.TSDFD, \
+        message={TP=2017:04:21:13:45:00:GMT,NR=13,\
+        SD=2017:04:23:00:00:00:GMT,SP=3,VD=31450.0,\
+        SD=2017:04:24:00:00:00:GMT,SP=3,VD=34900.0,\
+        SD=2017:04:25:00:00:00:GMT,SP=3,VD=35200.0,\
+        SD=2017:04:26:00:00:00:GMT,SP=3,VD=36190.0,\
+        SD=2017:04:27:00:00:00:GMT,SP=3,VD=36200.0,\
+        SD=2017:04:28:00:00:00:GMT,SP=3,VD=35830.0,\
+        SD=2017:04:29:00:00:00:GMT,SP=3,VD=30590.0,\
+        SD=2017:04:30:00:00:00:GMT,SP=3,VD=29900.0,\
+        SD=2017:05:01:00:00:00:GMT,SP=3,VD=31910.0,\
+        SD=2017:05:02:00:00:00:GMT,SP=3,VD=34270.0,\
+        SD=2017:05:03:00:00:00:GMT,SP=3,VD=34000.0,\
+        SD=2017:05:04:00:00:00:GMT,SP=3,VD=33210.0,\
+        SD=2017:05:05:00:00:00:GMT,SP=3,VD=32860.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 13, 45, 53),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'TSDFD',
+                         'TP': dt.datetime(2017,4,21,13,45),
+                         'data_points': {
+                 1: {'SD': dt.datetime(2017, 4, 23, 0, 0),
+                     'SP': 3,
+                     'VD': 31450.0},
+                 2: {'SD': dt.datetime(2017, 4, 24, 0, 0),
+                     'SP': 3,
+                     'VD': 34900.0},
+                 3: {'SD': dt.datetime(2017, 4, 25, 0, 0),
+                     'SP': 3,
+                     'VD': 35200.0},
+                 4: {'SD': dt.datetime(2017, 4, 26, 0, 0),
+                     'SP': 3,
+                     'VD': 36190.0},
+                 5: {'SD': dt.datetime(2017, 4, 27, 0, 0),
+                     'SP': 3,
+                     'VD': 36200.0},
+                 6: {'SD': dt.datetime(2017, 4, 28, 0, 0),
+                     'SP': 3,
+                     'VD': 35830.0},
+                 7: {'SD': dt.datetime(2017, 4, 29, 0, 0),
+                     'SP': 3,
+                     'VD': 30590.0},
+                 8: {'SD': dt.datetime(2017, 4, 30, 0, 0),
+                     'SP': 3,
+                     'VD': 29900.0},
+                 9: {'SD': dt.datetime(2017, 5, 1, 0, 0),
+                     'SP': 3,
+                     'VD': 31910.0},
+                 10: {'SD': dt.datetime(2017, 5, 2, 0, 0),
+                      'SP': 3,
+                      'VD': 34270.0},
+                 11: {'SD': dt.datetime(2017, 5, 3, 0, 0),
+                      'SP': 3,
+                      'VD': 34000.0},
+                 12: {'SD': dt.datetime(2017, 5, 4, 0, 0),
+                      'SP': 3,
+                      'VD': 33210.0},
+                 13: {'SD': dt.datetime(2017, 5, 5, 0, 0),
+                      'SP': 3,
+                      'VD': 32860.0}}
+                         }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
     def test_imbalngc_to_dict(self):
