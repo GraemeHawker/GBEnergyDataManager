@@ -11,11 +11,11 @@ import pymysql
 import download_functions as df
 import upload_functions as uf
 
-DOWNLOAD_FILES = False  #whether to download files (True) or just process (False)
+DOWNLOAD_FILES = True  #whether to download files (True) or just process (False)
 UPLOAD_TO_DB = False    #whether to process files to db (True) or not (False)
 
-START_DATE = dt.date(2017, 4, 21)
-END_DATE = dt.date(2017, 4, 21)
+START_DATE = dt.date(2018, 1, 1)
+END_DATE = dt.date(2018, 1, 31)
 
 CONFIG = configparser.ConfigParser()
 CONFIG.read('config.ini')
@@ -43,7 +43,6 @@ if DOWNLOAD_FILES is True:
             urllib.request.urlretrieve(
                 remote_url,
                 LOCAL_CONFIG['dataDirectory'] + filename)
-            print('Downloading:' + filename)
         except urllib.error.URLError as error:
             print('Failed to Open URL: ' + remote_url +' ' + error.reason)
 '''
@@ -60,8 +59,13 @@ for filename in FILENAME_LIST:
     f = gzip.open(LOCAL_CONFIG['dataDirectory'] + filename, 'rb')
     file_content = f.read().decode('utf-8', 'ignore')
     dataArray = [entry for entry in file_content.split('}')]
+    count = 0
     for message in dataArray:
-        message_dict = uf.message_to_dict(message+'}')
+        if len(message.strip()) > 0:
+            message_dict = uf.message_to_dict(message+'}')
+            count += 1
+    print(count)
+    print(len(dataArray))
     f.close()
 
 if UPLOAD_TO_DB is True:
