@@ -280,9 +280,17 @@ TSDFD
 SYSWARN
   System Warning
   Parameters:
-    SW: System warning messages
+    SW: System warning message
   Example entry:
 2017:04:21:14:28:15:GMT: subject=BMRA.SYSTEM.SYSWARN, message={TP=2017:04:21:14:28:09:GMT,SW=NATIONAL GRID NOTIFICATION of excess energy prices used for settlement outside of BALIT for SO to SO Transactions over the National Grid/RTE  Interconnector.  Prices cover 23:00Hrs Today to 05:00Hrs Tomorrow (UK local time) and are in Euro/MWh. From RTE: Offer 98.69; Bid 1.03 From NGC: Offer 247.38; Bid 0.00  Prices cover 05:00Hrs Tomorrow to 19:00Hrs Tomorrow (UK local time) and are in Euro/MWh. From RTE: Offer 89.05; Bid 0.00 From NGC: Offer 329.84; Bid 17.67  Prices cover 19:00Hrs Tomorrow to 23:00Hrs Tomorrow (UK local time) and are in Euro/MWh. From RTE: Offer 98.69; Bid 1.03 From NGC: Offer 353.40; Bid 23.56}
+
+SYSMSG
+  System Message
+  Parameters:
+    MT:
+    SM: System warning message
+  Example entry:
+2018:01:02:17:52:56:GMT: subject=BMRA.SYSTEM.SYSMSG, message={MT=MIDNP,TP=2018:01:02:17:51:46:GMT,SM=Market Index Data for Settlement Day 20180102 period 35 from Automated Power Exchange (UK) (APXMIDP) was not received. Price and volume defaulted to 0.}
 
 TEMP
   Temperature Data
@@ -431,6 +439,14 @@ QAS
 Dynamic Data
 General Parameters:
   TE: Time effective from
+
+SIL
+  Stable Import Limit (MW)
+  Parameters:
+    SI: Stable Import Limit (MW)
+  Example entry:
+2018:01:02:11:56:15:GMT: subject=BMRA.DYNAMIC.2__MPGEN002.SIL, message={TE=2018:01:02:11:54:00:GMT,SI=0.0}
+
 
 SEL
   Stable Export Limit

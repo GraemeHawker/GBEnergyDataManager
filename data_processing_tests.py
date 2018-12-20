@@ -368,6 +368,22 @@ class DataProcessingTestCase(unittest.TestCase):
                         }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
+    def test_sil_to_dict(self):
+        """
+        test conversion of SEL raw data string to dictionary
+        """
+        input_str = '2018:01:02:11:56:15:GMT: subject=BMRA.DYNAMIC.2__MPGEN002.SIL, \
+        message={TE=2018:01:02:11:54:00:GMT,SI=0.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2018, 1, 2, 11, 56, 15),
+                         'message_type' : 'DYNAMIC',
+                         'message_subtype' : 'SIL',
+                         'bmu_id' : '2__MPGEN002',
+                         'TE' : dt.datetime(2018, 1, 2, 11, 54),
+                         'SI' : 0.0
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
     def test_mnzt_to_dict(self):
         """
         test conversion of MNZT raw data string to dictionary
