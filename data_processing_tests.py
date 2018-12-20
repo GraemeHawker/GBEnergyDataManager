@@ -3411,5 +3411,512 @@ dt.datetime(2017, 4, 21, 0, 15), 'VD': 21227.0}, 58: {'SD': dt.datetime(2017, 4,
                          }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
+    def test_syswarn_to_dict(self):
+        """
+        test conversion of SYSWARN raw data string to dictionary
+        """
+        input_str = '2017:04:21:14:28:15:GMT: subject=BMRA.SYSTEM.SYSWARN, message={TP=2017:04:21:14:28:09:GMT,SW=NATIONAL GRID NOTIFICATION of excess energy prices used for settlement outside of BALIT for SO to SO Transactions over the National Grid/RTE  Interconnector.  Prices cover 23:00Hrs Today to 05:00Hrs Tomorrow (UK local time) and are in Euro/MWh. From RTE: Offer 98.69; Bid 1.03 From NGC: Offer 247.38; Bid 0.00  Prices cover 05:00Hrs Tomorrow to 19:00Hrs Tomorrow (UK local time) and are in Euro/MWh. From RTE: Offer 89.05; Bid 0.00 From NGC: Offer 329.84; Bid 17.67  Prices cover 19:00Hrs Tomorrow to 23:00Hrs Tomorrow (UK local time) and are in Euro/MWh. From RTE: Offer 98.69; Bid 1.03 From NGC: Offer 353.40; Bid 23.56}'
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 14, 28, 15),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'SYSWARN',
+                         'TP' : dt.datetime(2017, 4, 21, 14, 28, 9),
+                         'SW' : 'NATIONAL GRID NOTIFICATION of excess energy prices used for settlement outside of BALIT for SO to SO Transactions over the National Grid/RTE  Interconnector.  Prices cover 23:00Hrs Today to 05:00Hrs Tomorrow (UK local time) and are in Euro/MWh. From RTE: Offer 98.69; Bid 1.03 From NGC: Offer 247.38; Bid 0.00  Prices cover 05:00Hrs Tomorrow to 19:00Hrs Tomorrow (UK local time) and are in Euro/MWh. From RTE: Offer 89.05; Bid 0.00 From NGC: Offer 329.84; Bid 17.67  Prices cover 19:00Hrs Tomorrow to 23:00Hrs Tomorrow (UK local time) and are in Euro/MWh. From RTE: Offer 98.69; Bid 1.03 From NGC: Offer 353.40; Bid 23.56'
+                         }
+
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_temp_to_dict(self):
+        """
+        test conversion of TEMP raw data string to dictionary
+        """
+        input_str = '2017:04:21:15:45:35:GMT: subject=BMRA.SYSTEM.TEMP, \
+        message={TP=2017:04:21:15:45:00:GMT,TS=2017:04:21:11:00:00:GMT,\
+        TO=11.2,TN=9.9,TL=7.0,TH=12.5}'
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 15, 45, 35),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'TEMP',
+                         'TP' : dt.datetime(2017, 4, 21, 15, 45),
+                         'TS' : dt.datetime(2017, 4, 21, 11),
+                         'TO' : 11.2,
+                         'TN' : 9.9,
+                         'TL' : 7.0,
+                         'TH' : 12.5}
+
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_cdn_to_dict(self):
+        """
+        test conversion of CDN raw data string to dictionary
+        """
+        input_str = '2017:04:21:23:13:54:GMT: subject=BMRA.BP.GALENA.CDN, \
+        message={DL=2,ED=2017:04:22:00:00:00:GMT,EP=3}'
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 23, 13, 54),
+                         'message_type' : 'BP',
+                         'message_subtype' : 'CDN',
+                         'bmu_id' : 'GALENA',
+                         'DL' : 2,
+                         'ED' : dt.datetime(2017, 4, 22),
+                         'EP' : 3}
+
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_indod_to_dict(self):
+        """
+        test conversion of INDOD raw data string to dictionary
+        """
+        input_str = '2017:04:21:23:15:37:GMT: subject=BMRA.SYSTEM.INDOD, \
+        message={TP=2017:04:21:23:15:00:GMT,SD=2017:04:21:00:00:00:GMT,\
+        EO=716234,EL=657654,EH=808531,EN=757111}'
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 21, 23, 15, 37),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'INDOD',
+                         'TP' : dt.datetime(2017, 4, 21, 23, 15),
+                         'SD' : dt.datetime(2017, 4, 21),
+                         'EO' : 716234,
+                         'EL' : 657654,
+                         'EH' : 808531,
+                         'EN' : 757111}
+
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_TSDFW_to_dict(self):
+        """
+        test conversion of TSDFW raw data string to dictionary
+        """
+        input_str = '2017:04:27:13:45:44:GMT: subject=BMRA.SYSTEM.TSDFW, \
+        message={TP=2017:04:27:13:45:00:GMT,NR=51,\
+        WN=19,WD=2017:05:08:00:00:00:GMT,VD=33970.0,\
+        WN=20,WD=2017:05:15:00:00:00:GMT,VD=33040.0,\
+        WN=21,WD=2017:05:22:00:00:00:GMT,VD=32410.0,\
+        WN=22,WD=2017:05:29:00:00:00:GMT,VD=32010.0,\
+        WN=23,WD=2017:06:05:00:00:00:GMT,VD=31950.0,\
+        WN=24,WD=2017:06:12:00:00:00:GMT,VD=31660.0,\
+        WN=25,WD=2017:06:19:00:00:00:GMT,VD=31240.0,\
+        WN=26,WD=2017:06:26:00:00:00:GMT,VD=31160.0,\
+        WN=27,WD=2017:07:03:00:00:00:GMT,VD=31140.0,\
+        WN=28,WD=2017:07:10:00:00:00:GMT,VD=31030.0,\
+        WN=29,WD=2017:07:17:00:00:00:GMT,VD=32030.0,\
+        WN=30,WD=2017:07:24:00:00:00:GMT,VD=31508.0,\
+        WN=31,WD=2017:07:31:00:00:00:GMT,VD=31696.0,\
+        WN=32,WD=2017:08:07:00:00:00:GMT,VD=32410.0,\
+        WN=33,WD=2017:08:14:00:00:00:GMT,VD=33260.0,\
+        WN=34,WD=2017:08:21:00:00:00:GMT,VD=33978.0,\
+        WN=35,WD=2017:08:28:00:00:00:GMT,VD=34904.0,\
+        WN=36,WD=2017:09:04:00:00:00:GMT,VD=36027.0,\
+        WN=37,WD=2017:09:11:00:00:00:GMT,VD=36613.0,\
+        WN=38,WD=2017:09:18:00:00:00:GMT,VD=37876.0,\
+        WN=39,WD=2017:09:25:00:00:00:GMT,VD=38874.0,\
+        WN=40,WD=2017:10:02:00:00:00:GMT,VD=39947.0,\
+        WN=41,WD=2017:10:09:00:00:00:GMT,VD=41029.0,\
+        WN=42,WD=2017:10:16:00:00:00:GMT,VD=42368.0,\
+        WN=43,WD=2017:10:23:00:00:00:GMT,VD=42847.0,\
+        WN=44,WD=2017:10:30:00:00:00:GMT,VD=45510.0,\
+        WN=45,WD=2017:11:06:00:00:00:GMT,VD=46671.0,\
+        WN=46,WD=2017:11:13:00:00:00:GMT,VD=47267.0,\
+        WN=47,WD=2017:11:20:00:00:00:GMT,VD=48044.0,\
+        WN=48,WD=2017:11:27:00:00:00:GMT,VD=48265.0,\
+        WN=49,WD=2017:12:04:00:00:00:GMT,VD=49303.0,\
+        WN=50,WD=2017:12:11:00:00:00:GMT,VD=49889.0,\
+        WN=51,WD=2017:12:18:00:00:00:GMT,VD=49428.0,\
+        WN=52,WD=2017:12:25:00:00:00:GMT,VD=44450.0,\
+        WN=1,WD=2018:01:01:00:00:00:GMT,VD=48753.0,\
+        WN=2,WD=2018:01:08:00:00:00:GMT,VD=49280.0,\
+        WN=3,WD=2018:01:15:00:00:00:GMT,VD=48915.0,\
+        WN=4,WD=2018:01:22:00:00:00:GMT,VD=49060.0,\
+        WN=5,WD=2018:01:29:00:00:00:GMT,VD=48683.0,\
+        WN=6,WD=2018:02:05:00:00:00:GMT,VD=48139.0,\
+        WN=7,WD=2018:02:12:00:00:00:GMT,VD=47201.0,\
+        WN=8,WD=2018:02:19:00:00:00:GMT,VD=46668.0,\
+        WN=9,WD=2018:02:26:00:00:00:GMT,VD=45996.0,\
+        WN=10,WD=2018:03:05:00:00:00:GMT,VD=45172.0,\
+        WN=11,WD=2018:03:12:00:00:00:GMT,VD=44460.0,\
+        WN=12,WD=2018:03:19:00:00:00:GMT,VD=42797.0,\
+        WN=13,WD=2018:03:26:00:00:00:GMT,VD=40651.0,\
+        WN=14,WD=2018:04:02:00:00:00:GMT,VD=39598.0,\
+        WN=15,WD=2018:04:09:00:00:00:GMT,VD=38254.0,\
+        WN=16,WD=2018:04:16:00:00:00:GMT,VD=37149.0,\
+        WN=17,WD=2018:04:23:00:00:00:GMT,VD=36207.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 27, 13, 45, 44),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'TSDFW',
+                         'TP' : dt.datetime(2017, 4, 27, 13, 45),
+                         'data_points' : {
+                 1: {'VD': 33970.0,
+                     'WD': dt.datetime(2017, 5, 8, 0, 0),
+                     'WN': 19},
+                 2: {'VD': 33040.0,
+                     'WD': dt.datetime(2017, 5, 15, 0, 0),
+                     'WN': 20},
+                 3: {'VD': 32410.0,
+                     'WD': dt.datetime(2017, 5, 22, 0, 0),
+                     'WN': 21},
+                 4: {'VD': 32010.0,
+                     'WD': dt.datetime(2017, 5, 29, 0, 0),
+                     'WN': 22},
+                 5: {'VD': 31950.0,
+                     'WD': dt.datetime(2017, 6, 5, 0, 0),
+                     'WN': 23},
+                 6: {'VD': 31660.0,
+                     'WD': dt.datetime(2017, 6, 12, 0, 0),
+                     'WN': 24},
+                 7: {'VD': 31240.0,
+                     'WD': dt.datetime(2017, 6, 19, 0, 0),
+                     'WN': 25},
+                 8: {'VD': 31160.0,
+                     'WD': dt.datetime(2017, 6, 26, 0, 0),
+                     'WN': 26},
+                 9: {'VD': 31140.0,
+                     'WD': dt.datetime(2017, 7, 3, 0, 0),
+                     'WN': 27},
+                 10: {'VD': 31030.0,
+                      'WD': dt.datetime(2017, 7, 10, 0, 0),
+                      'WN': 28},
+                 11: {'VD': 32030.0,
+                      'WD': dt.datetime(2017, 7, 17, 0, 0),
+                      'WN': 29},
+                 12: {'VD': 31508.0,
+                      'WD': dt.datetime(2017, 7, 24, 0, 0),
+                      'WN': 30},
+                 13: {'VD': 31696.0,
+                      'WD': dt.datetime(2017, 7, 31, 0, 0),
+                      'WN': 31},
+                 14: {'VD': 32410.0,
+                      'WD': dt.datetime(2017, 8, 7, 0, 0),
+                      'WN': 32},
+                 15: {'VD': 33260.0,
+                      'WD': dt.datetime(2017, 8, 14, 0, 0),
+                      'WN': 33},
+                 16: {'VD': 33978.0,
+                      'WD': dt.datetime(2017, 8, 21, 0, 0),
+                      'WN': 34},
+                 17: {'VD': 34904.0,
+                      'WD': dt.datetime(2017, 8, 28, 0, 0),
+                      'WN': 35},
+                 18: {'VD': 36027.0,
+                      'WD': dt.datetime(2017, 9, 4, 0, 0),
+                      'WN': 36},
+                 19: {'VD': 36613.0,
+                      'WD': dt.datetime(2017, 9, 11, 0, 0),
+                      'WN': 37},
+                 20: {'VD': 37876.0,
+                      'WD': dt.datetime(2017, 9, 18, 0, 0),
+                      'WN': 38},
+                 21: {'VD': 38874.0,
+                      'WD': dt.datetime(2017, 9, 25, 0, 0),
+                      'WN': 39},
+                 22: {'VD': 39947.0,
+                      'WD': dt.datetime(2017, 10, 2, 0, 0),
+                      'WN': 40},
+                 23: {'VD': 41029.0,
+                      'WD': dt.datetime(2017, 10, 9, 0, 0),
+                      'WN': 41},
+                 24: {'VD': 42368.0,
+                      'WD': dt.datetime(2017, 10, 16, 0, 0),
+                      'WN': 42},
+                 25: {'VD': 42847.0,
+                      'WD': dt.datetime(2017, 10, 23, 0, 0),
+                      'WN': 43},
+                 26: {'VD': 45510.0,
+                      'WD': dt.datetime(2017, 10, 30, 0, 0),
+                      'WN': 44},
+                 27: {'VD': 46671.0,
+                      'WD': dt.datetime(2017, 11, 6, 0, 0),
+                      'WN': 45},
+                 28: {'VD': 47267.0,
+                      'WD': dt.datetime(2017, 11, 13, 0, 0),
+                      'WN': 46},
+                 29: {'VD': 48044.0,
+                      'WD': dt.datetime(2017, 11, 20, 0, 0),
+                      'WN': 47},
+                 30: {'VD': 48265.0,
+                      'WD': dt.datetime(2017, 11, 27, 0, 0),
+                      'WN': 48},
+                 31: {'VD': 49303.0,
+                      'WD': dt.datetime(2017, 12, 4, 0, 0),
+                      'WN': 49},
+                 32: {'VD': 49889.0,
+                      'WD': dt.datetime(2017, 12, 11, 0, 0),
+                      'WN': 50},
+                 33: {'VD': 49428.0,
+                      'WD': dt.datetime(2017, 12, 18, 0, 0),
+                      'WN': 51},
+                 34: {'VD': 44450.0,
+                      'WD': dt.datetime(2017, 12, 25, 0, 0),
+                      'WN': 52},
+                 35: {'VD': 48753.0,
+                      'WD': dt.datetime(2018, 1, 1, 0, 0),
+                      'WN': 1},
+                 36: {'VD': 49280.0,
+                      'WD': dt.datetime(2018, 1, 8, 0, 0),
+                      'WN': 2},
+                 37: {'VD': 48915.0,
+                      'WD': dt.datetime(2018, 1, 15, 0, 0),
+                      'WN': 3},
+                 38: {'VD': 49060.0,
+                      'WD': dt.datetime(2018, 1, 22, 0, 0),
+                      'WN': 4},
+                 39: {'VD': 48683.0,
+                      'WD': dt.datetime(2018, 1, 29, 0, 0),
+                      'WN': 5},
+                 40: {'VD': 48139.0,
+                      'WD': dt.datetime(2018, 2, 5, 0, 0),
+                      'WN': 6},
+                 41: {'VD': 47201.0,
+                      'WD': dt.datetime(2018, 2, 12, 0, 0),
+                      'WN': 7},
+                 42: {'VD': 46668.0,
+                      'WD': dt.datetime(2018, 2, 19, 0, 0),
+                      'WN': 8},
+                 43: {'VD': 45996.0,
+                      'WD': dt.datetime(2018, 2, 26, 0, 0),
+                      'WN': 9},
+                 44: {'VD': 45172.0,
+                      'WD': dt.datetime(2018, 3, 5, 0, 0),
+                      'WN': 10},
+                 45: {'VD': 44460.0,
+                      'WD': dt.datetime(2018, 3, 12, 0, 0),
+                      'WN': 11},
+                 46: {'VD': 42797.0,
+                      'WD': dt.datetime(2018, 3, 19, 0, 0),
+                      'WN': 12},
+                 47: {'VD': 40651.0,
+                      'WD': dt.datetime(2018, 3, 26, 0, 0),
+                      'WN': 13},
+                 48: {'VD': 39598.0,
+                      'WD': dt.datetime(2018, 4, 2, 0, 0),
+                      'WN': 14},
+                 49: {'VD': 38254.0,
+                      'WD': dt.datetime(2018, 4, 9, 0, 0),
+                      'WN': 15},
+                 50: {'VD': 37149.0,
+                      'WD': dt.datetime(2018, 4, 16, 0, 0),
+                      'WN': 16},
+                 51: {'VD': 36207.0,
+                      'WD': dt.datetime(2018, 4, 23, 0, 0),
+                      'WN': 17}}
+                         }
+
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_NDFW_to_dict(self):
+        """
+        test conversion of NDFW raw data string to dictionary
+        """
+        input_str = '2017:04:27:13:46:00:GMT: subject=BMRA.SYSTEM.NDFW, \
+        message={TP=2017:04:27:13:45:00:GMT,NR=51,\
+        WN=19,WD=2017:05:08:00:00:00:GMT,VD=33470.0,\
+        WN=20,WD=2017:05:15:00:00:00:GMT,VD=32540.0,\
+        WN=21,WD=2017:05:22:00:00:00:GMT,VD=31910.0,\
+        WN=22,WD=2017:05:29:00:00:00:GMT,VD=31510.0,\
+        WN=23,WD=2017:06:05:00:00:00:GMT,VD=31450.0,\
+        WN=24,WD=2017:06:12:00:00:00:GMT,VD=31160.0,\
+        WN=25,WD=2017:06:19:00:00:00:GMT,VD=30740.0,\
+        WN=26,WD=2017:06:26:00:00:00:GMT,VD=30660.0,\
+        WN=27,WD=2017:07:03:00:00:00:GMT,VD=30640.0,\
+        WN=28,WD=2017:07:10:00:00:00:GMT,VD=30530.0,\
+        WN=29,WD=2017:07:17:00:00:00:GMT,VD=31530.0,\
+        WN=30,WD=2017:07:24:00:00:00:GMT,VD=31008.0,\
+        WN=31,WD=2017:07:31:00:00:00:GMT,VD=31196.0,\
+        WN=32,WD=2017:08:07:00:00:00:GMT,VD=31910.0,\
+        WN=33,WD=2017:08:14:00:00:00:GMT,VD=32760.0,\
+        WN=34,WD=2017:08:21:00:00:00:GMT,VD=33478.0,\
+        WN=35,WD=2017:08:28:00:00:00:GMT,VD=34404.0,\
+        WN=36,WD=2017:09:04:00:00:00:GMT,VD=35527.0,\
+        WN=37,WD=2017:09:11:00:00:00:GMT,VD=36113.0,\
+        WN=38,WD=2017:09:18:00:00:00:GMT,VD=37376.0,\
+        WN=39,WD=2017:09:25:00:00:00:GMT,VD=38374.0,\
+        WN=40,WD=2017:10:02:00:00:00:GMT,VD=39447.0,\
+        WN=41,WD=2017:10:09:00:00:00:GMT,VD=40529.0,\
+        WN=42,WD=2017:10:16:00:00:00:GMT,VD=41868.0,\
+        WN=43,WD=2017:10:23:00:00:00:GMT,VD=42347.0,\
+        WN=44,WD=2017:10:30:00:00:00:GMT,VD=45010.0,\
+        WN=45,WD=2017:11:06:00:00:00:GMT,VD=46171.0,\
+        WN=46,WD=2017:11:13:00:00:00:GMT,VD=46767.0,\
+        WN=47,WD=2017:11:20:00:00:00:GMT,VD=47544.0,\
+        WN=48,WD=2017:11:27:00:00:00:GMT,VD=47765.0,\
+        WN=49,WD=2017:12:04:00:00:00:GMT,VD=48803.0,\
+        WN=50,WD=2017:12:11:00:00:00:GMT,VD=49389.0,\
+        WN=51,WD=2017:12:18:00:00:00:GMT,VD=48928.0,\
+        WN=52,WD=2017:12:25:00:00:00:GMT,VD=43950.0,\
+        WN=1,WD=2018:01:01:00:00:00:GMT,VD=48253.0,\
+        WN=2,WD=2018:01:08:00:00:00:GMT,VD=48780.0,\
+        WN=3,WD=2018:01:15:00:00:00:GMT,VD=48415.0,\
+        WN=4,WD=2018:01:22:00:00:00:GMT,VD=48560.0,\
+        WN=5,WD=2018:01:29:00:00:00:GMT,VD=48183.0,\
+        WN=6,WD=2018:02:05:00:00:00:GMT,VD=47639.0,\
+        WN=7,WD=2018:02:12:00:00:00:GMT,VD=46701.0,\
+        WN=8,WD=2018:02:19:00:00:00:GMT,VD=46168.0,\
+        WN=9,WD=2018:02:26:00:00:00:GMT,VD=45496.0,\
+        WN=10,WD=2018:03:05:00:00:00:GMT,VD=44672.0,\
+        WN=11,WD=2018:03:12:00:00:00:GMT,VD=43960.0,\
+        WN=12,WD=2018:03:19:00:00:00:GMT,VD=42297.0,\
+        WN=13,WD=2018:03:26:00:00:00:GMT,VD=40151.0,\
+        WN=14,WD=2018:04:02:00:00:00:GMT,VD=39098.0,\
+        WN=15,WD=2018:04:09:00:00:00:GMT,VD=37754.0,\
+        WN=16,WD=2018:04:16:00:00:00:GMT,VD=36649.0,\
+        WN=17,WD=2018:04:23:00:00:00:GMT,VD=35707.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2017, 4, 27, 13, 46, 0),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'NDFW',
+                         'TP' : dt.datetime(2017, 4, 27, 13, 45),
+                         'data_points' : {1: {'VD': 33470.0,
+                     'WD': dt.datetime(2017, 5, 8, 0, 0),
+                     'WN': 19},
+                 2: {'VD': 32540.0,
+                     'WD': dt.datetime(2017, 5, 15, 0, 0),
+                     'WN': 20},
+                 3: {'VD': 31910.0,
+                     'WD': dt.datetime(2017, 5, 22, 0, 0),
+                     'WN': 21},
+                 4: {'VD': 31510.0,
+                     'WD': dt.datetime(2017, 5, 29, 0, 0),
+                     'WN': 22},
+                 5: {'VD': 31450.0,
+                     'WD': dt.datetime(2017, 6, 5, 0, 0),
+                     'WN': 23},
+                 6: {'VD': 31160.0,
+                     'WD': dt.datetime(2017, 6, 12, 0, 0),
+                     'WN': 24},
+                 7: {'VD': 30740.0,
+                     'WD': dt.datetime(2017, 6, 19, 0, 0),
+                     'WN': 25},
+                 8: {'VD': 30660.0,
+                     'WD': dt.datetime(2017, 6, 26, 0, 0),
+                     'WN': 26},
+                 9: {'VD': 30640.0,
+                     'WD': dt.datetime(2017, 7, 3, 0, 0),
+                     'WN': 27},
+                 10: {'VD': 30530.0,
+                      'WD': dt.datetime(2017, 7, 10, 0, 0),
+                      'WN': 28},
+                 11: {'VD': 31530.0,
+                      'WD': dt.datetime(2017, 7, 17, 0, 0),
+                      'WN': 29},
+                 12: {'VD': 31008.0,
+                      'WD': dt.datetime(2017, 7, 24, 0, 0),
+                      'WN': 30},
+                 13: {'VD': 31196.0,
+                      'WD': dt.datetime(2017, 7, 31, 0, 0),
+                      'WN': 31},
+                 14: {'VD': 31910.0,
+                      'WD': dt.datetime(2017, 8, 7, 0, 0),
+                      'WN': 32},
+                 15: {'VD': 32760.0,
+                      'WD': dt.datetime(2017, 8, 14, 0, 0),
+                      'WN': 33},
+                 16: {'VD': 33478.0,
+                      'WD': dt.datetime(2017, 8, 21, 0, 0),
+                      'WN': 34},
+                 17: {'VD': 34404.0,
+                      'WD': dt.datetime(2017, 8, 28, 0, 0),
+                      'WN': 35},
+                 18: {'VD': 35527.0,
+                      'WD': dt.datetime(2017, 9, 4, 0, 0),
+                      'WN': 36},
+                 19: {'VD': 36113.0,
+                      'WD': dt.datetime(2017, 9, 11, 0, 0),
+                      'WN': 37},
+                 20: {'VD': 37376.0,
+                      'WD': dt.datetime(2017, 9, 18, 0, 0),
+                      'WN': 38},
+                 21: {'VD': 38374.0,
+                      'WD': dt.datetime(2017, 9, 25, 0, 0),
+                      'WN': 39},
+                 22: {'VD': 39447.0,
+                      'WD': dt.datetime(2017, 10, 2, 0, 0),
+                      'WN': 40},
+                 23: {'VD': 40529.0,
+                      'WD': dt.datetime(2017, 10, 9, 0, 0),
+                      'WN': 41},
+                 24: {'VD': 41868.0,
+                      'WD': dt.datetime(2017, 10, 16, 0, 0),
+                      'WN': 42},
+                 25: {'VD': 42347.0,
+                      'WD': dt.datetime(2017, 10, 23, 0, 0),
+                      'WN': 43},
+                 26: {'VD': 45010.0,
+                      'WD': dt.datetime(2017, 10, 30, 0, 0),
+                      'WN': 44},
+                 27: {'VD': 46171.0,
+                      'WD': dt.datetime(2017, 11, 6, 0, 0),
+                      'WN': 45},
+                 28: {'VD': 46767.0,
+                      'WD': dt.datetime(2017, 11, 13, 0, 0),
+                      'WN': 46},
+                 29: {'VD': 47544.0,
+                      'WD': dt.datetime(2017, 11, 20, 0, 0),
+                      'WN': 47},
+                 30: {'VD': 47765.0,
+                      'WD': dt.datetime(2017, 11, 27, 0, 0),
+                      'WN': 48},
+                 31: {'VD': 48803.0,
+                      'WD': dt.datetime(2017, 12, 4, 0, 0),
+                      'WN': 49},
+                 32: {'VD': 49389.0,
+                      'WD': dt.datetime(2017, 12, 11, 0, 0),
+                      'WN': 50},
+                 33: {'VD': 48928.0,
+                      'WD': dt.datetime(2017, 12, 18, 0, 0),
+                      'WN': 51},
+                 34: {'VD': 43950.0,
+                      'WD': dt.datetime(2017, 12, 25, 0, 0),
+                      'WN': 52},
+                 35: {'VD': 48253.0,
+                      'WD': dt.datetime(2018, 1, 1, 0, 0),
+                      'WN': 1},
+                 36: {'VD': 48780.0,
+                      'WD': dt.datetime(2018, 1, 8, 0, 0),
+                      'WN': 2},
+                 37: {'VD': 48415.0,
+                      'WD': dt.datetime(2018, 1, 15, 0, 0),
+                      'WN': 3},
+                 38: {'VD': 48560.0,
+                      'WD': dt.datetime(2018, 1, 22, 0, 0),
+                      'WN': 4},
+                 39: {'VD': 48183.0,
+                      'WD': dt.datetime(2018, 1, 29, 0, 0),
+                      'WN': 5},
+                 40: {'VD': 47639.0,
+                      'WD': dt.datetime(2018, 2, 5, 0, 0),
+                      'WN': 6},
+                 41: {'VD': 46701.0,
+                      'WD': dt.datetime(2018, 2, 12, 0, 0),
+                      'WN': 7},
+                 42: {'VD': 46168.0,
+                      'WD': dt.datetime(2018, 2, 19, 0, 0),
+                      'WN': 8},
+                 43: {'VD': 45496.0,
+                      'WD': dt.datetime(2018, 2, 26, 0, 0),
+                      'WN': 9},
+                 44: {'VD': 44672.0,
+                      'WD': dt.datetime(2018, 3, 5, 0, 0),
+                      'WN': 10},
+                 45: {'VD': 43960.0,
+                      'WD': dt.datetime(2018, 3, 12, 0, 0),
+                      'WN': 11},
+                 46: {'VD': 42297.0,
+                      'WD': dt.datetime(2018, 3, 19, 0, 0),
+                      'WN': 12},
+                 47: {'VD': 40151.0,
+                      'WD': dt.datetime(2018, 3, 26, 0, 0),
+                      'WN': 13},
+                 48: {'VD': 39098.0,
+                      'WD': dt.datetime(2018, 4, 2, 0, 0),
+                      'WN': 14},
+                 49: {'VD': 37754.0,
+                      'WD': dt.datetime(2018, 4, 9, 0, 0),
+                      'WN': 15},
+                 50: {'VD': 36649.0,
+                      'WD': dt.datetime(2018, 4, 16, 0, 0),
+                      'WN': 16},
+                 51: {'VD': 35707.0,
+                      'WD': dt.datetime(2018, 4, 23, 0, 0),
+                      'WN': 17}}
+                         }
+
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
 if __name__ == '__main__':
     unittest.main()
