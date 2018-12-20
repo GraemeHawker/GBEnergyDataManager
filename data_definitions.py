@@ -69,7 +69,8 @@ ACCEPTED_MESSAGES = {
         'NTO' : ['TE', 'DO'],
         'RDRE' : ['TE', 'R1', 'RB', 'R2', 'RC', 'R3'],
         'RURE' : ['TE', 'U1', 'UB', 'U2', 'UC', 'U3'],
-        'SEL' : ['TE', 'SE']
+        'SEL' : ['TE', 'SE'],
+        'SIL' : ['TE', 'SI']
     }
 }
 
@@ -166,6 +167,7 @@ FIELD_CASTING_FUNCS = {
     'SD' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:3]]),
     'SE' : lambda value: float(value),
     'SF' : lambda value: float(value),
+    'SI' : lambda value: float(value),
     'SN' : lambda value: int(value),
     'SO' : lambda value: True if value == 'T' else False,
     'SP' : lambda value: int(value),

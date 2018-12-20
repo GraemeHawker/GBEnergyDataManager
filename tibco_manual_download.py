@@ -11,7 +11,7 @@ import pymysql
 import download_functions as df
 import upload_functions as uf
 
-DOWNLOAD_FILES = True  #whether to download files (True) or just process (False)
+DOWNLOAD_FILES = False  #whether to download files (True) or just process (False)
 UPLOAD_TO_DB = False    #whether to process files to db (True) or not (False)
 
 START_DATE = dt.date(2018, 1, 1)
