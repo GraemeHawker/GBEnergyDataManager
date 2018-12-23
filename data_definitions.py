@@ -9,6 +9,7 @@ import datetime as dt
 
 ACCEPTED_MESSAGES = {
     'BM' : {
+        'BOAL' : ['NK', 'TA', 'TS', 'AD', 'VA'],
         'BOALF' : ['NK', 'SO', 'PF', 'TA', 'TS', 'AD', 'VA'],
         'BOAV' : ['SD', 'SP', 'NN', 'NK', 'OV', 'BV', 'SA'],
         'BOD' : ['SD', 'SP', 'NN', 'BP', 'OP', 'TS', 'VB'],
@@ -17,6 +18,7 @@ ACCEPTED_MESSAGES = {
         'FPN' : ['SD', 'SP', 'TS', 'VP'],
         'MEL' : ['SD', 'SP', 'TS', 'VE'],
         'MIL' : ['SD', 'SP', 'TS', 'VF'],
+        'PTAV' : ['SD', 'SP', 'NN', 'OV', 'BV'],
         'QAS' : ['SD', 'SP', 'SV'],
         'QPN' : ['SD', 'SP', 'TS', 'VP'],
         },
@@ -24,6 +26,7 @@ ACCEPTED_MESSAGES = {
         'CDN' : ['DL', 'ED', 'EP', 'CD', 'CP', 'CT']
     },
     'SYSTEM' : {
+        'DF' : ['ZI', 'TP', 'SD', 'SP', 'VD'],
         'DISBSAD' : ['SD', 'SP', 'AI', 'SO', 'PF', 'JC', 'JV'],
         'DISEBSP' : ['SD', 'SP', 'PB', 'PS', 'PD', 'RSP', 'RP', 'RV', 'BD',
                      'A3', 'A6', 'NI', 'AO', 'AB', 'T1', 'T2', 'PP', 'PC',
@@ -53,6 +56,7 @@ ACCEPTED_MESSAGES = {
         'OCNMFD' : ['SD', 'TP', 'SP', 'VM'],
         'OCNMFD2' : ['SD', 'TP', 'DM'],
         'OCNMFW' : ['TP', 'WN', 'WD', 'VM'],
+        'OCNMFW2' : ['TP', 'WN', 'CY', 'DM'],
         'SOSO' : ['TT', 'ST', 'TD', 'IC', 'TQ', 'PT'],
         'SYSWARN' : ['TP', 'SW'],
         'SYSMSG' : ['TP', 'MT', 'SM'],
@@ -62,6 +66,7 @@ ACCEPTED_MESSAGES = {
         'TSDFD' : ['TP', 'SD', 'SP', 'VD'],
         'TSDFW' : ['TP', 'WN', 'WD', 'VD'],
         'UOU2T14D' : ['TP', 'SD', 'FT', 'OU'],
+        'UOU2T52W' : ['TP', 'WN', 'CY', 'FT', 'OU'],
         'WINDFOR': ['SD', 'SP', 'TP', 'VG', 'TR']
         },
     'DYNAMIC' : {
