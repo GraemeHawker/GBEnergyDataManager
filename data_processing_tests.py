@@ -265,6 +265,25 @@ class DataProcessingTestCase(unittest.TestCase):
                          }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
+    def test_ptav_to_dict(self):
+        """
+        test conversion of PTAV raw data string to dictionary
+        """
+        input_str = '2009:01:01:00:20:20:GMT: subject=BMRA.BM.T_DAMC-1.PTAV.-1, \
+        message={SD=2008:12:31:00:00:00:GMT,SP=48,NN=-1,OV=1.5833334,BV=-8.333333}'
+
+        expected_dict = {'received_time' : dt.datetime(2009, 1, 1, 0, 20, 20),
+                         'message_type' : 'BM',
+                         'bmu_id' : 'T_DAMC-1',
+                         'message_subtype' : 'PTAV',
+                         'SD' : dt.datetime(2008, 12, 31),
+                         'SP' : 48,
+                         'NN' : -1,
+                         'OV' : 1.5833334,
+                         'BV' : -8.333333,
+                         }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
     def test_qas_to_dict(self):
         """
         test conversion of QAS raw data string to dictionary
@@ -590,6 +609,39 @@ class DataProcessingTestCase(unittest.TestCase):
                            'VA' : 367.0}}}
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
+    def test_boal_to_dict(self):
+        """
+        test conversion of BOAL raw data string to dictionary
+        """
+        input_str = '2009:01:01:00:09:41:GMT: subject=BMRA.BM.T_SHBA-1.BOAL, \
+        message={NK=59073,TA=2009:01:01:00:09:00:GMT,AD=F,NP=4,\
+        TS=2009:01:01:00:11:00:GMT,VA=597.0,\
+        TS=2009:01:01:00:13:00:GMT,VA=560.0,\
+        TS=2009:01:01:00:28:00:GMT,VA=560.0,\
+        TS=2009:01:01:00:30:00:GMT,VA=498.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2009, 1, 1, 0, 9, 41),
+                         'message_type' : 'BM',
+                         'message_subtype' : 'BOAL',
+                         'bmu_id' : 'T_SHBA-1',
+                         'NK' : 59073,
+                         'TA' : dt.datetime(2009, 1, 1, 0, 9),
+                         'AD' : False,
+                         'data_points':
+                         {1:
+                          {'TS' : dt.datetime(2009, 1, 1, 0, 11, 0),
+                           'VA' : 597.0},
+                          2:
+                          {'TS' : dt.datetime(2009, 1, 1, 0, 13, 0),
+                           'VA' : 560.0},
+                          3:
+                          {'TS' : dt.datetime(2009, 1, 1, 0, 28, 0),
+                           'VA' : 560.0},
+                          4:
+                          {'TS' : dt.datetime(2009, 1, 1, 0, 30, 0),
+                           'VA' : 498.0}}}
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
     def test_fuelhh_to_dict(self):
         """
         test conversion of FUELHH raw data string to dictionary
@@ -863,7 +915,7 @@ class DataProcessingTestCase(unittest.TestCase):
 
     def test_ndf_to_dict(self):
         """
-        test conversion of NDFD raw data string to dictionary
+        test conversion of NDF raw data string to dictionary
         """
         input_str = '2017:04:21:00:16:29:GMT: subject=BMRA.SYSTEM.NDF.N,\
          message={ZI=N,NR=58,\
@@ -1014,6 +1066,252 @@ dt.datetime(2017, 4, 22, 0, 0), 'SP': 8, 'TP': dt.datetime(2017, 4, 21, 0, 15),
 'VD': 21644.0}, 57: {'SD': dt.datetime(2017, 4, 22, 0, 0), 'SP': 9, 'TP':
 dt.datetime(2017, 4, 21, 0, 15), 'VD': 21227.0}, 58: {'SD': dt.datetime(2017, 4,
 22, 0, 0), 'SP': 10, 'TP': dt.datetime(2017, 4, 21, 0, 15), 'VD': 21000.0}}}
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_df_to_dict(self):
+        """
+        test conversion of DF raw data string to dictionary
+        """
+        input_str = '2009:01:01:00:16:52:GMT: subject=BMRA.SYSTEM.DF.A, message={ZI=A,NR=58,TP=2008:12:31:23:47:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=1,VD=6177.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=2,VD=6210.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=3,VD=6305.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=4,VD=6318.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=5,VD=6326.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=6,VD=6234.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=7,VD=6007.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=8,VD=5819.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=9,VD=5639.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=10,VD=5520.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=11,VD=5448.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=12,VD=5439.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=13,VD=5310.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=14,VD=5304.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=15,VD=5264.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=16,VD=5132.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=17,VD=4764.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=18,VD=4878.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=19,VD=4974.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=20,VD=5072.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=21,VD=5340.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=22,VD=5643.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=23,VD=5930.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=24,VD=6110.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=25,VD=6366.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=26,VD=6360.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=27,VD=6280.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=28,VD=6243.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=29,VD=6251.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=30,VD=6231.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=31,VD=6216.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=32,VD=6388.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=33,VD=6675.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=34,VD=6971.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=35,VD=7107.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=36,VD=7126.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=37,VD=7043.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=38,VD=6909.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=39,VD=6925.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=40,VD=6800.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=41,VD=6685.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=42,VD=6556.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=43,VD=6410.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=44,VD=6153.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=45,VD=5999.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=46,VD=5765.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=47,VD=5612.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:01:00:00:00:GMT,SP=48,VD=5623.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=1,VD=5767.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=2,VD=5855.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=3,VD=5866.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=4,VD=5678.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=5,VD=5702.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=6,VD=5897.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=7,VD=5916.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=8,VD=5825.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=9,VD=5737.0,TP=2009:01:01:00:16:00:GMT,SD=2009:01:02:00:00:00:GMT,SP=10,VD=5729.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2009, 1, 1, 0, 16, 52),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'DF',
+                         'ZI': 'A',
+                         'data_points': {
+                 1: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                     'SP': 1,
+                     'TP': dt.datetime(2008, 12, 31, 23, 47),
+                     'VD': 6177.0},
+                 2: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                     'SP': 2,
+                     'TP': dt.datetime(2009, 1, 1, 0, 16),
+                     'VD': 6210.0},
+                 3: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                     'SP': 3,
+                     'TP': dt.datetime(2009, 1, 1, 0, 16),
+                     'VD': 6305.0},
+                 4: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                     'SP': 4,
+                     'TP': dt.datetime(2009, 1, 1, 0, 16),
+                     'VD': 6318.0},
+                 5: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                     'SP': 5,
+                     'TP': dt.datetime(2009, 1, 1, 0, 16),
+                     'VD': 6326.0},
+                 6: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                     'SP': 6,
+                     'TP': dt.datetime(2009, 1, 1, 0, 16),
+                     'VD': 6234.0},
+                 7: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                     'SP': 7,
+                     'TP': dt.datetime(2009, 1, 1, 0, 16),
+                     'VD': 6007.0},
+                 8: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                     'SP': 8,
+                     'TP': dt.datetime(2009, 1, 1, 0, 16),
+                     'VD': 5819.0},
+                 9: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                     'SP': 9,
+                     'TP': dt.datetime(2009, 1, 1, 0, 16),
+                     'VD': 5639.0},
+                 10: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 10,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5520.0},
+                 11: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 11,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5448.0},
+                 12: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 12,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5439.0},
+                 13: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 13,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5310.0},
+                 14: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 14,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5304.0},
+                 15: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 15,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5264.0},
+                 16: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 16,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5132.0},
+                 17: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 17,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 4764.0},
+                 18: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 18,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 4878.0},
+                 19: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 19,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 4974.0},
+                 20: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 20,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5072.0},
+                 21: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 21,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5340.0},
+                 22: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 22,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5643.0},
+                 23: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 23,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5930.0},
+                 24: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 24,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6110.0},
+                 25: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 25,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6366.0},
+                 26: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 26,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6360.0},
+                 27: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 27,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6280.0},
+                 28: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 28,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6243.0},
+                 29: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 29,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6251.0},
+                 30: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 30,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6231.0},
+                 31: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 31,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6216.0},
+                 32: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 32,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6388.0},
+                 33: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 33,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6675.0},
+                 34: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 34,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6971.0},
+                 35: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 35,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 7107.0},
+                 36: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 36,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 7126.0},
+                 37: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 37,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 7043.0},
+                 38: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 38,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6909.0},
+                 39: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 39,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6925.0},
+                 40: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 40,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6800.0},
+                 41: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 41,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6685.0},
+                 42: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 42,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6556.0},
+                 43: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 43,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6410.0},
+                 44: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 44,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 6153.0},
+                 45: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 45,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5999.0},
+                 46: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 46,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5765.0},
+                 47: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 47,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5612.0},
+                 48: {'SD': dt.datetime(2009, 1, 1, 0, 0),
+                      'SP': 48,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5623.0},
+                 49: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 1,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5767.0},
+                 50: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 2,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5855.0},
+                 51: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 3,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5866.0},
+                 52: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 4,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5678.0},
+                 53: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 5,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5702.0},
+                 54: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 6,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5897.0},
+                 55: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 7,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5916.0},
+                 56: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 8,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5825.0},
+                 57: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 9,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5737.0},
+                 58: {'SD': dt.datetime(2009, 1, 2, 0, 0),
+                      'SP': 10,
+                      'TP': dt.datetime(2009, 1, 1, 0, 16),
+                      'VD': 5729.0}}
+                         }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
     def test_ndfd_to_dict(self):
@@ -3427,6 +3725,72 @@ dt.datetime(2017, 4, 21, 0, 15), 'VD': 21227.0}, 58: {'SD': dt.datetime(2017, 4,
                          }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
+    def test_uou2t52w_to_dict(self):
+        """
+        test conversion of UOU2T52W raw data string to dictionary
+        """
+        input_str = '2018:01:04:13:41:23:GMT: subject=BMRA.SYSTEM.2__PPGEN001.UOU2T52W, message={TP=2018:01:04:13:31:00:GMT,NR=51,WN=3,CY=2018,FT=WIND,OU=28.0,WN=4,CY=2018,FT=WIND,OU=28.0,WN=5,CY=2018,FT=WIND,OU=28.0,WN=6,CY=2018,FT=WIND,OU=26.0,WN=7,CY=2018,FT=WIND,OU=26.0,WN=8,CY=2018,FT=WIND,OU=26.0,WN=9,CY=2018,FT=WIND,OU=26.0,WN=10,CY=2018,FT=WIND,OU=20.0,WN=11,CY=2018,FT=WIND,OU=20.0,WN=12,CY=2018,FT=WIND,OU=20.0,WN=13,CY=2018,FT=WIND,OU=20.0,WN=14,CY=2018,FT=WIND,OU=15.0,WN=15,CY=2018,FT=WIND,OU=15.0,WN=16,CY=2018,FT=WIND,OU=15.0,WN=17,CY=2018,FT=WIND,OU=15.0,WN=18,CY=2018,FT=WIND,OU=15.0,WN=19,CY=2018,FT=WIND,OU=18.0,WN=20,CY=2018,FT=WIND,OU=18.0,WN=21,CY=2018,FT=WIND,OU=18.0,WN=22,CY=2018,FT=WIND,OU=18.0,WN=23,CY=2018,FT=WIND,OU=10.0,WN=24,CY=2018,FT=WIND,OU=10.0,WN=25,CY=2018,FT=WIND,OU=10.0,WN=26,CY=2018,FT=WIND,OU=10.0,WN=27,CY=2018,FT=WIND,OU=10.0,WN=28,CY=2018,FT=WIND,OU=10.0,WN=29,CY=2018,FT=WIND,OU=10.0,WN=30,CY=2018,FT=WIND,OU=10.0,WN=31,CY=2018,FT=WIND,OU=10.0,WN=32,CY=2018,FT=WIND,OU=13.0,WN=33,CY=2018,FT=WIND,OU=13.0,WN=34,CY=2018,FT=WIND,OU=13.0,WN=35,CY=2018,FT=WIND,OU=13.0,WN=36,CY=2018,FT=WIND,OU=15.0,WN=37,CY=2018,FT=WIND,OU=15.0,WN=38,CY=2018,FT=WIND,OU=15.0,WN=39,CY=2018,FT=WIND,OU=15.0,WN=40,CY=2018,FT=WIND,OU=20.0,WN=41,CY=2018,FT=WIND,OU=20.0,WN=42,CY=2018,FT=WIND,OU=20.0,WN=43,CY=2018,FT=WIND,OU=20.0,WN=44,CY=2018,FT=WIND,OU=20.0,WN=45,CY=2018,FT=WIND,OU=23.0,WN=46,CY=2018,FT=WIND,OU=23.0,WN=47,CY=2018,FT=WIND,OU=23.0,WN=48,CY=2018,FT=WIND,OU=23.0,WN=49,CY=2018,FT=WIND,OU=28.0,WN=50,CY=2018,FT=WIND,OU=28.0,WN=51,CY=2018,FT=WIND,OU=28.0,WN=52,CY=2018,FT=WIND,OU=28.0,WN=1,CY=2019,FT=WIND,OU=28.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2018, 1, 4, 13, 41, 23),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'UOU2T52W',
+                         'bmu_id' : '2__PPGEN001',
+                         'TP' : dt.datetime(2018, 1, 4, 13, 31),
+                         'data_points': {
+                 1: {'CY': 2018, 'FT': 'WIND', 'OU': 28.0, 'WN': 3},
+                 2: {'CY': 2018, 'FT': 'WIND', 'OU': 28.0, 'WN': 4},
+                 3: {'CY': 2018, 'FT': 'WIND', 'OU': 28.0, 'WN': 5},
+                 4: {'CY': 2018, 'FT': 'WIND', 'OU': 26.0, 'WN': 6},
+                 5: {'CY': 2018, 'FT': 'WIND', 'OU': 26.0, 'WN': 7},
+                 6: {'CY': 2018, 'FT': 'WIND', 'OU': 26.0, 'WN': 8},
+                 7: {'CY': 2018, 'FT': 'WIND', 'OU': 26.0, 'WN': 9},
+                 8: {'CY': 2018, 'FT': 'WIND', 'OU': 20.0, 'WN': 10},
+                 9: {'CY': 2018, 'FT': 'WIND', 'OU': 20.0, 'WN': 11},
+                 10: {'CY': 2018, 'FT': 'WIND', 'OU': 20.0, 'WN': 12},
+                 11: {'CY': 2018, 'FT': 'WIND', 'OU': 20.0, 'WN': 13},
+                 12: {'CY': 2018, 'FT': 'WIND', 'OU': 15.0, 'WN': 14},
+                 13: {'CY': 2018, 'FT': 'WIND', 'OU': 15.0, 'WN': 15},
+                 14: {'CY': 2018, 'FT': 'WIND', 'OU': 15.0, 'WN': 16},
+                 15: {'CY': 2018, 'FT': 'WIND', 'OU': 15.0, 'WN': 17},
+                 16: {'CY': 2018, 'FT': 'WIND', 'OU': 15.0, 'WN': 18},
+                 17: {'CY': 2018, 'FT': 'WIND', 'OU': 18.0, 'WN': 19},
+                 18: {'CY': 2018, 'FT': 'WIND', 'OU': 18.0, 'WN': 20},
+                 19: {'CY': 2018, 'FT': 'WIND', 'OU': 18.0, 'WN': 21},
+                 20: {'CY': 2018, 'FT': 'WIND', 'OU': 18.0, 'WN': 22},
+                 21: {'CY': 2018, 'FT': 'WIND', 'OU': 10.0, 'WN': 23},
+                 22: {'CY': 2018, 'FT': 'WIND', 'OU': 10.0, 'WN': 24},
+                 23: {'CY': 2018, 'FT': 'WIND', 'OU': 10.0, 'WN': 25},
+                 24: {'CY': 2018, 'FT': 'WIND', 'OU': 10.0, 'WN': 26},
+                 25: {'CY': 2018, 'FT': 'WIND', 'OU': 10.0, 'WN': 27},
+                 26: {'CY': 2018, 'FT': 'WIND', 'OU': 10.0, 'WN': 28},
+                 27: {'CY': 2018, 'FT': 'WIND', 'OU': 10.0, 'WN': 29},
+                 28: {'CY': 2018, 'FT': 'WIND', 'OU': 10.0, 'WN': 30},
+                 29: {'CY': 2018, 'FT': 'WIND', 'OU': 10.0, 'WN': 31},
+                 30: {'CY': 2018, 'FT': 'WIND', 'OU': 13.0, 'WN': 32},
+                 31: {'CY': 2018, 'FT': 'WIND', 'OU': 13.0, 'WN': 33},
+                 32: {'CY': 2018, 'FT': 'WIND', 'OU': 13.0, 'WN': 34},
+                 33: {'CY': 2018, 'FT': 'WIND', 'OU': 13.0, 'WN': 35},
+                 34: {'CY': 2018, 'FT': 'WIND', 'OU': 15.0, 'WN': 36},
+                 35: {'CY': 2018, 'FT': 'WIND', 'OU': 15.0, 'WN': 37},
+                 36: {'CY': 2018, 'FT': 'WIND', 'OU': 15.0, 'WN': 38},
+                 37: {'CY': 2018, 'FT': 'WIND', 'OU': 15.0, 'WN': 39},
+                 38: {'CY': 2018, 'FT': 'WIND', 'OU': 20.0, 'WN': 40},
+                 39: {'CY': 2018, 'FT': 'WIND', 'OU': 20.0, 'WN': 41},
+                 40: {'CY': 2018, 'FT': 'WIND', 'OU': 20.0, 'WN': 42},
+                 41: {'CY': 2018, 'FT': 'WIND', 'OU': 20.0, 'WN': 43},
+                 42: {'CY': 2018, 'FT': 'WIND', 'OU': 20.0, 'WN': 44},
+                 43: {'CY': 2018, 'FT': 'WIND', 'OU': 23.0, 'WN': 45},
+                 44: {'CY': 2018, 'FT': 'WIND', 'OU': 23.0, 'WN': 46},
+                 45: {'CY': 2018, 'FT': 'WIND', 'OU': 23.0, 'WN': 47},
+                 46: {'CY': 2018, 'FT': 'WIND', 'OU': 23.0, 'WN': 48},
+                 47: {'CY': 2018, 'FT': 'WIND', 'OU': 28.0, 'WN': 49},
+                 48: {'CY': 2018, 'FT': 'WIND', 'OU': 28.0, 'WN': 50},
+                 49: {'CY': 2018, 'FT': 'WIND', 'OU': 28.0, 'WN': 51},
+                 50: {'CY': 2018, 'FT': 'WIND', 'OU': 28.0, 'WN': 52},
+                 51: {'CY': 2019, 'FT': 'WIND', 'OU': 28.0, 'WN': 1}}
+                         }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
     def test_syswarn_to_dict(self):
         """
         test conversion of SYSWARN raw data string to dictionary
@@ -4166,6 +4530,99 @@ dt.datetime(2017, 4, 21, 0, 15), 'VD': 21227.0}, 58: {'SD': dt.datetime(2017, 4,
                       'WD': dt.datetime(2018, 12, 31, 0, 0),
                       'WN': 1}}
                          }
+
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
+    def test_OCNMFW2_to_dict(self):
+        """
+        test conversion of OCNMFW2 raw data string to dictionary
+        """
+        input_str = '2018:01:04:13:37:17:GMT: subject=BMRA.SYSTEM.OCNMFW2, \
+        message={TP=2018:01:04:13:35:00:GMT,NR=51,\
+        WN=3,CY=2018,DM=13753.0,WN=4,CY=2018,DM=13351.0,\
+        WN=5,CY=2018,DM=13068.0,WN=6,CY=2018,DM=14611.0,\
+        WN=7,CY=2018,DM=16020.0,WN=8,CY=2018,DM=18103.0,\
+        WN=9,CY=2018,DM=17484.0,WN=10,CY=2018,DM=16061.0,\
+        WN=11,CY=2018,DM=17612.0,WN=12,CY=2018,DM=19269.0,\
+        WN=13,CY=2018,DM=19904.0,WN=14,CY=2018,DM=15268.0,\
+        WN=15,CY=2018,DM=15988.0,WN=16,CY=2018,DM=16792.0,\
+        WN=17,CY=2018,DM=18282.0,WN=18,CY=2018,DM=17764.0,\
+        WN=19,CY=2018,DM=16634.0,WN=20,CY=2018,DM=18714.0,\
+        WN=21,CY=2018,DM=18944.0,WN=22,CY=2018,DM=22335.0,\
+        WN=23,CY=2018,DM=18571.0,WN=24,CY=2018,DM=18305.0,\
+        WN=25,CY=2018,DM=18540.0,WN=26,CY=2018,DM=17339.0,\
+        WN=27,CY=2018,DM=15684.0,WN=28,CY=2018,DM=14211.0,\
+        WN=29,CY=2018,DM=17441.0,WN=30,CY=2018,DM=19378.0,\
+        WN=31,CY=2018,DM=20504.0,WN=32,CY=2018,DM=21038.0,\
+        WN=33,CY=2018,DM=20934.0,WN=34,CY=2018,DM=20876.0,\
+        WN=35,CY=2018,DM=21033.0,WN=36,CY=2018,DM=19809.0,\
+        WN=37,CY=2018,DM=17131.0,WN=38,CY=2018,DM=17342.0,\
+        WN=39,CY=2018,DM=18612.0,WN=40,CY=2018,DM=17835.0,\
+        WN=41,CY=2018,DM=16493.0,WN=42,CY=2018,DM=15740.0,\
+        WN=43,CY=2018,DM=15508.0,WN=44,CY=2018,DM=14023.0,\
+        WN=45,CY=2018,DM=13305.0,WN=46,CY=2018,DM=13106.0,\
+        WN=47,CY=2018,DM=11863.0,WN=48,CY=2018,DM=12052.0,\
+        WN=49,CY=2018,DM=11081.0,WN=50,CY=2018,DM=10995.0,\
+        WN=51,CY=2018,DM=11229.0,WN=52,CY=2018,DM=18039.0,\
+        WN=1,CY=2019,DM=13693.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2018, 1, 4, 13, 37, 17),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'OCNMFW2',
+                         'TP' : dt.datetime(2018, 1, 4, 13, 35),
+                         'data_points' : {
+                 1: {'CY': 2018, 'DM': 13753.0, 'WN': 3},
+                 2: {'CY': 2018, 'DM': 13351.0, 'WN': 4},
+                 3: {'CY': 2018, 'DM': 13068.0, 'WN': 5},
+                 4: {'CY': 2018, 'DM': 14611.0, 'WN': 6},
+                 5: {'CY': 2018, 'DM': 16020.0, 'WN': 7},
+                 6: {'CY': 2018, 'DM': 18103.0, 'WN': 8},
+                 7: {'CY': 2018, 'DM': 17484.0, 'WN': 9},
+                 8: {'CY': 2018, 'DM': 16061.0, 'WN': 10},
+                 9: {'CY': 2018, 'DM': 17612.0, 'WN': 11},
+                 10: {'CY': 2018, 'DM': 19269.0, 'WN': 12},
+                 11: {'CY': 2018, 'DM': 19904.0, 'WN': 13},
+                 12: {'CY': 2018, 'DM': 15268.0, 'WN': 14},
+                 13: {'CY': 2018, 'DM': 15988.0, 'WN': 15},
+                 14: {'CY': 2018, 'DM': 16792.0, 'WN': 16},
+                 15: {'CY': 2018, 'DM': 18282.0, 'WN': 17},
+                 16: {'CY': 2018, 'DM': 17764.0, 'WN': 18},
+                 17: {'CY': 2018, 'DM': 16634.0, 'WN': 19},
+                 18: {'CY': 2018, 'DM': 18714.0, 'WN': 20},
+                 19: {'CY': 2018, 'DM': 18944.0, 'WN': 21},
+                 20: {'CY': 2018, 'DM': 22335.0, 'WN': 22},
+                 21: {'CY': 2018, 'DM': 18571.0, 'WN': 23},
+                 22: {'CY': 2018, 'DM': 18305.0, 'WN': 24},
+                 23: {'CY': 2018, 'DM': 18540.0, 'WN': 25},
+                 24: {'CY': 2018, 'DM': 17339.0, 'WN': 26},
+                 25: {'CY': 2018, 'DM': 15684.0, 'WN': 27},
+                 26: {'CY': 2018, 'DM': 14211.0, 'WN': 28},
+                 27: {'CY': 2018, 'DM': 17441.0, 'WN': 29},
+                 28: {'CY': 2018, 'DM': 19378.0, 'WN': 30},
+                 29: {'CY': 2018, 'DM': 20504.0, 'WN': 31},
+                 30: {'CY': 2018, 'DM': 21038.0, 'WN': 32},
+                 31: {'CY': 2018, 'DM': 20934.0, 'WN': 33},
+                 32: {'CY': 2018, 'DM': 20876.0, 'WN': 34},
+                 33: {'CY': 2018, 'DM': 21033.0, 'WN': 35},
+                 34: {'CY': 2018, 'DM': 19809.0, 'WN': 36},
+                 35: {'CY': 2018, 'DM': 17131.0, 'WN': 37},
+                 36: {'CY': 2018, 'DM': 17342.0, 'WN': 38},
+                 37: {'CY': 2018, 'DM': 18612.0, 'WN': 39},
+                 38: {'CY': 2018, 'DM': 17835.0, 'WN': 40},
+                 39: {'CY': 2018, 'DM': 16493.0, 'WN': 41},
+                 40: {'CY': 2018, 'DM': 15740.0, 'WN': 42},
+                 41: {'CY': 2018, 'DM': 15508.0, 'WN': 43},
+                 42: {'CY': 2018, 'DM': 14023.0, 'WN': 44},
+                 43: {'CY': 2018, 'DM': 13305.0, 'WN': 45},
+                 44: {'CY': 2018, 'DM': 13106.0, 'WN': 46},
+                 45: {'CY': 2018, 'DM': 11863.0, 'WN': 47},
+                 46: {'CY': 2018, 'DM': 12052.0, 'WN': 48},
+                 47: {'CY': 2018, 'DM': 11081.0, 'WN': 49},
+                 48: {'CY': 2018, 'DM': 10995.0, 'WN': 50},
+                 49: {'CY': 2018, 'DM': 11229.0, 'WN': 51},
+                 50: {'CY': 2018, 'DM': 18039.0, 'WN': 52},
+                 51: {'CY': 2019, 'DM': 13693.0, 'WN': 1}}
+                }
 
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
