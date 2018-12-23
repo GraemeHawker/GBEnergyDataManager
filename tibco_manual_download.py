@@ -7,15 +7,15 @@ import urllib.request
 import socket
 import configparser
 import gzip
-import pymysql
+#import pymysql
 import download_functions as df
 import upload_functions as uf
 
 DOWNLOAD_FILES = False  #whether to download files (True) or just process (False)
 UPLOAD_TO_DB = False    #whether to process files to db (True) or not (False)
 
-START_DATE = dt.date(2018, 1, 4)
-END_DATE = dt.date(2018, 1, 31)
+START_DATE = dt.date(2009, 1, 1)
+END_DATE = dt.date(2009, 1, 1)
 
 CONFIG = configparser.ConfigParser()
 CONFIG.read('config.ini')
