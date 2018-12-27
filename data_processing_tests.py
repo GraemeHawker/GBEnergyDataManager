@@ -706,6 +706,43 @@ class DataProcessingTestCase(unittest.TestCase):
                         }
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
+    def test_netebsp_to_dict(self):
+        """
+        test conversion of NETEBSP raw data string to dictionary
+        """
+        input_str = '2009:01:01:00:20:48:GMT: subject=BMRA.SYSTEM.NETEBSP, \
+        message={SD=2008:12:31:00:00:00:GMT,SP=48,PB=59.18782,PS=47.9,\
+        PD=A,AO=422.9223,AB=-325.8473,AP=0.0,AC=-8.25,PP=96.8589,\
+        PC=-0.0,NI=96.8589,BD=F,A7=0.0,A8=0.0,A11=0.0,A3=0.0,A9=0.0,\
+        A10=0.0,A12=0.0,A6=0.0}'
+
+        expected_dict = {'received_time' : dt.datetime(2009, 1, 1, 0, 20, 48),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'NETEBSP',
+                         'SD' : dt.datetime(2008, 12, 31),
+                         'SP' : 48,
+                         'PB' : 59.18782,
+                         'PS' : 47.9,
+                         'PD' : 'A',
+                         'AO' : 422.9223,
+                         'AB' : -325.8473,
+                         'AP' : 0.0,
+                         'AC' : -8.25,
+                         'PP' : 96.8589,
+                         'PC' : -0.0,
+                         'NI' : 96.8589,
+                         'BD' : False,
+                         'A7' : 0.0,
+                         'A8' : 0.0,
+                         'A11' : 0.0,
+                         'A3' : 0.0,
+                         'A9' : 0.0,
+                         'A10' : 0.0,
+                         'A12' : 0.0,
+                         'A6' : 0.0
+                        }
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
     def test_soso_to_dict(self):
         """
         test conversion of SOSO raw data string to dictionary
