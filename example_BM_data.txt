@@ -84,6 +84,32 @@ NETBSAD
   Example entry:
 2017:04:21:00:09:13:GMT: subject=BMRA.SYSTEM.NETBSAD, message={SD=2017:04:21:00:00:00:GMT,SP=5,A7=0.0,A8=0.0,A11=0.0,A3=0.0,A9=0.0,A10=0.0,A12=0.0,A6=0.0}
 
+NETEBSP
+  Estimated Buy and Sell Price
+  Parameters:
+    PB: The price that must be paid for electricity which is out of balance.
+    PS: Sell Price - the price received for electricity which is out of balance.
+    PD: Price Derivation Code - A code that describes the way in which SSP and SBP were calculated
+    AO: Total Accepted Offer Volume - System wide total Accepted Offer Volume for the Settlement Period
+    AB: Total Accepted Bid Volume - System wide total Accepted Bid Volume for the Settlement Period
+    AP: Total Unpriced Accepted Offer Volume - System wide total Unpriced Accepted Offer Volume for the Settlement Period
+    AC: Total Unpriced Accepted Bid Volume - System wide total Unpriced Accepted Bid Volume for the Settlement Period
+    PP: Total Priced Accepted Offer Volume - System wide total Priced Accepted Offer Volume for the Settlement Period
+    PC: Total Priced Accepted Bid Volume - System wide total Priced Accepted Bid Volume for the Settlement Period
+    NI: Indicative Net Imbalance Volume
+    BD: BSAD Defaulted (boolean) - If True the following BSAD fields are default values
+    A7: Net Energy Sell Price Cost Adjustment (£)
+    A8: Net Energy Sell Price Volume Adjustment (MWh)
+    A11: Net System Sell Price Volume Adjustment (MWh)
+    A3: Sell Price Price Adjustment (£/MWh)
+    A9: Net Energy Buy Price Cost Adjustment (£)
+    A10: Net Energy Buy Price Volume Adjustment (MWh)
+    A12: Net System Buy Price Volume Adjustment (MWh)
+    A6: Buy Price Price Adjustment (£/MWh)
+  Example entry:
+2009:01:01:00:20:48:GMT: subject=BMRA.SYSTEM.NETEBSP, message={SD=2008:12:31:00:00:00:GMT,SP=48,PB=59.18782,PS=47.9,PD=A,AO=422.9223,AB=-325.8473,AP=0.0,AC=-8.25,PP=96.8589,PC=-0.0,NI=96.8589,BD=F,A7=0.0,A8=0.0,A11=0.0,A3=0.0,A9=0.0,A10=0.0,A12=0.0,A6=0.0}
+
+
 SOSO
   SO to SO prices. Details of prices for trades offered between System Operators.
   Parameters:

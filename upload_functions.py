@@ -97,7 +97,7 @@ def message_to_dict(raw_message):
     message_parts = raw_message.split(',')
     received_time_string = message_parts[0].split(' ')[0]
     message_dict['received_time'] = dt.datetime(
-        *[int(x) for x in received_time_string.split(':')[:-2]])
+        *[int(x) for x in received_time_string.split(':')[:6]])
 
     message_type_list = message_parts[0].split(' ')[1].split('.')
     message_type = message_type_list[1]
