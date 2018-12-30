@@ -63,6 +63,8 @@ for filename in FILENAME_LIST:
     for message in dataArray:
         if len(message.strip()) > 0:
             message_dict = uf.message_to_dict(message+'}')
+            if UPLOAD_TO_DB is True and message_dict is not None:
+                pass
             count += 1
     print(count)
     print(len(dataArray))

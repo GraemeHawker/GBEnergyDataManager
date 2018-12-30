@@ -5,6 +5,7 @@ Helper functions for uploading data to database
 import datetime as dt
 from itertools import zip_longest
 from data_definitions import ACCEPTED_MESSAGES, FIELD_CASTING_FUNCS
+from corrupt_message_list import CORRUPT_MESSAGES
 
 def message_part_to_points(raw_message_part,
                            no_points,
@@ -95,6 +96,8 @@ def message_to_dict(raw_message):
     message_dict = dict()
 
     message_parts = raw_message.split(',')
+    if message_parts[0] in CORRUPT_MESSAGES:
+        return None
     received_time_string = message_parts[0].split(' ')[0]
     message_dict['received_time'] = dt.datetime(
         *[int(x) for x in received_time_string.split(':')[:6]])
@@ -106,7 +109,7 @@ def message_to_dict(raw_message):
         message_dict['bmu_id'] = message_type_list[2]
         message_subtype = message_type_list[3]
         message_dict['message_subtype'] = message_subtype
-    elif message_type == 'SYSTEM':
+    elif message_type in ['SYSTEM', 'INFO']:
         if message_type_list[2] in ACCEPTED_MESSAGES[message_type]:
             message_subtype = message_type_list[2]
         elif len(message_type_list) > 3 and message_type_list[3] in ACCEPTED_MESSAGES[message_type]:
