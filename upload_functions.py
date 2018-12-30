@@ -34,6 +34,8 @@ def message_part_to_points(raw_message_part,
     data_dict = dict()
     data_set_count = 1
 
+    if no_points == 0:  #some cases where there is no data
+        return data_dict
     #subdivide into iterables each containing single set of key,value pairs
     #see https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
     if len(raw_message_part.split(','))%no_points != 0:
