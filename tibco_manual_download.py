@@ -2,6 +2,7 @@
 Manual download/process script for daily tibco files
 """
 
+import sys
 import datetime as dt
 import urllib.request
 import socket
@@ -14,7 +15,7 @@ import upload_functions as uf
 DOWNLOAD_FILES = False  #whether to download files (True) or just process (False)
 UPLOAD_TO_DB = False    #whether to process files to db (True) or not (False)
 
-START_DATE = dt.date(2002, 1, 1)
+START_DATE = dt.date(2006, 10, 13)
 END_DATE = dt.date(2018, 4, 30)
 
 CONFIG = configparser.ConfigParser()
@@ -62,7 +63,11 @@ for filename in FILENAME_LIST:
     count = 0
     for message in dataArray:
         if len(message.strip()) > 0:
-            message_dict = uf.message_to_dict(message+'}')
+            try:
+                message_dict = uf.message_to_dict(message+'}')
+            except ValueError as err:
+                print(message+'}')
+                sys.exit(err)
             if UPLOAD_TO_DB is True and message_dict is not None:
                 pass
             count += 1
