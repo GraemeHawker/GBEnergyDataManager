@@ -11,11 +11,11 @@ import gzip
 import download_functions as df
 import upload_functions as uf
 
-DOWNLOAD_FILES = True  #whether to download files (True) or just process (False)
+DOWNLOAD_FILES = False  #whether to download files (True) or just process (False)
 UPLOAD_TO_DB = False    #whether to process files to db (True) or not (False)
 
-START_DATE = dt.date(2003, 1, 1)
-END_DATE = dt.date(2003, 1, 1)
+START_DATE = dt.date(2002, 1, 1)
+END_DATE = dt.date(2018, 4, 30)
 
 CONFIG = configparser.ConfigParser()
 CONFIG.read('config.ini')
