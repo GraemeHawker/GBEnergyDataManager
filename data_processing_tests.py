@@ -4584,6 +4584,84 @@ dt.datetime(2017, 4, 21, 0, 15), 'VD': 21227.0}, 58: {'SD': dt.datetime(2017, 4,
 
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
+    def test_syswarn_to_dict2(self):
+        """
+        test conversion of multi-line (with commas) SYSWARN raw data string to dictionary
+        """
+        input_str = '''2002:01:08:01:42:09:GMT: subject=BMRA.SYSTEM.SYSWARN, message={TP=2002:01:08:01:42:09:GMT,SW=From : Power System Manager - National Grid Company plc
+
+
+NGC SYSTEM WARNING Inadequate System Margin
+
+
+An NGC System Warning is ISSUED for the period
+
+from 16:30 (hrs) to 18:30 (hrs) on Tuesday (day) 8 January 2002 (date)
+
+
+There is insufficient System Margin	Availability shortfall 1900 MW
+
+
+Generators and Interconnector Users are requested to ensure current availability (MEL) is maintained and review generation availability, notifying NGC of any additional availability.
+
+Suppliers please advise NGC of any additional Demand Control OFFERS available
+
+PESs, Other Network Operators and Non Embedded Customers are notified that unless there is an improvement in System Margin, demand reduction in accordance with OC6 of the Grid Code may be instructed.
+
+
+The situation will be reviewed again by NGC at 07:00 hours and an
+update issued.
+
+
+Notification Issued at 01:40 hrs on 8 January 2002
+
+
+Issued by (name) James Holmwood NGC National Grid Control Centre
+
+
+Note	This warning may supersede an NGC System Warning of High Risk of Demand Reduction and will remain in force for the specified period until updated or cancelled by NGC
+}'''
+
+        expected_dict = {'received_time' : dt.datetime(2002, 1, 8, 1, 42, 9),
+                         'message_type' : 'SYSTEM',
+                         'message_subtype' : 'SYSWARN',
+                         'TP' : dt.datetime(2002, 1, 8, 1, 42, 9),
+                         'SW' : '''From : Power System Manager - National Grid Company plc
+
+
+NGC SYSTEM WARNING Inadequate System Margin
+
+
+An NGC System Warning is ISSUED for the period
+
+from 16:30 (hrs) to 18:30 (hrs) on Tuesday (day) 8 January 2002 (date)
+
+
+There is insufficient System Margin	Availability shortfall 1900 MW
+
+
+Generators and Interconnector Users are requested to ensure current availability (MEL) is maintained and review generation availability, notifying NGC of any additional availability.
+
+Suppliers please advise NGC of any additional Demand Control OFFERS available
+
+PESs, Other Network Operators and Non Embedded Customers are notified that unless there is an improvement in System Margin, demand reduction in accordance with OC6 of the Grid Code may be instructed.
+
+
+The situation will be reviewed again by NGC at 07:00 hours and an
+update issued.
+
+
+Notification Issued at 01:40 hrs on 8 January 2002
+
+
+Issued by (name) James Holmwood NGC National Grid Control Centre
+
+
+Note	This warning may supersede an NGC System Warning of High Risk of Demand Reduction and will remain in force for the specified period until updated or cancelled by NGC'''
+                         }
+
+        self.assertEqual(message_to_dict(input_str), expected_dict)
+
     def test_sysmsg_to_dict(self):
         """
         test conversion of SYSMSG raw data string to dictionary
