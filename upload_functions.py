@@ -98,7 +98,7 @@ def message_to_dict(raw_message):
     message_dict = dict()
 
     message_parts = raw_message.split(',')
-    if message_parts[0] in CORRUPT_MESSAGES:
+    if message_parts[0].strip() in CORRUPT_MESSAGES:
         return None
     received_time_string = message_parts[0].split(' ')[0]
     message_dict['received_time'] = dt.datetime(
@@ -135,9 +135,17 @@ def message_to_dict(raw_message):
                           raw_message))
 
     key_values = raw_message[raw_message.find('{')+1:raw_message.rfind('}')]
+
+
     for key_value in key_values.split(','):
-        key, value = key_value.split('=')
-        key = key.strip()
+        key = key_value[:key_value.find('=')].strip()
+        if key == 'SW': #edge case where commas can appear in field
+            value = key_values[key_values.rfind(key)+3:].strip()
+            message_dict[key] = value
+            return message_dict
+        value = key_value[key_value.find('=') + 1:].strip()
+        #key, value = key_value.split('=')
+        #key = key.strip()
         if key in ['NP', 'NR']:   #process multiple datapoints
             raw_message_part = raw_message[raw_message.rfind(key):-1]
             raw_message_part = raw_message_part[raw_message_part.find(',')+1:]
@@ -146,7 +154,6 @@ def message_to_dict(raw_message):
                 int(value.strip()),
                 message_type,
                 message_subtype)
-
             break   #datapoints should be the final part of the message
         elif key in ACCEPTED_MESSAGES[message_type][message_subtype]:
             message_dict[key] = FIELD_CASTING_FUNCS[key](value)
@@ -156,7 +163,6 @@ def message_to_dict(raw_message):
                              (key, message_dict['message_type'],
                               message_dict['message_subtype'],
                               raw_message))
-
     return message_dict
 
 def dict_to_sql(message_dict):
