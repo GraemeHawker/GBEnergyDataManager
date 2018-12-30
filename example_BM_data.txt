@@ -57,6 +57,20 @@ FUELHH
   Example entry:
 2017:03:29:00:01:10:GMT: subject=BMRA.SYSTEM.FUELHH, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,FT=CCGT,FG=10418}
 
+BSAD
+  Balancing Services Adjustment Data
+  (no longer in use)
+  Parameters:
+    A1: Sell price cost Adjustment
+    A2: Sell price volume Adjustment
+    A3: Sell price price adjustment in £/MWh
+    A4: Buy price cost Adjustment
+    A5: Buy price volume Adjustment
+    A6: Buy price price adjustment in £/MWh
+  Example entry:
+2003:01:01:00:08:12:GMT: subject=BMRA.SYSTEM.BSAD, message={SD=2003:01:01:00:00:00:GMT,SP=3,A1=-5248.75,A2=-417.5,A3=0.0,A4=0.0,A5=0.0,A6=3.11}
+
+
 DISBSAD
   Balancing Services Adjustment Action Data
   Implemented on 2009-11-09 as part of P217
@@ -83,6 +97,28 @@ NETBSAD
     A6: BPA in £/MWh
   Example entry:
 2017:04:21:00:09:13:GMT: subject=BMRA.SYSTEM.NETBSAD, message={SD=2017:04:21:00:00:00:GMT,SP=5,A7=0.0,A8=0.0,A11=0.0,A3=0.0,A9=0.0,A10=0.0,A12=0.0,A6=0.0}
+
+EBSP
+  Estimated buy and sell price
+  Parameters:
+    PB: The price that must be paid for electricity which is out of balance.
+    PS: Sell Price - the price received for electricity which is out of balance.
+    AO: Total Accepted Offer Volume - System wide total Accepted Offer Volume for the Settlement Period
+    AB: Total Accepted Bid Volume - System wide total Accepted Bid Volume for the Settlement Period
+    AP: Total Unpriced Accepted Offer Volume - System wide total Unpriced Accepted Offer Volume for the Settlement Period
+    AC: Total Unpriced Accepted Bid Volume - System wide total Unpriced Accepted Bid Volume for the Settlement Period
+    PP: Total Priced Accepted Offer Volume - System wide total Priced Accepted Offer Volume for the Settlement Period
+    PC: Total Priced Accepted Bid Volume - System wide total Priced Accepted Bid Volume for the Settlement Period
+    BD: BSAD Defaulted (boolean) - If True the following BSAD fields are default values
+    A1: Sell price cost Adjustment
+    A2: Sell price volume Adjustment
+    A3: Sell price price adjustment in £/MWh
+    A4: Buy price cost Adjustment
+    A5: Buy price volume Adjustment
+    A6: Buy price price adjustment in £/MWh
+  Example entry:
+2003:01:01:00:20:32:GMT: subject=BMRA.SYSTEM.EBSP, message={SD=2002:12:31:00:00:00:GMT,SP=48,PB=15.13,PS=11.10644,AO=307.2657,AB=-686.525,AP=36.6594,AC=0.0,PP=5.0,PC=-420.9187,BD=F,A1=-5248.75,A2=-417.5,A3=0.0,A4=0.0,A5=0.0,A6=0.0}
+
 
 NETEBSP
   Estimated Buy and Sell Price
@@ -318,6 +354,21 @@ UOU2T52W
     CY: Calendar year (int)
   Example entry:
 2018:01:04:13:41:23:GMT: subject=BMRA.SYSTEM.2__PPGEN001.UOU2T52W, message={TP=2018:01:04:13:31:00:GMT,NR=51,WN=3,CY=2018,FT=WIND,OU=28.0,WN=4,CY=2018,FT=WIND,OU=28.0,WN=5,CY=2018,FT=WIND,OU=28.0,WN=6,CY=2018,FT=WIND,OU=26.0,WN=7,CY=2018,FT=WIND,OU=26.0,WN=8,CY=2018,FT=WIND,OU=26.0,WN=9,CY=2018,FT=WIND,OU=26.0,WN=10,CY=2018,FT=WIND,OU=20.0,WN=11,CY=2018,FT=WIND,OU=20.0,WN=12,CY=2018,FT=WIND,OU=20.0,WN=13,CY=2018,FT=WIND,OU=20.0,WN=14,CY=2018,FT=WIND,OU=15.0,WN=15,CY=2018,FT=WIND,OU=15.0,WN=16,CY=2018,FT=WIND,OU=15.0,WN=17,CY=2018,FT=WIND,OU=15.0,WN=18,CY=2018,FT=WIND,OU=15.0,WN=19,CY=2018,FT=WIND,OU=18.0,WN=20,CY=2018,FT=WIND,OU=18.0,WN=21,CY=2018,FT=WIND,OU=18.0,WN=22,CY=2018,FT=WIND,OU=18.0,WN=23,CY=2018,FT=WIND,OU=10.0,WN=24,CY=2018,FT=WIND,OU=10.0,WN=25,CY=2018,FT=WIND,OU=10.0,WN=26,CY=2018,FT=WIND,OU=10.0,WN=27,CY=2018,FT=WIND,OU=10.0,WN=28,CY=2018,FT=WIND,OU=10.0,WN=29,CY=2018,FT=WIND,OU=10.0,WN=30,CY=2018,FT=WIND,OU=10.0,WN=31,CY=2018,FT=WIND,OU=10.0,WN=32,CY=2018,FT=WIND,OU=13.0,WN=33,CY=2018,FT=WIND,OU=13.0,WN=34,CY=2018,FT=WIND,OU=13.0,WN=35,CY=2018,FT=WIND,OU=13.0,WN=36,CY=2018,FT=WIND,OU=15.0,WN=37,CY=2018,FT=WIND,OU=15.0,WN=38,CY=2018,FT=WIND,OU=15.0,WN=39,CY=2018,FT=WIND,OU=15.0,WN=40,CY=2018,FT=WIND,OU=20.0,WN=41,CY=2018,FT=WIND,OU=20.0,WN=42,CY=2018,FT=WIND,OU=20.0,WN=43,CY=2018,FT=WIND,OU=20.0,WN=44,CY=2018,FT=WIND,OU=20.0,WN=45,CY=2018,FT=WIND,OU=23.0,WN=46,CY=2018,FT=WIND,OU=23.0,WN=47,CY=2018,FT=WIND,OU=23.0,WN=48,CY=2018,FT=WIND,OU=23.0,WN=49,CY=2018,FT=WIND,OU=28.0,WN=50,CY=2018,FT=WIND,OU=28.0,WN=51,CY=2018,FT=WIND,OU=28.0,WN=52,CY=2018,FT=WIND,OU=28.0,WN=1,CY=2019,FT=WIND,OU=28.0}
+
+DCONTROL
+  Demand Control Instruction Notification
+  Parameters:
+    DS: Affected LDSO (string)
+    ID: Demand Control ID, unique identifier, integer
+    SQ: Instruction Sequence No, integer
+    EV: Demand Control Event Flag, 'I' indicates instruction by the SO or emergency manual disconnection. 'L' indicates automatic low frequency demand disconnection
+    TF: Time From
+    TI: Time To
+    VO: Demand Control Level, MW
+    SO: SO-Flag, 'T' indicates that an instruction should be considered to be potentially impacted by transmission constraints
+    AM: Amendment Flag: 'ORI' : Original, 'INS' : Insert, 'UPD' : Update
+  Example entry:
+2015:11:30:11:35:59:GMT: subject=BMRA.SYSTEM.DCONTROL, message={TP=2015:11:30:11:32:32:GMT,NR=1,DS=ETCL,ID=00002,SQ=1,EV=I,TF=2015:11:30:00:00:00:GMT,TI=2015:12:02:00:00:00:GMT,VO=34.0,SO=T,AM=ORI}
 
 
 NDFD
@@ -578,6 +629,18 @@ RURE
   Example entry:
 2017:04:21:01:22:19:GMT: subject=BMRA.DYNAMIC.T_STAY-2.RURE, message={TE=2017:04:21:01:21:00:GMT,U1=8.4,UB=45,U2=0.2,UC=48,U3=17.5}
 
+RURI
+  Run-up rates import
+  Parameters:
+    U1: Run up rate 1 (MW/minute)
+    UB: Run up elbow 2 (MW)
+    U2: Run up rate 2 (MW/minute)
+    UC: Run up elbow 3 (MW)
+    U3: Run up rate 3 (MW/minute)
+  Example entry:
+2002:01:02:17:02:01:GMT: subject=BMRA.DYNAMIC.2__JYELG001.RURI, message={TE=2002:01:02:17:00:00:GMT,U1=900.0,UB=0,U2=0.0,UC=0,U3=0.0}
+
+
 RDRE
   Run-down rate Export
   Parameters:
@@ -588,6 +651,32 @@ RDRE
     R3: Run up rate 3 (MW/minute)
   Example entry:
 2017:04:21:05:04:39:GMT: subject=BMRA.DYNAMIC.T_ROCK-1.RDRE, message={TE=2017:04:21:05:04:00:GMT,R1=25.0,RB=220,R2=47.5,RC=125,R3=55.0}
+
+RDRI
+  Run-down rate Import
+  Parameters:
+    R1: Run up rate 1 (MW/minute)
+    RB: Run up elbow 2 (MW)
+    R2: Run up rate 2 (MW/minute)
+    RC: Run up elbow 3 (MW)
+    R3: Run up rate 3 (MW/minute)
+  Example entry:
+2002:01:02:17:01:50:GMT: subject=BMRA.DYNAMIC.2__JYELG001.RDRI, message={TE=2002:01:02:17:00:00:GMT,R1=900.0,RB=0,R2=0.0,RC=0,R3=0.0}
+
+
+MDV
+  Maximum Delivery Volume
+  Parameters:
+    DV: Delivery Volume
+  Example entry:
+2002:01:02:17:01:13:GMT: subject=BMRA.DYNAMIC.2__JYELG001.MDV, message={TE=2002:01:02:17:00:00:GMT,DV=-44.0}
+
+MDP
+  Maximum Delivery Period
+  Parameters:
+    DP: Delivery period
+  Example entry:
+2002:01:02:17:01:14:GMT: subject=BMRA.DYNAMIC.2__JYELG001.MDP, message={TE=2002:01:02:17:00:00:GMT,DP=239}
 
 
 MZT
@@ -624,3 +713,21 @@ CDN
     CT: Cleared Default Text (optional)
   Example entry:
 2017:04:21:23:13:54:GMT: subject=BMRA.BP.GALENA.CDN, message={DL=2,ED=2017:04:22:00:00:00:GMT,EP=3}
+
+
+INFO type messages
+
+
+TEST
+  Test message
+  Parameters:
+    DATA: message data
+  Example entry:
+2002:08:14:11:59:48:GMT: subject=BMRA.INFO.TEST, message={DATA=TEST - ignore}
+
+MSG
+  Test message
+  Parameters:
+    DATA: message data
+  Example entry:
+2002:10:08:16:11:05:GMT: subject=BMRA.INFO.MSG, message={DATA=This is a test message}
