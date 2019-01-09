@@ -23,7 +23,7 @@ key=INSERT_KEY&filename=tib_messages.2018-09-15.gz
     Returns
     -------
     list
-        list of strings containing filenames for HH files
+        list of strings containing filenames for daily files
 
     Raises
     ------
