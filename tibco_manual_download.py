@@ -12,16 +12,18 @@ import gzip
 import download_functions as df
 import upload_functions as uf
 
-DOWNLOAD_FILES = False  #whether to download files (True) or just process (False)
-UPLOAD_TO_DB = False    #whether to process files to db (True) or not (False)
+DOWNLOAD_FILES = True  #whether to download files (True) or just process (False)
+UPLOAD_TO_DB = True    #whether to process files to db (True) or not (False)
 
-START_DATE = dt.date(2006, 10, 13)
-END_DATE = dt.date(2018, 4, 30)
+START_DATE = dt.date(2018, 1, 1)
+END_DATE = dt.date(2018, 1, 1)
 
 CONFIG = configparser.ConfigParser()
 CONFIG.read('config.ini')
 LOCAL_CONFIG = CONFIG[socket.gethostname()]
 
+'''
+#to be replaced with django ORM abstraction
 if UPLOAD_TO_DB is True:    #connect to db
     DB_CONN = pymysql.connect(host=LOCAL_CONFIG['host'],
                               port=int(LOCAL_CONFIG['port']),
@@ -29,6 +31,7 @@ if UPLOAD_TO_DB is True:    #connect to db
                               passwd=LOCAL_CONFIG['db_passwd'],
                               db=LOCAL_CONFIG['db_tibcodata'])
     DB_CURSOR = DB_CONN.cursor()
+'''
 
 FILENAME_LIST = df.get_tibco_daily_filenames(START_DATE, END_DATE)
 
@@ -46,14 +49,6 @@ if DOWNLOAD_FILES is True:
                 LOCAL_CONFIG['dataDirectory'] + filename)
         except urllib.error.URLError as error:
             print('Failed to Open URL: ' + remote_url +' ' + error.reason)
-'''
-#for the purposes of reviewing file contents
-subjects = set()
-tibco_types = set()
-BMUIDs = set()
-BM_data_types = set()
-system_data_types = set()
-'''
 
 for filename in FILENAME_LIST:
     print('Processing:' + filename)
@@ -65,15 +60,17 @@ for filename in FILENAME_LIST:
         if len(message.strip()) > 0:
             try:
                 message_dict = uf.message_to_dict(message+'}')
-            except ValueError as err:
+            except ValueError as err: #can remove with better error handling
                 print(message+'}')
                 sys.exit(err)
             if UPLOAD_TO_DB is True and message_dict is not None:
-                pass
+                uf.insert_data(message_dict)
             count += 1
-    print(count)
-    print(len(dataArray))
+    print('%d lines in file' % count)
+    print('%d messages processed' % len(dataArray))
     f.close()
-
+'''
+#not needed once using django ORM
 if UPLOAD_TO_DB is True:
     DB_CONN.close()
+'''
