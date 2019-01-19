@@ -10,7 +10,7 @@ Unit tests for the data processing functions
 
 import unittest
 import datetime as dt
-from upload_functions import message_to_dict, message_part_to_points
+from BMRA.management.commands._upload_functions import message_to_dict, message_part_to_points
 
 unittest.TestCase.maxDiff = None
 
