@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ElexonData',
-        'USER': '***REMOVED***',
-        'PASSWORD': '***REMOVED***',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
         }
@@ -127,7 +127,7 @@ STATIC_URL = '/static/'
 
 # Elexon values
 ELEXON_BASEURL = 'https://downloads.elexonportal.co.uk/bmradataarchive/download'
-ELEXON_KEY = '***REMOVED***'
+ELEXON_KEY = ''
 
 # Local folders for file processing
 BMRA_INPUT_DIR = '/Users/graeme/ElexonData/Unprocessed/'
