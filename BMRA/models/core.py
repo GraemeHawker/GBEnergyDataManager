@@ -17,5 +17,5 @@ class BMU(models.Model):
     """
     Balancing Mechanism Unit
     """
-    bmu_id = models.CharField(max_length=11, primary_key=True)
+    id = models.CharField(max_length=11, primary_key=True)
     name = models.CharField(max_length=100)

@@ -3,6 +3,12 @@ Helper functions for managing downloads
 
 """
 import datetime as dt
+import urllib.request
+import gzip
+import os.path
+
+from ElexonDataManager.settings import ELEXON_BASEURL, ELEXON_KEY, BMRA_INPUT_DIR
+from ._upload_functions import message_to_dict, insert_data
 
 def get_tibco_daily_filenames(date_start, date_end=None):
     """
@@ -43,3 +49,48 @@ key=INSERT_KEY&filename=tib_messages.2018-09-15.gz
         curr_date += dt.timedelta(days=1)
 
     return filename_list
+
+def download_bmra_file(filename):
+    """
+    downloads single BMRA file corresponding to given filename
+    checks if file already exists, does not download if so
+
+    Parameters
+    ----------
+    filename : str
+        the filename to be downloaded
+
+    """
+    if not os.path.isfile(BMRA_INPUT_DIR + filename):
+        remote_url = (ELEXON_BASEURL
+                      + '?key='
+                      + ELEXON_KEY
+                      + '&filename='
+                      + filename)
+        urllib.request.urlretrieve(
+            remote_url,
+            BMRA_INPUT_DIR + filename)
+
+def process_bmra_file(date):
+    """
+    downloads and processes single BMRA file corresponding to given date
+
+    Parameters
+    ----------
+    date : datetime
+        the date of the datafile to be downloaded and processed
+    """
+    filename = get_tibco_daily_filenames(date)[0]
+    print(filename)
+    download_bmra_file(filename)
+    file = gzip.open(BMRA_INPUT_DIR + filename, 'rb')
+    file_content = file.read().decode('utf-8', 'ignore')
+    file_rows = [entry for entry in file_content.split('}')]
+    count = 0
+    for message in file_rows:
+        if len(message.strip()) > 0:
+            message_dict = message_to_dict(message+'}')
+            if message_dict is not None:
+                insert_data(message_dict)
+            count += 1
+    file.close()
