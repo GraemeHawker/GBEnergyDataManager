@@ -131,8 +131,8 @@ ELEXON_BASEURL = 'https://downloads.elexonportal.co.uk/bmradataarchive/download'
 ELEXON_KEY = '8bjll9hlkqh7gb8'
 
 # Local folders for file processing
-BMRA_INPUT_DIR = '/Users/graeme/ElexonData/Unprocessed/'
-BMRA_PROCESSED_DIR = '/Users/graeme/ElexonData/Processed/'
+BMRA_INPUT_DIR = '/home/graeme/ElexonData/Unprocessed/'
+BMRA_PROCESSED_DIR = '/home/graeme/ElexonData/Processed/'
 
 # Magic Numbers
-BMRA_start_date = dt.date(2002,1,1)
+BMRA_start_date = dt.date(2002,1,1) #earliest date of BMRA data for validation
