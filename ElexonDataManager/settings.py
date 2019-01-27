@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import datetime as dt
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'BMRA',
-    'P114'
+    #'P114'
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,6 @@ ELEXON_KEY = '***REMOVED***'
 # Local folders for file processing
 BMRA_INPUT_DIR = '/Users/graeme/ElexonData/Unprocessed/'
 BMRA_PROCESSED_DIR = '/Users/graeme/ElexonData/Processed/'
+
+# Magic Numbers
+BMRA_start_date = dt.date(2002,1,1)
