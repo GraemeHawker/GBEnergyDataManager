@@ -1,2 +1,6 @@
+"""
+combined model import
+"""
+
 from .core import BMU, ProcessedMessage
-from .balancing import BOAL
+from .balancing import FPN
