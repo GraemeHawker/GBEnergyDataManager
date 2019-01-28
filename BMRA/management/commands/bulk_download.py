@@ -14,7 +14,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.stdout.write('Started: {:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now()))
-        self.stdout.write("downloading data for %s" % options['date'][0])
         start_date = dt.datetime(*[int(x) for x in options['date'][0].split('-')[:3]])
         end_date = dt.datetime(*[int(x) for x in options['date'][1].split('-')[:3]])
         date = start_date
