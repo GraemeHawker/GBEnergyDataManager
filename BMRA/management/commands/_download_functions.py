@@ -81,7 +81,6 @@ def process_bmra_file(date):
         the date of the datafile to be downloaded and processed
     """
     filename = get_tibco_daily_filenames(date)[0]
-    print(filename)
     download_bmra_file(filename)
     file = gzip.open(BMRA_INPUT_DIR + filename, 'rb')
     file_content = file.read().decode('utf-8', 'ignore')
