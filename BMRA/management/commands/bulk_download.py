@@ -19,7 +19,8 @@ class Command(BaseCommand):
         date = start_date
         while date <= end_date:
             self.stdout.write('{:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now()))
-            self.stdout.write("downloading data for %s" % options['date'][0])
+            self.stdout.write("downloading data for "
+                              + '{:%Y-%m-%d}'.format(date))
             process_bmra_file(date)
             date += dt.timedelta(days=1)
         self.stdout.write('Finished: {:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now()))
