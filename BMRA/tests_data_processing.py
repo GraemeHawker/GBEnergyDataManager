@@ -444,7 +444,7 @@ class DataProcessingTestCase(unittest.TestCase):
                          'message_type' : 'DYNAMIC',
                          'message_subtype' : 'SEL',
                          'bmu_id' : 'T_ROCK-1',
-                         'TE' : dt.date(2017, 4, 21, 1, 20),
+                         'TE' : dt.datetime(2017, 4, 21, 1, 20, tzinfo=timezone.utc),
                          'SE' : 240.0
                         }
         self.assertEqual(message_to_dict(input_str), expected_dict)
@@ -1348,7 +1348,7 @@ class DataProcessingTestCase(unittest.TestCase):
                          'subject' : 'BMRA.SYSTEM.FUELHH',
                          'message_type' : 'SYSTEM',
                          'message_subtype' : 'FUELHH',
-                         'TP' : dt.date(2017, 4, 21),
+                         'TP' : dt.datetime(2017, 4, 21, tzinfo=timezone.utc),
                          'SD' : dt.date(2017, 4, 21),
                          'SP' : 2,
                          'FT' : 'CCGT',
@@ -1530,7 +1530,7 @@ class DataProcessingTestCase(unittest.TestCase):
                          'subject' : 'BMRA.SYSTEM.FUELINST',
                          'message_type' : 'SYSTEM',
                          'message_subtype' : 'FUELINST',
-                         'TP' : dt.date(2017, 3, 29),
+                         'TP' : dt.datetime(2017, 3, 29, tzinfo=timezone.utc),
                          'SD' : dt.date(2017, 3, 29),
                          'TS' : dt.datetime(2017, 3, 28, 23, 55, tzinfo=timezone.utc),
                          'SP' : 2,
@@ -1551,7 +1551,7 @@ class DataProcessingTestCase(unittest.TestCase):
                          'subject' : 'BMRA.SYSTEM.INDO',
                          'message_type' : 'SYSTEM',
                          'message_subtype' : 'INDO',
-                         'TP' : dt.date(2017, 3, 29),
+                         'TP' : dt.datetime(2017, 3, 29, 0, 0, 0, tzinfo=timezone.utc),
                          'SD' : dt.date(2017, 3, 29),
                          'SP' : 2,
                          'VD' : 24016.0
@@ -1570,7 +1570,7 @@ class DataProcessingTestCase(unittest.TestCase):
                          'subject' : 'BMRA.SYSTEM.NONBM',
                          'message_type' : 'SYSTEM',
                          'message_subtype' : 'NONBM',
-                         'TP' : dt.date(2017, 3, 29),
+                         'TP' : dt.datetime(2017, 3, 29, 0, 0, tzinfo=timezone.utc),
                          'SD' : dt.date(2017, 3, 29),
                          'SP' : 2,
                          'NB' : 0.0
@@ -1589,7 +1589,7 @@ class DataProcessingTestCase(unittest.TestCase):
                          'subject' : 'BMRA.SYSTEM.ITSDO',
                          'message_type' : 'SYSTEM',
                          'message_subtype' : 'ITSDO',
-                         'TP' : dt.date(2017, 3, 29),
+                         'TP' : dt.datetime(2017, 3, 29, 0, 0, tzinfo=timezone.utc),
                          'SD' : dt.date(2017, 3, 29),
                          'SP' : 2,
                          'VD' : 26085.0
@@ -1615,8 +1615,8 @@ class DataProcessingTestCase(unittest.TestCase):
                                  'ID' : 2,
                                  'SQ' : 1,
                                  'EV' : 'I',
-                                 'TF' : dt.date(2015, 11, 30),
-                                 'TI' : dt.date(2015, 12, 2),
+                                 'TF' : dt.datetime(2015, 11, 30, tzinfo=timezone.utc),
+                                 'TI' : dt.datetime(2015, 12, 2, tzinfo=timezone.utc),
                                  'VO' : 34.0,
                                  'SO' : True,
                                  'AM' : 'ORI'
@@ -1815,85 +1815,118 @@ class DataProcessingTestCase(unittest.TestCase):
                               'TP': dt.datetime(2017, 4, 20, 22, 45, tzinfo=timezone.utc), 'VD': 23700.0},
                           2: {'SD': dt.date(2017, 4, 21), 'SP': 2,
                               'TP': dt.datetime(2017, 4, 20, 23, 15, tzinfo=timezone.utc), 'VD': 22969.0},
-                          3: {'SD':
-dt.datetime(2017, 4, 21, 0, 0), 'SP': 3, 'TP': dt.datetime(2017, 4, 20, 23, 45),
-'VD': 23644.0}, 4: {'SD': dt.date(2017, 4, 21), 'SP': 4, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23600.0}, 5: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 5, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23347.0}, 6:
-{'SD': dt.date(2017, 4, 21), 'SP': 6, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 23045.0}, 7: {'SD': dt.date(2017, 4, 21), 'SP': 7, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22730.0}, 8: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 8, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22467.0}, 9:
-{'SD': dt.date(2017, 4, 21), 'SP': 9, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 22300.0}, 10: {'SD': dt.date(2017, 4, 21), 'SP': 10,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22299.0}, 11: {'SD':
-dt.datetime(2017, 4, 21, 0, 0), 'SP': 11, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 22994.0}, 12: {'SD': dt.date(2017, 4, 21), 'SP': 12, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23820.0}, 13: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 13, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 25906.0}, 14:
-{'SD': dt.date(2017, 4, 21), 'SP': 14, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 28202.0}, 15: {'SD': dt.date(2017, 4, 21), 'SP': 15,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31034.0}, 16: {'SD':
-dt.datetime(2017, 4, 21, 0, 0), 'SP': 16, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 32506.0}, 17: {'SD': dt.date(2017, 4, 21), 'SP': 17, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 33300.0}, 18: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 18, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 33235.0}, 19:
-{'SD': dt.date(2017, 4, 21), 'SP': 19, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 33200.0}, 20: {'SD': dt.date(2017, 4, 21), 'SP': 20,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32808.0}, 21: {'SD':
-dt.datetime(2017, 4, 21, 0, 0), 'SP': 21, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 32155.0}, 22: {'SD': dt.date(2017, 4, 21), 'SP': 22, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31800.0}, 23: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 23, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31388.0}, 24:
-{'SD': dt.date(2017, 4, 21), 'SP': 24, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 31159.0}, 25: {'SD': dt.date(2017, 4, 21), 'SP': 25,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 30972.0}, 26: {'SD':
-dt.datetime(2017, 4, 21, 0, 0), 'SP': 26, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 30570.0}, 27: {'SD': dt.date(2017, 4, 21), 'SP': 27, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 29828.0}, 28: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 28, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 29440.0}, 29:
-{'SD': dt.date(2017, 4, 21), 'SP': 29, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 29081.0}, 30: {'SD': dt.date(2017, 4, 21), 'SP': 30,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 28710.0}, 31: {'SD':
-dt.datetime(2017, 4, 21, 0, 0), 'SP': 31, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 28500.0}, 32: {'SD': dt.date(2017, 4, 21), 'SP': 32, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 28920.0}, 33: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 33, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 29769.0}, 34:
-{'SD': dt.date(2017, 4, 21), 'SP': 34, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 30771.0}, 35: {'SD': dt.date(2017, 4, 21), 'SP': 35,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31738.0}, 36: {'SD':
-dt.datetime(2017, 4, 21, 0, 0), 'SP': 36, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 32200.0}, 37: {'SD': dt.date(2017, 4, 21), 'SP': 37, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32327.0}, 38: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 38, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32283.0}, 39:
-{'SD': dt.date(2017, 4, 21), 'SP': 39, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 32100.0}, 40: {'SD': dt.date(2017, 4, 21), 'SP': 40,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32452.0}, 41: {'SD':
-dt.datetime(2017, 4, 21, 0, 0), 'SP': 41, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 33155.0}, 42: {'SD': dt.date(2017, 4, 21), 'SP': 42, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 33800.0}, 43: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 43, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32987.0}, 44:
-{'SD': dt.date(2017, 4, 21), 'SP': 44, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 31570.0}, 45: {'SD': dt.date(2017, 4, 21), 'SP': 45,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 29874.0}, 46: {'SD':
-dt.datetime(2017, 4, 21, 0, 0), 'SP': 46, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 28257.0}, 47: {'SD': dt.date(2017, 4, 21), 'SP': 47, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 26412.0}, 48: {'SD': dt.datetime(2017, 4,
-21, 0, 0), 'SP': 48, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 24800.0}, 49:
-{'SD': dt.date(2017, 4, 22), 'SP': 1, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 23900.0}, 50: {'SD': dt.date(2017, 4, 22), 'SP': 2,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23300.0}, 51: {'SD':
-dt.datetime(2017, 4, 22, 0, 0), 'SP': 3, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 23328.0}, 52: {'SD': dt.date(2017, 4, 22), 'SP': 4, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23600.0}, 53: {'SD': dt.datetime(2017, 4,
-22, 0, 0), 'SP': 5, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23052.0}, 54:
-{'SD': dt.date(2017, 4, 22), 'SP': 6, 'TP': dt.datetime(2017, 4, 21,
-0, 15, tzinfo=timezone.utc), 'VD': 22566.0}, 55: {'SD': dt.date(2017, 4, 22), 'SP': 7,
-'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22072.0}, 56: {'SD':
-dt.datetime(2017, 4, 22, 0, 0), 'SP': 8, 'TP': dt.datetime(2017, 4, 21, 0, 15),
-'VD': 21644.0}, 57: {'SD': dt.date(2017, 4, 22), 'SP': 9, 'TP':
-dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 21227.0}, 58: {'SD': dt.date(2017, 4,
-22), 'SP': 10, 'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 21000.0}}}
+                          3: {'SD': dt.date(2017, 4, 21), 'SP': 3,
+                              'TP': dt.datetime(2017, 4, 20, 23, 45, tzinfo=timezone.utc), 'VD': 23644.0},
+                          4: {'SD': dt.date(2017, 4, 21), 'SP': 4,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23600.0},
+                          5: {'SD': dt.date(2017, 4, 21), 'SP': 5,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23347.0},
+                          6: {'SD': dt.date(2017, 4, 21), 'SP': 6,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23045.0},
+                          7: {'SD': dt.date(2017, 4, 21), 'SP': 7,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22730.0},
+                          8: {'SD': dt.date(2017, 4, 21), 'SP': 8,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22467.0},
+                          9: {'SD': dt.date(2017, 4, 21), 'SP': 9,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22300.0},
+                          10: {'SD': dt.date(2017, 4, 21), 'SP': 10,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22299.0},
+                          11: {'SD': dt.date(2017, 4, 21), 'SP': 11,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22994.0},
+                          12: {'SD': dt.date(2017, 4, 21), 'SP': 12,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23820.0},
+                          13: {'SD': dt.date(2017, 4, 21), 'SP': 13,
+                              'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 25906.0},
+                          14: {'SD': dt.date(2017, 4, 21), 'SP': 14,
+                              'TP': dt.datetime(2017, 4, 21,0, 15, tzinfo=timezone.utc), 'VD': 28202.0},
+                          15: {'SD': dt.date(2017, 4, 21), 'SP': 15,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31034.0},
+                          16: {'SD': dt.date(2017, 4, 21), 'SP': 16,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32506.0},
+                          17: {'SD': dt.date(2017, 4, 21), 'SP': 17,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 33300.0},
+                          18: {'SD': dt.date(2017, 4, 21), 'SP': 18,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 33235.0},
+                          19: {'SD': dt.date(2017, 4, 21), 'SP': 19,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 33200.0},
+                          20: {'SD': dt.date(2017, 4, 21), 'SP': 20,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32808.0},
+                          21: {'SD': dt.date(2017, 4, 21), 'SP': 21,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32155.0},
+                          22: {'SD': dt.date(2017, 4, 21), 'SP': 22,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31800.0},
+                          23: {'SD': dt.date(2017, 4, 21), 'SP': 23,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31388.0},
+                          24: {'SD': dt.date(2017, 4, 21), 'SP': 24,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31159.0},
+                          25: {'SD': dt.date(2017, 4, 21), 'SP': 25,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 30972.0},
+                          26: {'SD': dt.date(2017, 4, 21), 'SP': 26,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 30570.0},
+                          27: {'SD': dt.date(2017, 4, 21), 'SP': 27,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 29828.0},
+                          28: {'SD': dt.date(2017, 4, 21), 'SP': 28,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 29440.0},
+                          29: {'SD': dt.date(2017, 4, 21), 'SP': 29,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 29081.0},
+                          30: {'SD': dt.date(2017, 4, 21), 'SP': 30,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 28710.0},
+                          31: {'SD': dt.date(2017, 4, 21), 'SP': 31,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 28500.0},
+                          32: {'SD': dt.date(2017, 4, 21), 'SP': 32,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 28920.0},
+                          33: {'SD': dt.date(2017, 4, 21), 'SP': 33,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 29769.0},
+                          34: {'SD': dt.date(2017, 4, 21), 'SP': 34,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 30771.0},
+                          35: {'SD': dt.date(2017, 4, 21), 'SP': 35,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31738.0},
+                          36: {'SD': dt.date(2017, 4, 21), 'SP': 36,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32200.0},
+                          37: {'SD': dt.date(2017, 4, 21), 'SP': 37,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32327.0},
+                          38: {'SD': dt.date(2017, 4, 21), 'SP': 38,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32283.0},
+                          39: {'SD': dt.date(2017, 4, 21), 'SP': 39,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32100.0},
+                          40: {'SD': dt.date(2017, 4, 21), 'SP': 40,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32452.0},
+                          41: {'SD': dt.date(2017, 4, 21), 'SP': 41,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 33155.0},
+                          42: {'SD': dt.date(2017, 4, 21), 'SP': 42,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 33800.0},
+                          43: {'SD': dt.date(2017, 4, 21), 'SP': 43,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 32987.0},
+                          44: {'SD': dt.date(2017, 4, 21), 'SP': 44,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 31570.0},
+                          45: {'SD': dt.date(2017, 4, 21), 'SP': 45,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 29874.0},
+                          46: {'SD': dt.date(2017, 4, 21), 'SP': 46,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 28257.0},
+                          47: {'SD': dt.date(2017, 4, 21), 'SP': 47,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 26412.0},
+                          48: {'SD': dt.date(2017, 4, 21), 'SP': 48,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 24800.0},
+                          49: {'SD': dt.date(2017, 4, 22), 'SP': 1,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23900.0},
+                          50: {'SD': dt.date(2017, 4, 22), 'SP': 2,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23300.0},
+                          51: {'SD': dt.date(2017, 4, 22), 'SP': 3,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23328.0},
+                          52: {'SD': dt.date(2017, 4, 22), 'SP': 4,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23600.0},
+                          53: {'SD': dt.date(2017, 4, 22), 'SP': 5,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 23052.0},
+                          54: {'SD': dt.date(2017, 4, 22), 'SP': 6,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22566.0},
+                          55: {'SD': dt.date(2017, 4, 22), 'SP': 7,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 22072.0},
+                          56: {'SD': dt.date(2017, 4, 22), 'SP': 8,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 21644.0},
+                          57: {'SD': dt.date(2017, 4, 22), 'SP': 9,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 21227.0},
+                          58: {'SD': dt.date(2017, 4, 22), 'SP': 10,
+                               'TP': dt.datetime(2017, 4, 21, 0, 15, tzinfo=timezone.utc), 'VD': 21000.0}}}
         self.assertEqual(message_to_dict(input_str), expected_dict)
 
     def test_df_to_dict(self):
@@ -4862,7 +4895,7 @@ Note	This warning may supersede an NGC System Warning of High Risk of Demand Red
                          'subject' : 'BMRA.SYSTEM.TSDFW',
                          'message_type' : 'SYSTEM',
                          'message_subtype' : 'TSDFW',
-                         'TP' : dt.datetime(2017, 4, 27, 13, 45),
+                         'TP' : dt.datetime(2017, 4, 27, 13, 45, tzinfo=timezone.utc),
                          'data_points' : {
                  1: {'VD': 33970.0,
                      'WD': dt.date(2017, 5, 8),
