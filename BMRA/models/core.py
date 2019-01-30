@@ -13,7 +13,7 @@ class ProcessedMessage(models.Model):
     timestamp = models.DateTimeField()
     subject = models.CharField(max_length=50)
     class Meta:
-        index_together = ('timestamp','subject')
+        index_together = ('timestamp', 'subject')
 
 class BMU(models.Model):
     """
