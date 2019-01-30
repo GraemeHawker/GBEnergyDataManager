@@ -501,7 +501,7 @@ FPN / QPN
 2017:03:29:00:02:17:GMT: subject=BMRA.BM.E_ABERDARE.QPN, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VP=0.0,TS=2017:03:29:01:30:00:GMT,VP=0.0}
 
 MEL / MIL
-  Maximum Export Limit / Maximum Import Limit
+  Maximum Export Limit / Minimum Import Limit
   Message consists of 2 timestamp and power value pairs, relating to elbow points
   Parameters:
     NP: Number of spot points, integer (expected=2)

@@ -4,8 +4,11 @@ Helper functions for uploading data to database
 """
 import datetime as dt
 from itertools import zip_longest
-from data_definitions import ACCEPTED_MESSAGES, FIELD_CASTING_FUNCS
-from corrupt_message_list import CORRUPT_MESSAGES
+from django.utils import timezone
+from ._data_definitions import PROCESSED_MESSAGES, ACCEPTED_MESSAGES, FIELD_CASTING_FUNCS
+from ._corrupt_message_list import CORRUPT_MESSAGES
+from BMRA.models.core import ProcessedMessage, BMU
+from BMRA.models.balancing import FPN, FPNlevel, MEL, MELlevel, MIL, MILlevel
 
 def message_part_to_points(raw_message_part,
                            no_points,
@@ -95,10 +98,11 @@ def message_to_dict(raw_message):
         return None
     received_time_string = message_parts[0].split(' ')[0]
     message_dict['received_time'] = dt.datetime(
-        *[int(x) for x in received_time_string.split(':')[:6]])
+        *[int(x) for x in received_time_string.split(':')[:6]], tzinfo=timezone.utc)
 
     message_type_list = message_parts[0].split(' ')[1].split('.')
     message_type = message_type_list[1]
+    message_dict['subject'] = message_parts[0].split(' ')[1].split('=')[1]
     message_dict['message_type'] = message_type
     if message_type in ['BM', 'BP', 'DYNAMIC']:
         message_dict['bmu_id'] = message_type_list[2]
@@ -160,7 +164,8 @@ def message_to_dict(raw_message):
 
 def insert_data(message_dict):
     """
-    Converts a message dictionary to SQL INSERT query strings
+    Converts a message dictionary to Django ORM object, checking first
+    if message has already been processed
 
     Parameters
     ----------
@@ -169,9 +174,16 @@ def insert_data(message_dict):
 
     Returns
     -------
-    None
+    0: Message already processed, no further action taken
+    1: Message processed successfully
+    2: Message not currently in accepted message list, no further action taken
     """
-    #TODO: check if message already processed
+    if message_dict['message_subtype'] not in PROCESSED_MESSAGES[message_dict['message_type']]:
+        return 2
+
+    if ProcessedMessage.objects.filter(timestamp=message_dict['received_time'],
+                                       subject=message_dict['subject']).exists():
+        return 0
 
     if message_dict['message_type'] == 'SYSTEM':
         insert_system_data(message_dict)
@@ -187,7 +199,9 @@ def insert_data(message_dict):
         raise ValueError('Insert function not available for message type %s'
                          % message_dict['message_type'])
 
-    #TODO: add message to list of processed messages
+    ProcessedMessage.objects.create(timestamp=message_dict['received_time'],
+                                    subject=message_dict['subject'])
+    return 1
 
 def insert_bm_data(message_dict):
     """
@@ -207,15 +221,54 @@ def insert_bm_data(message_dict):
 
     """
     #check if BMUID already in db, if not insert and log
-
-    #retrieve BMUID object from ORM
+    try:
+        bmu = BMU.objects.get(id=message_dict['bmu_id'])
+    except BMU.DoesNotExist:
+        bmu = BMU(id=message_dict['bmu_id'])
+        bmu.save()
 
     #construct associated BM object
+    if message_dict['message_subtype'] in ['FPN']:
+        fpn = FPN(bmu=bmu,
+                  TS=message_dict['received_time'],
+                  SD=message_dict['SD'],
+                  SP=message_dict['SP'])
+        fpn.save()
+        for data_point in message_dict['data_points'].values():
+            fpn_level = FPNlevel(fpn=fpn,
+                                 TS=data_point['TS'],
+                                 VP=data_point['VP'])
+            fpn_level.save()
 
-    #if BOAL or similar, construct associated sub objects
+    elif message_dict['message_subtype'] in ['MEL']:
+        mel = MEL(bmu=bmu,
+                  TS=message_dict['received_time'],
+                  SD=message_dict['SD'],
+                  SP=message_dict['SP'])
+        mel.save()
+        for data_point in message_dict['data_points'].values():
+            mel_level = MELlevel(mel=mel,
+                                 TS=data_point['TS'],
+                                 VE=data_point['VE'])
+            mel_level.save()
 
-    #save all as single transaction after checks
-    pass
+    elif message_dict['message_subtype'] in ['MIL']:
+        mil = MIL(bmu=bmu,
+                  TS=message_dict['received_time'],
+                  SD=message_dict['SD'],
+                  SP=message_dict['SP'])
+        mil.save()
+        for data_point in message_dict['data_points'].values():
+            mil_level = MILlevel(mil=mil,
+                                 TS=data_point['TS'],
+                                 VF=data_point['VF'])
+            mil_level.save()
+
+    else:
+        raise ValueError('Insert function not available for message subtype %s'
+                         % message_dict['message_subtype'])
+
+
 
 
 def insert_system_data(message_dict):
