@@ -102,7 +102,7 @@ def message_to_dict(raw_message):
 
     message_type_list = message_parts[0].split(' ')[1].split('.')
     message_type = message_type_list[1]
-    message_dict['subject'] = message_parts[0].split(' ')[1]
+    message_dict['subject'] = message_parts[0].split(' ')[1].split('=')[1]
     message_dict['message_type'] = message_type
     if message_type in ['BM', 'BP', 'DYNAMIC']:
         message_dict['bmu_id'] = message_type_list[2]
@@ -221,13 +221,11 @@ def insert_bm_data(message_dict):
 
     """
     #check if BMUID already in db, if not insert and log
-    if not BMU.objects.filter(id=message_dict['bmu_id']).exists():
+    try:
+        bmu = BMU.objects.get(id=message_dict['bmu_id'])
+    except BMU.DoesNotExist:
         bmu = BMU(id=message_dict['bmu_id'])
         bmu.save()
-
-    #retrieve BMUID object from ORM
-    else:
-        bmu = BMU.objects.get(id=message_dict['bmu_id'])
 
     #construct associated BM object
     if message_dict['message_subtype'] in ['FPN']:
