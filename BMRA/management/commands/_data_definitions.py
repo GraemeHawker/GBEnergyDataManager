@@ -6,7 +6,19 @@ See example_BM_data.txt for description of fields
 """
 
 import datetime as dt
+from django.utils import timezone
 
+# messages which will be processed, all others ignored
+PROCESSED_MESSAGES = {
+    'BM' : ['FPN', 'MEL', 'MIL'],
+    'BP' : [],
+    'SYSTEM' : [],
+    'DYNAMIC' : [],
+    'INFO' : []
+}
+
+# accepted message fields by message type and message_subtype
+# entries here will be used in validation if being processed
 ACCEPTED_MESSAGES = {
     'BM' : {
         'BOAL' : ['NK', 'TA', 'TS', 'AD', 'VA'],
@@ -96,6 +108,7 @@ ACCEPTED_MESSAGES = {
     }
 }
 
+#custom functions for converting raw message strings to required datatypes
 FIELD_CASTING_FUNCS = {
     'A1' : lambda value: float(value),
     'A2' : lambda value: float(value),
@@ -123,7 +136,7 @@ FIELD_CASTING_FUNCS = {
     'BP' : lambda value: float(value),
     'BT' : lambda value: float(value),
     'BV' : lambda value: float(value),
-    'CD' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:3]]),
+    'CD' : lambda value: dt.date(*[int(x) for x in value.split(':')[:3]]),
     'CF' : lambda value: True if value == 'T' else False,
     'CI' : lambda value: value.strip(),
     'CP' : lambda value: int(value),
@@ -140,7 +153,7 @@ FIELD_CASTING_FUNCS = {
     'DS' : lambda value: value.strip(),
     'DV' : lambda value: float(value),
     'DZ' : lambda value: int(value),
-    'ED' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:3]]),
+    'ED' : lambda value: dt.date(*[int(x) for x in value.split(':')[:3]]),
     'EH' : lambda value: int(value),
     'EL' : lambda value: int(value),
     'EN' : lambda value: int(value),
@@ -204,7 +217,7 @@ FIELD_CASTING_FUNCS = {
     'RSP' : lambda value: float(value),
     'RV' : lambda value: float(value),
     'SA' : lambda value: True if value == 'S' else False,
-    'SD' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:3]]),
+    'SD' : lambda value: dt.date(*[int(x) for x in value.split(':')[:3]]),
     'SE' : lambda value: float(value),
     'SF' : lambda value: float(value),
     'SI' : lambda value: float(value),
@@ -213,26 +226,26 @@ FIELD_CASTING_FUNCS = {
     'SO' : lambda value: True if value == 'T' else False,
     'SP' : lambda value: int(value),
     'SQ' : lambda value: int(value),
-    'ST' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]]),
+    'ST' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]], tzinfo=timezone.utc),
     'SV' : lambda value: float(value),
     'SW' : lambda value: value.strip(),
     'T1' : lambda value: float(value),
     'T2' : lambda value: float(value),
-    'TA' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]]),
+    'TA' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]], tzinfo=timezone.utc),
     'TC' : lambda value: float(value),
     'TD' : lambda value: value.strip(),
-    'TE' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]]),
-    'TF' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]]),
+    'TE' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]], tzinfo=timezone.utc),
+    'TF' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]], tzinfo=timezone.utc),
     'TH' : lambda value: float(value),
-    'TI' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]]),
+    'TI' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]], tzinfo=timezone.utc),
     'TL' : lambda value: float(value),
     'TM' : lambda value: float(value),
     'TN' : lambda value: float(value),
     'TO' : lambda value: float(value),
-    'TP' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]]),
+    'TP' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]], tzinfo=timezone.utc),
     'TQ' : lambda value: float(value),
     'TR' : lambda value: int(value),
-    'TS' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]]),
+    'TS' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:-1]], tzinfo=timezone.utc),
     'TT' : lambda value: value.strip(),
     'TV' : lambda value: float(value),
     'U1' : lambda value: float(value),
@@ -251,7 +264,7 @@ FIELD_CASTING_FUNCS = {
     'VM' : lambda value: float(value),
     'VO' : lambda value: float(value),
     'VP' : lambda value: float(value),
-    'WD' : lambda value: dt.datetime(*[int(x) for x in value.split(':')[:3]]),
+    'WD' : lambda value: dt.date(*[int(x) for x in value.split(':')[:3]]),
     'WN' : lambda value: int(value),
     'ZI' : lambda value: value.strip()
 }
