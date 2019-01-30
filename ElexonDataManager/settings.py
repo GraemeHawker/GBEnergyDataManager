@@ -83,7 +83,7 @@ DATABASES = {
         'USER': 'ElexonData_django',
         'PASSWORD': '38f5414afd10bd1c1c9d3118367e60c2ad2692ae',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5432'
         }
 }
 
