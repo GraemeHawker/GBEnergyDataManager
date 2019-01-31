@@ -42,21 +42,36 @@ class TimeConversionCase(TestCase):
                          dt.datetime(2018, 1, 2, 0, 0, tzinfo=timezone.utc))
 
         #checks for date within DST
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 1), dt.datetime(2018, 6, 30, 23, 0, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 1, True), dt.datetime(2018, 6, 30, 23, 0, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 1, False), dt.datetime(2018, 6, 30, 23, 30, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 2), dt.datetime(2018, 6, 30, 23, 30, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 2, True), dt.datetime(2018, 6, 30, 23, 30, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 2, False), dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 3), dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 3, True), dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 3, False), dt.datetime(2018, 7, 1, 0, 30, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 47), dt.datetime(2018, 7, 1, 23, 30, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 47, True), dt.datetime(2018, 7, 1, 23, 30, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 47, False), dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 48), dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 48, True), dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
-        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 48, False), dt.datetime(2018, 7, 1, 0, 30, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 1),
+                         dt.datetime(2018, 6, 30, 23, 0, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 1, True),
+                         dt.datetime(2018, 6, 30, 23, 0, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 1, False),
+                         dt.datetime(2018, 6, 30, 23, 30, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 2),
+                         dt.datetime(2018, 6, 30, 23, 30, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 2, True),
+                         dt.datetime(2018, 6, 30, 23, 30, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 2, False),
+                         dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 3),
+                         dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 3, True),
+                         dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 3, False),
+                         dt.datetime(2018, 7, 1, 0, 30, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 47),
+                         dt.datetime(2018, 7, 1, 23, 30, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 47, True),
+                         dt.datetime(2018, 7, 1, 23, 30, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 47, False),
+                         dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 48),
+                         dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 48, True),
+                         dt.datetime(2018, 7, 1, 0, 0, tzinfo=timezone.utc))
+        self.assertEqual(sp_to_dt(dt.datetime(2018, 7, 1), 48, False),
+                         dt.datetime(2018, 7, 1, 0, 30, tzinfo=timezone.utc))
 
         #checks for times on DST changeover
         self.assertEqual(sp_to_dt(dt.datetime(2018, 3, 25), 1), dt.datetime(2018, 6, 30, 23, 0, tzinfo=timezone.utc))
