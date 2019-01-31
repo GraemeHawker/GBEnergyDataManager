@@ -6,12 +6,6 @@ from django.db import models
 from BMRA.models.core import BMU
 from Physical.models.zones import ConnectionSite, TOZone, OC2Zone
 
-class PowerStation(models.Model):
-    """
-    a physical electricity generating station
-    """
-    name = models.CharField(max_length=100)
-
 class StationType(models.Model):
     """
     the type of power station
@@ -20,6 +14,16 @@ class StationType(models.Model):
     connection_site = models.ForeignKey(ConnectionSite, on_delete=models.PROTECT)
     OC2_zone = models.ForeignKey(OC2Zone, on_delete=models.PROTECT)
     TO_zone = models.ForeignKey(TOZone, on_delete=models.PROTECT)
+
+class PowerStation(models.Model):
+    """
+    a physical electricity generating station
+    """
+    name = models.CharField(max_length=100)
+    to_zone = models.ForeignKey(TOZone, on_delete=models.PROTECT, null=True)
+    OC2_zone = models.ForeignKey(OC2Zone, on_delete=models.PROTECT, null=True)
+    connection_site = models.ForeignKey(ConnectionSite, on_delete=models.PROTECT, null=True)
+    station_type = models.ForeignKey(StationType, on_delete=models.PROTECT)
 
 class PowerStationOwner(models.Model):
     """
@@ -34,8 +38,7 @@ class PowerStationOwnership(models.Model):
     power_station = models.ForeignKey(PowerStation, on_delete=models.PROTECT)
     power_station_owner = models.ForeignKey(PowerStationOwner, on_delete=models.PROTECT)
     start_date = models.DateField()
-    end_date = models.DateField(null=True) #null indicates current ownership
-
+    
 class PowerStationBMU(models.Model):
     """
     a BMU associated with a physical power station
