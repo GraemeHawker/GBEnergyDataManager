@@ -45,7 +45,7 @@ def sp_to_dt(SD, SP, period_start=True):
     """
 
     #minimum SP value check
-    if SP<1:
+    if SP < 1:
         raise ValueError('SP value of %d less than minimum value of 1' % SP)
 
     #maximum SP value check, taking into account transition days
@@ -63,7 +63,7 @@ def sp_to_dt(SD, SP, period_start=True):
     print(datetime)
     #if period end, add half an hour
     if not period_start:
-        datetime+=dt.timedelta(minutes=30)
+        datetime += dt.timedelta(minutes=30)
 
     #convert to UTC datetime
     return datetime.astimezone(pytz.utc)
