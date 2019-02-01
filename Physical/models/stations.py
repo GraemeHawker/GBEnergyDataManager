@@ -11,9 +11,6 @@ class StationType(models.Model):
     the type of power station
     """
     name = models.CharField(max_length=100)
-    connection_site = models.ForeignKey(ConnectionSite, on_delete=models.PROTECT)
-    OC2_zone = models.ForeignKey(OC2Zone, on_delete=models.PROTECT)
-    TO_zone = models.ForeignKey(TOZone, on_delete=models.PROTECT)
 
 class PowerStation(models.Model):
     """
@@ -38,7 +35,7 @@ class PowerStationOwnership(models.Model):
     power_station = models.ForeignKey(PowerStation, on_delete=models.PROTECT)
     power_station_owner = models.ForeignKey(PowerStationOwner, on_delete=models.PROTECT)
     start_date = models.DateField()
-    
+
 class PowerStationBMU(models.Model):
     """
     a BMU associated with a physical power station
