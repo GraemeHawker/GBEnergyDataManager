@@ -57,16 +57,32 @@ def sp_to_dt(SD, SP, period_start=True):
     elif SP>48:
         raise ValueError('SP value of %d exceeds maximum value of 48 for non-clock change date' % SP)
 
+    '''
+    #previous attempt using native timezone calc, preserved for posterity
     #SD and SP are in BST, so calculate datetime for that timezone
     datetime = dt.datetime(SD.year, SD.month, SD.day, tzinfo=pytz.timezone('Europe/London'))
+    print(datetime)
     datetime += dt.timedelta(minutes=(SP-1)*30)
     print(datetime)
     #if period end, add half an hour
     if not period_start:
         datetime += dt.timedelta(minutes=30)
+    return pytz.utc.normalize(datetime.astimezone(pytz.utc))
+    '''
 
-    #convert to UTC datetime
-    return datetime.astimezone(pytz.utc)
+    datetime = dt.datetime(SD.year, SD.month, SD.day, tzinfo=pytz.utc)
+    datetime += dt.timedelta(minutes=(SP-1)*30)
+    if not period_start:
+        datetime += dt.timedelta(minutes=30)
+
+    # DST shift should only be applied on days after transition day (as does not impact calculation until SP resets to 1)
+    if SD in transition_days[::2]:
+        pass
+    elif SD in transition_days[1::2]:
+        pass
+    else:
+        datetime -= datetime.astimezone(pytz.timezone('Europe/London')).dst()
+    return datetime
 
 def dt_to_sp(datetime, period_start=True):
     """
