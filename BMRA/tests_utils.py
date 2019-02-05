@@ -172,14 +172,8 @@ class TimeConversionCase(TestCase):
         self.assertRaises(ValueError, sp_to_dt, dt.date(2018, 3, 25), 47)
 
     '''
-    def test_dt_to_sp_nonbst(self):
-        """Can convert non-BST datetime to settlement period"""
-        datetime = dt.datetime(2018, 1, 1, 5, 30, tzinfo=timezone.utc)
-        self.assertEqual(dt_to_sp(datetime), (dt.date(2018, 1, 1), 12))
-        self.assertEqual(dt_to_sp(datetime, False), (dt.date(2018, 1, 1), 11))
-
-    def test_dt_to_sp_bst(self):
-        """Can convert BST datetime to settlement period"""
+    def test_dt_to_sp(self):
+        """Can convert UTC datetime to settlement period"""
         datetime = dt.datetime(2018, 6, 1, 5, 30, tzinfo=timezone.utc)
         self.assertEqual(dt_to_sp(datetime), (dt.date(2018, 6, 1), 12))
         self.assertEqual(dt_to_sp(datetime, False), (dt.date(2018, 6, 1), 11))

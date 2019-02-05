@@ -20,7 +20,7 @@ class PowerStation(models.Model):
     to_zone = models.ForeignKey(TOZone, on_delete=models.PROTECT, null=True)
     OC2_zone = models.ForeignKey(OC2Zone, on_delete=models.PROTECT, null=True)
     connection_site = models.ForeignKey(ConnectionSite, on_delete=models.PROTECT, null=True)
-    station_type = models.ForeignKey(StationType, on_delete=models.PROTECT)
+    station_type = models.ForeignKey(StationType, on_delete=models.PROTECT, null=True)
 
 class PowerStationOwner(models.Model):
     """

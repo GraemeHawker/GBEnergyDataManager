@@ -3,7 +3,6 @@
 common helper functions
 """
 import datetime as dt
-from django.utils import timezone
 import pytz
 
 def is_dst(datetime):
@@ -49,13 +48,19 @@ def sp_to_dt(SD, SP, period_start=True):
         raise ValueError('SP value of %d less than minimum value of 1' % SP)
 
     #maximum SP value check, taking into account transition days
-    transition_days = [dt.date(x.year, x.month, x.day) for x in pytz.timezone('Europe/London')._utc_transition_times]
-    if SD in transition_days[::2] and SP>46:    #clocks go forward
-        raise ValueError('SP value of %d exceeds maximum value of 46 for forward clock change date' % SP)
-    elif SD in transition_days[1::2] and SP>50: #clocks go back
-        raise ValueError('SP value of %d exceeds maximum value of 50 for backward clock change date' % SP)
-    elif SP>48:
-        raise ValueError('SP value of %d exceeds maximum value of 48 for non-clock change date' % SP)
+    transition_days = [dt.date(x.year, x.month, x.day)
+                       for x in pytz.timezone('Europe/London')._utc_transition_times]
+    if SD in transition_days[::2]: #clocks go forward
+        if SP > 46:
+            raise ValueError('SP value of %d exceeds maximum value of 46 \
+                             for forward clock change date' % SP)
+    elif SD in transition_days[1::2]: #clocks go back
+        if SP > 50:
+            raise ValueError('SP value of %d exceeds maximum value of 50 \
+                             for backward clock change date' % SP)
+    elif SP > 48:
+        raise ValueError('SP value of %d exceeds maximum value of 48 for \
+                         non-clock change date' % SP)
 
     '''
     #previous attempt using native timezone calc, preserved for posterity
@@ -75,11 +80,12 @@ def sp_to_dt(SD, SP, period_start=True):
     if not period_start:
         datetime += dt.timedelta(minutes=30)
 
-    # DST shift should only be applied on days after transition day (as does not impact calculation until SP resets to 1)
+    # DST shift should only be applied on days after transition day
+    # (as does not impact calculation until SP resets to 1)
     if SD in transition_days[::2]:
         pass
-    elif SD in transition_days[1::2]:
-        pass
+    elif SD in transition_days[1::2] and SP > 2:
+        datetime -= dt.timedelta(hours=1)
     else:
         datetime -= datetime.astimezone(pytz.timezone('Europe/London')).dst()
     return datetime
