@@ -42,6 +42,9 @@ def sp_to_dt(SD, SP, period_start=True):
     datetime : datetime.datetime
         a timezone-aware datetime object
     """
+    #check date object passed - not datetime
+    if not isinstance(SD, dt.date):
+        raise ValueError('Expected Settlement Date parameter not of type datetime.date')
 
     #minimum SP value check
     if SP < 1:
@@ -101,7 +104,10 @@ def dt_to_sp(datetime, period_start=True):
         the settlement date
     period_start : bool
         whether the passed datetime object relates to the start (True)
-        or end (False) of the settlement period
+        or end (False) of the settlement period, if the datetime object falls
+        exactly on a half-hour period and is ambiguous. If the datetime object
+        falls within a half-hour period (i.e. is unambiguous) this argument is
+        ignored
 
     Returns
     -------
@@ -110,4 +116,10 @@ def dt_to_sp(datetime, period_start=True):
     SP : int
         the settlement period
     """
-    pass
+    if datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0):
+        datetime = datetime-dt.timedelta(hours=1)
+    if period_start==False and datetime.minute%30 != 0:
+        return (dt.date(datetime.year, datetime.month, datetime.day),
+                datetime.hour*60+datetime.minute // 30 + 2)
+    return (dt.date(datetime.year, datetime.month, datetime.day),
+            datetime.hour*60+datetime.minute // 30 + 1)
