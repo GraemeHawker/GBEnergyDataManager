@@ -5,10 +5,12 @@ Helper functions for uploading data to database
 import datetime as dt
 from itertools import zip_longest
 from django.utils import timezone
+from BMRA.models.core import ProcessedMessage, BMU
+from BMRA.models.balancing import FPN, FPNlevel, MEL, MELlevel, MIL, MILlevel,\
+BOAL, BOALlevel, BOALF, BOALFlevel, BOD, DISPTAV, EBOCF, PTAV, QAS, QPN, QPNlevel
 from ._data_definitions import PROCESSED_MESSAGES, ACCEPTED_MESSAGES, FIELD_CASTING_FUNCS
 from ._corrupt_message_list import CORRUPT_MESSAGES
-from BMRA.models.core import ProcessedMessage, BMU
-from BMRA.models.balancing import FPN, FPNlevel, MEL, MELlevel, MIL, MILlevel
+
 
 def message_part_to_points(raw_message_part,
                            no_points,
@@ -181,27 +183,18 @@ def insert_data(message_dict):
     if message_dict['message_subtype'] not in PROCESSED_MESSAGES[message_dict['message_type']]:
         return 2
 
-    if ProcessedMessage.objects.filter(timestamp=message_dict['received_time'],
-                                       subject=message_dict['subject']).exists():
-        return 0
-
     if message_dict['message_type'] == 'SYSTEM':
-        insert_system_data(message_dict)
-    elif message_dict['message_type'] == 'BM':
-        insert_bm_data(message_dict)
-    elif message_dict['message_type'] == 'DYNAMIC':
-        insert_dynamic_data(message_dict)
-    elif message_dict['message_type'] == 'INFO':
-        insert_info_data(message_dict)
-    elif message_dict['message_type'] == 'BP':
-        insert_bp_data(message_dict)
-    else:
-        raise ValueError('Insert function not available for message type %s'
-                         % message_dict['message_type'])
-
-    ProcessedMessage.objects.create(timestamp=message_dict['received_time'],
-                                    subject=message_dict['subject'])
-    return 1
+        return insert_system_data(message_dict)
+    if message_dict['message_type'] == 'BM':
+        return insert_bm_data(message_dict)
+    if message_dict['message_type'] == 'DYNAMIC':
+        return insert_dynamic_data(message_dict)
+    if message_dict['message_type'] == 'INFO':
+        return insert_info_data(message_dict)
+    if message_dict['message_type'] == 'BP':
+        return insert_bp_data(message_dict)
+    raise ValueError('Insert function not available for message type %s'
+                     % message_dict['message_type'])
 
 def insert_bm_data(message_dict):
     """
@@ -229,6 +222,9 @@ def insert_bm_data(message_dict):
 
     #construct associated BM object
     if message_dict['message_subtype'] in ['FPN']:
+        if FPN.objects.filter(bmu=bmu,
+                              timestamp=message_dict['received_time']).exists():
+            return 0
         fpn = FPN(bmu=bmu,
                   TS=message_dict['received_time'],
                   SD=message_dict['SD'],
@@ -239,8 +235,12 @@ def insert_bm_data(message_dict):
                                  TS=data_point['TS'],
                                  VP=data_point['VP'])
             fpn_level.save()
+        return 1
 
-    elif message_dict['message_subtype'] in ['MEL']:
+    if message_dict['message_subtype'] in ['MEL']:
+        if MEL.objects.filter(bmu=bmu,
+                              timestamp=message_dict['received_time']).exists():
+            return 0
         mel = MEL(bmu=bmu,
                   TS=message_dict['received_time'],
                   SD=message_dict['SD'],
@@ -251,8 +251,12 @@ def insert_bm_data(message_dict):
                                  TS=data_point['TS'],
                                  VE=data_point['VE'])
             mel_level.save()
+        return 1
 
-    elif message_dict['message_subtype'] in ['MIL']:
+    if message_dict['message_subtype'] in ['MIL']:
+        if MIL.objects.filter(bmu=bmu,
+                              timestamp=message_dict['received_time']).exists():
+            return 0
         mil = MIL(bmu=bmu,
                   TS=message_dict['received_time'],
                   SD=message_dict['SD'],
@@ -263,10 +267,144 @@ def insert_bm_data(message_dict):
                                  TS=data_point['TS'],
                                  VF=data_point['VF'])
             mil_level.save()
+        return 1
 
-    else:
-        raise ValueError('Insert function not available for message subtype %s'
-                         % message_dict['message_subtype'])
+    if message_dict['message_subtype'] in ['BOAL']:
+        if BOAL.objects.filter(bmu=bmu,
+                               timestamp=message_dict['received_time']).exists():
+            return 0
+        boal = BOAL(bmu=bmu,
+                    TS=message_dict['received_time'],
+                    NK=message_dict['NK'],
+                    TA=message_dict['TA'],
+                    AD=message_dict['AD'])
+        boal.save()
+        for data_point in message_dict['data_points'].values():
+            boal_level = BOALlevel(boal=boal,
+                                   TS=data_point['TS'],
+                                   VA=data_point['VA'])
+            boal_level.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['BOALF']:
+        if BOALF.objects.filter(bmu=bmu,
+                                timestamp=message_dict['received_time']).exists():
+            return 0
+        boalf = BOALF(bmu=bmu,
+                      TS=message_dict['received_time'],
+                      NK=message_dict['NK'],
+                      TA=message_dict['TA'],
+                      AD=message_dict['AD'],
+                      SO=message_dict['SO'],
+                      PF=message_dict['PF'])
+        boalf.save()
+        for data_point in message_dict['data_points'].values():
+            boalf_level = BOALFlevel(boalf=boalf,
+                                     TS=data_point['TS'],
+                                     VA=data_point['VA'])
+            boalf_level.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['BOD']:
+        if BOD.objects.filter(bmu=bmu,
+                              timestamp=message_dict['received_time']).exists():
+            return 0
+        #expecting 2 data pairs, raise error if note
+        if len(message_dict['data_points']) != 2:
+            raise ValueError('2 data points expected for BOD entry, %d found' %
+                             len(message_dict['data_points']))
+        bod = BOD(bmu=bmu,
+                  TS=message_dict['received_time'],
+                  SD=message_dict['SD'],
+                  SP=message_dict['SP'],
+                  NN=message_dict['NN'],
+                  OP=message_dict['OP'],
+                  BP=message_dict['BP'],
+                  TS1=message_dict['datapoints'][1]['TS'],
+                  VB1=message_dict['datapoints'][1]['VB'],
+                  TS2=message_dict['datapoints'][2]['TS'],
+                  VB2=message_dict['datapoints'][2]['VB'])
+        bod.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['DISPTAV']:
+        if DISPTAV.objects.filter(bmu=bmu,
+                                  timestamp=message_dict['received_time']).exists():
+            return 0
+        disptav = DISPTAV(bmu=bmu,
+                          TS=message_dict['received_time'],
+                          SD=message_dict['SD'],
+                          SP=message_dict['SP'],
+                          NN=message_dict['NN'],
+                          OV=message_dict['OV'],
+                          BV=message_dict['BV'],
+                          P1=message_dict['P1'],
+                          P2=message_dict['P2'],
+                          P3=message_dict['P3'],
+                          P4=message_dict['P4'],
+                          P5=message_dict['P5'],
+                          P6=message_dict['P6'])
+        disptav.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['EBOCF']:
+        if EBOCF.objects.filter(bmu=bmu,
+                                timestamp=message_dict['received_time']).exists():
+            return 0
+        ebocf = EBOCF(bmu=bmu,
+                      TS=message_dict['received_time'],
+                      SD=message_dict['SD'],
+                      SP=message_dict['SP'],
+                      NN=message_dict['NN'],
+                      OC=message_dict['OC'],
+                      BC=message_dict['BC'])
+        ebocf.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['PTAV']:
+        if PTAV.objects.filter(bmu=bmu,
+                               timestamp=message_dict['received_time']).exists():
+            return 0
+        ptav = PTAV(bmu=bmu,
+                    TS=message_dict['received_time'],
+                    SD=message_dict['SD'],
+                    SP=message_dict['SP'],
+                    NN=message_dict['NN'],
+                    OV=message_dict['OV'],
+                    BV=message_dict['BV'])
+        ptav.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['QAS']:
+        if QAS.objects.filter(bmu=bmu,
+                              timestamp=message_dict['received_time']).exists():
+            return 0
+        qas = QAS(bmu=bmu,
+                  TS=message_dict['received_time'],
+                  SD=message_dict['SD'],
+                  SP=message_dict['SP'],
+                  NV=message_dict['SV'])
+        qas.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['QPN']:
+        if QPN.objects.filter(bmu=bmu,
+                              timestamp=message_dict['received_time']).exists():
+            return 0
+        qpn = QPN(bmu=bmu,
+                  TS=message_dict['received_time'],
+                  SD=message_dict['SD'],
+                  SP=message_dict['SP'])
+        qpn.save()
+        for data_point in message_dict['data_points'].values():
+            qpn_level = QPNlevel(qpn=fpn,
+                                 TS=data_point['TS'],
+                                 VP=data_point['VP'])
+            qpn_level.save()
+        return 1
+
+    raise ValueError('Insert function not available for message subtype %s'
+                     % message_dict['message_subtype'])
 
 
 
