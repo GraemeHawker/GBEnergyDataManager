@@ -10,23 +10,23 @@ from django.utils import timezone
 
 # messages which will be processed, all others ignored
 PROCESSED_MESSAGES = {
-    'BM' : ['BOAL', 'BOALF', 'BOAV', 'BOD', 'DISPTAV', 'EBOCF',
-            'PTAV', 'QAS', 'QPN'],
+    'BM' : ['QPN', 'BOD'],
     'BP' : [],
     'SYSTEM' : [],
     'DYNAMIC' : [],
     'INFO' : []
 }
-
+'''
 # messages which will be ignored (not actually used, just for note keeping)
 UNPROCESSED_MESSAGES = {
-    'BM' : ['FPN', 'MEL', 'MIL'],
+    'BM' : ['FPN', 'MEL', 'MIL', 'BOAL', 'BOALF', 'BOAV', 'DISPTAV', 'EBOCF',
+            'PTAV', 'QAS'],
     'BP' : [],
     'SYSTEM' : [],
     'DYNAMIC' : [],
     'INFO' : []
 }
-
+'''
 # accepted message fields by message type and message_subtype
 # entries here will be used in validation if being processed
 ACCEPTED_MESSAGES = {
