@@ -118,7 +118,7 @@ def dt_to_sp(datetime, period_start=True):
     """
     if datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0):
         datetime = datetime-dt.timedelta(hours=1)
-    if period_start==False and datetime.minute%30 != 0:
+    if not period_start and datetime.minute%30 != 0:
         return (dt.date(datetime.year, datetime.month, datetime.day),
                 datetime.hour*60+datetime.minute // 30 + 2)
     return (dt.date(datetime.year, datetime.month, datetime.day),

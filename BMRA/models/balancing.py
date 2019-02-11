@@ -101,13 +101,9 @@ class BOD(models.Model):
                              validators=[MinValueValidator(-5),
                                          MaxValueValidator(5)])
     OP = models.FloatField(verbose_name='Offer price',
-                           help_text='£/MWh',
-                           validators=[MinValueValidator(-5),
-                                       MaxValueValidator(5)])
+                           help_text='£/MWh')
     BP = models.FloatField(verbose_name='Bid price',
-                           help_text='£/MWh',
-                           validators=[MinValueValidator(-5),
-                                       MaxValueValidator(5)])
+                           help_text='£/MWh')
     TS1 = models.DateTimeField(verbose_name='Period start time',
                                validators=[check_dates])
     VB1 = models.FloatField(verbose_name='Period start bid-offer level',
@@ -116,6 +112,33 @@ class BOD(models.Model):
                                validators=[check_dates])
     VB2 = models.FloatField(verbose_name='Period end bid-offer level',
                             help_text='MW')
+    class Meta:
+        index_together = ('bmu', 'SD', 'SP')
+
+class BOAV(models.Model):
+    """
+    Bid-offer acceptance volume
+    """
+    bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
+    TS = models.DateTimeField(verbose_name='Received time',
+                              validators=[check_dates])
+    NK = models.IntegerField(validators=[MinValueValidator(1),
+                                         MaxValueValidator(2147483647)],
+                             verbose_name='Acceptance number')
+    SD = models.DateField(verbose_name='Settlement date',
+                          validators=[check_dates])
+    SP = models.IntegerField(verbose_name='Settlement period',
+                             validators=[MinValueValidator(1),
+                                         MaxValueValidator(50)])
+    NN = models.IntegerField(verbose_name='Bid-offer pair no.',
+                             validators=[MinValueValidator(-5),
+                                         MaxValueValidator(5)])
+    OV = models.FloatField(verbose_name='Offer volume',
+                           help_text='MWh')
+    BV = models.FloatField(verbose_name='Bid volume',
+                           help_text='MWh')
+    SA = models.BooleanField(verbose_name='Short acceptance flag',
+                             help_text='True indicates acceptance was short duration')
     class Meta:
         index_together = ('bmu', 'SD', 'SP')
 
@@ -307,7 +330,6 @@ class QPN(models.Model):
     SP = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
-
     class Meta:
         index_together = ('bmu', 'SD', 'SP')
 
@@ -315,7 +337,7 @@ class QPNlevel(models.Model):
     """
     Spot point relating to an QPN submission
     """
-    fpn = models.ForeignKey(QPN, on_delete=models.CASCADE, db_index=True)
+    qpn = models.ForeignKey(QPN, on_delete=models.CASCADE, db_index=True)
     TS = models.DateTimeField(verbose_name='Spot time',
                               validators=[check_dates])
     VP = models.FloatField(verbose_name='Spot power',
