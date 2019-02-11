@@ -79,14 +79,14 @@ class Command(BaseCommand):
             # update / create power station status
             try:
                 power_station_status = PowerStationStatus.objects.get(power_station = power_station,
-                                                                      effective_date = row['MW Effective Date']
-                                                                      rating = row['MW Total']
+                                                                      effective_date = row['MW Effective Date'],
+                                                                      rating = row['MW Total'],
                                                                       project_status = project_status
                                                                       )
             except PowerStationStatus.DoesNotExist:
                 power_station_status = PowerStationStatus(power_station = power_station,
-                                                          effective_date = row['MW Effective Date']
-                                                          rating = row['MW Connected']
+                                                          effective_date = row['MW Effective Date'],
+                                                          rating = row['MW Connected'],
                                                           project_status = project_status
                                                           )
                 power_station_status.save()
