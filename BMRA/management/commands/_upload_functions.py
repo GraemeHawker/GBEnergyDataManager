@@ -7,7 +7,8 @@ from itertools import zip_longest
 from django.utils import timezone
 from BMRA.models.core import ProcessedMessage, BMU
 from BMRA.models.balancing import FPN, FPNlevel, MEL, MELlevel, MIL, MILlevel,\
-BOAL, BOALlevel, BOALF, BOALFlevel, BOD, DISPTAV, EBOCF, PTAV, QAS, QPN, QPNlevel
+BOAL, BOALlevel, BOALF, BOALFlevel, BOD, DISPTAV, EBOCF, PTAV, QAS, QPN, QPNlevel,\
+BOAV
 from ._data_definitions import PROCESSED_MESSAGES, ACCEPTED_MESSAGES, FIELD_CASTING_FUNCS
 from ._corrupt_message_list import CORRUPT_MESSAGES
 
@@ -223,7 +224,7 @@ def insert_bm_data(message_dict):
     #construct associated BM object
     if message_dict['message_subtype'] in ['FPN']:
         if FPN.objects.filter(bmu=bmu,
-                              timestamp=message_dict['received_time']).exists():
+                              TS=message_dict['received_time']).exists():
             return 0
         fpn = FPN(bmu=bmu,
                   TS=message_dict['received_time'],
@@ -239,7 +240,7 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['MEL']:
         if MEL.objects.filter(bmu=bmu,
-                              timestamp=message_dict['received_time']).exists():
+                              TS=message_dict['received_time']).exists():
             return 0
         mel = MEL(bmu=bmu,
                   TS=message_dict['received_time'],
@@ -255,7 +256,7 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['MIL']:
         if MIL.objects.filter(bmu=bmu,
-                              timestamp=message_dict['received_time']).exists():
+                              TS=message_dict['received_time']).exists():
             return 0
         mil = MIL(bmu=bmu,
                   TS=message_dict['received_time'],
@@ -271,7 +272,7 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['BOAL']:
         if BOAL.objects.filter(bmu=bmu,
-                               timestamp=message_dict['received_time']).exists():
+                               TS=message_dict['received_time']).exists():
             return 0
         boal = BOAL(bmu=bmu,
                     TS=message_dict['received_time'],
@@ -288,7 +289,7 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['BOALF']:
         if BOALF.objects.filter(bmu=bmu,
-                                timestamp=message_dict['received_time']).exists():
+                                TS=message_dict['received_time']).exists():
             return 0
         boalf = BOALF(bmu=bmu,
                       TS=message_dict['received_time'],
@@ -307,7 +308,7 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['BOD']:
         if BOD.objects.filter(bmu=bmu,
-                              timestamp=message_dict['received_time']).exists():
+                              TS=message_dict['received_time']).exists():
             return 0
         #expecting 2 data pairs, raise error if note
         if len(message_dict['data_points']) != 2:
@@ -320,16 +321,33 @@ def insert_bm_data(message_dict):
                   NN=message_dict['NN'],
                   OP=message_dict['OP'],
                   BP=message_dict['BP'],
-                  TS1=message_dict['datapoints'][1]['TS'],
-                  VB1=message_dict['datapoints'][1]['VB'],
-                  TS2=message_dict['datapoints'][2]['TS'],
-                  VB2=message_dict['datapoints'][2]['VB'])
+                  TS1=message_dict['data_points'][1]['TS'],
+                  VB1=message_dict['data_points'][1]['VB'],
+                  TS2=message_dict['data_points'][2]['TS'],
+                  VB2=message_dict['data_points'][2]['VB'])
         bod.save()
         return 1
 
+    if message_dict['message_subtype'] in ['BOAV']:
+        if BOAV.objects.filter(bmu=bmu,
+                               TS=message_dict['received_time']).exists():
+            return 0
+        boav = BOAV(bmu=bmu,
+                    TS=message_dict['received_time'],
+                    NK=message_dict['NK'],
+                    SD=message_dict['SD'],
+                    SP=message_dict['SP'],
+                    NN=message_dict['NN'],
+                    OV=message_dict['OV'],
+                    BV=message_dict['BV'],
+                    SA=message_dict['SA'])
+        boav.save()
+        return 1
+
+
     if message_dict['message_subtype'] in ['DISPTAV']:
         if DISPTAV.objects.filter(bmu=bmu,
-                                  timestamp=message_dict['received_time']).exists():
+                                  TS=message_dict['received_time']).exists():
             return 0
         disptav = DISPTAV(bmu=bmu,
                           TS=message_dict['received_time'],
@@ -349,7 +367,7 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['EBOCF']:
         if EBOCF.objects.filter(bmu=bmu,
-                                timestamp=message_dict['received_time']).exists():
+                                TS=message_dict['received_time']).exists():
             return 0
         ebocf = EBOCF(bmu=bmu,
                       TS=message_dict['received_time'],
@@ -363,7 +381,7 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['PTAV']:
         if PTAV.objects.filter(bmu=bmu,
-                               timestamp=message_dict['received_time']).exists():
+                               TS=message_dict['received_time']).exists():
             return 0
         ptav = PTAV(bmu=bmu,
                     TS=message_dict['received_time'],
@@ -377,19 +395,19 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['QAS']:
         if QAS.objects.filter(bmu=bmu,
-                              timestamp=message_dict['received_time']).exists():
+                              TS=message_dict['received_time']).exists():
             return 0
         qas = QAS(bmu=bmu,
                   TS=message_dict['received_time'],
                   SD=message_dict['SD'],
                   SP=message_dict['SP'],
-                  NV=message_dict['SV'])
+                  SV=message_dict['SV'])
         qas.save()
         return 1
 
     if message_dict['message_subtype'] in ['QPN']:
         if QPN.objects.filter(bmu=bmu,
-                              timestamp=message_dict['received_time']).exists():
+                              TS=message_dict['received_time']).exists():
             return 0
         qpn = QPN(bmu=bmu,
                   TS=message_dict['received_time'],
@@ -397,7 +415,7 @@ def insert_bm_data(message_dict):
                   SP=message_dict['SP'])
         qpn.save()
         for data_point in message_dict['data_points'].values():
-            qpn_level = QPNlevel(qpn=fpn,
+            qpn_level = QPNlevel(qpn=qpn,
                                  TS=data_point['TS'],
                                  VP=data_point['VP'])
             qpn_level.save()
