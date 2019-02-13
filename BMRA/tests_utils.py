@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+"""
+Tests for functions contained in ElexonDataManager.utils
+"""
 from __future__ import unicode_literals
 import datetime as dt
 from django.test import TestCase
@@ -6,7 +8,9 @@ from django.utils import timezone
 from ElexonDataManager.utils import sp_to_dt, dt_to_sp
 
 class TimeConversionCase(TestCase):
-
+    """
+    Tests for SD/SP timestamp conversion functions
+    """
     def test_sp_to_dt(self):
         """Can convert settlement period to datetime"""
         #checks for basic non-DST date
@@ -176,27 +180,48 @@ class TimeConversionCase(TestCase):
 
     def test_dt_to_sp(self):
         """Can convert datetime to settlement period"""
+
         #checks for basic non-DST date
         self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 0, tzinfo=timezone.utc)),
                          (dt.date(2018, 1, 1), 1))
         self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 0, tzinfo=timezone.utc), True),
                          (dt.date(2018, 1, 1), 1))
-        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 0, tzinfo=timezone.utc), False),
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 30, tzinfo=timezone.utc), False),
+                         (dt.date(2018, 1, 1), 1))
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 10, tzinfo=timezone.utc)),
+                         (dt.date(2018, 1, 1), 1))
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 10, tzinfo=timezone.utc), True),
+                         (dt.date(2018, 1, 1), 1))
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 10, tzinfo=timezone.utc), False),
                          (dt.date(2018, 1, 1), 1))
 
         self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 30, tzinfo=timezone.utc)),
                          (dt.date(2018, 1, 1), 2))
         self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 30, tzinfo=timezone.utc), True),
                          (dt.date(2018, 1, 1), 2))
-        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 30, tzinfo=timezone.utc), False),
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 1, 0, tzinfo=timezone.utc), False),
                          (dt.date(2018, 1, 1), 2))
 
         self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 1, 0, tzinfo=timezone.utc)),
                          (dt.date(2018, 1, 1), 3))
         self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 1, 0, tzinfo=timezone.utc), True),
                          (dt.date(2018, 1, 1), 3))
-        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 1, 0, tzinfo=timezone.utc), False),
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 1, 30, tzinfo=timezone.utc), False),
                          (dt.date(2018, 1, 1), 3))
+
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 23, 0, tzinfo=timezone.utc)),
+                         (dt.date(2018, 1, 1), 47))
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 23, 0, tzinfo=timezone.utc), True),
+                         (dt.date(2018, 1, 1), 47))
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 23, 30, tzinfo=timezone.utc), False),
+                         (dt.date(2018, 1, 1), 47))
+
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 23, 30, tzinfo=timezone.utc)),
+                         (dt.date(2018, 1, 1), 48))
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 23, 30, tzinfo=timezone.utc), True),
+                         (dt.date(2018, 1, 1), 48))
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 2, 0, 0, tzinfo=timezone.utc), False),
+                         (dt.date(2018, 1, 1), 48))
 
         '''
         self.assertEqual(dt_to_sp(dt.date(2018, 1, 1), 1, True),
