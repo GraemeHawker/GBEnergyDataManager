@@ -2,6 +2,7 @@
 """
 common helper functions
 """
+import numpy as np
 import datetime as dt
 import pytz
 
@@ -118,8 +119,29 @@ def dt_to_sp(datetime, period_start=True):
     """
     if datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0):
         datetime = datetime-dt.timedelta(hours=1)
-    if not period_start and datetime.minute%30 != 0:
+    if period_start or datetime.minute%30 != 0:
         return (dt.date(datetime.year, datetime.month, datetime.day),
-                datetime.hour*60+datetime.minute // 30 + 2)
+                (datetime.hour*60+datetime.minute) // 30 + 2)
     return (dt.date(datetime.year, datetime.month, datetime.day),
-            datetime.hour*60+datetime.minute // 30 + 1)
+            (datetime.hour*60+datetime.minute) // 30 + 1)
+
+def get_sp_list(sd_start, sd_end):
+    """
+    Gives a list of settlement dates and periods between two dates inclusive
+    """
+    sp_list = []
+    curr_sd = sd_start
+    while curr_sd <= sd_end:
+        #maximum SP value check, taking into account transition days
+        transition_days = [dt.date(x.year, x.month, x.day)
+                           for x in pytz.timezone('Europe/London')._utc_transition_times]
+        if curr_sd in transition_days[::2]: #clocks go forward
+            no_sp = 46
+        elif SD in transition_days[1::2]: #clocks go back
+            no_sp = 50
+        else:
+            no_sp = 48
+        for sp in np.arange(no_SP):
+            sp_list.append((curr_sd,sp))
+
+    return SP_list
