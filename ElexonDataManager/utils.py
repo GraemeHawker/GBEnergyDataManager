@@ -117,6 +117,9 @@ def dt_to_sp(datetime, period_start=True):
     SP : int
         the settlement period
     """
+
+    '''
+    #bad old method
     transition_days = [dt.date(x.year, x.month, x.day)
                        for x in pytz.timezone('Europe/London')._utc_transition_times]
 
@@ -146,6 +149,23 @@ def dt_to_sp(datetime, period_start=True):
                 (datetime.hour*60+datetime.minute) // 30 - 2)
     return (dt.date(datetime.year, datetime.month, datetime.day),
             (datetime.hour*60+datetime.minute) // 30)
+    '''
+    transition_days = [dt.date(x.year, x.month, x.day)
+                       for x in pytz.timezone('Europe/London')._utc_transition_times]
+
+    sd_raw = dt.date(datetime.year, datetime.month, datetime.day)
+    sp_raw = (datetime.hour*60+datetime.minute) // 30 + 1
+    if datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0):
+        sp_raw -= 2
+    if sp_raw < 1:
+        sd_raw -= dt.timedelta(days=1)
+        if sd_raw in transition_days[::2]:
+            sp_raw = 46 - sp_raw
+        elif sd_raw in transition_days[1::2]:
+            sp_raw = 50 - sp_raw
+        else:
+            sp_raw = 48 - sp_raw
+    return sd_raw, sp_raw
 
 def get_sp_list(sd_start, sd_end):
     """
