@@ -130,7 +130,7 @@ def dt_to_sp(datetime, period_start=True):
         if dt.date(datetime.year, datetime.month, datetime.day) in transition_days[1::2]\
         and datetime.hour >= 1:
             print(datetime.hour)
-            if datetime.hour == 2:
+            if datetime.hour >= 2:
                 return (dt.date(datetime.year, datetime.month, datetime.day),
                         (datetime.hour*60+datetime.minute) // 30 + 5)
             return (dt.date(datetime.year, datetime.month, datetime.day),
