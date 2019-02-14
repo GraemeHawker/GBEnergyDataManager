@@ -117,13 +117,35 @@ def dt_to_sp(datetime, period_start=True):
     SP : int
         the settlement period
     """
+    transition_days = [dt.date(x.year, x.month, x.day)
+                       for x in pytz.timezone('Europe/London')._utc_transition_times]
+
     if datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0):
-        datetime = datetime-dt.timedelta(hours=1)
+        datetime = datetime+dt.timedelta(hours=1)
     if period_start or datetime.minute%30 != 0:
+        if dt.date(datetime.year, datetime.month, datetime.day) in transition_days[::2]\
+        and ((datetime.hour*60+datetime.minute) // 30 + 1) > 2:
+            return (dt.date(datetime.year, datetime.month, datetime.day),
+                    (datetime.hour*60+datetime.minute) // 30 - 1)
+        if dt.date(datetime.year, datetime.month, datetime.day) in transition_days[1::2]\
+        and datetime.hour >= 1:
+            print(datetime.hour)
+            if datetime.hour == 2:
+                return (dt.date(datetime.year, datetime.month, datetime.day),
+                        (datetime.hour*60+datetime.minute) // 30 + 5)
+            return (dt.date(datetime.year, datetime.month, datetime.day),
+                    (datetime.hour*60+datetime.minute) // 30 + 1)
         return (dt.date(datetime.year, datetime.month, datetime.day),
-                (datetime.hour*60+datetime.minute) // 30 + 2)
+                (datetime.hour*60+datetime.minute) // 30 + 1)
+    if (datetime.hour*60+datetime.minute) // 30 == 0:
+        return (dt.date(datetime.year, datetime.month, datetime.day) - dt.timedelta(days=1),
+                48)
+    if dt.date(datetime.year, datetime.month, datetime.day) in transition_days[::2]\
+    and ((datetime.hour*60+datetime.minute) // 30 + 1) > 2:
+        return (dt.date(datetime.year, datetime.month, datetime.day),
+                (datetime.hour*60+datetime.minute) // 30 - 2)
     return (dt.date(datetime.year, datetime.month, datetime.day),
-            (datetime.hour*60+datetime.minute) // 30 + 1)
+            (datetime.hour*60+datetime.minute) // 30)
 
 def get_sp_list(sd_start, sd_end):
     """
@@ -137,11 +159,10 @@ def get_sp_list(sd_start, sd_end):
                            for x in pytz.timezone('Europe/London')._utc_transition_times]
         if curr_sd in transition_days[::2]: #clocks go forward
             no_sp = 46
-        elif SD in transition_days[1::2]: #clocks go back
+        elif curr_sd in transition_days[1::2]: #clocks go back
             no_sp = 50
         else:
             no_sp = 48
-        for sp in np.arange(no_SP):
-            sp_list.append((curr_sd,sp))
-
-    return SP_list
+        for curr_sp in np.arange(no_sp):
+            sp_list.append((curr_sd, curr_sp))
+    return sp_list
