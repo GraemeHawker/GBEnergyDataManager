@@ -156,7 +156,9 @@ def dt_to_sp(datetime, period_start=True):
     sd_raw = dt.date(datetime.year, datetime.month, datetime.day)
     sp_raw = (datetime.hour*60+datetime.minute) // 30 + 1
     if datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0):
-        sp_raw -= 2
+        sp_raw += 2
+    if not period_start and (datetime.hour*60+datetime.minute) % 30 == 0:
+        sp_raw -= 1
     if sp_raw < 1:
         sd_raw -= dt.timedelta(days=1)
         if sd_raw in transition_days[::2]:
@@ -165,6 +167,15 @@ def dt_to_sp(datetime, period_start=True):
             sp_raw = 50 - sp_raw
         else:
             sp_raw = 48 - sp_raw
+    if sp_raw > 48 and sd_raw not in transition_days:
+        sd_raw += dt.timedelta(days=1)
+        sp_raw -= 48
+    if sp_raw > 46 and sd_raw in transition_days[::2]:
+        sd_raw += dt.timedelta(days=1)
+        sp_raw -= 46
+    if sp_raw > 50 and sd_raw in transition_days[1::2]:
+        sd_raw += dt.timedelta(days=1)
+        sp_raw -= 50
     return sd_raw, sp_raw
 
 def get_sp_list(sd_start, sd_end):
