@@ -118,47 +118,34 @@ def dt_to_sp(datetime, period_start=True):
         the settlement period
     """
 
-    '''
-    #bad old method
+    # DST transition dates
+    # clocks go forward on transition_days[::2], 46 settlement periods
+    # clocks go back on transition_days[1::2], 50 settlement periods
     transition_days = [dt.date(x.year, x.month, x.day)
                        for x in pytz.timezone('Europe/London')._utc_transition_times]
 
-    if datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0):
-        datetime = datetime+dt.timedelta(hours=1)
-    if period_start or datetime.minute%30 != 0:
-        if dt.date(datetime.year, datetime.month, datetime.day) in transition_days[::2]\
-        and ((datetime.hour*60+datetime.minute) // 30 + 1) > 2:
-            return (dt.date(datetime.year, datetime.month, datetime.day),
-                    (datetime.hour*60+datetime.minute) // 30 - 1)
-        if dt.date(datetime.year, datetime.month, datetime.day) in transition_days[1::2]\
-        and datetime.hour >= 1:
-            print(datetime.hour)
-            if datetime.hour >= 2:
-                return (dt.date(datetime.year, datetime.month, datetime.day),
-                        (datetime.hour*60+datetime.minute) // 30 + 5)
-            return (dt.date(datetime.year, datetime.month, datetime.day),
-                    (datetime.hour*60+datetime.minute) // 30 + 1)
-        return (dt.date(datetime.year, datetime.month, datetime.day),
-                (datetime.hour*60+datetime.minute) // 30 + 1)
-    if (datetime.hour*60+datetime.minute) // 30 == 0:
-        return (dt.date(datetime.year, datetime.month, datetime.day) - dt.timedelta(days=1),
-                48)
-    if dt.date(datetime.year, datetime.month, datetime.day) in transition_days[::2]\
-    and ((datetime.hour*60+datetime.minute) // 30 + 1) > 2:
-        return (dt.date(datetime.year, datetime.month, datetime.day),
-                (datetime.hour*60+datetime.minute) // 30 - 2)
-    return (dt.date(datetime.year, datetime.month, datetime.day),
-            (datetime.hour*60+datetime.minute) // 30)
-    '''
-    transition_days = [dt.date(x.year, x.month, x.day)
-                       for x in pytz.timezone('Europe/London')._utc_transition_times]
-
+    # initally set SD and SP ignoring DST
     sd_raw = dt.date(datetime.year, datetime.month, datetime.day)
     sp_raw = (datetime.hour*60+datetime.minute) // 30 + 1
-    if datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0):
+
+    # adjust SP for DST
+    # note that impact on SP does not immediately take effect until day after transition
+    # So:
+    # if on day clocks got forward, do not adjust
+    # if on day clocks go back, adjust both within and without BST period
+    if (datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0)\
+    and sd_raw not in transition_days[::2])\
+    or (datetime.astimezone(pytz.timezone('Europe/London')).dst() == dt.timedelta(0)\
+    and sd_raw in transition_days[1::2]):
         sp_raw += 2
+
+    # shift period by 1 if datetime is ambiguous and to be treated as period end
+    # rather than start
     if not period_start and (datetime.hour*60+datetime.minute) % 30 == 0:
         sp_raw -= 1
+
+    # now deal with cases where SP is now shifted to previous settlement date
+    # allowing for variable number of SPs on DST transition dates
     if sp_raw < 1:
         sd_raw -= dt.timedelta(days=1)
         if sd_raw in transition_days[::2]:
@@ -167,6 +154,9 @@ def dt_to_sp(datetime, period_start=True):
             sp_raw = 50 - sp_raw
         else:
             sp_raw = 48 - sp_raw
+
+    # now deal with cases where SP is shifted to next settlement date, allowing
+    # for variable number of SPs on DST transition dates
     if sp_raw > 48 and sd_raw not in transition_days:
         sd_raw += dt.timedelta(days=1)
         sp_raw -= 48
@@ -176,24 +166,58 @@ def dt_to_sp(datetime, period_start=True):
     if sp_raw > 50 and sd_raw in transition_days[1::2]:
         sd_raw += dt.timedelta(days=1)
         sp_raw -= 50
+
     return sd_raw, sp_raw
 
-def get_sp_list(sd_start, sd_end):
+def get_sp_list(sd_start, sd_end, sp_start=None, sp_end=None):
     """
-    Gives a list of settlement dates and periods between two dates inclusive
+    Gives a list of tuples of settlement dates and periods between two
+    given settlement dates/periods
+
+    Parameters
+    ----------
+    sd_start : datetime.date object
+        the first settlement date
+    sd_end : datetime.date object
+        the last settlement date
+    sp_start : int
+        the settlement period to begin with on the first settlement date
+        (assumed 1 if no argument provided)
+    sp_end : int
+        the settlement period to end with on the last settlement date
+        (assumed final settlement period if no argument provided)
+
+    Returns
+    -------
+    a list of (SD,SP) tuples where:
+    SD : datetime.date
+        the settlement date
+    SP : int
+        the settlement period
     """
     sp_list = []
     curr_sd = sd_start
     while curr_sd <= sd_end:
+        if curr_sd == sd_start and sp_start is not None:
+            first_sp = sp_start
+        else:
+            first_sp = 1
+
         #maximum SP value check, taking into account transition days
         transition_days = [dt.date(x.year, x.month, x.day)
                            for x in pytz.timezone('Europe/London')._utc_transition_times]
         if curr_sd in transition_days[::2]: #clocks go forward
-            no_sp = 46
+            last_sp = 46
         elif curr_sd in transition_days[1::2]: #clocks go back
-            no_sp = 50
+            last_sp = 50
         else:
-            no_sp = 48
-        for curr_sp in np.arange(no_sp):
+            last_sp = 48
+        if (curr_sd == sd_end and sp_end is not None) and sp_end < last_sp:
+
+            last_sp = sp_end
+        for curr_sp in np.arange(first_sp, last_sp+1):
             sp_list.append((curr_sd, curr_sp))
+
+        curr_sd += dt.timedelta(days=1)
+
     return sp_list
