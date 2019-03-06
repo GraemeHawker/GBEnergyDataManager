@@ -10,7 +10,7 @@ from django.utils import timezone
 
 # messages which will be processed, all others ignored
 PROCESSED_MESSAGES = {
-    'BM' : ['QPN', 'BOD'],
+    'BM' : ['FPN', 'MEL', 'MIL'],#['QPN', 'BOD'],
     'BP' : [],
     'SYSTEM' : [],
     'DYNAMIC' : [],
