@@ -7,7 +7,6 @@ import urllib.request
 import gzip
 import os.path
 
-from ElexonDataManager.settings import ELEXON_BASEURL, ELEXON_KEY, BMRA_INPUT_DIR
 from ._upload_functions import message_to_dict, insert_data
 
 def get_tibco_daily_filenames(date_start, date_end=None):
@@ -35,6 +34,7 @@ key=INSERT_KEY&filename=tib_messages.2018-09-15.gz
     ------
 
     """
+
     if date_end is None:
         date_end = date_start
 
@@ -61,6 +61,8 @@ def download_bmra_file(filename):
         the filename to be downloaded
 
     """
+    from ElexonDataManager.settings import ELEXON_BASEURL, ELEXON_KEY, BMRA_INPUT_DIR
+
     if not os.path.isfile(BMRA_INPUT_DIR + filename):
         remote_url = (ELEXON_BASEURL
                       + '?key='
@@ -80,6 +82,9 @@ def process_bmra_file(date):
     date : datetime
         the date of the datafile to be downloaded and processed
     """
+    from ElexonDataManager.settings import BMRA_INPUT_DIR
+
+
     filename = get_tibco_daily_filenames(date)[0]
     download_bmra_file(filename)
     file = gzip.open(BMRA_INPUT_DIR + filename, 'rb')
