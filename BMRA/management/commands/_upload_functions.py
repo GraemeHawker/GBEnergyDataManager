@@ -5,10 +5,6 @@ Helper functions for uploading data to database
 import datetime as dt
 from itertools import zip_longest
 from django.utils import timezone
-from BMRA.models.core import ProcessedMessage, BMU
-from BMRA.models.balancing import FPN, FPNlevel, MEL, MELlevel, MIL, MILlevel,\
-BOAL, BOALlevel, BOALF, BOALFlevel, BOD, DISPTAV, EBOCF, PTAV, QAS, QPN, QPNlevel,\
-BOAV
 from ._data_definitions import PROCESSED_MESSAGES, ACCEPTED_MESSAGES, FIELD_CASTING_FUNCS
 from ._corrupt_message_list import CORRUPT_MESSAGES
 
@@ -214,6 +210,12 @@ def insert_bm_data(message_dict):
     ------
 
     """
+    from BMRA.models.balancing import FPN, FPNlevel, MEL, MELlevel, MIL, MILlevel,\
+    BOAL, BOALlevel, BOALF, BOALFlevel, BOD, DISPTAV, EBOCF, PTAV, QAS, QPN, QPNlevel,\
+    BOAV
+
+    from BMRA.models.core import BMU
+
     #check if BMUID already in db, if not insert and log
     try:
         bmu = BMU.objects.get(id=message_dict['bmu_id'])
