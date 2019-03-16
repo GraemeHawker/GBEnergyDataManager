@@ -722,8 +722,9 @@ TEST
   Test message
   Parameters:
     DATA: message data
-  Example entry:
+  Example entries:
 2002:08:14:11:59:48:GMT: subject=BMRA.INFO.TEST, message={DATA=TEST - ignore}
+2019:03:13:18:20:10:GMT: subject=BMRA.TEST, message={DATA=Test message}
 
 MSG
   Test message
