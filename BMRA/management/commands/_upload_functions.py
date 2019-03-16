@@ -119,6 +119,10 @@ def message_to_dict(raw_message):
             raise ValueError('Valid subtype not found for message type %s %s' %
                              (message_type, raw_message))
         message_dict['message_subtype'] = message_subtype
+    elif message_type in ['TEST']:
+        #rearrange for weird one-off test message on 2019-03-13
+        message_dict['message_type'] = 'INFO'
+        message_dict['message_subtype'] = 'TEST'
     else:
         raise ValueError('message type %s not recognised %s' % (message_type,
                                                                 raw_message))
