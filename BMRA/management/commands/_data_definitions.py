@@ -115,7 +115,8 @@ ACCEPTED_MESSAGES = {
     'INFO' : {
         'TEST' : ['DATA'],
         'MSG' : ['DATA', 'TP', 'IN']
-    }
+    },
+    'TEST' : {} #has no message_subtype
 }
 
 #custom functions for converting raw message strings to required datatypes
