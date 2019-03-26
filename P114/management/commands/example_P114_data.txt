@@ -38,7 +38,7 @@ fields:
   Import/Export Indicator: char (I/E)
   GSP Group Take Volume: decimal(14,4)
 
-example:
+example body:
 AGP|1|F|I|1545.2218|
 
 footer fields:
