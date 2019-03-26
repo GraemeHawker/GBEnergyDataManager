@@ -1,0 +1,49 @@
+Based on definitions given in https://www.elexon.co.uk/data-flow/settlement-report-saa-i014-also-known-as-the-s0142
+(see Excel spreadsheet https://www.elexon.co.uk/wp-content/uploads/2015/04/P114_data-items.xlsx)
+
+CDCA-I029: Aggregated GSP Group Take Volumes
+header fields:
+  :
+  :
+  :
+  timestamp: timestamp in text(10) format
+  :
+  :
+  :
+  :
+  :
+  :
+example header:
+AAA|C0291002|D|20190325082721|CD|UKDC|PB|PORTAL|351040|OPER|
+
+body:
+
+AGV: Aggregated GSP Group Take Volumes
+Single entry per GSP group
+fields:
+  GSP Group ID: text(2)
+  Settlement Date: date
+  Settlement Run Type: text(2), one of II/SF/R1/R2/R3/RF/DF
+  CDCA Run Number: integer(2), expected range
+  Date of Aggregation: date
+
+example:
+AGV|_A|20161128|DF|19|20180116|
+
+AGP: Aggregated GSP Group Take - Period
+46/48/50 entries corresponding to previous AGV
+fields:
+  Settlement Period: integer(2)
+  Estimate Indicator: boolean (T/F)
+  Import/Export Indicator: char (I/E)
+  GSP Group Take Volume: decimal(14,4)
+
+example:
+AGP|1|F|I|1545.2218|
+
+footer fields:
+  :
+  :
+  :
+example footer:
+ZZZ|688|1916476207|
