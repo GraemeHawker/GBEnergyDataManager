@@ -110,21 +110,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
 LANGUAGE_CODE = 'en-gb'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/static/'
 
 # Elexon values
@@ -134,6 +128,8 @@ ELEXON_KEY = '8bjll9hlkqh7gb8'
 # Local folders for file processing
 BMRA_INPUT_DIR = '/home/graeme/ElexonData/Unprocessed/'
 BMRA_PROCESSED_DIR = '/home/graeme/ElexonData/Processed/'
+P114_INPUT_DIR = ''
 
 # Magic Numbers
 BMRA_start_date = dt.date(2002,1,1) #earliest date of BMRA data for validation
+P114_start_date = dt.date(2002,1,1) #
