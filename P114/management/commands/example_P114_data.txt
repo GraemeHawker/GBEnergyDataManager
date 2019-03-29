@@ -143,3 +143,23 @@ footer fields:
 
 example footer:
 ZZZ|24943|1684565874|
+
+
+SAA-I014: Settlement Report: sub-flow 2
+header fields:
+
+example header:
+AAA|S0142008|D|20190110120638|SA|UKDC|PB|PORTAL|21783|OPER|
+body:
+
+SRH: Settlement Report header
+fields:
+  Settlement Date: text(8) date
+  SAA Run Number: integer(2)
+  SAA CDCA Run Number: integer (2)
+  SVAA CDCA Settlement Date: text(8) date
+  SVAA CDCA Run Number: integer(2)
+  SVAA SSR Run Number: integer(2)
+  BSC Party Id: text(8)
+example:
+SRH|20190103|II|1|1|20190103|1|46202|NGC|

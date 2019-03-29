@@ -124,12 +124,17 @@ STATIC_URL = '/static/'
 # Elexon values
 ELEXON_BASEURL = 'https://downloads.elexonportal.co.uk/bmradataarchive/download'
 ELEXON_KEY = '***REMOVED***'
+P114_LIST_URL = 'https://downloads.elexonportal.co.uk/p114/list?key={}&date={:04d}-{:02d}-{:02d}'
+P114_DOWNLOAD_URL = 'https://downloads.elexonportal.co.uk/p114/download?key={}&filename={}'
 
 # Local folders for file processing
 BMRA_INPUT_DIR = '/home/graeme/ElexonData/Unprocessed/'
 BMRA_PROCESSED_DIR = '/home/graeme/ElexonData/Processed/'
-P114_INPUT_DIR = ''
+P114_INPUT_DIR = '/home/graeme/ElexonData/P114'
 
 # Magic Numbers
 BMRA_start_date = dt.date(2002,1,1) #earliest date of BMRA data for validation
-P114_start_date = dt.date(2002,1,1) #
+BMRA_DATA_START_DATE = dt.date(2002,1,1) #first date of data contents
+BMRA_FILE_START_DATE = None #first date of data publication
+P114_DATA_START_DATE = None #first date of P114 data contents
+P114_FILE_START_DATE = dt.date(2010,4,1) #earliest date of P114 publication
