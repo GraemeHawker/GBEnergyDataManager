@@ -10,7 +10,7 @@ from django.utils import timezone
 
 # messages which will be processed, all others ignored
 PROCESSED_MESSAGES = {
-    'BM' : ['FPN', 'MEL', 'MIL'],#['QPN', 'BOD'],
+    'BM' : ['BOAV', 'FPN', 'MEL'],#['QPN', 'BOD'],
     'BP' : [],
     'SYSTEM' : [],
     'DYNAMIC' : [],
@@ -20,7 +20,7 @@ PROCESSED_MESSAGES = {
 # messages which will be ignored (not actually used, just for note keeping)
 UNPROCESSED_MESSAGES = {
     'BM' : ['FPN', 'MEL', 'MIL', 'BOAL', 'BOALF', 'BOAV', 'DISPTAV', 'EBOCF',
-            'PTAV', 'QAS'],
+            'PTAV', 'QAS', 'QPN'],
     'BP' : [],
     'SYSTEM' : [],
     'DYNAMIC' : [],
@@ -116,8 +116,10 @@ ACCEPTED_MESSAGES = {
         'TEST' : ['DATA'],
         'MSG' : ['DATA', 'TP', 'IN']
     },
-    'TEST' : {} #has no message_subtype
 }
+
+#messages (including some weird ones) that have appeared with no useful information
+IGNORED_MESSAGES = ['TEST', 'test', 'text', 'Duber']
 
 #custom functions for converting raw message strings to required datatypes
 FIELD_CASTING_FUNCS = {
