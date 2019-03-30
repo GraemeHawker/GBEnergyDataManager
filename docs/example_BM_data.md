@@ -20,7 +20,7 @@ References:
 ### General parameters
 
 | Fieldname | Datatype | Description | Units | Comments |
-| --------- | ----------- | ----- | -------- |
+| --------- | -------- | ----------- | ----- | -------- |
 | TP | datetime | Publishing time | | The time that the data was originally published by the System Operator,  formatted yyyy:MM:dd:hh:mm:ss:GMT |
 | SD | date | Settlement Date | | formatted yyyy:MM:dd:00:00:00:GMT |
 | SP | integer(2) | Settlement Period | between 1 and 50 inclusive | |
@@ -29,7 +29,7 @@ References:
 ### MID: Market Index Data
 
 | Fieldname | Datatype | Description | Units | Comments |
-| --------- | ----------- | ----- | -------- |
+| --------- | -------- | ----------- | ----- | -------- |
 | MI | | Market Index Data Provider | | e.g. APXMIDP |
 | M1 | | Market Index Price | £/MWh | |
 | M2 | | Market Index Volume | MWh | |
