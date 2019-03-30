@@ -10,8 +10,8 @@ Other references:
 
 ## Contents
 
-- [CDCA-I029: Aggregated GSP Group Take Volumes](#cdcai029-aggregated-gsp-group-take-volumes)
-- [CDCA-I042: BM Unit Aggregation Report](#cdcai042-bm-unit-aggregation-report)
+- [CDCA-I029: Aggregated GSP Group Take Volumes](#cdca-i029-aggregated-gsp-group-take-volumes)
+- [CDCA-I042: BM Unit Aggregation Report](#cdca-i042-bm-unit-aggregation-report)
 
 ## CDCA-I029: Aggregated GSP Group Take Volumes
 ### header
