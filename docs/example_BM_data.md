@@ -18,6 +18,7 @@ References:
 
 ## SYSTEM Data
 ### General parameters
+
 | Fieldname | Datatype | Description | Units | Comments |
 | --------- | ----------- | ----- | -------- |
 | TP | datetime | Publishing time | | The time that the data was originally published by the System Operator,  formatted yyyy:MM:dd:hh:mm:ss:GMT |
@@ -26,6 +27,7 @@ References:
 | TS | datetime | Timestamp of spot point | | formatted yyyy:MM:dd:hh:mm:ss:GMT |
 
 ### MID: Market Index Data
+
 | Fieldname | Datatype | Description | Units | Comments |
 | --------- | ----------- | ----- | -------- |
 | MI | | Market Index Data Provider | | e.g. APXMIDP |
