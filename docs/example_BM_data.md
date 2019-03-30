@@ -1,41 +1,54 @@
-Each message begins with timestamp (yyyy:MM:dd:hh:mm:ss:GMT) of message received time
+# BMRA Data Description
+Each message is composed of three sections:
+- timestamp (yyyy:MM:dd:hh:mm:ss:GMT) at which message was received
+- subject line, indicating message type and subtype (and possibly also BM Unit and Notification Level)
+- message, containing key/value pairs
+
+Each message subtype is listed below along with the expected data within each message
+
 Example lines given below are exactly as seen in raw data file
 
-https://www.elexon.co.uk/documents/bsc-codes/interface-definition-documents/neta-idd-part-1/
-https://www.elexon.co.uk/wp-content/uploads/2015/03/neta_idd_part_1_v32.11.pdf
+References:
+- https://www.elexon.co.uk/documents/bsc-codes/interface-definition-documents/neta-idd-part-1/
+- https://www.elexon.co.uk/wp-content/uploads/2015/03/neta_idd_part_1_v32.11.pdf
 
-SYSTEM Data
-General parameters:
-  TP: The time that the data was originally published by the System Operator
-  SD: Settlement Date, formatted yyyy:MM:dd:hh:mm:ss:GMT
-  SP: Settlement Period, integer between 1 and 50 inclusive
-  TS: Timestamp of spot point, formatted yyyy:MM:dd:hh:mm:ss:GMT
+## Contents
+- [SYSTEM Data](#system-data)
+- [BM Data](#bm-data)
 
-MID
-  Market Index Data
-  Parameters:
-    MI: Market Index Data Provider (e.g. APXMIDP)
-    M1: Market Index Price (£/MWh)
-    M2: Market Index Volume (MWh)
-  Example entry:
-2017:03:29:00:00:37:GMT: subject=BMRA.SYSTEM.MID, message={MI=APXMIDP,SD=2017:03:29:00:00:00:GMT,SP=2,M1=34.58,M2=223.7}
+## SYSTEM Data
+### General parameters
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | ----------- | ----- | -------- |
+| TP | datetime | Publishing time | | The time that the data was originally published by the System Operator,  formatted yyyy:MM:dd:hh:mm:ss:GMT |
+| SD | date | Settlement Date | | formatted yyyy:MM:dd:00:00:00:GMT |
+| SP | integer(2) | Settlement Period | between 1 and 50 inclusive | |
+| TS | datetime | Timestamp of spot point | | formatted yyyy:MM:dd:hh:mm:ss:GMT |
 
-FREQ
-  System frequency data
+### MID: Market Index Data
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | ----------- | ----- | -------- |
+| MI | | Market Index Data Provider | | e.g. APXMIDP |
+| M1 | | Market Index Price | £/MWh | |
+| M2 | | Market Index Volume | MWh | |
+
+Example:
+
+`2017:03:29:00:00:37:GMT: subject=BMRA.SYSTEM.MID, message={MI=APXMIDP,SD=2017:03:29:00:00:00:GMT,SP=2,M1=34.58,M2=223.7}`
+
+### FREQ: System frequency data
   Parameters:
     SF: System frequency (Hz)
   Example entry:
 2017:03:29:00:00:52:GMT: subject=BMRA.SYSTEM.FREQ, message={TS=2017:03:28:23:58:00:GMT,SF=50.058}
 
-INDO
-  Initial National Demand Out-Turn
+### INDO: Initial National Demand Out-Turn
   Parameters:
     VD: average megawatt value of demand for a Settlement Period INCLUDING transmission losses but EXCLUDING station transformer load, pumped storage demand and interconnector demand
   Example entry:
 2017:03:29:00:01:08:GMT: subject=BMRA.SYSTEM.INDO, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,VD=24016.0}
 
-ITSDO
-  Initial Transmission System Demand Outturn
+### ITSDO: Initial Transmission System Demand Outturn
   Parameters:
     VD: average megawatt value of demand for a Settlement Period INCLUDING transmission losses, station transformer load, pumped storage demand and interconnector demand. The ITSDO is made available by the System Operator within 15 minutes after a Settlement Period, based on their operational metering. The composition of the Initial Transmission System Demand Out-Turn matches that of the Transmission System Demand Forecast and so ITSDO and TSDF are comparable.
   Example entry:
