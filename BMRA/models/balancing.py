@@ -24,29 +24,31 @@ class BOAL(models.Model):
     """
     bmu = models.ForeignKey(BMU,
                             on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    NK = models.IntegerField(validators=[MinValueValidator(1),
+    nk = models.IntegerField(validators=[MinValueValidator(1),
                                          MaxValueValidator(2147483647)],
                              verbose_name='Acceptance number')
-    TA = models.DateTimeField(verbose_name='Acceptance time',
+    ta = models.DateTimeField(verbose_name='Acceptance time',
                               validators=[check_dates])
-    AD = models.BooleanField(verbose_name='Deemed bid-offer flag',
+    ad = models.BooleanField(verbose_name='Deemed bid-offer flag',
                              help_text='True for an acceptance of a bid-offer')
     class Meta:
-        index_together = ('bmu', 'TA')
+        db_table = 'bmra_boal'
+        index_together = ('bmu', 'ta')
 
 class BOALlevel(models.Model):
     """
     Timestamped element of a bid-offer acceptance level
     """
     boal = models.ForeignKey(BOAL, on_delete=models.CASCADE)
-    TS = models.DateTimeField(verbose_name='Acceptance level timestamp',
+    ts = models.DateTimeField(verbose_name='Acceptance level timestamp',
                               validators=[check_dates])
-    VA = models.FloatField(verbose_name='Acceptance level value',
+    va = models.FloatField(verbose_name='Acceptance level value',
                            help_text='MW')
     class Meta:
-        index_together = ('boal', 'TS')
+        db_table = 'bmra_boallevel'
+        index_together = ('boal', 'ts')
 
 
 class BOALF(models.Model):
@@ -55,34 +57,36 @@ class BOALF(models.Model):
     """
     bmu = models.ForeignKey(BMU,
                             on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    NK = models.IntegerField(validators=[MinValueValidator(1),
+    nk = models.IntegerField(validators=[MinValueValidator(1),
                                          MaxValueValidator(2147483647)],
                              verbose_name='Acceptance number')
-    TA = models.DateTimeField(verbose_name='Acceptance time',
+    ta = models.DateTimeField(verbose_name='Acceptance time',
                               validators=[check_dates])
-    AD = models.BooleanField(verbose_name='Deemed Bid-Offer Flag',
+    ad = models.BooleanField(verbose_name='Deemed Bid-Offer Flag',
                              help_text='True for an acceptance of a bid-offer')
-    SO = models.BooleanField(verbose_name='SO Flag',
+    so = models.BooleanField(verbose_name='SO Flag',
                              help_text='True where potentially impacted by \
                              transmission constraints')
-    PF = models.BooleanField(verbose_name='STOR Flag',
+    pf = models.BooleanField(verbose_name='STOR Flag',
                              help_text='True for relating to a STOR provider')
     class Meta:
-        index_together = ('bmu', 'TA')
+        db_table = 'bmra_boalf'
+        index_together = ('bmu', 'ta')
 
 class BOALFlevel(models.Model):
     """
     Timestamped element of a bid-offer acceptance level flagged
     """
     boalf = models.ForeignKey(BOALF, on_delete=models.CASCADE)
-    TS = models.DateTimeField(verbose_name='Acceptance level timestamp',
+    ts = models.DateTimeField(verbose_name='Acceptance level timestamp',
                               validators=[check_dates])
-    VA = models.FloatField(verbose_name='Acceptance level value',
+    va = models.FloatField(verbose_name='Acceptance level value',
                            help_text='MW')
     class Meta:
-        index_together = ('boalf', 'TS')
+        db_table = 'bmra_boalflevel'
+        index_together = ('boalf', 'ts')
 
 
 class BOD(models.Model):
@@ -90,91 +94,94 @@ class BOD(models.Model):
     Bid-offer datum
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
-    NN = models.IntegerField(verbose_name='Bid-offer pair no.',
+    nn = models.IntegerField(verbose_name='Bid-offer pair no.',
                              validators=[MinValueValidator(-5),
                                          MaxValueValidator(5)])
-    OP = models.FloatField(verbose_name='Offer price',
+    op = models.FloatField(verbose_name='Offer price',
                            help_text='£/MWh')
-    BP = models.FloatField(verbose_name='Bid price',
+    bp = models.FloatField(verbose_name='Bid price',
                            help_text='£/MWh')
-    TS1 = models.DateTimeField(verbose_name='Period start time',
+    ts1 = models.DateTimeField(verbose_name='Period start time',
                                validators=[check_dates])
-    VB1 = models.FloatField(verbose_name='Period start bid-offer level',
+    vb1 = models.FloatField(verbose_name='Period start bid-offer level',
                             help_text='MW')
-    TS2 = models.DateTimeField(verbose_name='Period end time',
+    ts2 = models.DateTimeField(verbose_name='Period end time',
                                validators=[check_dates])
-    VB2 = models.FloatField(verbose_name='Period end bid-offer level',
+    vb2 = models.FloatField(verbose_name='Period end bid-offer level',
                             help_text='MW')
     class Meta:
-        index_together = ('bmu', 'SD', 'SP')
+        db_table = 'bmra_bod'
+        index_together = ('bmu', 'sd', 'sp')
 
 class BOAV(models.Model):
     """
     Bid-offer acceptance volume
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    NK = models.IntegerField(validators=[MinValueValidator(1),
+    nk = models.IntegerField(validators=[MinValueValidator(1),
                                          MaxValueValidator(2147483647)],
                              verbose_name='Acceptance number')
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
-    NN = models.IntegerField(verbose_name='Bid-offer pair no.',
+    nn = models.IntegerField(verbose_name='Bid-offer pair no.',
                              validators=[MinValueValidator(-5),
                                          MaxValueValidator(5)])
-    OV = models.FloatField(verbose_name='Offer volume',
+    ov = models.FloatField(verbose_name='Offer volume',
                            help_text='MWh')
-    BV = models.FloatField(verbose_name='Bid volume',
+    bv = models.FloatField(verbose_name='Bid volume',
                            help_text='MWh')
-    SA = models.BooleanField(verbose_name='Short acceptance flag',
+    sa = models.BooleanField(verbose_name='Short acceptance flag',
                              help_text='True indicates acceptance was short duration')
     class Meta:
-        index_together = ('bmu', 'SD', 'SP')
+        db_table = 'bmra_boav'
+        index_together = ('bmu', 'sd', 'sp')
 
 class DISPTAV(models.Model):
     """
     Disaggregated period total bid-offer acceptance volumes
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
-    NN = models.IntegerField(verbose_name='Bid-offer pair no.',
+    nn = models.IntegerField(verbose_name='Bid-offer pair no.',
                              validators=[MinValueValidator(-5),
                                          MaxValueValidator(5)])
-    OV = models.FloatField(verbose_name='Total offer volume accepted',
+    ov = models.FloatField(verbose_name='Total offer volume accepted',
                            help_text='MWh')
-    BV = models.FloatField(verbose_name='Total bid volume accepted',
+    bv = models.FloatField(verbose_name='Total bid volume accepted',
                            help_text='MWh')
-    P1 = models.FloatField(verbose_name='Period tagged BMU offer volume',
+    p1 = models.FloatField(verbose_name='Period tagged BMU offer volume',
                            help_text='MWh')
-    P2 = models.FloatField(verbose_name='Period repriced BMU offer volume',
+    p2 = models.FloatField(verbose_name='Period repriced BMU offer volume',
                            help_text='MWh')
-    P3 = models.FloatField(verbose_name='Period originally-priced BMU offer volume',
+    p3 = models.FloatField(verbose_name='Period originally-priced BMU offer volume',
                            help_text='MW')
-    P4 = models.FloatField(verbose_name='Period repriced BMU offer volume',
+    p4 = models.FloatField(verbose_name='Period repriced BMU offer volume',
                            help_text='MWh')
-    P5 = models.FloatField(verbose_name='Period repriced BMU bid volume',
+    p5 = models.FloatField(verbose_name='Period repriced BMU bid volume',
                            help_text='MWh')
-    P6 = models.FloatField(verbose_name='Period originally-priced BMU bid volume',
+    p6 = models.FloatField(verbose_name='Period originally-priced BMU bid volume',
                            help_text='MWh')
     class Meta:
-        index_together = ('bmu', 'SD', 'SP')
+        db_table = 'bmra_disptav'
+        index_together = ('bmu', 'sd', 'sp')
 
 
 class EBOCF(models.Model):
@@ -182,165 +189,178 @@ class EBOCF(models.Model):
     Estimated bid-offer cash flows
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
-    NN = models.IntegerField(verbose_name='Bid-offer pair no.',
+    nn = models.IntegerField(verbose_name='Bid-offer pair no.',
                              validators=[MinValueValidator(-5),
                                          MaxValueValidator(5)])
-    OC = models.FloatField(verbose_name='Offer cashflow',
+    oc = models.FloatField(verbose_name='Offer cashflow',
                            help_text='£')
-    BC = models.FloatField(verbose_name='Bid cashflow',
+    bc = models.FloatField(verbose_name='Bid cashflow',
                            help_text='£')
     class Meta:
-        index_together = ('bmu', 'SD', 'SP')
+        db_table = 'bmra_ebocf'
+        index_together = ('bmu', 'sd', 'sp')
 
 class FPN(models.Model):
     """
     Final physical notification
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
 
     class Meta:
-        index_together = ('bmu', 'SD', 'SP')
+        db_table = 'bmra_fpn'
+        index_together = ('bmu', 'sd', 'sp')
 
 class FPNlevel(models.Model):
     """
     Spot point relating to an FPN submission
     """
     fpn = models.ForeignKey(FPN, on_delete=models.CASCADE, db_index=True)
-    TS = models.DateTimeField(verbose_name='Spot time',
+    ts = models.DateTimeField(verbose_name='Spot time',
                               validators=[check_dates])
-    VP = models.FloatField(verbose_name='Spot power',
+    vp = models.FloatField(verbose_name='Spot power',
                            help_text='MW')
     class Meta:
-        index_together = ('fpn', 'TS')
+        db_table = 'bmra_fpnlevel'
+        index_together = ('fpn', 'ts')
 
 class MEL(models.Model):
     """
     Maximum export limit
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
     class Meta:
-        index_together = ('bmu', 'SD', 'SP')
+        db_table = 'bmra_mel'
+        index_together = ('bmu', 'sd', 'sp')
 
 class MELlevel(models.Model):
     """
     Spot point relating to a MEL submission
     """
     mel = models.ForeignKey(MEL, on_delete=models.CASCADE, db_index=True)
-    TS = models.DateTimeField(verbose_name='Spot time',
+    ts = models.DateTimeField(verbose_name='Spot time',
                               validators=[check_dates])
-    VE = models.FloatField(verbose_name='Spot power',
+    ve = models.FloatField(verbose_name='Spot power',
                            help_text='MW')
     class Meta:
-        index_together = ('mel', 'TS')
+        db_table = 'bmra_mellevel'
+        index_together = ('mel', 'ts')
 
 class MIL(models.Model):
     """
     Minimum import limit
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
     class Meta:
-        index_together = ('bmu', 'SD', 'SP')
+        db_table = 'bmra_mil'
+        index_together = ('bmu', 'sd', 'sp')
 
 class MILlevel(models.Model):
     """
     Spot point relating to a MIL submission
     """
     mil = models.ForeignKey(MIL, on_delete=models.CASCADE, db_index=True)
-    TS = models.DateTimeField(verbose_name='Spot time',
+    ts = models.DateTimeField(verbose_name='Spot time',
                               validators=[check_dates])
-    VF = models.FloatField(verbose_name='Spot power',
+    vf = models.FloatField(verbose_name='Spot power',
                            help_text='MW')
     class Meta:
-        index_together = ('mil', 'TS')
+        db_table = 'bmra_millevel'
+        index_together = ('mil', 'ts')
 
 class PTAV(models.Model):
     """
     Period total bid-offer acceptance volumes
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
-    NN = models.IntegerField(verbose_name='Bid-offer pair no.',
+    nn = models.IntegerField(verbose_name='Bid-offer pair no.',
                              validators=[MinValueValidator(-5),
                                          MaxValueValidator(5)])
-    OV = models.FloatField(verbose_name='Total offer volume accepted',
+    ov = models.FloatField(verbose_name='Total offer volume accepted',
                            help_text='MWh')
-    BV = models.FloatField(verbose_name='Total bid volume accepted',
+    bv = models.FloatField(verbose_name='Total bid volume accepted',
                            help_text='MWh')
     class Meta:
-        index_together = ('bmu', 'SD', 'SP')
+        db_table = 'bmra_ptav'
+        index_together = ('bmu', 'sd', 'sp')
 
 class QAS(models.Model):
     """
     BMU applicable balancing services volume
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
-    SV = models.FloatField(verbose_name='Energy volume',
+    sv = models.FloatField(verbose_name='Energy volume',
                            help_text='MWh')
+    class Meta:
+        db_table = 'bmra_qas'
+        index_together = ('bmu', 'sd', 'sp')
 
 class QPN(models.Model):
     """
     Quiescent physical notification
     """
     bmu = models.ForeignKey(BMU, on_delete=models.PROTECT)
-    TS = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
-    SD = models.DateField(verbose_name='Settlement date',
+    sd = models.DateField(verbose_name='Settlement date',
                           validators=[check_dates])
-    SP = models.IntegerField(verbose_name='Settlement period',
+    sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
     class Meta:
-        index_together = ('bmu', 'SD', 'SP')
+        db_table = 'bmra_qpn'
+        index_together = ('bmu', 'sd', 'sp')
 
 class QPNlevel(models.Model):
     """
     Spot point relating to an QPN submission
     """
     qpn = models.ForeignKey(QPN, on_delete=models.CASCADE, db_index=True)
-    TS = models.DateTimeField(verbose_name='Spot time',
+    ts = models.DateTimeField(verbose_name='Spot time',
                               validators=[check_dates])
-    VP = models.FloatField(verbose_name='Spot power',
+    vp = models.FloatField(verbose_name='Spot power',
                            help_text='MW')
     class Meta:
-        index_together = ('qpn', 'TS')
+        db_table = 'bmra_qpnlevel'
+        index_together = ('qpn', 'ts')
