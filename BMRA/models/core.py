@@ -13,6 +13,7 @@ class ProcessedMessage(models.Model):
     timestamp = models.DateTimeField()
     subject = models.CharField(max_length=50)
     class Meta:
+        db_table = 'bmra_processedmessage'
         index_together = ('timestamp', 'subject')
 
 class BMU(models.Model):
@@ -21,3 +22,5 @@ class BMU(models.Model):
     """
     id = models.CharField(max_length=11, primary_key=True)
     name = models.CharField(max_length=100)
+    class Meta:
+        db_table = 'bmra_bmu'
