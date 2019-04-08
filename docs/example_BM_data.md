@@ -13,20 +13,97 @@ References:
 - https://www.elexon.co.uk/csd/neta-programme-interface-definition-and-design-part-1-interfaces-with-bsc-parties-and-their-agents/
 
 
-## Contents
-- [SYSTEM Data](#system-data)
- - [General Parameters](#general-parameters)
- - [Price Calculation Data](#price-calculation-data)
-   - [BSAD: Balancing Services Adjustment Data](#bsad-balancing-services-adjustment-data)
-   - [DISBSAD: Balancing Services Adjustment Data](#disbsad-balancing-services-adjustment-action-data)
-   - [MID: Market Index Data](#mid-market-index-data)
- - [Forecasting Data](#forecasting-data)
- - [Other](#other)
-   - [FREQ: System frequency data](#freq-system-frequency-data)
-- [BM Unit Data](#bm-data)
+# Contents
 
-## SYSTEM Data
-### General parameters
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [General parameters](#general-parameters)
+- [BM Unit Data](#bm-unit-data)
+	- [Submissions](#submissions)
+		- [FPN / QPN: Final Physical Notification / Quiescent Physical Notification](#fpn-qpn-final-physical-notification-quiescent-physical-notification)
+		- [MEL / MIL: Maximum Export Limit / Maximum Import Limit](#mel-mil-maximum-export-limit-maximum-import-limit)
+		- [BOD: Bid/Offer Data](#bod-bidoffer-data)
+	- [Acceptances](#acceptances)
+		- [BOAL: Bid Offer Acceptance Level](#boal-bid-offer-acceptance-level)
+		- [BOALF: Bid Offer Acceptance Level Flagged](#boalf-bid-offer-acceptance-level-flagged)
+	- [Cashflow and Volume Calculations](#cashflow-and-volume-calculations)
+		- [BOAV: Bid-offer Acceptance Volumes](#boav-bid-offer-acceptance-volumes)
+		- [EBOCF: Estimated Bid-Offer Cash Flows](#ebocf-estimated-bid-offer-cash-flows)
+		- [PTAV: Period Total Bid-Offer Acceptance Volumes](#ptav-period-total-bid-offer-acceptance-volumes)
+		- [DISPTAV: Disaggregated Period Total Bid-Offer Acceptance Volumes](#disptav-disaggregated-period-total-bid-offer-acceptance-volumes)
+		- [QAS: BM Unit applicable balancing services Volume](#qas-bm-unit-applicable-balancing-services-volume)
+- [Dynamic Data](#dynamic-data)
+	- [General Parameters](#general-parameters)
+	- [Submissions](#submissions)
+		- [SIL: Stable Import Limit](#sil-stable-import-limit)
+		- [SEL: Stable Export Limit](#sel-stable-export-limit)
+		- [MNZT: Minimum Non-zero Time](#mnzt-minimum-non-zero-time)
+		- [NDZ: Notice to deviate from zero](#ndz-notice-to-deviate-from-zero)
+		- [RURE: Run-up rates export](#rure-run-up-rates-export)
+		- [RURI: Run-up rates import](#ruri-run-up-rates-import)
+		- [RDRE: Run-down rate Export](#rdre-run-down-rate-export)
+		- [RDRI: Run-down rate Import](#rdri-run-down-rate-import)
+		- [MDV: Maximum Delivery Volume](#mdv-maximum-delivery-volume)
+		- [MDP: Maximum Delivery Period](#mdp-maximum-delivery-period)
+		- [MZT: Minimum Zero Time](#mzt-minimum-zero-time)
+		- [NTB: Notice to deliver bids](#ntb-notice-to-deliver-bids)
+		- [NTO: Notice to deliver offers](#nto-notice-to-deliver-offers)
+- [SYSTEM Data](#system-data)
+	- [Price Calculation Data](#price-calculation-data)
+		- [BSAD: Balancing Services Adjustment Data](#bsad-balancing-services-adjustment-data)
+		- [DISBSAD: Balancing Services Adjustment Action Data](#disbsad-balancing-services-adjustment-action-data)
+		- [NETBSAD: Balancing Services Adjustment Data](#netbsad-balancing-services-adjustment-data)
+		- [MID: Market Index Data](#mid-market-index-data)
+		- [EBSP: Estimated buy and sell price](#ebsp-estimated-buy-and-sell-price)
+		- [NETEBSP: Estimated Buy and Sell Price](#netebsp-estimated-buy-and-sell-price)
+		- [DISEBSP: Disaggregated Estimated Buy and Sell Price](#disebsp-disaggregated-estimated-buy-and-sell-price)
+		- [SOSO: SO to SO prices](#soso-so-to-so-prices)
+		- [ISPSTACK: Indicative System Price Stack](#ispstack-indicative-system-price-stack)
+		- [TBOD: Total Bid Offer Data](#tbod-total-bid-offer-data)
+	- [Forecasting Data](#forecasting-data)
+		- [DF: Demand Forecast](#df-demand-forecast)
+		- [NDF: National Demand Forecast](#ndf-national-demand-forecast)
+		- [TSDF: Transmission System Demand Forecast](#tsdf-transmission-system-demand-forecast)
+		- [IMBALNGC: Indicated Imbalance](#imbalngc-indicated-imbalance)
+		- [INDGEN: Indicated Generation](#indgen-indicated-generation)
+		- [MELNGC: Indicated Margin](#melngc-indicated-margin)
+		- [INDDEM: Indicated demand](#inddem-indicated-demand)
+		- [NDFD: Demand Forecast, 2-14 days ahead](#ndfd-demand-forecast-2-14-days-ahead)
+		- [TSDFD: Transmission System Demand Forecast](#tsdfd-transmission-system-demand-forecast)
+		- [TSDFW: Transmission System Demand Forecast, 2-52 weeks](#tsdfw-transmission-system-demand-forecast-2-52-weeks)
+		- [NDFW: Demand Forecast, 2-52 weeks](#ndfw-demand-forecast-2-52-weeks)
+		- [OCNMFW: Surplus forecast 2-52 weeks ahead](#ocnmfw-surplus-forecast-2-52-weeks-ahead)
+		- [OCNMFW2: Generating Plant Demand Margin, 2-52 weeks ahead](#ocnmfw2-generating-plant-demand-margin-2-52-weeks-ahead)
+		- [WINDFOR: Forecast peak wind generation](#windfor-forecast-peak-wind-generation)
+		- [OCNMFD: Surplus forecast 2-14 days ahead](#ocnmfd-surplus-forecast-2-14-days-ahead)
+		- [OCNMFD2: Generating Plant margin, 2-14 days ahead](#ocnmfd2-generating-plant-margin-2-14-days-ahead)
+		- [FOU2T14D: National Output Usable by Fuel Type, 2-14 Days ahead](#fou2t14d-national-output-usable-by-fuel-type-2-14-days-ahead)
+		- [FOU2T52W: National Output Usable by Fuel Type, 2-52 weeks ahead](#fou2t52w-national-output-usable-by-fuel-type-2-52-weeks-ahead)
+	- [SO Messages](#so-messages)
+		- [SYSWARN: System Warning](#syswarn-system-warning)
+		- [SYSMSG: System Message](#sysmsg-system-message)
+		- [DCONTROL: Demand Control Instruction Notification](#dcontrol-demand-control-instruction-notification)
+	- [Out-turn Data](#out-turn-data)
+		- [FREQ: System frequency data](#freq-system-frequency-data)
+		- [TEMP: Temperature Data](#temp-temperature-data)
+		- [INDO: Initial National Demand Out-Turn](#indo-initial-national-demand-out-turn)
+		- [ITSDO: Initial Transmission System Demand Outturn](#itsdo-initial-transmission-system-demand-outturn)
+		- [LOLP: Loss of Load Probability and De-rated Margin](#lolp-loss-of-load-probability-and-de-rated-margin)
+		- [NONBM: Non-BM STOR Out-Turn](#nonbm-non-bm-stor-out-turn)
+		- [INDOD: Daily Energy Volume Data](#indod-daily-energy-volume-data)
+		- [FUELINST: Instantaneous Generation by Fuel Type](#fuelinst-instantaneous-generation-by-fuel-type)
+		- [FUELHH: Half-hourly system-level generation by fuel type](#fuelhh-half-hourly-system-level-generation-by-fuel-type)
+- [Balancing Party-Level Data](#balancing-party-level-data)
+	- [Credit Data](#credit-data)
+		- [CDN: Credit Default Notice](#cdn-credit-default-notice)
+- [INFO type messages](#info-type-messages)
+	- [Test Messages](#test-messages)
+		- [TEST: Test message](#test-test-message)
+		- [MSG: Test message](#msg-test-message)
+
+<!-- /TOC -->
+
+## General parameters
 
 For brevity, these are common fields used by multiple message types, not further described. Where these are used they are listed by fieldname in the individual message indices.
 
@@ -36,6 +113,325 @@ For brevity, these are common fields used by multiple message types, not further
 | SD | date | Settlement Date | | formatted yyyy:MM:dd:00:00:00:GMT |
 | SP | integer(2) | Settlement Period | between 1 and 50 inclusive | |
 | TS | datetime | Timestamp of spot point | | formatted yyyy:MM:dd:hh:mm:ss:GMT |
+| NP | integer(2) | Number of spot points | | &nbsp; |
+
+## BM Unit Data
+
+### Submissions
+
+#### FPN / QPN: Final Physical Notification / Quiescent Physical Notification
+
+A Physical Notification is the intended export(+ve)/import(-ve) of a BMU nominated ahead of gate closure, and may be amended at any time up to gate closure.
+
+The FPN is the most recent PN submitted when gate closure passes, QPNs are the PNs which have been superceded prior to gate closure.
+
+Message consists of multiple timestamp and power value spot points (usually, but sometimes more than, 2)
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|VP| float|Power value| MW|&nbsp;|
+
+Index: BMU, SD, SP (BMU is indicated in message subject, SD/SP in message body)
+
+Unique FPNs exist for each index, however multiple QPNs may exist for a single BMU/SP, where values have been resubmitted.
+
+Example:
+
+`2017:03:29:00:02:03:GMT: subject=BMRA.BM.T_ABTH9.FPN, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VP=0.0,TS=2017:03:29:01:30:00:GMT,VP=0.0}`
+
+`2017:03:29:00:02:17:GMT: subject=BMRA.BM.E_ABERDARE.QPN, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VP=0.0,TS=2017:03:29:01:30:00:GMT,VP=0.0}`
+
+#### MEL / MIL: Maximum Export Limit / Maximum Import Limit
+
+The MEL is the maximum level at which a BMU may be exporting to the GB Transmission System at the Grid Supply Point, as nominated by the operator.
+
+The MIL is the maximum level at which a BMU may be importing from the GB Transmission System at the Grid Supply Point, as nominated by the operator.
+
+Message consists of multiple timestamp and power value spot points (usually, but sometimes more than, 2)
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|VE| float|(maximum export) power value| MW|&nbsp;|
+|VF| float|(maximum import) power value| MW|&nbsp;|
+
+Index: BMU, SD, SP, TS (BMU is indicated in message subject, SD/SP in message body)
+
+Example:
+
+`2017:03:29:00:02:16:GMT: subject=BMRA.BM.T_SIZB-2.MEL, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VE=602.0,TS=2017:03:29:01:30:00:GMT,VE=602.0}`
+
+`2017:03:29:00:01:51:GMT: subject=BMRA.BM.T_DRAXX-1.MIL, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VF=0.0,TS=2017:03:29:01:30:00:GMT,VF=0.0}`
+
+#### BOD: Bid/Offer Data
+
+Message consists of bid/offer spot points (normally, but not always, corresponding to the settlement period start and settlement period end).
+
+BOD pairs may extend from -5 to +5 e.g. up to 10 operating points each with 2 bid/offer pairs.
+
+Bids relate to reductions in export / increases in import
+
+Offers relate to increases in export / reductions in import
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|NN| integer |bid-offer pair number| MW|in range -5 to 5|
+|OP| float|offer price| £/MWh|&nbsp;|
+|BP| float|bid price| £/MWh|&nbsp;|
+|VB| float|bid volume| £/MWh|&nbsp;|
+
+Index: BMU, SD, SP, TS, NN (NN contained in message subject and body)
+
+Example:
+
+`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-4, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-4,OP=45.0,BP=-250.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-645.0,TS=2017:03:29:01:30:00:GMT,VB=-645.0}`
+
+`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-3, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-3,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-255.0,TS=2017:03:29:01:30:00:GMT,VB=-255.0}`
+
+`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-2, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-2,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-95.0,TS=2017:03:29:01:30:00:GMT,VB=-95.0}`
+
+`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-1, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-1,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-95.0,TS=2017:03:29:01:30:00:GMT,VB=-95.0}`
+
+`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.1, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=1,OP=150.0,BP=0.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=645.0,TS=2017:03:29:01:30:00:GMT,VB=645.0}`
+
+`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.2, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=2,OP=500.0,BP=0.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=645.0,TS=2017:03:29:01:30:00:GMT,VB=645.0}`
+
+### Acceptances
+
+#### BOAL: Bid Offer Acceptance Level
+
+Acceptance data for a single BM Unit, for a single acceptance for Settlement Dates before the P217 effective date. The data is published as it is received from the System Operator.
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|NK|integer|Acceptance number||unique ID|
+|TA|datetime|Acceptance time|||
+|AD|char(1) boolean|Deemed bid-offer flag|'T'/'F'|Indicates whether Bid-Offer was made for an acceptance. Value is 'T' or 'F'. If true, no Bid-Offer was made.|
+|VA|float|Acceptance level value|MW|&nbsp;|
+
+Example:
+
+`2009:01:01:00:09:41:GMT: subject=BMRA.BM.T_SHBA-1.BOAL, message={NK=59073,TA=2009:01:01:00:09:00:GMT,AD=F,NP=4,TS=2009:01:01:00:11:00:GMT,VA=597.0,TS=2009:01:01:00:13:00:GMT,VA=560.0,TS=2009:01:01:00:28:00:GMT,VA=560.0,TS=2009:01:01:00:30:00:GMT,VA=498.0}`
+
+
+#### BOALF: Bid Offer Acceptance Level Flagged
+
+Acceptance data for a single BM Unit, for a single acceptance for Settlement Dates on and after the P217 effective date. The data is published as it is received from the System Operator.
+
+Implemented on 2009-11-09 as part of P217
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|NK|integer|Acceptance number||unique ID|
+|TA|datetime|Acceptance time|||
+|AD|char(1) boolean|Deemed bid-offer flag|'T'/'F'|Indicates whether Bid-Offer was made for an acceptance. Value is 'T' or 'F'. If true, no Bid-Offer was made.|
+|SO|char(1) boolean|SO Flag|'T'/'F'|A value of ‘T’ indicates where an Acceptance or Balancing Services Adjustment Action item should be considered to be potentially impacted by transmission constraints.|
+|PF|char(1) boolean|STOR Flag|'T'/'F'|A value of ‘T’ indicates where an Acceptance or Balancing Services Adjustment Action item should be considered being related to a STOR Provider|
+|VA|float|Acceptance level value|MW|&nbsp;|
+
+Example:
+
+`2017:04:21:00:00:43:GMT: subject=BMRA.BM.T_SCCL-1.BOALF, message={NK=52908,SO=T,PF=F,TA=2017:04:20:23:59:00:GMT,AD=F,NP=4,TS=2017:04:21:00:05:00:GMT,VA=367.0,TS=2017:04:21:00:09:00:GMT,VA=310.0,TS=2017:04:21:00:35:00:GMT,VA=310.0,TS=2017:04:21:00:39:00:GMT,VA=367.0`
+
+
+### Cashflow and Volume Calculations
+
+#### BOAV: Bid-offer Acceptance Volumes
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|NN|integer|Bid-offer pair number||in range -5 to 5|
+|NK|integer|Acceptance number||unique ID|
+|BV|float|Bid volume|MWh||
+|OV|float|Offer volume|MWh||
+|SA|char(1)|Short acceptance flag||'S' or 'L' for short or long|
+
+Example:
+
+`2017:04:21:00:21:54:GMT: subject=BMRA.BM.T_EECL-1.BOAV.1, message={SD=2017:04:21:00:00:00:GMT,SP=2,NN=1,NK=88365,OV=0.0833,BV=0.0,SA=L}`
+
+
+#### EBOCF: Estimated Bid-Offer Cash Flows
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|NN|integer|Bid-offer pair number||in range -5 to 5|
+|BC|float|Bid cashflow|£||
+|OC|float|Offer cashflow|£||
+
+Example:
+
+`2017:04:21:00:21:54:GMT: subject=BMRA.BM.T_EECL-1.EBOCF.1, message={SD=2017:04:21:00:00:00:GMT,SP=2,NN=1,OC=4.95,BC=0.0}`
+
+#### PTAV: Period Total Bid-Offer Acceptance Volumes
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|NN|integer|Bid-offer pair number||in range -5 to 5|
+|BV|float|Total bid volume accepted for BO pair|MWh||
+|OV|float|Total offer volume accepted for BO pair|MWh||
+
+Example:
+
+`2009:01:01:00:20:20:GMT: subject=BMRA.BM.T_DAMC-1.PTAV.-1, message={SD=2008:12:31:00:00:00:GMT,SP=48,NN=-1,OV=1.5833334,BV=-8.333333}`
+
+#### DISPTAV: Disaggregated Period Total Bid-Offer Acceptance Volumes
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|NN|integer|Bid-offer pair number||in range -5 to 5|
+|BV|float|Total bid volume accepted for BO pair|MWh||
+|OV|float|Total offer volume accepted for BO pair|MWh||
+|P1||Tagged element of the Total Offer Volume accepted|||
+|P2||Repriced element of the Total Offer Volume accepted|||
+|P3||Originally-priced element of the Total Offer Volume accepted|||
+|P4||Tagged element of the Total Bid Volume accepted|||
+|P5||Repriced element of the Total Bid Volume accepted|||
+|P6||Originally-priced element of the Total Bid Volume accepted||&nbsp;|
+
+Example:
+
+`2017:04:21:00:21:54:GMT: subject=BMRA.BM.T_EECL-1.DISPTAV.1, message={SD=2017:04:21:00:00:00:GMT,SP=2,NN=1,OV=0.0833,P1=0.0833,P2=0.0,P3=0.0,BV=0.0,P4=0.0,P5=0.0,P6=0.0}`
+
+#### QAS: BM Unit applicable balancing services Volume
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|SV||Energy Volume for the Settlement Period|MWh|&nbsp;|
+
+Example:
+
+`2017:04:21:07:12:49:GMT: subject=BMRA.BM.T_BAGE-1.QAS, message={SD=2017:04:20:00:00:00:GMT,SP=1,SV=1.621}`
+
+
+
+## Dynamic Data
+
+### General Parameters
+TE: Time effective from
+
+### Submissions
+
+#### SIL: Stable Import Limit
+  Parameters:
+    SI: Stable Import Limit (MW)
+
+Example:
+
+`2018:01:02:11:56:15:GMT: subject=BMRA.DYNAMIC.2__MPGEN002.SIL, message={TE=2018:01:02:11:54:00:GMT,SI=0.0}`
+
+
+#### SEL: Stable Export Limit
+  Parameters:
+    SE: Stable Export Limit (MW)
+
+Example:
+
+`2017:04:21:01:21:21:GMT: subject=BMRA.DYNAMIC.T_ROCK-1.SEL, message={TE=2017:04:21:01:20:00:GMT,SE=240.0}`
+
+#### MNZT: Minimum Non-zero Time
+  Parameters:
+    MN: Minimum non-zero time (seconds? minutes?)
+
+Example:
+
+2017:04:21:01:21:54:GMT: subject=BMRA.DYNAMIC.T_STAY-2.MNZT, message={TE=2017:04:21:01:21:00:GMT,MN=360}
+
+#### NDZ: Notice to deviate from zero
+  Parameters:
+    DZ: Notice to deviate from zero time (seconds? minutes?)
+
+Example:
+
+`2017:04:21:01:21:55:GMT: subject=BMRA.DYNAMIC.T_STAY-2.NDZ, message={TE=2017:04:21:01:21:00:GMT,DZ=58}`
+
+#### RURE: Run-up rates export
+  Parameters:
+    U1: Run up rate 1 (MW/minute)
+    UB: Run up elbow 2 (MW)
+    U2: Run up rate 2 (MW/minute)
+    UC: Run up elbow 3 (MW)
+    U3: Run up rate 3 (MW/minute)
+
+Example:
+
+`2017:04:21:01:22:19:GMT: subject=BMRA.DYNAMIC.T_STAY-2.RURE, message={TE=2017:04:21:01:21:00:GMT,U1=8.4,UB=45,U2=0.2,UC=48,U3=17.5}`
+
+#### RURI: Run-up rates import
+  Parameters:
+    U1: Run up rate 1 (MW/minute)
+    UB: Run up elbow 2 (MW)
+    U2: Run up rate 2 (MW/minute)
+    UC: Run up elbow 3 (MW)
+    U3: Run up rate 3 (MW/minute)
+
+Example:
+
+`2002:01:02:17:02:01:GMT: subject=BMRA.DYNAMIC.2__JYELG001.RURI, message={TE=2002:01:02:17:00:00:GMT,U1=900.0,UB=0,U2=0.0,UC=0,U3=0.0}`
+
+#### RDRE: Run-down rate Export
+  Parameters:
+    R1: Run up rate 1 (MW/minute)
+    RB: Run up elbow 2 (MW)
+    R2: Run up rate 2 (MW/minute)
+    RC: Run up elbow 3 (MW)
+    R3: Run up rate 3 (MW/minute)
+
+Example:
+
+`2017:04:21:05:04:39:GMT: subject=BMRA.DYNAMIC.T_ROCK-1.RDRE, message={TE=2017:04:21:05:04:00:GMT,R1=25.0,RB=220,R2=47.5,RC=125,R3=55.0}`
+
+#### RDRI: Run-down rate Import
+  Parameters:
+    R1: Run up rate 1 (MW/minute)
+    RB: Run up elbow 2 (MW)
+    R2: Run up rate 2 (MW/minute)
+    RC: Run up elbow 3 (MW)
+    R3: Run up rate 3 (MW/minute)
+
+Example:
+
+`2002:01:02:17:01:50:GMT: subject=BMRA.DYNAMIC.2__JYELG001.RDRI, message={TE=2002:01:02:17:00:00:GMT,R1=900.0,RB=0,R2=0.0,RC=0,R3=0.0}`
+
+#### MDV: Maximum Delivery Volume
+  Parameters:
+    DV: Delivery Volume
+
+Example:
+
+`2002:01:02:17:01:13:GMT: subject=BMRA.DYNAMIC.2__JYELG001.MDV, message={TE=2002:01:02:17:00:00:GMT,DV=-44.0}`
+
+#### MDP: Maximum Delivery Period
+  Parameters:
+    DP: Delivery period
+
+Example:
+
+`2002:01:02:17:01:14:GMT: subject=BMRA.DYNAMIC.2__JYELG001.MDP, message={TE=2002:01:02:17:00:00:GMT,DP=239}`
+
+
+#### MZT: Minimum Zero Time
+  Parameters:
+    MZ: Minimum Zero Time (seconds? minutes?)
+
+Example:
+
+`2017:04:21:02:20:27:GMT: subject=BMRA.DYNAMIC.T_FOYE-2.MZT, message={TE=2017:04:21:02:19:00:GMT,MZ=30}`
+
+#### NTB: Notice to deliver bids
+  Parameters:
+    DB: Notice to deliver bids (minutes)
+Example:
+
+`2017:04:21:02:20:44:GMT: subject=BMRA.DYNAMIC.T_FOYE-2.NTB, message={TE=2017:04:21:02:19:00:GMT,DB=2}`
+
+#### NTO: Notice to deliver offers
+  Parameters:
+    DO: Notice to deliver offers (minutes)
+Example:
+
+`2017:04:21:02:20:44:GMT: subject=BMRA.DYNAMIC.T_FOYE-2.NTO, message={TE=2017:04:21:02:19:00:GMT,DO=2}`
+
+## SYSTEM Data
 
 ### Price Calculation Data
 
@@ -350,32 +746,24 @@ Example:
 
 
 #### NDFD: Demand Forecast, 2-14 days ahead
-  Parameters:
-    VD: Demand in MW
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|VD||Demand|MW|&nbsp;|
 
 Example:
 
 `2017:04:21:13:45:37:GMT: subject=BMRA.SYSTEM.NDFD, message={TP=2017:04:21:13:45:00:GMT,NR=13,SD=2017:04:23:00:00:00:GMT,SP=3,VD=30950.0,SD=2017:04:24:00:00:00:GMT,SP=3,VD=34400.0,SD=2017:04:25:00:00:00:GMT,SP=3,VD=34700.0,SD=2017:04:26:00:00:00:GMT,SP=3,VD=35690.0,SD=2017:04:27:00:00:00:GMT,SP=3,VD=35700.0,SD=2017:04:28:00:00:00:GMT,SP=3,VD=35330.0,SD=2017:04:29:00:00:00:GMT,SP=3,VD=30090.0,SD=2017:04:30:00:00:00:GMT,SP=3,VD=29400.0,SD=2017:05:01:00:00:00:GMT,SP=3,VD=31410.0,SD=2017:05:02:00:00:00:GMT,SP=3,VD=33770.0,SD=2017:05:03:00:00:00:GMT,SP=3,VD=33500.0,SD=2017:05:04:00:00:00:GMT,SP=3,VD=32710.0,SD=2017:05:05:00:00:00:GMT,SP=3,VD=32360.0}`
 
 #### TSDFD: Transmission System Demand Forecast
-  Parameters:
-    VD: Demand in MW
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|VD||Demand|MW|&nbsp;|
 
 Example:
 
 `2017:04:21:13:45:53:GMT: subject=BMRA.SYSTEM.TSDFD, message={TP=2017:04:21:13:45:00:GMT,NR=13,SD=2017:04:23:00:00:00:GMT,SP=3,VD=31450.0,SD=2017:04:24:00:00:00:GMT,SP=3,VD=34900.0,SD=2017:04:25:00:00:00:GMT,SP=3,VD=35200.0,SD=2017:04:26:00:00:00:GMT,SP=3,VD=36190.0,SD=2017:04:27:00:00:00:GMT,SP=3,VD=36200.0,SD=2017:04:28:00:00:00:GMT,SP=3,VD=35830.0,SD=2017:04:29:00:00:00:GMT,SP=3,VD=30590.0,SD=2017:04:30:00:00:00:GMT,SP=3,VD=29900.0,SD=2017:05:01:00:00:00:GMT,SP=3,VD=31910.0,SD=2017:05:02:00:00:00:GMT,SP=3,VD=34270.0,SD=2017:05:03:00:00:00:GMT,SP=3,VD=34000.0,SD=2017:05:04:00:00:00:GMT,SP=3,VD=33210.0,SD=2017:05:05:00:00:00:GMT,SP=3,VD=32860.0}`
-
-
-#### INDOD: Daily Energy Volume Data
-  Parameters:
-    EO: Energy Volume Out-turn (MWh)
-    EL: Energy Volume Low Reference (MWh)
-    EH: Energy Volume High Reference (MWh)
-    EN: Energy Normal Reference Volume (MWh)
-
-Example:
-
-`2017:04:21:23:15:37:GMT: subject=BMRA.SYSTEM.INDOD, message={TP=2017:04:21:23:15:00:GMT,SD=2017:04:21:00:00:00:GMT,EO=716234,EL=657654,EH=808531,EN=757111}`
 
 #### TSDFW: Transmission System Demand Forecast, 2-52 weeks
   Parameters:
@@ -417,39 +805,34 @@ Example:
 
 `2018:01:04:13:37:17:GMT: subject=BMRA.SYSTEM.OCNMFW2, message={TP=2018:01:04:13:35:00:GMT,NR=51,WN=3,CY=2018,DM=13753.0,WN=4,CY=2018,DM=13351.0,WN=5,CY=2018,DM=13068.0,WN=6,CY=2018,DM=14611.0,WN=7,CY=2018,DM=16020.0,WN=8,CY=2018,DM=18103.0,WN=9,CY=2018,DM=17484.0,WN=10,CY=2018,DM=16061.0,WN=11,CY=2018,DM=17612.0,WN=12,CY=2018,DM=19269.0,WN=13,CY=2018,DM=19904.0,WN=14,CY=2018,DM=15268.0,WN=15,CY=2018,DM=15988.0,WN=16,CY=2018,DM=16792.0,WN=17,CY=2018,DM=18282.0,WN=18,CY=2018,DM=17764.0,WN=19,CY=2018,DM=16634.0,WN=20,CY=2018,DM=18714.0,WN=21,CY=2018,DM=18944.0,WN=22,CY=2018,DM=22335.0,WN=23,CY=2018,DM=18571.0,WN=24,CY=2018,DM=18305.0,WN=25,CY=2018,DM=18540.0,WN=26,CY=2018,DM=17339.0,WN=27,CY=2018,DM=15684.0,WN=28,CY=2018,DM=14211.0,WN=29,CY=2018,DM=17441.0,WN=30,CY=2018,DM=19378.0,WN=31,CY=2018,DM=20504.0,WN=32,CY=2018,DM=21038.0,WN=33,CY=2018,DM=20934.0,WN=34,CY=2018,DM=20876.0,WN=35,CY=2018,DM=21033.0,WN=36,CY=2018,DM=19809.0,WN=37,CY=2018,DM=17131.0,WN=38,CY=2018,DM=17342.0,WN=39,CY=2018,DM=18612.0,WN=40,CY=2018,DM=17835.0,WN=41,CY=2018,DM=16493.0,WN=42,CY=2018,DM=15740.0,WN=43,CY=2018,DM=15508.0,WN=44,CY=2018,DM=14023.0,WN=45,CY=2018,DM=13305.0,WN=46,CY=2018,DM=13106.0,WN=47,CY=2018,DM=11863.0,WN=48,CY=2018,DM=12052.0,WN=49,CY=2018,DM=11081.0,WN=50,CY=2018,DM=10995.0,WN=51,CY=2018,DM=11229.0,WN=52,CY=2018,DM=18039.0,WN=1,CY=2019,DM=13693.0}`
 
-WINDFOR
-  Forecast peak wind generation
+#### WINDFOR: Forecast peak wind generation
   Parameters:
     VG: Generation (MW)
     TR: Total registered Wind Generation capacity (MW)
   Example entry:
 `2017:04:21:04:31:00:GMT: subject=BMRA.SYSTEM.WINDFOR, message={NR=70,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=1,VG=2781.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=3,VG=2937.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=5,VG=3169.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=7,VG=3433.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=9,VG=3662.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=11,VG=3854.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=13,VG=4045.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=15,VG=4148.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=17,VG=4260.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=19,VG=4334.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=21,VG=4408.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=23,VG=4448.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=25,VG=4505.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=27,VG=4266.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=29,VG=4278.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=31,VG=4224.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=33,VG=4503.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=35,VG=4295.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=37,VG=3983.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=39,VG=3598.0,TR=9910,TP=2017:04:20:22:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=41,VG=3191.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=43,VG=2773.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=45,VG=2498.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:21:00:00:00:GMT,SP=47,VG=2368.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=1,VG=2296.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=3,VG=2204.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=5,VG=2149.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=7,VG=2108.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=9,VG=2012.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=11,VG=1868.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=13,VG=1708.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=15,VG=1534.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=17,VG=1426.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=19,VG=1412.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=21,VG=1404.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=23,VG=1495.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=25,VG=1554.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=27,VG=1615.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=29,VG=1765.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=31,VG=1895.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=33,VG=2001.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=35,VG=2104.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=37,VG=2044.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=39,VG=2004.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=41,VG=1707.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=43,VG=1466.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=45,VG=1272.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:22:00:00:00:GMT,SP=47,VG=1060.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=1,VG=902.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=3,VG=779.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=5,VG=756.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=7,VG=745.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=9,VG=748.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=11,VG=777.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=13,VG=808.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=15,VG=840.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=17,VG=903.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=19,VG=984.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=21,VG=1107.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=23,VG=1252.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=25,VG=1431.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=27,VG=1640.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=29,VG=1861.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=31,VG=2097.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=33,VG=2343.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=35,VG=2466.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=37,VG=2597.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=39,VG=2740.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=41,VG=2896.0,TR=9910,TP=2017:04:21:04:30:00:GMT,SD=2017:04:23:00:00:00:GMT,SP=43,VG=3087.0,TR=9910}`
 
-OCNMFD
-  Surplus forecast 2-14 days ahead
+#### OCNMFD: Surplus forecast 2-14 days ahead
   Parameters:
     VM: Surplus in MW
   Example entry:
 `2017:04:21:12:38:37:GMT: subject=BMRA.SYSTEM.OCNMFD, message={TP=2017:04:21:12:37:00:GMT,NR=13,SD=2017:04:23:00:00:00:GMT,SP=3,VM=10910.0,SD=2017:04:24:00:00:00:GMT,SP=3,VM=11422.0,SD=2017:04:25:00:00:00:GMT,SP=3,VM=10520.0,SD=2017:04:26:00:00:00:GMT,SP=3,VM=7643.0,SD=2017:04:27:00:00:00:GMT,SP=3,VM=7239.0,SD=2017:04:28:00:00:00:GMT,SP=3,VM=6933.0,SD=2017:04:29:00:00:00:GMT,SP=3,VM=10730.0,SD=2017:04:30:00:00:00:GMT,SP=3,VM=11714.0,SD=2017:05:01:00:00:00:GMT,SP=3,VM=11903.0,SD=2017:05:02:00:00:00:GMT,SP=3,VM=9834.0,SD=2017:05:03:00:00:00:GMT,SP=3,VM=10329.0,SD=2017:05:04:00:00:00:GMT,SP=3,VM=10910.0,SD=2017:05:05:00:00:00:GMT,SP=3,VM=11699.0}`
 
-OCNMFD2
-  Generating Plant margin, 2-14 days ahead
+#### OCNMFD2: Generating Plant margin, 2-14 days ahead
   Parameters:
     DM: Margin in MW
   Example entry:
 `2017:04:21:12:39:24:GMT: subject=BMRA.SYSTEM.OCNMFD2, message={TP=2017:04:21:12:38:00:GMT,NR=13,SD=2017:04:23:00:00:00:GMT,DM=15686.0,SD=2017:04:24:00:00:00:GMT,DM=16196.0,SD=2017:04:25:00:00:00:GMT,DM=15291.0,SD=2017:04:26:00:00:00:GMT,DM=11728.0,SD=2017:04:27:00:00:00:GMT,DM=11324.0,SD=2017:04:28:00:00:00:GMT,DM=11028.0,SD=2017:04:29:00:00:00:GMT,DM=14965.0,SD=2017:04:30:00:00:00:GMT,DM=15967.0,SD=2017:05:01:00:00:00:GMT,DM=16103.0,SD=2017:05:02:00:00:00:GMT,DM=13971.0,SD=2017:05:03:00:00:00:GMT,DM=14473.0,SD=2017:05:04:00:00:00:GMT,DM=15075.0,SD=2017:05:05:00:00:00:GMT,DM=15873.0}`
 
 
-FOU2T14D
-  National Output Usable by Fuel Type, 2-14 Days ahead
+#### FOU2T14D: National Output Usable by Fuel Type, 2-14 Days ahead
   Parameters:
     FT: Fuel type, string
     OU: Output Usable (MW)
 Example entry:
 `2017:04:21:12:39:09:GMT: subject=BMRA.SYSTEM.FOU2T14D, message={TP=2017:04:21:12:38:00:GMT,NR=169,SD=2017:04:23:00:00:00:GMT,FT=WIND,OU=4084.0,SD=2017:04:23:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:04:23:00:00:00:GMT,FT=OTHER,OU=2065.0,SD=2017:04:23:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:04:23:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:04:23:00:00:00:GMT,FT=NUCLEAR,OU=6898.0,SD=2017:04:23:00:00:00:GMT,FT=NPSHYD,OU=1030.0,SD=2017:04:23:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:04:23:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:04:23:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:04:23:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:04:23:00:00:00:GMT,FT=COAL,OU=6831.0,SD=2017:04:23:00:00:00:GMT,FT=CCGT,OU=23092.0,SD=2017:04:24:00:00:00:GMT,FT=WIND,OU=6357.0,SD=2017:04:24:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:04:24:00:00:00:GMT,FT=OTHER,OU=2065.0,SD=2017:04:24:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:04:24:00:00:00:GMT,FT=OCGT,OU=700.0,SD=2017:04:24:00:00:00:GMT,FT=NUCLEAR,OU=6898.0,SD=2017:04:24:00:00:00:GMT,FT=NPSHYD,OU=1030.0,SD=2017:04:24:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:04:24:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:04:24:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:04:24:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:04:24:00:00:00:GMT,FT=COAL,OU=8121.0,SD=2017:04:24:00:00:00:GMT,FT=CCGT,OU=23517.0,SD=2017:04:25:00:00:00:GMT,FT=WIND,OU=6440.0,SD=2017:04:25:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:04:25:00:00:00:GMT,FT=OTHER,OU=2065.0,SD=2017:04:25:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:04:25:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:04:25:00:00:00:GMT,FT=NUCLEAR,OU=6658.0,SD=2017:04:25:00:00:00:GMT,FT=NPSHYD,OU=1030.0,SD=2017:04:25:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:04:25:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:04:25:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:04:25:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:04:25:00:00:00:GMT,FT=COAL,OU=7621.0,SD=2017:04:25:00:00:00:GMT,FT=CCGT,OU=23541.0,SD=2017:04:26:00:00:00:GMT,FT=WIND,OU=3799.0,SD=2017:04:26:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:04:26:00:00:00:GMT,FT=OTHER,OU=2065.0,SD=2017:04:26:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:04:26:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:04:26:00:00:00:GMT,FT=NUCLEAR,OU=6750.0,SD=2017:04:26:00:00:00:GMT,FT=NPSHYD,OU=1030.0,SD=2017:04:26:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:04:26:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:04:26:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:04:26:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:04:26:00:00:00:GMT,FT=COAL,OU=7129.0,SD=2017:04:26:00:00:00:GMT,FT=CCGT,OU=24009.0,SD=2017:04:27:00:00:00:GMT,FT=WIND,OU=2352.0,SD=2017:04:27:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:04:27:00:00:00:GMT,FT=OTHER,OU=2063.0,SD=2017:04:27:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:04:27:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:04:27:00:00:00:GMT,FT=NUCLEAR,OU=6809.0,SD=2017:04:27:00:00:00:GMT,FT=NPSHYD,OU=1030.0,SD=2017:04:27:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:04:27:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:04:27:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:04:27:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:04:27:00:00:00:GMT,FT=COAL,OU=8121.0,SD=2017:04:27:00:00:00:GMT,FT=CCGT,OU=24013.0,SD=2017:04:28:00:00:00:GMT,FT=WIND,OU=2534.0,SD=2017:04:28:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:04:28:00:00:00:GMT,FT=OTHER,OU=2115.0,SD=2017:04:28:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:04:28:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:04:28:00:00:00:GMT,FT=NUCLEAR,OU=6781.0,SD=2017:04:28:00:00:00:GMT,FT=NPSHYD,OU=1016.0,SD=2017:04:28:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:04:28:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:04:28:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:04:28:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:04:28:00:00:00:GMT,FT=COAL,OU=7716.0,SD=2017:04:28:00:00:00:GMT,FT=CCGT,OU=23560.0,SD=2017:04:29:00:00:00:GMT,FT=WIND,OU=2748.0,SD=2017:04:29:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:04:29:00:00:00:GMT,FT=OTHER,OU=2115.0,SD=2017:04:29:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:04:29:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:04:29:00:00:00:GMT,FT=NUCLEAR,OU=6624.0,SD=2017:04:29:00:00:00:GMT,FT=NPSHYD,OU=1016.0,SD=2017:04:29:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:04:29:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:04:29:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:04:29:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:04:29:00:00:00:GMT,FT=COAL,OU=7216.0,SD=2017:04:29:00:00:00:GMT,FT=CCGT,OU=22700.0,SD=2017:04:30:00:00:00:GMT,FT=WIND,OU=2867.0,SD=2017:04:30:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:04:30:00:00:00:GMT,FT=OTHER,OU=2115.0,SD=2017:04:30:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:04:30:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:04:30:00:00:00:GMT,FT=NUCLEAR,OU=6914.0,SD=2017:04:30:00:00:00:GMT,FT=NPSHYD,OU=1016.0,SD=2017:04:30:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:04:30:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:04:30:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:04:30:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:04:30:00:00:00:GMT,FT=COAL,OU=7216.0,SD=2017:04:30:00:00:00:GMT,FT=CCGT,OU=22603.0,SD=2017:05:01:00:00:00:GMT,FT=WIND,OU=3063.0,SD=2017:05:01:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:05:01:00:00:00:GMT,FT=OTHER,OU=2115.0,SD=2017:05:01:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:05:01:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:05:01:00:00:00:GMT,FT=NUCLEAR,OU=7179.0,SD=2017:05:01:00:00:00:GMT,FT=NPSHYD,OU=951.0,SD=2017:05:01:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:05:01:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:05:01:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:05:01:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:05:01:00:00:00:GMT,FT=COAL,OU=7716.0,SD=2017:05:01:00:00:00:GMT,FT=CCGT,OU=23853.0,SD=2017:05:02:00:00:00:GMT,FT=WIND,OU=2773.0,SD=2017:05:02:00:00:00:GMT,FT=PS,OU=2408.0,SD=2017:05:02:00:00:00:GMT,FT=OTHER,OU=2115.0,SD=2017:05:02:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:05:02:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:05:02:00:00:00:GMT,FT=NUCLEAR,OU=7288.0,SD=2017:05:02:00:00:00:GMT,FT=NPSHYD,OU=965.0,SD=2017:05:02:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:05:02:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:05:02:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:05:02:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:05:02:00:00:00:GMT,FT=COAL,OU=7716.0,SD=2017:05:02:00:00:00:GMT,FT=CCGT,OU=24248.0,SD=2017:05:03:00:00:00:GMT,FT=WIND,OU=2857.0,SD=2017:05:03:00:00:00:GMT,FT=PS,OU=2648.0,SD=2017:05:03:00:00:00:GMT,FT=OTHER,OU=2115.0,SD=2017:05:03:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:05:03:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:05:03:00:00:00:GMT,FT=NUCLEAR,OU=7361.0,SD=2017:05:03:00:00:00:GMT,FT=NPSHYD,OU=965.0,SD=2017:05:03:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:05:03:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:05:03:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:05:03:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:05:03:00:00:00:GMT,FT=COAL,OU=7716.0,SD=2017:05:03:00:00:00:GMT,FT=CCGT,OU=24083.0,SD=2017:05:04:00:00:00:GMT,FT=WIND,OU=2889.0,SD=2017:05:04:00:00:00:GMT,FT=PS,OU=2648.0,SD=2017:05:04:00:00:00:GMT,FT=OTHER,OU=2115.0,SD=2017:05:04:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:05:04:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:05:04:00:00:00:GMT,FT=NUCLEAR,OU=7361.0,SD=2017:05:04:00:00:00:GMT,FT=NPSHYD,OU=965.0,SD=2017:05:04:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:05:04:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:05:04:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:05:04:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:05:04:00:00:00:GMT,FT=COAL,OU=7716.0,SD=2017:05:04:00:00:00:GMT,FT=CCGT,OU=23863.0,SD=2017:05:05:00:00:00:GMT,FT=WIND,OU=4033.0,SD=2017:05:05:00:00:00:GMT,FT=PS,OU=2648.0,SD=2017:05:05:00:00:00:GMT,FT=OTHER,OU=2115.0,SD=2017:05:05:00:00:00:GMT,FT=OIL,OU=0.0,SD=2017:05:05:00:00:00:GMT,FT=OCGT,OU=728.0,SD=2017:05:05:00:00:00:GMT,FT=NUCLEAR,OU=7361.0,SD=2017:05:05:00:00:00:GMT,FT=NPSHYD,OU=965.0,SD=2017:05:05:00:00:00:GMT,FT=INTNED,OU=1000.0,SD=2017:05:05:00:00:00:GMT,FT=INTIRL,OU=250.0,SD=2017:05:05:00:00:00:GMT,FT=INTFR,OU=2000.0,SD=2017:05:05:00:00:00:GMT,FT=INTEW,OU=0.0,SD=2017:05:05:00:00:00:GMT,FT=COAL,OU=7716.0,SD=2017:05:05:00:00:00:GMT,FT=CCGT,OU=23167.0}`
 
-FOU2T52W
-  National Output Usable by Fuel Type, 2-52 weeks ahead
+#### FOU2T52W: National Output Usable by Fuel Type, 2-52 weeks ahead
   Parameters:
     WN: Week Number
     CY: Calendar year
@@ -565,12 +948,27 @@ Example:
 `2017:04:21:00:12:37:GMT: subject=BMRA.SYSTEM.LOLP, message={TP=2017:04:21:00:12:31:GMT,NR=4,SD=2017:04:21:00:00:00:GMT,SP=5,LP=0.0,DR=15175.511,SD=2017:04:21:00:00:00:GMT,SP=7,LP=0.0,DR=15777.266,SD=2017:04:21:00:00:00:GMT,SP=11,LP=0.0,DR=14245.876,SD=2017:04:21:00:00:00:GMT,SP=19,LP=0.0,DR=6852.614}`
 
 #### NONBM: Non-BM STOR Out-Turn
-  Parameters:
-    NB: Non-BM STOR Volume (MWh)
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|NB||Non-BM STOR Volume|MWh||
 
 Example:
 
 `2017:03:29:00:01:24:GMT: subject=BMRA.SYSTEM.NONBM, message={TP=2017:03:29:00:00:00:GMT,SD=2017:03:29:00:00:00:GMT,SP=2,NB=0}`
+
+#### INDOD: Daily Energy Volume Data
+
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|EO||Energy Volume Out-turn|MWh||
+|EL||Energy Volume Low Reference|MWh||
+|EH||Energy Volume High Reference|MWh||
+|EN||Energy Normal Reference Volume|MWh|&nbsp;|
+
+Example:
+
+`2017:04:21:23:15:37:GMT: subject=BMRA.SYSTEM.INDOD, message={TP=2017:04:21:23:15:00:GMT,SD=2017:04:21:00:00:00:GMT,EO=716234,EL=657654,EH=808531,EN=757111}`
 
 #### FUELINST: Instantaneous Generation by Fuel Type
   Parameters:
@@ -599,268 +997,10 @@ Example:
 
 
 
-## BM Unit Data
-
-General parameters:
-  SD: Settlement Date, formatted yyyy:MM:dd:hh:mm:ss:GMT
-  SP: Settlement Period, integer between 1 and 50 inclusive
-
-### BOAL: Bid Offer Acceptance Level
-  Acceptance data for a single BM Unit, for a single acceptance for Settlement Dates before the P217 effective date. The data is published as it is received from the System Operator.
-  Parameters:
-    NK: Acceptance Number, integer id
-    TA: Acceptance Time
-    AD: Deemed Bid-Offer Flag, Indicates whether Bid-Offer was made for an acceptance. Value is 'T' or 'F'. If true, no Bid-Offer was made.
-    VA: Acceptance Level Value (MW)
-
-Example:
-
-`2009:01:01:00:09:41:GMT: subject=BMRA.BM.T_SHBA-1.BOAL, message={NK=59073,TA=2009:01:01:00:09:00:GMT,AD=F,NP=4,TS=2009:01:01:00:11:00:GMT,VA=597.0,TS=2009:01:01:00:13:00:GMT,VA=560.0,TS=2009:01:01:00:28:00:GMT,VA=560.0,TS=2009:01:01:00:30:00:GMT,VA=498.0}`
-
-
-### BOALF: Bid Offer Acceptance Level Flagged
-  Acceptance data for a single BM Unit, for a single acceptance for Settlement Dates on and after the P217 effective date. The data is published as it is received from the System Operator.
-  Implemented on 2009-11-09 as part of P217
-  Parameters:
-    NK: Acceptance Number, integer id
-    SO: SO Flag, A value of ‘T’ indicates where an Acceptance or Balancing Services Adjustment Action item should be considered to be potentially impacted by transmission constraints. 'T' or 'F'
-    PF: STOR Flag, A value of ‘T’ indicates where an Acceptance or Balancing Services Adjustment Action item should be considered being related to a STOR Provider
-    TA: Acceptance Time
-    AD: Deemed Bid-Offer Flag, Indicates whether Bid-Offer was made for an acceptance. Value is 'T' or 'F'. If true, no Bid-Offer was made.
-    VA: Acceptance Level Value (MW)
-
-Example:
-
-`2017:04:21:00:00:43:GMT: subject=BMRA.BM.T_SCCL-1.BOALF, message={NK=52908,SO=T,PF=F,TA=2017:04:20:23:59:00:GMT,AD=F,NP=4,TS=2017:04:21:00:05:00:GMT,VA=367.0,TS=2017:04:21:00:09:00:GMT,VA=310.0,TS=2017:04:21:00:35:00:GMT,VA=310.0,TS=2017:04:21:00:39:00:GMT,VA=367.0`
-
-#### FPN / QPN: Final Physical Notification / Quiescent Physical Notification
-
-  Message consists of 2 timestamp and power value pairs, relating to elbow points
-  Parameters:
-    NP: Number of spot points, integer (expected=2)
-    TS: Timestamp of point, formatted yyyy:MM:dd:hh:mm:ss:GMT
-    VP: Power value in MW, float
-
-Example:
-
-`2017:03:29:00:02:03:GMT: subject=BMRA.BM.T_ABTH9.FPN, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VP=0.0,TS=2017:03:29:01:30:00:GMT,VP=0.0}`
-
-`2017:03:29:00:02:17:GMT: subject=BMRA.BM.E_ABERDARE.QPN, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VP=0.0,TS=2017:03:29:01:30:00:GMT,VP=0.0}`
-
-#### MEL / MIL: Maximum Export Limit / Minimum Import Limit
-  Message consists of 2 timestamp and power value pairs, relating to elbow points
-  Parameters:
-    NP: Number of spot points, integer (expected=2)
-    TS: Timestamp of point, formatted yyyy:MM:dd:hh:mm:ss:GMT
-    VE: (maximum export) power value in MW, float
-    VF: (minimum import) power value in MW, float
-
-Example:
-
-`2017:03:29:00:02:16:GMT: subject=BMRA.BM.T_SIZB-2.MEL, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VE=602.0,TS=2017:03:29:01:30:00:GMT,VE=602.0}`
-
-`2017:03:29:00:01:51:GMT: subject=BMRA.BM.T_DRAXX-1.MIL, message={SD=2017:03:29:00:00:00:GMT,SP=5,NP=2,TS=2017:03:29:01:00:00:GMT,VF=0.0,TS=2017:03:29:01:30:00:GMT,VF=0.0}`
-
-#### BOD: Bid/Offer Data
-  Message consists of 2 bid/offer data pairs (settlement period start and settlement period end)
-  BOD pairs may extend from -5 to +5 e.g. up to 10 operating points each with 2 bid/offer pairs
-  Parameters:
-    NN: Bid-offer pair number, integer (in range -5 to 5)
-    OP: Offer price (£/MWh)
-    BP: Bid price (£/MWh)
-    NP: Number of spot points, integer (expected=2)
-    TS: Timestamp
-    VB: Bid volume
-
-Example:
-
-`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-4, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-4,OP=45.0,BP=-250.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-645.0,TS=2017:03:29:01:30:00:GMT,VB=-645.0}`
-
-`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-3, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-3,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-255.0,TS=2017:03:29:01:30:00:GMT,VB=-255.0}`
-
-`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-2, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-2,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-95.0,TS=2017:03:29:01:30:00:GMT,VB=-95.0}`
-
-`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.-1, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=-1,OP=45.0,BP=-100.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=-95.0,TS=2017:03:29:01:30:00:GMT,VB=-95.0}`
-
-`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.1, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=1,OP=150.0,BP=0.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=645.0,TS=2017:03:29:01:30:00:GMT,VB=645.0}`
-
-`2017:03:29:00:02:02:GMT: subject=BMRA.BM.T_DRAXX-1.BOD.2, message={SD=2017:03:29:00:00:00:GMT,SP=5,NN=2,OP=500.0,BP=0.0,NP=2,TS=2017:03:29:01:00:00:GMT,VB=645.0,TS=2017:03:29:01:30:00:GMT,VB=645.0}`
-
-#### BOAV: Bid-offer Acceptance Volumes
-  Parameters:
-    NK: Acceptance number, unique integer
-    BV: Bid volume (MWh)
-    OV: Offer volume (MWh)
-    NN: Bid-offer pair number, integer (in range -5 to 5)
-    SA: Short acceptance flag, 'S' or 'L'
-  Example entry:
-`2017:04:21:00:21:54:GMT: subject=BMRA.BM.T_EECL-1.BOAV.1, message={SD=2017:04:21:00:00:00:GMT,SP=2,NN=1,NK=88365,OV=0.0833,BV=0.0,SA=L}`
-
-
-#### EBOCF: Estimated Bid-Offer Cash Flows
-  Parameters:
-    NN: Bid-offer pair number, integer (in range -5 to 5)
-    OC: Offer cashflow (£)
-    BC: Bid cashflow (£)
-  Example entry:
-`2017:04:21:00:21:54:GMT: subject=BMRA.BM.T_EECL-1.EBOCF.1, message={SD=2017:04:21:00:00:00:GMT,SP=2,NN=1,OC=4.95,BC=0.0}`
-
-#### PTAV: Period Total Bid-Offer Acceptance Volumes
-  Parameters:
-    NN: Bid-offer pair number, integer (in range -5 to 5)
-    OV: Total offer volume accepted for BO pair
-    BV: Total bid volume accepted for BO pair
-  Example entry:
-`2009:01:01:00:20:20:GMT: subject=BMRA.BM.T_DAMC-1.PTAV.-1, message={SD=2008:12:31:00:00:00:GMT,SP=48,NN=-1,OV=1.5833334,BV=-8.333333}`
-
-#### DISPTAV: Disaggregated Period Total Bid-Offer Acceptance Volumes
-  Parameters:
-    NN: Bid-offer pair number, integer (in range -5 to 5)
-    OV: Total offer volume accepted for BO pair
-    BV: Total bid volume accepted for BO pair
-    P1: Tagged element of the Total Offer Volume accepted
-    P2: Repriced element of the Total Offer Volume accepted
-    P3: Originally-priced element of the Total Offer Volume accepted
-    P4: Tagged element of the Total Bid Volume accepted
-    P5: Repriced element of the Total Bid Volume accepted
-    P6: Originally-priced element of the Total Bid Volume accepted
-  Example entry:
-`2017:04:21:00:21:54:GMT: subject=BMRA.BM.T_EECL-1.DISPTAV.1, message={SD=2017:04:21:00:00:00:GMT,SP=2,NN=1,OV=0.0833,P1=0.0833,P2=0.0,P3=0.0,BV=0.0,P4=0.0,P5=0.0,P6=0.0}`
-
-#### QAS: BM Unit applicable balancing services Volume
-  Parameters:
-    SV: Energy Volume in MWh for the Settlement Period
-  Example entry:
-`2017:04:21:07:12:49:GMT: subject=BMRA.BM.T_BAGE-1.QAS, message={SD=2017:04:20:00:00:00:GMT,SP=1,SV=1.621}`
-
-
-
-## Dynamic Data
-
-###General Parameters
-TE: Time effective from
-
-#### SIL: Stable Import Limit (MW)
-  Parameters:
-    SI: Stable Import Limit (MW)
-
-Example:
-
-`2018:01:02:11:56:15:GMT: subject=BMRA.DYNAMIC.2__MPGEN002.SIL, message={TE=2018:01:02:11:54:00:GMT,SI=0.0}`
-
-
-#### SEL: Stable Export Limit
-  Parameters:
-    SE: Stable Export Limit (MW)
-
-Example:
-
-`2017:04:21:01:21:21:GMT: subject=BMRA.DYNAMIC.T_ROCK-1.SEL, message={TE=2017:04:21:01:20:00:GMT,SE=240.0}`
-
-#### MNZT: Minimum Non-zero Time
-  Parameters:
-    MN: Minimum non-zero time (seconds? minutes?)
-
-Example:
-
-2017:04:21:01:21:54:GMT: subject=BMRA.DYNAMIC.T_STAY-2.MNZT, message={TE=2017:04:21:01:21:00:GMT,MN=360}
-
-#### NDZ: Notice to deviate from zero
-  Parameters:
-    DZ: Notice to deviate from zero time (seconds? minutes?)
-
-Example:
-
-`2017:04:21:01:21:55:GMT: subject=BMRA.DYNAMIC.T_STAY-2.NDZ, message={TE=2017:04:21:01:21:00:GMT,DZ=58}`
-
-#### RURE: Run-up rates export
-  Parameters:
-    U1: Run up rate 1 (MW/minute)
-    UB: Run up elbow 2 (MW)
-    U2: Run up rate 2 (MW/minute)
-    UC: Run up elbow 3 (MW)
-    U3: Run up rate 3 (MW/minute)
-
-Example:
-
-`2017:04:21:01:22:19:GMT: subject=BMRA.DYNAMIC.T_STAY-2.RURE, message={TE=2017:04:21:01:21:00:GMT,U1=8.4,UB=45,U2=0.2,UC=48,U3=17.5}`
-
-#### RURI: Run-up rates import
-  Parameters:
-    U1: Run up rate 1 (MW/minute)
-    UB: Run up elbow 2 (MW)
-    U2: Run up rate 2 (MW/minute)
-    UC: Run up elbow 3 (MW)
-    U3: Run up rate 3 (MW/minute)
-
-Example:
-
-`2002:01:02:17:02:01:GMT: subject=BMRA.DYNAMIC.2__JYELG001.RURI, message={TE=2002:01:02:17:00:00:GMT,U1=900.0,UB=0,U2=0.0,UC=0,U3=0.0}`
-
-#### RDRE: Run-down rate Export
-  Parameters:
-    R1: Run up rate 1 (MW/minute)
-    RB: Run up elbow 2 (MW)
-    R2: Run up rate 2 (MW/minute)
-    RC: Run up elbow 3 (MW)
-    R3: Run up rate 3 (MW/minute)
-
-Example:
-
-`2017:04:21:05:04:39:GMT: subject=BMRA.DYNAMIC.T_ROCK-1.RDRE, message={TE=2017:04:21:05:04:00:GMT,R1=25.0,RB=220,R2=47.5,RC=125,R3=55.0}`
-
-#### RDRI: Run-down rate Import
-  Parameters:
-    R1: Run up rate 1 (MW/minute)
-    RB: Run up elbow 2 (MW)
-    R2: Run up rate 2 (MW/minute)
-    RC: Run up elbow 3 (MW)
-    R3: Run up rate 3 (MW/minute)
-
-Example:
-
-`2002:01:02:17:01:50:GMT: subject=BMRA.DYNAMIC.2__JYELG001.RDRI, message={TE=2002:01:02:17:00:00:GMT,R1=900.0,RB=0,R2=0.0,RC=0,R3=0.0}`
-
-#### MDV: Maximum Delivery Volume
-  Parameters:
-    DV: Delivery Volume
-
-Example:
-
-`2002:01:02:17:01:13:GMT: subject=BMRA.DYNAMIC.2__JYELG001.MDV, message={TE=2002:01:02:17:00:00:GMT,DV=-44.0}`
-
-#### MDP: Maximum Delivery Period
-  Parameters:
-    DP: Delivery period
-
-Example:
-
-`2002:01:02:17:01:14:GMT: subject=BMRA.DYNAMIC.2__JYELG001.MDP, message={TE=2002:01:02:17:00:00:GMT,DP=239}`
-
-
-#### MZT: Minimum Zero Time
-  Parameters:
-    MZ: Minimum Zero Time (seconds? minutes?)
-
-Example:
-
-`2017:04:21:02:20:27:GMT: subject=BMRA.DYNAMIC.T_FOYE-2.MZT, message={TE=2017:04:21:02:19:00:GMT,MZ=30}`
-
-#### NTB: Notice to deliver bids
-  Parameters:
-    DB: Notice to deliver bids (minutes)
-Example:
-
-`2017:04:21:02:20:44:GMT: subject=BMRA.DYNAMIC.T_FOYE-2.NTB, message={TE=2017:04:21:02:19:00:GMT,DB=2}`
-
-#### NTO: Notice to deliver offers
-  Parameters:
-    DO: Notice to deliver offers (minutes)
-Example:
-
-`2017:04:21:02:20:44:GMT: subject=BMRA.DYNAMIC.T_FOYE-2.NTO, message={TE=2017:04:21:02:19:00:GMT,DO=2}`
 
 ## Balancing Party-Level Data
+
+### Credit Data
 
 #### CDN: Credit Default Notice
   Parameters:
