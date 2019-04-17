@@ -12,7 +12,8 @@ class FREQ(models.Model):
     """
     System Frequency Data
     """
-    ts = models.DateTimeField(verbose_name='Received time',
+    ts = models.DateTimeField(primary_key=True,
+                              verbose_name='Received time',
                               validators=[check_dates])
     sf = models.DecimalField(max_digits=10,
                              decimal_places = 3,
@@ -21,7 +22,7 @@ class FREQ(models.Model):
 
     class Meta:
         db_table = 'bmra_freq'
-        index_together = ('ts')
+
 
 class MID(models.Model):
     """
