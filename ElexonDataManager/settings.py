@@ -133,7 +133,7 @@ BMRA_PROCESSED_DIR = '/home/graeme/ElexonData/Processed/'
 P114_INPUT_DIR = '/home/graeme/ElexonData/P114'
 
 # Magic Numbers
-BMRA_start_date = dt.date(2002,1,1) #earliest date of BMRA data for validation
+#BMRA_START_DATE = dt.date(2002,1,1) #earliest date of BMRA data for validation
 BMRA_DATA_START_DATE = dt.date(2002,1,1) #first date of data contents
 BMRA_FILE_START_DATE = None #first date of data publication
 P114_DATA_START_DATE = None #first date of P114 data contents
