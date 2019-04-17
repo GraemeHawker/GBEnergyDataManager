@@ -8,14 +8,14 @@ import datetime as dt
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
-from ElexonDataManager.settings import BMRA_start_date
+from ElexonDataManager.settings import BMRA_DATA_START_DATE
 from .core import BMU
 
 def check_dates(value):
     """
     Validates if date or datetime is within the range of historical BMRA data
     """
-    if value < BMRA_start_date or value > dt.date.today():
+    if value < BMRA_DATA_START_DATE or value > dt.date.today():
         raise ValidationError('Date or timestamp not in valid BMRA range')
 
 class BOAL(models.Model):
