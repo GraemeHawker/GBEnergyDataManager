@@ -35,3 +35,27 @@ def get_p114_filenames_for_date(p114_date):
                                                  P114_date.day))
     json_data = json.loads(response.text)
     return json_data.items()
+
+def get_p114_file(filename, overwrite=True):
+    """
+    downloads specified P114 file
+
+    Parameters
+    ----------
+    filename : string
+        the filename to be retrieved
+    overwrite : boolean
+        if the file already exists, whether to overwrite or keep
+
+    Returns
+    -------
+
+    Raises
+    ------
+
+    """
+
+    if not os.path.isfile(P114_INPUT_DIR + filename) or overwrite:
+        remote_url = (P114_DOWNLOAD_URL.format(ELEXON_KEY, filename))
+        urllib.request.urlretrieve(remote_url,
+                                   P114_INPUT_DIR + filename)
