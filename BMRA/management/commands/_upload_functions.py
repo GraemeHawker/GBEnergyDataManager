@@ -161,6 +161,7 @@ def message_to_dict(raw_message):
                              (key, message_dict['message_type'],
                               message_dict['message_subtype'],
                               raw_message))
+    #if message_subtype=='BOALF' and 'PF' not in message_dict: print(raw_message)
     return message_dict
 
 def insert_data(message_dict):
@@ -300,13 +301,22 @@ def insert_bm_data(message_dict):
                                 ts=message_dict['received_time'],
                                 nk=message_dict['NK']).exists():
             return 0
-        boalf = BOALF(bmu=bmu,
-                      ts=message_dict['received_time'],
-                      nk=message_dict['NK'],
-                      ta=message_dict['TA'],
-                      ad=message_dict['AD'],
-                      so=message_dict['SO'],
-                      pf=message_dict['PF'])
+        if 'PF' in message_dict:
+            boalf = BOALF(bmu=bmu,
+                          ts=message_dict['received_time'],
+                          nk=message_dict['NK'],
+                          ta=message_dict['TA'],
+                          ad=message_dict['AD'],
+                          so=message_dict['SO'],
+                          pf=message_dict['PF'])
+        else:
+            boalf = BOALF(bmu=bmu,
+                          ts=message_dict['received_time'],
+                          nk=message_dict['NK'],
+                          ta=message_dict['TA'],
+                          ad=message_dict['AD'],
+                          so=message_dict['SO'],
+                          pf=None)
         boalf.save()
         for data_point in message_dict['data_points'].values():
             boalf_level = BOALFlevel(boalf=boalf,
