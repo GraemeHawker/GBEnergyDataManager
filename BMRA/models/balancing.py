@@ -70,7 +70,9 @@ class BOALF(models.Model):
                              help_text='True where potentially impacted by \
                              transmission constraints')
     pf = models.BooleanField(verbose_name='STOR Flag',
-                             help_text='True for relating to a STOR provider')
+                             help_text='True for relating to a STOR provider',
+                             blank=True,
+                             null=True)
     class Meta:
         db_table = 'bmra_boalf'
         index_together = ('bmu', 'ta')
