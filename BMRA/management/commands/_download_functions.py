@@ -6,6 +6,7 @@ import datetime as dt
 import urllib.request
 import gzip
 import os.path
+from django.db import transaction
 
 from ._upload_functions import message_to_dict, insert_data
 
@@ -73,6 +74,7 @@ def download_bmra_file(filename):
             remote_url,
             BMRA_INPUT_DIR + filename)
 
+@transaction.atomic #all succeeds for single day or rollback
 def process_bmra_file(date):
     """
     downloads and processes single BMRA file corresponding to given date
