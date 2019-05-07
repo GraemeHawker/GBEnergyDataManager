@@ -577,27 +577,28 @@ Example:
 
 #### DISEBSP: Disaggregated Estimated Buy and Sell Price
 
-  Parameters:
-    PB: Buy price (£/MWh)
-    PS: Sell price (£/MWh)
-    PD: Price Derivation Code, how buy and sell price were calculated
-    RSP: Reserve Scarcity Price (£/MWh)
-    RP: Replacement Price (£/MWh), may be absent
-    RV: Replacement Price Calculation Volume (MWh), may be absent
-    BD: BSAD Defaulted, if 'T' following fields are defaulted
-    A3: SPA in £/MWh
-    A6: BPA in £/MWh
-    NI: Indicative NIV
-    AO: System wide total Accepted Offer Volume for Settlement period
-    AB: System wide total Accepted Bid Volume for Settlement period
-    T1: System wide total tagged Accepted Offer Volume for Settlement period
-    T2: System wide total tagged Accepted Bid Volume for Settlement period
-    PP: System wide total priced Accepted Offer Volume for Settlement period
-    PC: System wide total priced Accepted Bid Volume for Settlement period
-    J1: System wide total Adjustment Sell Volume for Settlement period
-    J2: System wide total Adjustment Buy Volume for Settlement period
-    J3: System wide total tagged Adjustment Sell Volume for Settlement period
-    J4: System wide total tagged Adjustment Buy Volume for Settlement period
+| Fieldname | Datatype | Description | Units | Comments |
+| --------- | -------- | ----------- | ----- | -------- |
+|PB|decimal(10,5)|Buy price - the price that must be paid for electricity which is out of balance|£||
+|PS|float|Sell Price - the price received for electricity which is out of balance|£||
+|PD|char(2)|Price Derivation Code - A code that describes the way in which SSP and SBP were calculated||Valid values defined in BMRA-I006|
+|RSP|float|Reserve Scarcity Price| £/MWh ||
+|RP|float|Replacement Price| £/MWh| may be absent|
+|RV|float|Replacement Price Calculation Volume| MWh|may be absent|
+|BD|float|BSAD Defaulted| |if 'T' following fields are defaulted|
+|A3|float|Sell Price Price Adjustment (SPA)|£/MWh||
+|A6|float|Buy Price Price Adjustment (BPA)|£/MWh|&nbsp;|
+|NI|float|Indicative Net Imbalance Volume|MWh||
+|AO|float|Total Accepted Offer Volume - System wide total Accepted Offer Volume for the Settlement Period|MWh||
+|AB|float|Total Accepted Bid Volume - System wide total Accepted Bid Volume for the Settlement Period|MWh||
+|T1|float|System wide total tagged Accepted Offer Volume for Settlement period|MWh||
+|T2|float|System wide total tagged Accepted Bid Volume for Settlement period|MWh||
+|PP|float|System wide total priced Accepted Offer Volume for Settlement period|MWh||
+|PC|float |System wide total priced Accepted Bid Volume for Settlement period|MWh||
+|J1|float |System wide total Adjustment Sell Volume for Settlement period|MWh||
+|J2|float |System wide total Adjustment Buy Volume for Settlement period|MWh||
+|J3|float |System wide total tagged Adjustment Sell Volume for Settlement period|MWh||
+|J4|float |System wide total tagged Adjustment Buy Volume for Settlement period|MWh|&nbsp;|
 
 Example:
 
