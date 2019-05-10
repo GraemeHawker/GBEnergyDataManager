@@ -535,6 +535,8 @@ https://www.elexon.co.uk/mod-proposal/p217-revised-tagging-process-and-calculati
 |A5|decimal(10,3)|Buy price volume Adjustment|MWh||
 |A6|decimal(10,2)|Buy price price adjustment|£/MWh|&nbsp;|
 
+Index: SD, SP
+
 Example:
 
 `2003:01:01:00:20:32:GMT: subject=BMRA.SYSTEM.EBSP, message={SD=2002:12:31:00:00:00:GMT,SP=48,PB=15.13,PS=11.10644,AO=307.2657,AB=-686.525,AP=36.6594,AC=0.0,PP=5.0,PC=-420.9187,BD=F,A1=-5248.75,A2=-417.5,A3=0.0,A4=0.0,A5=0.0,A6=0.0}`
@@ -600,6 +602,8 @@ Example:
 |J3|float |System wide total tagged Adjustment Sell Volume for Settlement period|MWh||
 |J4|float |System wide total tagged Adjustment Buy Volume for Settlement period|MWh|&nbsp;|
 
+Index: SD, SP
+
 Example:
 
 `2017:04:21:00:21:54:GMT: subject=BMRA.SYSTEM.DISEBSP, message={SD=2017:04:21:00:00:00:GMT,SP=2,PB=29.83277,PS=29.83277,PD=N,BD=F,A3=0.0,A6=0.0,NI=-18.3724,AO=223.2374,AB=-221.4425,T1=223.2374,T2=-203.0701,PP=222.5202,PC=-80.051,J1=-225.0,J2=205.0,J3=-225.0,J4=205.0}`
@@ -615,6 +619,8 @@ Details of prices for trades offered between System Operators
 |IC||Contract Identifier|unique string||
 |TQ||Trade Quantity offered|MWh||
 |PT||Trade Price offered|£/MWh|&nbsp;|
+
+Index: TT, ST
 
 Example:
 
