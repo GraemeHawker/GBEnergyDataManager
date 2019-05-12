@@ -104,7 +104,7 @@ class LOLP(models.Model):
                               verbose_name='Message time',
                               validators=[check_dates])
     class Meta:
-        db_table = 'bmra_LOLP'
+        db_table = 'bmra_lolp'
 
 class LOLPlevel(models.Model):
     """
@@ -159,17 +159,17 @@ class INDOD(models.Model):
                              decimal_places = 3,
                              verbose_name='Energy Volume Out-turn',
                              help_text='MWh')
-    eo = models.DecimalField(max_digits=10,
+    el = models.DecimalField(max_digits=10,
                              decimal_places = 3,
-                             verbose_name='Energy Volume Out-turn',
+                             verbose_name='Energy Volume Low Reference',
                              help_text='MWh')
-    eo = models.DecimalField(max_digits=10,
+    eh = models.DecimalField(max_digits=10,
                              decimal_places = 3,
-                             verbose_name='Energy Volume Out-turn',
+                             verbose_name='Energy Volume High Reference',
                              help_text='MWh')
-    eo = models.DecimalField(max_digits=10,
+    en = models.DecimalField(max_digits=10,
                              decimal_places = 3,
-                             verbose_name='Energy Volume Out-turn',
+                             verbose_name='Energy Normal Reference Volume	',
                              help_text='MWh')
 
     class Meta:
