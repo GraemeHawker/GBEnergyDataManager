@@ -10,18 +10,18 @@ from django.utils import timezone
 
 # messages which will be processed, all others ignored
 PROCESSED_MESSAGES = {
-    'BM' : ['BOAL', 'BOALF', 'BOAV', 'BOD',
-            'DISPTAV', 'EBOCF', 'FPN', 'MEL', 'MIL',
-            'PTAV', 'QAS', 'QPN'],
+    'BM' : [],
     'BP' : [],
-    'SYSTEM' : [],
+    'SYSTEM' : ['FREQ', 'TEMP', 'INDO', 'ITSDO', 'LOLP', 'NONBM',
+                'INDOD', 'FUELINST', 'FUELHH', 'SYSMSG', 'DCONTROL'],
     'DYNAMIC' : [],
     'INFO' : []
 }
 '''
 # messages which will be ignored (not actually used, just for note keeping)
 UNPROCESSED_MESSAGES = {
-    'BM' : ['FPN', 'MEL', 'MIL', 'BOAL', 'BOALF', 'BOAV', 'DISPTAV', 'EBOCF',
+    'BM' : ['BOAL', 'BOALF', 'BOAV', 'BOD',
+            'DISPTAV', 'EBOCF', 'FPN', 'MEL', 'MIL',
             'PTAV', 'QAS', 'QPN'],
     'BP' : [],
     'SYSTEM' : ['BSAD', 'DISBSAD', 'NETBSAD', 'MID', 'EBSP', 'NETEBSP',
