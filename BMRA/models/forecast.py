@@ -77,7 +77,7 @@ class NDFlevel(models.Model):
                            help_text='MW')
     class Meta:
         db_table = 'bmra_ndflevel'
-        index_together = ('mdf', 'sd', 'sp')
+        index_together = ('ndf', 'sd', 'sp')
 
 class TSDF(models.Model):
     """
@@ -323,7 +323,7 @@ class NDFWlevel(models.Model):
     """
     Timestamped element of a weekly transmission system demand forecast
     """
-    tsdfw = models.ForeignKey(NDFW, on_delete=models.CASCADE)
+    ndfw = models.ForeignKey(NDFW, on_delete=models.CASCADE)
     wd = models.DateTimeField(verbose_name='Week start date',
                               validators=[check_forecast_dates])
     wn = models.IntegerField(verbose_name='Week number',
@@ -358,8 +358,8 @@ class OCNMFWlevel(models.Model):
     vd = models.FloatField(verbose_name='Demand level',
                            help_text='MW')
     class Meta:
-        db_table = 'bmra_ndfwlevel'
-        index_together = ('ndfw', 'wn')
+        db_table = 'bmra_ocnmfwlevel'
+        index_together = ('ocnmfw', 'wn')
 
 class OCNMFW2(models.Model):
     """
@@ -463,7 +463,7 @@ class OCNMFD2level(models.Model):
                            help_text='MW')
     class Meta:
         db_table = 'bmra_ocnmfd2level'
-        index_together = ('ocnmfd2', 'sd', 'sp')
+        index_together = ['ocnmfd2', 'sd']
 
 class FOU2T14D(models.Model):
     """
@@ -487,7 +487,7 @@ class FOU2T14Dlevel(models.Model):
                            help_text='MW')
     class Meta:
         db_table = 'bmra_fou2t14dlevel'
-        index_together = ('fou2t14d', 'sd', 'sp')
+        index_together = ('fou2t14d', 'sd')
 
 class UOU2T14D(models.Model):
     """
@@ -513,7 +513,7 @@ class UOU2T14Dlevel(models.Model):
                            help_text='MW')
     class Meta:
         db_table = 'bmra_uou2t14dlevel'
-        index_together = ('uou2t14d', 'sd', 'sp')
+        index_together = ('uou2t14d', 'sd')
 
 class UOU2T52W(models.Model):
     """
@@ -543,4 +543,4 @@ class UOU2T52Wlevel(models.Model):
                            help_text='MW')
     class Meta:
         db_table = 'bmra_uou2t52wlevel'
-        index_together = ('uou2t52w', 'sd', 'sp')
+        index_together = ('uou2t52w', 'cy', 'wn')
