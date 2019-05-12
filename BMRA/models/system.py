@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from BMRA.models.balancing import check_dates
+from .core import LDSO
 
 class BSAD(models.Model):
     """
@@ -404,21 +405,32 @@ class DISEBSP(models.Model):
         db_table = 'bmra_disebsp'
         index_together = ('sd', 'sp')
 
-class FREQ(models.Model):
+class SOSO(models.Model):
     """
-    System Frequency Data
+    So to SO prices
     """
-    ts = models.DateTimeField(primary_key=True,
-                              verbose_name='Received time',
+    tt = models.CharField(max_length=10,
+                          verbose_name='SO-SO trade type',
+                          help_text='Indicating parties trading as an underscore separated string')
+    st = models.DatetimeField(verbose_name='Start time',
                               validators=[check_dates])
-    sf = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
-                             verbose_name='System Frequency',
-                             help_text='Hz')
+    td = models.CharField(max_length=3,
+                          verbose_name='Trade direction',
+                          help_text='‘A01’ (up) or ‘A02’ (down)')
+    ic = models.CharField(max_length=30,
+                          verbose_name='Contract identifier')
+    tq = models.DecimalField(max_digits=10,
+                             decimal_places=3,
+                             verbose_name='Trade quantity offered',
+                             help_text='MW')
+    pt = models.DecimalField(max_digits=10,
+                             decimal_places=2,
+                             verbose_name='Trade price offered',
+                             help_text='£/MWh')
 
     class Meta:
-        db_table = 'bmra_freq'
-
+        db_table = 'bmra_soso'
+        index_together = ('tt', 'st')
 
 class MID(models.Model):
     """
@@ -442,3 +454,166 @@ class MID(models.Model):
     class Meta:
         db_table = 'bmra_mid'
         index_together = ('mi', 'sd', 'sp')
+
+class ISPSTACK(models.Model):
+    """
+    Indicative System Price Stack
+    """
+    sd = models.DateField(verbose_name='Settlement date',
+                          validators=[check_dates])
+    sp = models.IntegerField(verbose_name='Settlement period',
+                             validators=[MinValueValidator(1),
+                                         MaxValueValidator(50)])
+    bo = models.CharField(max_length=1,
+                          verbose_name='Bid/Offer Indicator',
+                          help_text='Bid (B) or Offer (O)')
+    sn = models.IntegerField(verbose_name='Stack index number',
+                             help_text='indicating relative position within \
+                             the related stack')
+    ci = models.CharField(max_length=30,
+                          verbose_name='Component identifier',
+                          help_text='associated BMU ID, or for Balancing \
+                          Services Adjustment items the unique ID allocated \
+                          by the SO, or for Demand Control Volume stack a \
+                          unique ID from that BSC Agents system')
+    nk = models.IntegerField(blank=True,
+                             null=True,
+                             verbose_name='Acceptance number',
+                             help_text='not included for Balancing Services \
+                             Adjustment items')
+    nn = models.IntegerField(verbose_name='Bid-offer pair no.',
+                             validators=[MinValueValidator(-5),
+                                         MaxValueValidator(5)])
+    cf = models.BooleanField(verbose_name='CADL Flag',
+                             help_text='A value of True indicates that an \
+                             Acceptance is considered to be a Short Duration acceptance')
+    so = models.BooleanField(verbose_name='SO Flag',
+                             help_text='A value of True indicates that an \
+                             Acceptance or BS Adjustment Action should be \
+                             considered to be potentially impacted by \
+                             transmission constraints')
+    pf = models.BooleanField(verbose_name='STOR Provider Flag',
+                             help_text='A value of True Indicates the item \
+                             relates to a STOR Provider')
+    ri = models.BooleanField(verbose_name='Repriced Indicator',
+                             help_text='True indicates the item has been \
+                             repriced')
+    up = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='Bid-offer Original Price',
+                             help_text='£/MWh')
+    rsp = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='Reserve Scarcity Price',
+                             help_text='£/MWh')
+    ip = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='Stack Item Original Price',
+                             help_text='£/MWh')
+    iv = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='Stack Item Volume',
+                             help_text='MWh')
+    da = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='DMAT Adjusted Volume',
+                             help_text='MWh')
+    av = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='Arbitrage Adjusted Volume',
+                             help_text='MWh')
+    niv = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='NIV Adjusted Volume',
+                             help_text='MWh')
+    pv = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='PAR Adjusted Volume',
+                             help_text='MWh')
+    fp = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='Stack Item Final Price',
+                             help_text='£/MWh')
+    tm = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='Transmission Loss Multiplier Value',
+                             help_text='MWh')
+    tv = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='TLM Adjusted Volume',
+                             help_text='MWh')
+    tc = models.DecimalField(max_digits=10,
+                             decimal_places = 3,
+                             verbose_name='TLM Adjusted Cost',
+                             help_text='£')
+
+    class Meta:
+        db_table = 'bmra_ispstack'
+        index_together = ('sd', 'sp', 'ci', 'nn')
+
+class TBOD(models.Model):
+    """
+    Total Bid-Offer Data
+    """
+    sd = models.DateField(verbose_name='Settlement date',
+                          validators=[check_dates])
+    sp = models.IntegerField(verbose_name='Settlement period',
+                             validators=[MinValueValidator(1),
+                                         MaxValueValidator(50)])
+    ot = models.DecimalField(max_digits=10,
+                             decimal_places = 2,
+                             verbose_name='System wide total offer volume',
+                             help_text='MWh')
+    bt = models.DecimalField(max_digits=10,
+                             decimal_places = 2,
+                             verbose_name='System wide total bid volume',
+                             help_text='MWh')
+    class Meta:
+        db_table = 'bmra_tbod'
+        index_together = ('sd', 'sp')
+
+class SYSMSG(models.Model):
+    """
+    System Message
+    """
+    tp = models.DateTimeField(primary_key=True,
+                              verbose_name='Published time',
+                              validators=[check_dates])
+    mt = models.CharField(max_length=6,
+                          verbose_name='Message type')
+    sm = models.TextField(verbose_name='System warning message')
+
+    class Meta:
+        db_table = 'bmra_sysmsg'
+
+class DCONTROL(models.Model):
+    """
+    Demand Control Instruction Notification
+    """
+    ds = models.ForeignKey(LDSO,
+                           verbose_name='Affected LDSO')
+    id = models.IntegerField(verbose_name='Demand Control ID')
+    sq = models.IntegerField(verbose_name='Instruction sequence no.')
+    ev = models.CharField(max_length=1,
+                          verbose_name='Demand control event flag',
+                          help_text=''I' indicates instruction by the SO or \
+                          emergency manual disconnection. 'L' indicates \
+                          automatic low frequency demand disconnection')
+    tf = models.DateTimeField(verbose_name='Time from',
+                              validators=[check_dates])
+    ti = models.DateTimeField(verbose_name='Time to',
+                              validators=[check_dates])
+    vo = models.DecimalField(max_digits=10,
+                             decimal_places = 2,
+                             verbose_name='Demand control level',
+                             help_text='MW')
+    so = models.BooleanField(verbose_name='SO flag',
+                             help_text='True indicates that an instruction \
+                             should be considered to be potentially impacted \
+                             by transmission constraints')
+    am = models.CharField(max_length=3,
+                          verbose_name='Amendment flag',
+                          help_text='ORI : Original, INS : Insert, UPD : Update')
+    class Meta:
+        db_table = 'bmra_dcontrol'
+        index_together = ('tf', 'ds')
