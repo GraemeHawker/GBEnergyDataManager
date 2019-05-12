@@ -24,7 +24,8 @@ UNPROCESSED_MESSAGES = {
     'BM' : ['FPN', 'MEL', 'MIL', 'BOAL', 'BOALF', 'BOAV', 'DISPTAV', 'EBOCF',
             'PTAV', 'QAS', 'QPN'],
     'BP' : [],
-    'SYSTEM' : [],
+    'SYSTEM' : ['BSAD', 'DISBSAD', 'NETBSAD', 'MID', 'EBSP', 'NETEBSP',
+                'DISEBSP', 'SOSO'],
     'DYNAMIC' : [],
     'INFO' : []
 }
