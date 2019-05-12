@@ -749,20 +749,20 @@ def insert_system_data(message_dict):
         if INDOD.objects.filter(sd=message_dict['SD'],
                                 tp=message_dict['TP']).exists():
             return 0
-        nonbm = NONBM(tp=message_dict['TP'],
+        indod = INDOD(tp=message_dict['TP'],
                       sd=message_dict['SD'],
                       eo=message_dict['EO'],
                       el=message_dict['EL'],
                       eh=message_dict['EH'],
                       en=message_dict['EN'])
-        nonbm.save()
+        indod.save()
         return 1
 
     if message_dict['message_subtype'] in ['FUELINST']:
         try:
-            ft = FT.objects.get(id=message_dict['ft'])
+            ft = FT.objects.get(id=message_dict['FT'])
         except FT.DoesNotExist:
-            ft = BMU(id=message_dict['ft'])
+            ft = FT(id=message_dict['FT'])
             ft.save()
         if FUELINST.objects.filter(sd=message_dict['SD'],
                                    sp=message_dict['SP'],
@@ -780,9 +780,9 @@ def insert_system_data(message_dict):
 
     if message_dict['message_subtype'] in ['FUELHH']:
         try:
-            ft = FT.objects.get(id=message_dict['ft'])
+            ft = FT.objects.get(id=message_dict['FT'])
         except FT.DoesNotExist:
-            ft = BMU(id=message_dict['ft'])
+            ft = FT(id=message_dict['FT'])
             ft.save()
         if FUELHH.objects.filter(sd=message_dict['SD'],
                                  sp=message_dict['SP'],
