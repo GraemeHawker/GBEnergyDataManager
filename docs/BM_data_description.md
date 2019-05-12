@@ -622,6 +622,8 @@ Details of prices for trades offered between System Operators
 
 Index: TT, ST
 
+Index: TT, ST
+
 Example:
 
 `2017:04:21:00:10:51:GMT: subject=BMRA.SYSTEM.SOSO, message={TT=EWIC_NG,ST=2017:04:21:02:00:00:GMT,TD=A02,IC=NG_20170421_0200_1,TQ=25.0,PT=39.75}`
