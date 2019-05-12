@@ -24,3 +24,27 @@ class BMU(models.Model):
     name = models.CharField(max_length=100)
     class Meta:
         db_table = 'bmra_bmu'
+
+class ZI(models.Model):
+    """
+    Zone Indicator
+    """
+    id = models.CharField(max_length=2, primary_key=True)
+    class Meta:
+        db_table = 'bmra_zi'
+
+class FT(models.Model):
+    """
+    Fuel type
+    """
+    id = models.CharField(max_length=10, primary_key=True)
+    class Meta:
+        db_table = 'bmra_ft'
+
+class LDSO(models.Model):
+    """
+    Licensed Distribution System Operator
+    """
+    id = models.CharField(max_length=10, primary_key=True)
+    class Meta:
+        db_table = 'bmra_ldso'

@@ -478,9 +478,56 @@ def insert_system_data(message_dict):
     ------
 
     """
-    from BMRA.models import MID, FREQ
+    from BMRA.models import BSAD, DISBSAD, NETBSAD, MID,  EBSP, NETEBSP,\
+     FREQ, DISEBSP, SOSO, ISPSTACK, TBOD
 
     #construct associated SYSTEM object
+    if message_dict['message_subtype'] in ['BSAD']:
+        if BSAD.objects.filter(sd=message_dict['SD'],
+                               sp=message_dict['SP']).exists():
+            return 0
+        bsad = BSAD(sd=message_dict['SD'],
+                    sp=message_dict['SP'],
+                    a1=message_dict['A1'],
+                    a2=message_dict['A2'],
+                    a3=message_dict['A3'],
+                    a4=message_dict['A4'],
+                    a5=message_dict['A5'],
+                    a6=message_dict['A6'])
+        bsad.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['DISBSAD']:
+        if DISBSAD.objects.filter(sd=message_dict['SD'],
+                                  sp=message_dict['SP']).exists():
+            return 0
+        disbsad = DISBSAD(sd=message_dict['SD'],
+                          sp=message_dict['SP'],
+                          ai=message_dict['AI'],
+                          so=message_dict['SO'],
+                          pf=message_dict['PF'],
+                          jc=message_dict['JC'],
+                          jv=message_dict['JV'])
+        disbsad.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['NETBSAD']:
+        if NETBSAD.objects.filter(sd=message_dict['SD'],
+                                  sp=message_dict['SP']).exists():
+            return 0
+        netbsad = NETBSAD(sd=message_dict['SD'],
+                          sp=message_dict['SP'],
+                          a7=message_dict['A7'],
+                          a8=message_dict['A8'],
+                          a11=message_dict['A11'],
+                          a3=message_dict['A3'],
+                          a9=message_dict['A9'],
+                          a10=message_dict['A10'],
+                          a12=message_dict['A12'],
+                          a6=message_dict['A6'])
+        netbsad.save()
+        return 1
+
     if message_dict['message_subtype'] in ['MID']:
         if MID.objects.filter(mi=MI,
                               sd=message_dict['SD'],
@@ -494,6 +541,98 @@ def insert_system_data(message_dict):
         mid.save()
         return 1
 
+    if message_dict['message_subtype'] in ['EBSP']:
+        if EBSP.objects.filter(sd=message_dict['SD'],
+                               sp=message_dict['SP']).exists():
+            return 0
+        ebsp = EBSP(sd=message_dict['SD'],
+                    sp=message_dict['SP'],
+                    pb=message_dict['PB'],
+                    ps=message_dict['PS'],
+                    ao=message_dict['AO'],
+                    ab=message_dict['AB'],
+                    ap=message_dict['AP'],
+                    ac=message_dict['AC'],
+                    pp=message_dict['AP'],
+                    pc=message_dict['PC'],
+                    bd=message_dict['BD'],
+                    a1=message_dict['A1'],
+                    a2=message_dict['A2'],
+                    a3=message_dict['A3'],
+                    a4=message_dict['A4'],
+                    a5=message_dict['A5'],
+                    a6=message_dict['A6'])
+        ebsp.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['NETEBSP']:
+        if NETEBSP.objects.filter(sd=message_dict['SD'],
+                                  sp=message_dict['SP']).exists():
+            return 0
+        netebsp = NETEBSP(sd=message_dict['SD'],
+                          sp=message_dict['SP'],
+                          pb=message_dict['PB'],
+                          ps=message_dict['PS'],
+                          pd=message_dict['PD'],
+                          ao=message_dict['AO'],
+                          ab=message_dict['AB'],
+                          ap=message_dict['AP'],
+                          ac=message_dict['AC'],
+                          pp=message_dict['AP'],
+                          pc=message_dict['PC'],
+                          ni=message_dict['NI'],
+                          bd=message_dict['BD'],
+                          a7=message_dict['A7'],
+                          a8=message_dict['A8'],
+                          a11=message_dict['A11'],
+                          a3=message_dict['A3'],
+                          a9=message_dict['A9'],
+                          a10=message_dict['A10'],
+                          a12=message_dict['A12'],
+                          a6=message_dict['A6'])
+        netebsp.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['DISEBSP']:
+        if DISEBSP.objects.filter(sd=message_dict['SD'],
+                                  sp=message_dict['SP']).exists():
+            return 0
+        disebsp = DISEBSP(sd=message_dict['SD'],
+                          sp=message_dict['SP'],
+                          pb=message_dict['PB'],
+                          ps=message_dict['PS'],
+                          pd=message_dict['PD'],
+                          rsp=message_dict['RSP'],
+                          rp=message_dict['RP'],
+                          rv=message_dict['RV'],
+                          bd=message_dict['BD'],
+                          a3=message_dict['A3'],
+                          a6=message_dict['A6'],
+                          ao=message_dict['AO'],
+                          ab=message_dict['AB'],
+                          t1=message_dict['T1'],
+                          t2=message_dict['T2'],
+                          pp=message_dict['PP'],
+                          pc=message_dict['PC'],
+                          j1=message_dict['J1'],
+                          j2=message_dict['J2'],
+                          j3=message_dict['J3'],
+                          j4=message_dict['J4'])
+        disebsp.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['SOSO']:
+        if SOSO.objects.filter(ic=message_dict['IC']).exists():
+            return 0
+        soso = SOSO(tt=message_dict['TT'],
+                    st=message_dict['ST'],
+                    td=message_dict['TD'],
+                    ic=message_dict['IC'],
+                    tq=message_dict['TQ'],
+                    pt=message_dict['PT'],)
+        soso.save()
+        return 1
+
     if message_dict['message_subtype'] in ['FREQ']:
         if FREQ.objects.filter(ts=message_dict['TS']).exists():
             return 0
@@ -502,6 +641,37 @@ def insert_system_data(message_dict):
         freq.save()
         return 1
 
+    if message_dict['message_subtype'] in ['ISPSTACK']:
+        if ISPSTACK.objects.filter(sd=message_dict['SD'],
+                                   sp=message_dict['SP'],
+                                   ci=message_dict['CI'],
+                                   nn=message_dict['NN']).exists():
+            return 0
+        ispstack = ISPSTACK(sd=message_dict['SD'],
+                            sp=message_dict['SP'],
+                            bo=message_dict['BO'],
+                            sn=message_dict['SN'],
+                            ci=message_dict['CI'],
+                            nk=message_dict['NK'],
+                            nn=message_dict['NN'],
+                            cf=message_dict['CF'],
+                            so=message_dict['SO'],
+                            pf=message_dict['PF'],
+                            ri=message_dict['RI'],
+                            up=message_dict['UP'],
+                            rsp=message_dict['RSP'],
+                            ip=message_dict['IP'],
+                            iv=message_dict['IV'],
+                            da=message_dict['DA'],
+                            av=message_dict['AV'],
+                            niv=message_dict['NIV'],
+                            pv=message_dict['PV'],
+                            fp=message_dict['FP'],
+                            tm=message_dict['TM'],
+                            tv=message_dict['TV'],
+                            tc=message_dict['TC'])
+        ispstack.save()
+        return 1
 
 def insert_dynamic_data(message_dict):
     """
