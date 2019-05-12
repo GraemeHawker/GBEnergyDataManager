@@ -7,7 +7,7 @@ import datetime as dt
 #definitions of accepted message tags, with hierarchical
 #dictionary to reflect data structure
 ACCEPTED_MESSAGES = {
-    'C0291' : {'AGV': ['AGP']},
+    'C0291' : {'AGV' : ['AGP']},
     'C0301' : {'MPD' : None,
                'GP9' : ['GMP'],
                'EPD' : ['EMP'],
