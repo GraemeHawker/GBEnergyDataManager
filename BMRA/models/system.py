@@ -412,7 +412,7 @@ class SOSO(models.Model):
     tt = models.CharField(max_length=10,
                           verbose_name='SO-SO trade type',
                           help_text='Indicating parties trading as an underscore separated string')
-    st = models.DatetimeField(verbose_name='Start time',
+    st = models.DateTimeField(verbose_name='Start time',
                               validators=[check_dates])
     td = models.CharField(max_length=3,
                           verbose_name='Trade direction',
@@ -591,13 +591,14 @@ class DCONTROL(models.Model):
     Demand Control Instruction Notification
     """
     ds = models.ForeignKey(LDSO,
-                           verbose_name='Affected LDSO')
-    id = models.IntegerField(verbose_name='Demand Control ID')
+                           verbose_name='Affected LDSO',
+                           on_delete=models.PROTECT)
+    dcid = models.IntegerField(verbose_name='Demand Control ID')
     sq = models.IntegerField(verbose_name='Instruction sequence no.')
     ev = models.CharField(max_length=1,
                           verbose_name='Demand control event flag',
-                          help_text=''I' indicates instruction by the SO or \
-                          emergency manual disconnection. 'L' indicates \
+                          help_text='I indicates instruction by the SO or \
+                          emergency manual disconnection. L indicates \
                           automatic low frequency demand disconnection')
     tf = models.DateTimeField(verbose_name='Time from',
                               validators=[check_dates])
@@ -616,4 +617,4 @@ class DCONTROL(models.Model):
                           help_text='ORI : Original, INS : Insert, UPD : Update')
     class Meta:
         db_table = 'bmra_dcontrol'
-        index_together = ('tf', 'ds')
+        index_together = ('tf', 'ds', 'sq')
