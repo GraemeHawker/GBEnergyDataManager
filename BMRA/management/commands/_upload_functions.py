@@ -480,7 +480,8 @@ def insert_system_data(message_dict):
     """
     from BMRA.models import BSAD, DISBSAD, NETBSAD, MID,  EBSP, NETEBSP,\
      FREQ, DISEBSP, SOSO, ISPSTACK, TBOD, FREQ, TEMP, INDO, ITSDO, LOLP, \
-     LOLPlevel, NONBM, INDOD, FUELINST, FUELHH, SYSMSG, DCONTROL, LDSO, FT
+     LOLPlevel, NONBM, INDOD, FUELINST, FUELHH, SYSMSG, DCONTROL, LDSO, FT, \
+     SYSWARN, DCONTROLlevel
 
     #construct associated SYSTEM object
     if message_dict['message_subtype'] in ['BSAD']:
@@ -767,7 +768,8 @@ def insert_system_data(message_dict):
         if FUELINST.objects.filter(sd=message_dict['SD'],
                                    sp=message_dict['SP'],
                                    ts=message_dict['TS'],
-                                   tp=message_dict['TP']).exists():
+                                   tp=message_dict['TP'],
+                                   ft=ft).exists():
             return 0
         fuelinst = FUELINST(tp=message_dict['TP'],
                             sd=message_dict['SD'],
@@ -786,7 +788,8 @@ def insert_system_data(message_dict):
             ft.save()
         if FUELHH.objects.filter(sd=message_dict['SD'],
                                  sp=message_dict['SP'],
-                                 tp=message_dict['TP']).exists():
+                                 tp=message_dict['TP'],
+                                 ft=ft).exists():
             return 0
         fuelhh = FUELHH(tp=message_dict['TP'],
                         sd=message_dict['SD'],
@@ -798,7 +801,8 @@ def insert_system_data(message_dict):
 
     if message_dict['message_subtype'] in ['SYSMSG']:
         if SYSMSG.objects.filter(tp=message_dict['TP'],
-                                 mt=message_dict['MT']).exists():
+                                 mt=message_dict['MT'],
+                                 sm=message_dict['SM']).exists():
             return 0
         sysmsg = SYSMSG(tp=message_dict['TP'],
                         mt=message_dict['MT'],
@@ -806,26 +810,38 @@ def insert_system_data(message_dict):
         sysmsg.save()
         return 1
 
-    if message_dict['message_subtype'] in ['DCONTROL']:
-        try:
-            ldso = LDSO.objects.get(id=message_dict['DS'])
-        except LDSO.DoesNotExist:
-            ldso = BMU(id=message_dict['DS'])
-            ldso.save()
-        if SYSMSG.objects.filter(ds=ldso,
-                                 tf=message_dict['TF'],
-                                 sq=message_dict['SQ']).exists():
+    if message_dict['message_subtype'] in ['SYSWARN']:
+        if SYSWARN.objects.filter(tp=message_dict['TP'],
+                                  sw=message_dict['SW']).exists():
             return 0
-        sysmsg = SYSMSG(ds=ldso,
-                        dcid=message_dict['ID'],
-                        sq=message_dict['SQ'],
-                        ev=message_dict['EV'],
-                        tf=message_dict['TF'],
-                        ti=message_dict['TI'],
-                        vo=message_dict['VO'],
-                        so=message_dict['SO'],
-                        am=message_dict['AM'])
-        sysmsg.save()
+        syswarn = SYSWARN(tp=message_dict['TP'],
+                          sw=message_dict['SW'])
+        syswarn.save()
+        return 1
+
+    if message_dict['message_subtype'] in ['DCONTROL']:
+        print(message_dict)
+        if DCONTROL.objects.filter(tp=message_dict['TP']).exists():
+            return 0
+        dcontrol = DCONTROL(tp=message_dict['TP'])
+        dcontrol.save()
+        for data_point in message_dict['data_points'].values():
+            try:
+                ldso = LDSO.objects.get(id=data_point['DS'])
+            except LDSO.DoesNotExist:
+                ldso = LDSO(id=data_point['DS'])
+                ldso.save()
+            dcontrol_level = DCONTROLlevel(dcontrol=dcontrol,
+                                           ds=ldso,
+                                           dcid=data_point['ID'],
+                                           sq=data_point['SQ'],
+                                           ev=data_point['EV'],
+                                           tf=data_point['TF'],
+                                           ti=data_point['TI'],
+                                           vo=data_point['VO'],
+                                           so=data_point['SO'],
+                                           am=data_point['AM'])
+            dcontrol_level.save()
         return 1
 
 
