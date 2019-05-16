@@ -12,12 +12,14 @@ from django.utils import timezone
 PROCESSED_MESSAGES = {
     'BM' : [],
     'BP' : [],
-    'SYSTEM' : ['FREQ', 'TEMP', 'INDO', 'ITSDO', 'LOLP', 'NONBM',
-                'INDOD', 'FUELINST', 'FUELHH', 'SYSMSG', 'DCONTROL'],
+    'SYSTEM' : ['FUELINST', 'FUELHH', 'SYSMSG', 'SYSWARN'],
     'DYNAMIC' : [],
     'INFO' : []
 }
 '''
+[]
+['FREQ', 'TEMP', 'INDO', 'ITSDO', 'LOLP', 'NONBM',
+            'INDOD', 'FUELINST', 'FUELHH', 'SYSMSG', 'DCONTROL','SYSWARN']
 # messages which will be ignored (not actually used, just for note keeping)
 UNPROCESSED_MESSAGES = {
     'BM' : ['BOAL', 'BOALF', 'BOAV', 'BOD',
