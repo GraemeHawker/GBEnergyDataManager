@@ -586,10 +586,33 @@ class SYSMSG(models.Model):
     class Meta:
         db_table = 'bmra_sysmsg'
 
+class SYSWARN(models.Model):
+    """
+    System warning
+    """
+    tp = models.DateTimeField(primary_key=True,
+                              verbose_name='Published time',
+                              validators=[check_dates])
+    sw = models.TextField(verbose_name='System warning message')
+
+    class Meta:
+        db_table = 'bmra_syswarn'
+
 class DCONTROL(models.Model):
     """
     Demand Control Instruction Notification
     """
+    tp = models.DateTimeField(primary_key=True,
+                              verbose_name='Published time',
+                              validators=[check_dates])
+    class Meta:
+        db_table = 'bmra_dcontrol'
+
+class DCONTROLlevel(models.Model):
+    """
+    Individual control instruction to an LDSO
+    """
+    dcontrol = models.ForeignKey(DCONTROL, on_delete=models.CASCADE)
     ds = models.ForeignKey(LDSO,
                            verbose_name='Affected LDSO',
                            on_delete=models.PROTECT)
@@ -616,5 +639,5 @@ class DCONTROL(models.Model):
                           verbose_name='Amendment flag',
                           help_text='ORI : Original, INS : Insert, UPD : Update')
     class Meta:
-        db_table = 'bmra_dcontrol'
-        index_together = ('tf', 'ds', 'sq')
+        db_table = 'bmra_dcontrollevel'
+        index_together = ['dcontrol', 'tf', 'ds']
