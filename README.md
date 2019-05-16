@@ -1,11 +1,10 @@
-# LEC-E
-Library for Electricity (data) Curation and Examination
+# A Library for Energy Data Curation and Examination
 
-A web framework and backend for the download, management, processing and analysis for data relating to the operation of the electricity system of Great Britain.
+A web framework and backend for the download, management, processing and analysis for data relating to the operation of the electricity and gas systems of Great Britain.
 
 Incorporating:
 
-- Historical metering data for both generation and demand (from the Elexon P114 dataset)
+- Historical metering data for electricity generation and demand (from the Elexon P114 dataset)
 - Balancing Mechanism data relating to power stations, large demand and renewable energy systems
 - Physical data describing location, operating parameters and constraints of infrastructure and generating assets
 - Renewable generation subsidies
@@ -25,7 +24,7 @@ Note that for data retrieval the following are required:
 
 # Documentation
 - Installation
-- [P114 raw data description](./docs/example_P114_data.md)
-- [BMRA raw data description](./docs/example_BM_data.txt)
+- [P114 raw data description](./docs/P114_data_description.md)
+- [BMRA raw data description](./docs/BM_data_description.md)
 - Database ORM Documentation
 - Example [Jupyter](https://jupyter.org/) notebooks
