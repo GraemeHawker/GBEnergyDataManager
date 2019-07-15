@@ -335,7 +335,23 @@ class DISEBSP(models.Model):
     rsp = models.DecimalField(max_digits=10,
                              decimal_places=3,
                              verbose_name='Reserve Scarcity Price',
-                             help_text='£/MWh')
+                             help_text='£/MWh',
+                             blank=True,
+                             null=True)
+    rp = models.DecimalField(max_digits=10,
+                             decimal_places=3,
+                             verbose_name='Replacement Price',
+                             help_text='£/MWh',
+                             blank=True,
+                             null=True)
+    rv = models.DecimalField(max_digits=10,
+                             decimal_places=3,
+                             verbose_name='Replacement Price Calculation Volume',
+                             help_text='MWh',
+                             blank=True,
+                             null=True)
+    bd = models.BooleanField(verbose_name='BSAD Defaulted',
+                             help_text='If True A1 to A6 are default values')
     a3 = models.DecimalField(max_digits=10,
                              decimal_places=2,
                              verbose_name='Sell Price Price Adjustment (SPA)',
@@ -483,7 +499,9 @@ class ISPSTACK(models.Model):
                              Adjustment items')
     nn = models.IntegerField(verbose_name='Bid-offer pair no.',
                              validators=[MinValueValidator(-5),
-                                         MaxValueValidator(5)])
+                                         MaxValueValidator(5)],
+                             null=True,
+                             blank=True)
     cf = models.BooleanField(verbose_name='CADL Flag',
                              help_text='A value of True indicates that an \
                              Acceptance is considered to be a Short Duration acceptance')
@@ -503,9 +521,11 @@ class ISPSTACK(models.Model):
                              verbose_name='Bid-offer Original Price',
                              help_text='£/MWh')
     rsp = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Reserve Scarcity Price',
-                             help_text='£/MWh')
+                             help_text='£/MWh',
+                             blank=True,
+                             null=True)
     ip = models.DecimalField(max_digits=10,
                              decimal_places = 3,
                              verbose_name='Stack Item Original Price',
@@ -522,7 +542,7 @@ class ISPSTACK(models.Model):
                              decimal_places = 3,
                              verbose_name='Arbitrage Adjusted Volume',
                              help_text='MWh')
-    niv = models.DecimalField(max_digits=10,
+    nv = models.DecimalField(max_digits=10,
                              decimal_places = 3,
                              verbose_name='NIV Adjusted Volume',
                              help_text='MWh')
