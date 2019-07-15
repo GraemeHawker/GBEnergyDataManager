@@ -584,8 +584,8 @@ Example:
 |PB|decimal(10,5)|Buy price - the price that must be paid for electricity which is out of balance|£||
 |PS|float|Sell Price - the price received for electricity which is out of balance|£||
 |PD|char(2)|Price Derivation Code - A code that describes the way in which SSP and SBP were calculated||Valid values defined in BMRA-I006|
-|RSP|float|Reserve Scarcity Price| £/MWh ||
-|RP|float|Replacement Price| £/MWh| may be absent|
+|RSP|float|Reserve Scarcity Price| £/MWh |NULL outside of a STOR availability window|
+|RP|float|Replacement Price| £/MWh|may be absent|
 |RV|float|Replacement Price Calculation Volume| MWh|may be absent|
 |BD|float|BSAD Defaulted| |if 'T' following fields are defaulted|
 |A3|float|Sell Price Price Adjustment (SPA)|£/MWh||
@@ -639,7 +639,7 @@ Each message relates to a single item on the Bid or Offer stack for a given Sett
 |SN|Integer|Stack Index Number||indicating relative position within the related stack|
 |CI|Char(30)|Component Identifier||associated BMU ID, or for Balancing Services Adjustment items the unique ID allocated by the SO, or for Demand Control Volume stack a unique ID from that BSC Agent's system|
 |NK|Integer|Acceptance number ||not included for Balancing Services Adjustment items|
-|NN|Integer|Bid offer pair Number|||
+|NN|Integer|Bid offer pair Number||for Balancing Services Adjustment Action and Demand Control Volume items this will be NULL|
 |CF|Char(1)|CADL Flag|'T'/'F'|A value of 'T' indicates that an Acceptance is considered to be a Short Duration acceptance|
 |SO|Char(1)|SO Flag|'T'/'F'|A value of 'T' indicates that an Acceptance or BS Adjustment Action should be considered to be potentially impacted by transmission constraints|
 |PF|Char(1)|STOR Provider Flag|'T'/'F'|A value of 'T' Indicates the item relates to a STOR Provider|
