@@ -10,9 +10,14 @@ from django.utils import timezone
 
 # messages which will be processed, all others ignored
 PROCESSED_MESSAGES = {
-    'BM' : [],
+    'BM' : ['BOAL', 'BOALF', 'BOAV', 'BOD',
+            'DISPTAV', 'EBOCF', 'FPN', 'MEL', 'MIL',
+            'PTAV', 'QAS', 'QPN'],
     'BP' : [],
-    'SYSTEM' : ['FUELINST', 'FUELHH', 'SYSMSG', 'SYSWARN'],
+    'SYSTEM' : ['BSAD', 'DISBSAD', 'NETBSAD', 'MID', 'EBSP', 'NETEBSP',
+                'DISEBSP', 'SOSO', 'FUELINST', 'FUELHH', 'SYSMSG', 'SYSWARN',
+                'FREQ', 'ISPSTACK', 'TEMP', 'INDO', 'ITSDO', 'LOLP', 'NONBM',
+                'INDOD', 'FUELINST', 'FUELHH', 'SYSMSG', 'DCONTROL','SYSWARN'],
     'DYNAMIC' : [],
     'INFO' : []
 }
