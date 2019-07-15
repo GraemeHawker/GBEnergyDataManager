@@ -531,11 +531,11 @@ def insert_system_data(message_dict):
         return 1
 
     if message_dict['message_subtype'] in ['MID']:
-        if MID.objects.filter(mi=MI,
+        if MID.objects.filter(mi=message_dict['MI'],
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
             return 0
-        mid = MID(mi=MI,
+        mid = MID(mi=message_dict['MI'],
                   sd=message_dict['SD'],
                   sp=message_dict['SP'],
                   m1=message_dict['M1'],
@@ -599,17 +599,30 @@ def insert_system_data(message_dict):
         if DISEBSP.objects.filter(sd=message_dict['SD'],
                                   sp=message_dict['SP']).exists():
             return 0
+        if 'RSP' in message_dict:
+            rsp = message_dict['RSP']
+        else:
+            rsp = None
+        if 'RP' in message_dict:
+            rp = message_dict['RP']
+        else:
+            rp = None
+        if 'RV' in message_dict:
+            rv = message_dict['RV']
+        else:
+            rv = None
         disebsp = DISEBSP(sd=message_dict['SD'],
                           sp=message_dict['SP'],
                           pb=message_dict['PB'],
                           ps=message_dict['PS'],
                           pd=message_dict['PD'],
-                          rsp=message_dict['RSP'],
-                          rp=message_dict['RP'],
-                          rv=message_dict['RV'],
+                          rsp=rsp,
+                          rp=rp,
+                          rv=rv,
                           bd=message_dict['BD'],
                           a3=message_dict['A3'],
                           a6=message_dict['A6'],
+                          ni=message_dict['NI'],
                           ao=message_dict['AO'],
                           ab=message_dict['AB'],
                           t1=message_dict['T1'],
@@ -644,43 +657,47 @@ def insert_system_data(message_dict):
         return 1
 
     if message_dict['message_subtype'] in ['ISPSTACK']:
+        if 'NN' in message_dict:
+            nn = message_dict['NN']
+        else:
+            nn = None
+        if 'NK' in message_dict:
+            nk = message_dict['NK']
+        else:
+            nk = None
         if ISPSTACK.objects.filter(sd=message_dict['SD'],
                                    sp=message_dict['SP'],
                                    ci=message_dict['CI'],
-                                   nn=message_dict['NN']).exists():
+                                   nn=nn).exists():
             return 0
+        if 'RSP' in message_dict:
+            rsp = message_dict['RSP']
+        else:
+            rsp = None
         ispstack = ISPSTACK(sd=message_dict['SD'],
                             sp=message_dict['SP'],
                             bo=message_dict['BO'],
                             sn=message_dict['SN'],
                             ci=message_dict['CI'],
-                            nk=message_dict['NK'],
-                            nn=message_dict['NN'],
+                            nk=nk,
+                            nn=nn,
                             cf=message_dict['CF'],
                             so=message_dict['SO'],
                             pf=message_dict['PF'],
                             ri=message_dict['RI'],
                             up=message_dict['UP'],
-                            rsp=message_dict['RSP'],
+                            rsp=rsp,
                             ip=message_dict['IP'],
                             iv=message_dict['IV'],
                             da=message_dict['DA'],
                             av=message_dict['AV'],
-                            niv=message_dict['NIV'],
+                            nv=message_dict['NV'],
                             pv=message_dict['PV'],
                             fp=message_dict['FP'],
                             tm=message_dict['TM'],
                             tv=message_dict['TV'],
                             tc=message_dict['TC'])
         ispstack.save()
-        return 1
-
-    if message_dict['message_subtype'] in ['FREQ']:
-        if FREQ.objects.filter(ts=message_dict['TS']).exists():
-            return 0
-        freq = FREQ(ts=message_dict['TS'],
-                    sf=message_dict['SF'])
-        freq.save()
         return 1
 
     if message_dict['message_subtype'] in ['TEMP']:
