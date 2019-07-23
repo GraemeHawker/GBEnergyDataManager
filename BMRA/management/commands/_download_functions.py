@@ -7,6 +7,7 @@ import urllib.request
 import gzip
 import os.path
 from django.db import transaction
+from tqdm import tqdm
 
 from ._upload_functions import message_to_dict, insert_data
 
@@ -93,7 +94,7 @@ def process_bmra_file(date):
     file_content = file.read().decode('utf-8', 'ignore')
     file_rows = [entry for entry in file_content.split('}')]
     count = 0
-    for message in file_rows:
+    for message in tqdm(file_rows):
         if len(message.strip()) > 0:
             message_dict = message_to_dict(message+'}')
             if message_dict is not None:
