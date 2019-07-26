@@ -33,7 +33,7 @@ VALUES (%s, %s, %s, %s, %s)
 
 bmuL = [] #List of existing BMUs in database
 
-urlBase = 'https://downloads.elexonportal.co.uk/bmradataarchive/download?key=***REMOVED***&filename=tib_messages_hh.'
+urlBase = 'https://downloads.elexonportal.co.uk/bmradataarchive/download?key=8bjll9hlkqh7gb8&filename=tib_messages_hh.'
 dataDirectory = 'D:\\bmrs\\'
 proccesedDirectory = 'D:\\bmrs processed\\'
 
@@ -46,10 +46,10 @@ nFails = 0
 
 
 #Open database connection
-conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='***REMOVED***', db='tibcodata')
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='imGoingToCambridge2015', db='tibcodata')
 cur = conn.cursor()
 
-connSys = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='***REMOVED***', db='tibcosystem')
+connSys = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='imGoingToCambridge2015', db='tibcosystem')
 curSys = connSys.cursor()
 
 #Errors and logs
@@ -219,6 +219,6 @@ for b in bmus:
     bmuL.append(b[0])
 
 
-reviewFolder = "D:\\USERS\\***REMOVED***\\ShareFile\\My Files & Folders\\BM Daily Reviews\\csv\\"
+reviewFolder = "D:\\USERS\\seb09186\\ShareFile\\My Files & Folders\\BM Daily Reviews\\csv\\"
 
 bmExcel_3.createDailyCsv(bmuL, yesterday, cur, curSys, reviewFolder)
