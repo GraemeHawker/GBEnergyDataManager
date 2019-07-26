@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '***REMOVED***'
+SECRET_KEY = 'u8)g2o_8)3=ap4r9v4#x#1n4ucc!#*k$_$8=13-p$i0m$))!xs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -134,3 +134,8 @@ BMRA_DATA_START_DATE = dt.date(2002,1,1) #first date of data contents
 BMRA_FILE_START_DATE = None #first date of data publication
 P114_DATA_START_DATE = None #first date of P114 data contents
 P114_FILE_START_DATE = dt.date(2010,4,1) #earliest date of P114 publication
+
+# NETA downloads
+NETA_USER = '' #NETA username
+NETA_PWD = '' #NETA password
+NETA_BMU_LIST_URL = 'https://www.netareports.com/dataService?rt=bmunit&username={}&password={}' #url for NETA reports list of BMUs
