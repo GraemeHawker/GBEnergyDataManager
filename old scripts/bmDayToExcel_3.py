@@ -1,5 +1,5 @@
 import sys
-sys.path.append('D:\\USERS\\***REMOVED***\\ShareFile\\My Files & Folders\\python\\libraries\\sg')
+sys.path.append('D:\\USERS\\seb09186\\ShareFile\\My Files & Folders\\python\\libraries\\sg')
 
 import bmraTimes as bt
 import csvProcess as csv2
@@ -196,10 +196,10 @@ def createDailyCsv(bmuList, today, cur, curSys, fd):
 
 
 if __name__ == "__main__":
-    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='***REMOVED***', db='tibcodata')
+    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='imGoingToCambridge2015', db='tibcodata')
     cur = conn.cursor()
     
-    connSys = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='***REMOVED***', db='tibcosystem')
+    connSys = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='imGoingToCambridge2015', db='tibcosystem')
     curSys = connSys.cursor()
     
     bmuQuerry = """SELECT bmu_id from bmu WHERE bmu_id LIKE 'T_%' OR bmu_id LIKE 'E_%' """
@@ -212,7 +212,7 @@ if __name__ == "__main__":
         bmuL.append(b[0])
     
     
-    fd = "D:\\USERS\\***REMOVED***\\ShareFile\\My Files & Folders\\BM Daily Reviews\\csv\\"
+    fd = "D:\\USERS\\seb09186\\ShareFile\\My Files & Folders\\BM Daily Reviews\\csv\\"
     
     #createDailyCsv(bmuL, dt.date(2015,12,13), cur, curSys, fd)
     
