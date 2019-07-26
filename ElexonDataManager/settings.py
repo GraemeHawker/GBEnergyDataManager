@@ -138,3 +138,8 @@ BMRA_DATA_START_DATE = dt.date(2002,1,1) #first date of data contents
 BMRA_FILE_START_DATE = None #first date of data publication
 P114_DATA_START_DATE = None #first date of P114 data contents
 P114_FILE_START_DATE = dt.date(2010,4,1) #earliest date of P114 publication
+
+# NETA downloads
+NETA_USER = '***REMOVED***' #NETA username
+NETA_PWD = '***REMOVED***' #NETA password
+NETA_BMU_LIST_URL = 'https://www.netareports.com/dataService?rt=bmunit&username={}&password={}' #url for NETA reports list of BMUs
