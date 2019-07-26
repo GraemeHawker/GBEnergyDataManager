@@ -1,5 +1,5 @@
 import sys
-sys.path.append('D:\\USERS\\***REMOVED***\\ShareFile\\My Files & Folders\\python\\libraries\\sg')
+sys.path.append('D:\\USERS\\seb09186\\ShareFile\\My Files & Folders\\python\\libraries\\sg')
 
 import datetime
 from bmraTimes import bmraDT 

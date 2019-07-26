@@ -81,7 +81,7 @@ if  __name__ == "__main__":
     edate = date(2015,11,11)
 
     #url
-    urlBase = 'https://downloads.elexonportal.co.uk/bmradataarchive/download?key=***REMOVED***&filename=tib_messages.'
+    urlBase = 'https://downloads.elexonportal.co.uk/bmradataarchive/download?key=8bjll9hlkqh7gb8&filename=tib_messages.'
 
     #Folder to which gzip files are saved
 
