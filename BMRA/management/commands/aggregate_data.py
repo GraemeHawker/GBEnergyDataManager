@@ -5,7 +5,7 @@ command to download and process BMRA data for specific date
 import datetime as dt
 from django.core.management.base import BaseCommand, CommandError
 from ._aggregate_functions import get_BMU_timeseries
-from ElexonDataManager.utils import get_sp_list
+from GBEnergyDataManager.utils import get_sp_list
 
 class Command(BaseCommand):
     help = 'downloads BMRA data for specific date, expected argument yyyy-m-d'

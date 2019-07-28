@@ -1,5 +1,5 @@
 """
-Copyright (C) 2018 ElexonDataManager contributors listed in AUTHORS.
+Copyright (C) 2018 GBEnergyDataManager contributors listed in AUTHORS.
 Licensed under the Apache 2.0 License (see LICENSE file).
 
 data_processing_test.py
