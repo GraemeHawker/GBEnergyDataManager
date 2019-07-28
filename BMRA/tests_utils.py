@@ -1,11 +1,11 @@
 """
-Tests for functions contained in ElexonDataManager.utils
+Tests for functions contained in GBEnergyDataManager.utils
 """
 from __future__ import unicode_literals
 import datetime as dt
 from django.test import TestCase
 from django.utils import timezone
-from ElexonDataManager.utils import sp_to_dt, dt_to_sp, get_sp_list
+from GBEnergyDataManager.utils import sp_to_dt, dt_to_sp, get_sp_list
 
 class TimeConversionCase(TestCase):
     """
