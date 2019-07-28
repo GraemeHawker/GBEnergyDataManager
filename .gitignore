@@ -118,9 +118,7 @@ dmypy.json
 
 #MacOS
 .DS_Store
-<<<<<<< HEAD
 
 # password filter for bfg
 sensitive_strings.txt
-=======
->>>>>>> 2355aa47da11fe66955162b12354decccc5844d7
+old scripts/
