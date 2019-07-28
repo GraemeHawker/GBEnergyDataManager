@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from ElexonDataManager.settings import P114_DATA_START_DATE
+from GBEnergyDataManager.settings import P114_DATA_START_DATE
 
 def check_dates(value):
     """

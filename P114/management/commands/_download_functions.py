@@ -6,7 +6,7 @@ import urllib.request
 import os.path
 import json
 import requests
-from ElexonDataManager.settings import ELEXON_KEY, P114_INPUT_DIR, P114_LIST_URL, P114_DOWNLOAD_URL
+from GBEnergyDataManager.settings import ELEXON_KEY, P114_INPUT_DIR, P114_LIST_URL, P114_DOWNLOAD_URL
 
 def get_p114_filenames_for_date(p114_date):
     """

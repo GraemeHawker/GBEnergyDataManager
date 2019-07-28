@@ -63,7 +63,7 @@ def download_bmra_file(filename):
         the filename to be downloaded
 
     """
-    from ElexonDataManager.settings import ELEXON_BASEURL, ELEXON_KEY, BMRA_INPUT_DIR
+    from GBEnergyDataManager.settings import ELEXON_BASEURL, ELEXON_KEY, BMRA_INPUT_DIR
 
     if not os.path.isfile(BMRA_INPUT_DIR + filename):
         remote_url = (ELEXON_BASEURL
@@ -85,7 +85,7 @@ def process_bmra_file(date):
     date : datetime
         the date of the datafile to be downloaded and processed
     """
-    from ElexonDataManager.settings import BMRA_INPUT_DIR
+    from GBEnergyDataManager.settings import BMRA_INPUT_DIR
 
 
     filename = get_tibco_daily_filenames(date)[0]
