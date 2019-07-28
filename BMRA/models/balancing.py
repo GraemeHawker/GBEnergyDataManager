@@ -8,7 +8,7 @@ import datetime as dt
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.exceptions import ValidationError
-from ElexonDataManager.settings import BMRA_DATA_START_DATE
+from GBEnergyDataManager.settings import BMRA_DATA_START_DATE
 from .core import BMU
 
 def check_dates(value):
