@@ -24,6 +24,17 @@ class gsp_group(models.Model):
     class Meta:
         db_table = 'p114_gsp_group'
 
+class gsp(models.Model):
+    """
+    Grid Supply Point
+    """
+    id = models.CharField(max_length=11, primary_key=True)
+    gsp_group = models.ForeignKey(gsp_group,
+                                  on_delete=models.PROTECT)
+    name = models.CharField(max_length=100)
+    class Meta:
+        db_table = 'p114_gsp'
+
 class agv(models.Model):
     """
     Aggregated GSP Group Take Volumes

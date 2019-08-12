@@ -52,7 +52,7 @@ key=INSERT_KEY&filename=tib_messages.2018-09-15.gz
 
     return filename_list
 
-def download_bmra_file(filename):
+def download_bmra_file(filename, overwrite):
     """
     downloads single BMRA file corresponding to given filename
     checks if file already exists, does not download if so
@@ -62,10 +62,13 @@ def download_bmra_file(filename):
     filename : str
         the filename to be downloaded
 
+    overwrite: bool
+        whether to overwrite existing files
+
     """
     from GBEnergyDataManager.settings import ELEXON_BASEURL, ELEXON_KEY, BMRA_INPUT_DIR
 
-    if not os.path.isfile(BMRA_INPUT_DIR + filename):
+    if (not os.path.isfile(BMRA_INPUT_DIR + filename)) or (os.path.isfile(BMRA_INPUT_DIR + filename and overwrite)):
         remote_url = (ELEXON_BASEURL
                       + '?key='
                       + ELEXON_KEY
@@ -89,7 +92,7 @@ def process_bmra_file(date):
 
 
     filename = get_tibco_daily_filenames(date)[0]
-    download_bmra_file(filename)
+    download_bmra_file(filename, True)
     file = gzip.open(BMRA_INPUT_DIR + filename, 'rb')
     file_content = file.read().decode('utf-8', 'ignore')
     file_rows = [entry for entry in file_content.split('}')]
