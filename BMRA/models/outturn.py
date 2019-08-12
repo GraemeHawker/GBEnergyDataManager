@@ -19,7 +19,7 @@ class FREQ(models.Model):
                               verbose_name='Received time',
                               validators=[check_dates])
     sf = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='System Frequency',
                              help_text='Hz')
 
@@ -35,19 +35,19 @@ class TEMP(models.Model):
     ts = models.DateTimeField(verbose_name='Received time',
                               validators=[check_dates])
     to = models.DecimalField(max_digits=5,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Outturn Temperature',
                              help_text='Celsius')
     tn = models.DecimalField(max_digits=5,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Normal Reference Temperature',
                              help_text='Celsius')
     tl = models.DecimalField(max_digits=5,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Low Reference Temperature',
                              help_text='Celsius')
     th = models.DecimalField(max_digits=5,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='High Reference Temperature',
                              help_text='Celsius')
 
@@ -87,7 +87,7 @@ class ITSDO(models.Model):
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
     vd = models.DecimalField(max_digits=10,
-                             decimal_places = 2,
+                             decimal_places=2,
                              verbose_name='Demand level',
                              help_text='MW')
 
@@ -117,10 +117,10 @@ class LOLPlevel(models.Model):
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
     lp = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Loss of Load Probability')
     dr = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='De-rated Margin',
                              help_text='MW')
     class Meta:
@@ -139,7 +139,7 @@ class NONBM(models.Model):
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
     nb = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Non-BM STOR Volume',
                              help_text='MWh')
 
