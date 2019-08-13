@@ -46,6 +46,9 @@ Other references:
 <!-- /TOC -->
 
 ## CDCA-I029: Aggregated GSP Group Take Volumes
+
+This report tells you the energy consumption by each regional Grid Supply Point (GSP) Group in Great Britain. By interpreting this report you can find out where the demand is and when.
+
 ### header
 | Fieldname | Datatype | Comments |
 | --------- | -------- | -------- |
@@ -96,6 +99,9 @@ example: `ZZZ|688|1916476207|`
 
 
 ## CDCA-I030: Meter Period Data for Distribution Area
+
+This report includes the volume of energy that was metered at each Distribution System Connection Point for each Settlement Run per day. This can be used to determine the areas of demand and generation in the distribution networks and the line losses that can be expected as these are factored into Suppliers’ tariffs. This is essentially the aggregated metering flows report (CDCA I029 above) broken down into specific connection points in the GSP Group.
+
 ### header
 
 | Fieldname | Datatype | Comments |
@@ -199,6 +205,9 @@ example footer: `ZZZ|787|506868600|`
 
 
 ## CDCA-I042: BM Unit Aggregation Report
+
+This report from the Central Data Collection Agent tells you the Metered Volumes of energy for each BM Unit for each aggregation run per day. This will tell you exactly what each individual BM Unit has consumed or generated, and whether this is an estimated or actual value.
+
 ### header
 
 | Fieldname | Datatype | Comments |
@@ -254,7 +263,7 @@ example: `ZZZ|24943|1684565874|`
 
 ## SAA-I014: Settlement Report: sub-flow 2
 
-
+This report contains everything that happened in the Settlement systems on a particular day, broken down into half hour Settlement Periods. This includes System Buy/Sell Prices, information on trading activity and charges for each Balancing Mechanism Unit (Party), Metered Volumes and Settlement cash flow information. It also has the all the information needed to re-calculate the System Buy and Sell Prices.
 
 ### header
 

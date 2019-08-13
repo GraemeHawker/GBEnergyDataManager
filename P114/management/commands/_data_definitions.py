@@ -57,7 +57,8 @@ FIELDNAMES = {
     'PPC' : [],
     'SP7' : [],
     'SPI' : [],
-    'SRH' : [],
+    'SRH' : ['sd', 'sr_type', 'saa_run_no', 'saa_cdca_run_no', 'svaa_cdca_sd',
+             'svaa_cdca_run_no', 'svaa_ssr_run_no', 'bsc_party'],
     'SSD' : [],
     'TRA' : [],
 
@@ -67,6 +68,8 @@ FIELDNAMES = {
 FIELD_CASTING_FUNCS = {
     'agg_date' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
     'bmu_id' : lambda x: x.strip(),
+    'bsc_party' : lambda x: x.strip(),
+    'cdca_sd' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
     'ei' : lambda x: True if x == 'T' else False,
     'gsp_group' : lambda x: x.strip()[-1],
     'gsp_id' : lambda x: x.strip(),
@@ -75,9 +78,14 @@ FIELD_CASTING_FUNCS = {
     'ii' : lambda x: True if x == 'I' else False,
     'inter_gsp_group' : lambda x: x.strip(),
     'metered_vol' : lambda x: float(x),
+    'saa_run_no' : lambda x: int(x),
+    'saa_cdca_run_no' : lambda x: int(x),
     'sd' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
     'sp' : lambda x: int(x),
     'sr_type' : lambda x: x.strip(),
+    'svaa_cdca_sd' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
+    'svaa_cdca_run_no' : lambda x: int(x),
+    'svaa_ssr_run_no' : lambda x: int(x),
     'run_no' : lambda x: int(x),
 
 

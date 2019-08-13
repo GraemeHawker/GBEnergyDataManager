@@ -11,6 +11,7 @@ Example lines given below are exactly as seen in raw data file
 References:
 - https://www.elexon.co.uk/bsc-and-codes/bsc-related-documents/interface-definition-documents/
 - https://www.elexon.co.uk/csd/neta-programme-interface-definition-and-design-part-1-interfaces-with-bsc-parties-and-their-agents/
+- https://test.bmreports.com/bmrs/?q=help/glossary
 
 
 # Contents

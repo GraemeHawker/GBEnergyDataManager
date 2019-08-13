@@ -35,6 +35,15 @@ class gsp(models.Model):
     class Meta:
         db_table = 'p114_gsp'
 
+class bsc_party(models.Model):
+    """
+    BSC party
+    """
+    id = models.CharField(max_length=11, primary_key=True)
+    name = models.CharField(max_length=100)
+    class Meta:
+        db_table = 'p114_bsc_party'
+
 class agv(models.Model):
     """
     Aggregated GSP Group Take Volumes
@@ -72,3 +81,31 @@ class agp(models.Model):
     class Meta:
         db_table = 'p114_agp'
         index_together = ('agv', 'sp')
+
+class srh(models.Model):
+    """
+    Settlement Report Header
+    """
+    sd = models.DateField(verbose_name='Settlement date',
+                          validators=[check_dates])
+    sr_type = models.ForeignKey(sr_type,
+                                on_delete=models.PROTECT)
+    saa_run_no = models.IntegerField(verbose_name='SAA Run Number',
+                                     validators=[MinValueValidator(1),
+                                                 MaxValueValidator(50)])
+    saa_cdca_run_no = models.IntegerField(verbose_name='SAA CDCA Run Number',
+                                      validators=[MinValueValidator(1),
+                                                  MaxValueValidator(50)])
+    svaa_cdca_sd = models.DateField(verbose_name='SVAA CDCA Settlement date',
+                                    validators=[check_dates])
+    svaa_cdca_run_no = models.IntegerField(verbose_name='SAA CDCA Run Number',
+                                           validators=[MinValueValidator(1),
+                                                       MaxValueValidator(50)])
+    svaa_ssr_run_no = models.IntegerField(verbose_name='SAA CDCA Run Number',
+                                          validators=[MinValueValidator(1),
+                                                      MaxValueValidator(50)])
+    bsc_party = models.ForeignKey(bsc_party,
+                                on_delete=models.PROTECT)
+    class Meta:
+        db_table = 'p114_srh'
+        index_together = ('bsc_party', 'sd', 'sr_type')
