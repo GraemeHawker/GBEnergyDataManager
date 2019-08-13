@@ -8,12 +8,11 @@ import datetime as dt
 #dictionary to reflect data structure
 ACCEPTED_MESSAGES = {
     'C0291' : {'AGV' : ['AGP']},
-    'C0301' : {'MPD' : None,
-               'GP9' : ['GMP'],
-               'EPD' : ['EMP'],
-               'IPD' : ['IMP']},
+    'C0301' : {'MPD' : {'GP9' : ['GMP'],
+                        'EPD' : ['EMP'],
+                        'IPD' : ['IMP']}},
     'C0421' : {'ABV' : ['ABP']},
-    'S0142' : {},
+    'S0142' : {'SRH' : ['SPI']},
 }
 
 #message types which are ignored and not further processed
@@ -21,7 +20,7 @@ IGNORED_MESSAGES = {
     'C0291' : ['AAA', 'ZZZ'],
     'C0301' : ['AAA', 'ZZZ'],
     'C0421' : ['AAA', 'ZZZ'],
-    'S0142' : [],
+    'S0142' : ['AAA', 'ZZZ'],
 }
 
 #list of ordered fieldnames for each message type
@@ -56,7 +55,13 @@ FIELDNAMES = {
     'MVR' : [],
     'PPC' : [],
     'SP7' : [],
-    'SPI' : [],
+    'SPI' : ['sp', 'sbp', 'ssp', 'pdc', 'tot_dem', 'tot_gen', 'tot_bsc_vol',
+             'info_imb1', 'info_imb2', 'not_res', 'tot_niv_vol', 'arbitrage',
+             'cadl', 'dmat', 'nebpca', 'nebpva', 'nsbpva', 'bppa',
+             'nespca', 'nespva', 'nsspva', 'sppa', 'stabv', 'staov',
+             'tstabv', 'tstaov', 'tsrabv', 'tsraov', 'tsoabv', 'tsoaov',
+             'tsasv', 'tsabv', 'tstasv', 'tstabv', 'tsrasv', 'tsrabv',
+             'tsoasv', 'tsoabv', 'rep_price', 'rep_price_vol'],
     'SRH' : ['sd', 'sr_type', 'saa_run_no', 'saa_cdca_run_no', 'svaa_cdca_sd',
              'svaa_cdca_run_no', 'svaa_ssr_run_no', 'bsc_party'],
     'SSD' : [],
@@ -67,26 +72,50 @@ FIELDNAMES = {
 #custom functions for converting raw message strings to required datatypes
 FIELD_CASTING_FUNCS = {
     'agg_date' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
+    'arbitrage' : lambda x: True if x == 'T' else False,
     'bmu_id' : lambda x: x.strip(),
+    'bppa' : lambda x: float(x),
     'bsc_party' : lambda x: x.strip(),
     'cdca_sd' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
+    'cadl' : lambda x: int(x),
+    'dmat' : lambda x: float(x),
     'ei' : lambda x: True if x == 'T' else False,
     'gsp_group' : lambda x: x.strip()[-1],
     'gsp_id' : lambda x: x.strip(),
     'gt_vol' : lambda x: float(x),
     'ie_ind' : lambda x: x.strip(),
     'ii' : lambda x: True if x == 'I' else False,
+    'info_imb1' : lambda x: float(x),
+    'info_imb2' : lambda x: float(x),
     'inter_gsp_group' : lambda x: x.strip(),
     'metered_vol' : lambda x: float(x),
+    'nebpca': lambda x: float(x),
+    'nebpva': lambda x: float(x),
+    'nsbpva': lambda x: float(x),
+    'nespca': lambda x: float(x),
+    'nespva': lambda x: float(x),
+    'nsspva': lambda x: float(x),
+    'not_res' : lambda x: float(x),
+    'pdc' : lambda x: x.strip(),
+    'run_no' : lambda x: int(x),
     'saa_run_no' : lambda x: int(x),
     'saa_cdca_run_no' : lambda x: int(x),
+    'sbp' : lambda x: float(x),
     'sd' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
     'sp' : lambda x: int(x),
+    'sppa': lambda x: float(x),
     'sr_type' : lambda x: x.strip(),
+    'ssp' : lambda x: float(x),
+    'stabv': lambda x: float(x),
+    'staov': lambda x: float(x),
     'svaa_cdca_sd' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
     'svaa_cdca_run_no' : lambda x: int(x),
     'svaa_ssr_run_no' : lambda x: int(x),
-    'run_no' : lambda x: int(x),
+    'tot_bsc_vol' : lambda x: float(x),
+    'tot_dem' : lambda x: float(x),
+    'tot_gen' : lambda x: float(x),
+    'tot_niv_vol' : lambda x: float(x),
+
 
 
 
