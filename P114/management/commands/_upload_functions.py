@@ -4,7 +4,11 @@ Helper functions for uploading data to database
 """
 import datetime as dt
 from django.utils import timezone
-from ._data_definitions import FIELDNAMES, FIELD_CASTING_FUNCS
+from ._data_definitions import ACCEPTED_MESSAGES, IGNORED_MESSAGES, \
+FIELDNAMES, FIELD_CASTING_FUNCS
+from GBEnergyDataManager.settings import P114_INPUT_DIR
+import gzip
+from tqdm import tqdm
 
 def message_to_dict(raw_message, associated_params=None):
     """
@@ -29,10 +33,48 @@ def message_to_dict(raw_message, associated_params=None):
     message_keys = FIELDNAMES[message_type]
     casted_message_values = [FIELD_CASTING_FUNCS[key](value.strip()) for
                              key, value in zip(message_keys,
-                                               message_values)]
+                                               message_values[1:])]
     return dict(zip(message_keys, casted_message_values))
 
-def insert_data(message_dict):
+def file_to_message_list(filename):
+    """
+    Converts locally saved file to list of message dictionaries
+    Filters for accepted message types and raises errors for
+    unrecognised message types
+
+    Parameters
+    ----------
+    filename : string
+        the filename to be Processed
+
+    Returns
+    -------
+    message_list: list
+        a list of message dictionaries containing key/value pairs
+    """
+
+    p114_feed = filename.split('_')[0]
+    if p114_feed not in ACCEPTED_MESSAGES and p114_feed not in IGNORED_MESSAGES:
+        raise ValueError('P114 item {} not recognised'.format(p114_feed))
+    file = gzip.open(P114_INPUT_DIR + filename, 'rb')
+    file_content = file.read().decode('utf-8', 'ignore')
+    message_list = []
+    for row in file_content.split('\n'):
+        if len(row)>0:
+            message_values = row.split('|')
+            message_type = message_values[0]
+            if message_type in ACCEPTED_MESSAGES[p114_feed]:
+                message_keys = FIELDNAMES[message_type]
+                casted_message_values = [FIELD_CASTING_FUNCS[key](value.strip()) for
+                                         key, value in zip(message_keys,
+                                                           message_values[1:])]
+                message_list.append(dict(zip(['message_type']+message_keys, [message_type]+casted_message_values)))
+            elif message_type not in IGNORED_MESSAGES[p114_feed]:
+                print(row)
+                raise ValueError('message type {} not recognised'.format(message_type))
+    return message_list
+
+def insert_data(message_list):
     """
     Generates and saves Django ORM object from message dictionary
     in order to insert a row of BMUID-level data to DB
@@ -49,18 +91,51 @@ def insert_data(message_dict):
     ------
 
     """
-    from BMRA.models.balancing import FPN, FPNlevel, MEL, MELlevel, MIL, MILlevel,\
-    BOAL, BOALlevel, BOALF, BOALFlevel, BOD, DISPTAV, EBOCF, PTAV, QAS, QPN, QPNlevel,\
-    BOAV
+    from P114.models import GSP_group, SR_type, ABV, ABP, AGV, AGP
 
-    from BMRA.models.core import BMU
+    from BMRA.models import BMU
 
+    # here we rely on message order to be correct in the input files
+    # e.g. as ABP datapoints come immediately after the ABV datapoint
+    # with which they are associated, we link ABPs to the most recent
+    # created ABV object in the loop
+    # TODO: add integrity checks e.g. that numbers of and links between
+    # each object in a processed file are consistent with this assumption
+    for message_dict in tqdm(message_list):
+        if message_dict['message_type'] == 'ABV':
+            bmu, created = BMU.objects.get_or_create(id=message_dict['bmu_id'])
+            sr_type, created = SR_type.objects.get_or_create(id=message_dict['sr_type'])
+            abv, created = ABV.objects.get_or_create(bmu=bmu,
+                                                     sd=message_dict['sd'],
+                                                     sr_type=sr_type,
+                                                     run_no=message_dict['run_no'],
+                                                     agg_date=message_dict['agg_date'])
+
+        if message_dict['message_type'] == 'ABP':
+            abp, created = ABP.objects.get_or_create(abv=abv,
+                                                     sp=message_dict['sp'],
+                                                     ei=message_dict['ei'],
+                                                     vol=message_dict['vol'],
+                                                     ii=message_dict['ii'])
+        if message_dict['message_type'] == 'AGV':
+            gsp_group, created = GSP_group.objects.get_or_create(id=message_dict['gsp_group'])
+            sr_type, created = SR_type.objects.get_or_create(id=message_dict['sr_type'])
+            agv, created = AGV.objects.get_or_create(gsp_group=gsp_group,
+                                                     sd=message_dict['sd'],
+                                                     sr_type=sr_type,
+                                                     run_no=message_dict['run_no'],
+                                                     agg_date=message_dict['agg_date'])
+
+        if message_dict['message_type'] == 'AGP':
+            agp, created = AGP.objects.get_or_create(agv=agv,
+                                                     sp=message_dict['sp'],
+                                                     ei=message_dict['ei'],
+                                                     vol=message_dict['vol'],
+                                                     ii=message_dict['ii'])
+
+    '''
     #check if BMUID already in db, if not insert and log
-    try:
-        bmu = BMU.objects.get(id=message_dict['bmu_id'])
-    except BMU.DoesNotExist:
-        bmu = BMU(id=message_dict['bmu_id'])
-        bmu.save()
+
 
     #construct associated BM object
     if message_dict['message_subtype'] in ['FPN']:
@@ -84,3 +159,4 @@ def insert_data(message_dict):
 
     raise ValueError('Insert function not available for message subtype %s'
                      % message_dict['message_subtype'])
+    '''

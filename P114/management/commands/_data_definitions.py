@@ -4,15 +4,20 @@ for datachecking and type casting
 """
 import datetime as dt
 
+#feeds to process, used to filter input files
+PROCESSED_FEEDS = ['C0291']
+
+#feeds to ignore (error raised if file found
+#relating to feed not in either of these 2 lists)
+IGNORED_FEEDS = ['C0301','C0421','S0142']
+
 #definitions of accepted message tags, with hierarchical
 #dictionary to reflect data structure
 ACCEPTED_MESSAGES = {
-    'C0291' : {'AGV' : ['AGP']},
-    'C0301' : {'MPD' : {'GP9' : ['GMP'],
-                        'EPD' : ['EMP'],
-                        'IPD' : ['IMP']}},
-    'C0421' : {'ABV' : ['ABP']},
-    'S0142' : {'SRH' : ['SPI']},
+    'C0291' : ['AGV', 'AGP'],
+    'C0301' : ['MPD', 'GP9', 'GMP', 'EPD', 'EMP', 'IPD','IMP'],
+    'C0421' : ['ABV', 'ABP'],
+    'S0142' : [],
 }
 
 #message types which are ignored and not further processed
@@ -20,16 +25,18 @@ IGNORED_MESSAGES = {
     'C0291' : ['AAA', 'ZZZ'],
     'C0301' : ['AAA', 'ZZZ'],
     'C0421' : ['AAA', 'ZZZ'],
-    'S0142' : ['AAA', 'ZZZ'],
+    'S0142' : ['AAA', 'APB', 'APC', 'APD', 'BO2', 'BO3', 'BO4', 'BO6', 'BO7',
+               'BP7','BPH', 'BPI', 'DB1', 'DB2', 'FP2', 'MD1', 'MD2', 'MEL',
+               'MIL','MVR', 'PPC', 'SPI', 'SP7', 'SRH', 'SSD', 'TRA', 'ZZZ'],
 }
 
 #list of ordered fieldnames for each message type
 #(needed as not labelled in raw data)
 FIELDNAMES = {
-    'ABP' : ['sp', 'ei', 'metered_vol', 'ie_ind'],
+    'ABP' : ['sp', 'ei', 'vol', 'ii'],
     'ABV' : ['bmu_id', 'sd', 'sr_type', 'run_no', 'agg_date'],
     'AGV' : ['gsp_group', 'sd', 'sr_type', 'run_no', 'agg_date'],
-    'AGP' : ['sp', 'ei', 'ii', 'gt_vol'],
+    'AGP' : ['sp', 'ei', 'ii', 'vol'],
     'APB' : [],
     'APC' : [],
     'APD' : [],
@@ -43,9 +50,9 @@ FIELDNAMES = {
     'DB1' : [],
     'DB2' : [],
     'FP2' : [],
-    'GMP' : ['sp', 'ei', 'metered_vol', 'ie_ind'],
+    'GMP' : ['sp', 'ei', 'vol', 'ie_ind'],
     'GP9' : ['gsp_id'],
-    'IMP' : ['sp', 'ei', 'metered_vol', 'ie_ind'],
+    'IMP' : ['sp', 'ei', 'vol', 'ie_ind'],
     'IPD' : ['inter_gsp_group'],
     'MD1' : [],
     'MD2' : [],
@@ -71,12 +78,12 @@ FIELDNAMES = {
 
 #custom functions for converting raw message strings to required datatypes
 FIELD_CASTING_FUNCS = {
-    'agg_date' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
+    'agg_date' : lambda x: dt.date(int(x[:4]), int(x[4:6]), int(x[6:8])),
     'arbitrage' : lambda x: True if x == 'T' else False,
     'bmu_id' : lambda x: x.strip(),
     'bppa' : lambda x: float(x),
     'bsc_party' : lambda x: x.strip(),
-    'cdca_sd' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
+    'cdca_sd' : lambda x: dt.date(int(x[:4]), int(x[4:6]), int(x[6:8])),
     'cadl' : lambda x: int(x),
     'dmat' : lambda x: float(x),
     'ei' : lambda x: True if x == 'T' else False,
@@ -88,7 +95,6 @@ FIELD_CASTING_FUNCS = {
     'info_imb1' : lambda x: float(x),
     'info_imb2' : lambda x: float(x),
     'inter_gsp_group' : lambda x: x.strip(),
-    'metered_vol' : lambda x: float(x),
     'nebpca': lambda x: float(x),
     'nebpva': lambda x: float(x),
     'nsbpva': lambda x: float(x),
@@ -101,22 +107,19 @@ FIELD_CASTING_FUNCS = {
     'saa_run_no' : lambda x: int(x),
     'saa_cdca_run_no' : lambda x: int(x),
     'sbp' : lambda x: float(x),
-    'sd' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
+    'sd' : lambda x: dt.date(int(x[:4]), int(x[4:6]), int(x[6:8])),
     'sp' : lambda x: int(x),
     'sppa': lambda x: float(x),
     'sr_type' : lambda x: x.strip(),
     'ssp' : lambda x: float(x),
     'stabv': lambda x: float(x),
     'staov': lambda x: float(x),
-    'svaa_cdca_sd' : lambda x: dt.date(x[:4], x[4:6], x[6:8]),
+    'svaa_cdca_sd' : lambda x: dt.date(int(x[:4]), int(x[4:6]), int(x[6:8])),
     'svaa_cdca_run_no' : lambda x: int(x),
     'svaa_ssr_run_no' : lambda x: int(x),
     'tot_bsc_vol' : lambda x: float(x),
     'tot_dem' : lambda x: float(x),
     'tot_gen' : lambda x: float(x),
     'tot_niv_vol' : lambda x: float(x),
-
-
-
-
+    'vol' : lambda x: float(x),
 }
