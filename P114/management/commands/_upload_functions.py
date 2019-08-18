@@ -91,7 +91,8 @@ def insert_data(message_list):
     ------
 
     """
-    from P114.models import GSP_group, SR_type, ABV, ABP, AGV, AGP
+    from P114.models import GSP, GSP_group, Interconnector, InterGSP, SR_type, \
+    ABV, ABP, AGV, AGP, MPD, GMP, EMP, IMP
 
     from BMRA.models import BMU
 
@@ -111,13 +112,14 @@ def insert_data(message_list):
                                                      run_no=message_dict['run_no'],
                                                      agg_date=message_dict['agg_date'])
 
-        if message_dict['message_type'] == 'ABP':
+        elif message_dict['message_type'] == 'ABP':
             abp, created = ABP.objects.get_or_create(abv=abv,
                                                      sp=message_dict['sp'],
                                                      ei=message_dict['ei'],
                                                      vol=message_dict['vol'],
                                                      ii=message_dict['ii'])
-        if message_dict['message_type'] == 'AGV':
+
+        elif message_dict['message_type'] == 'AGV':
             gsp_group, created = GSP_group.objects.get_or_create(id=message_dict['gsp_group'])
             sr_type, created = SR_type.objects.get_or_create(id=message_dict['sr_type'])
             agv, created = AGV.objects.get_or_create(gsp_group=gsp_group,
@@ -126,8 +128,56 @@ def insert_data(message_list):
                                                      run_no=message_dict['run_no'],
                                                      agg_date=message_dict['agg_date'])
 
-        if message_dict['message_type'] == 'AGP':
+        elif message_dict['message_type'] == 'AGP':
             agp, created = AGP.objects.get_or_create(agv=agv,
+                                                     sp=message_dict['sp'],
+                                                     ei=message_dict['ei'],
+                                                     vol=message_dict['vol'],
+                                                     ii=message_dict['ii'])
+
+        elif message_dict['message_type'] == 'MPD':
+            gsp_group, created = GSP_group.objects.get_or_create(id=message_dict['gsp_group'])
+            sr_type, created = SR_type.objects.get_or_create(id=message_dict['sr_type'])
+            mpd, created = MPD.objects.get_or_create(gsp_group=gsp_group,
+                                                     sd=message_dict['sd'],
+                                                     sr_type=sr_type,
+                                                     run_no=message_dict['run_no'],
+                                                     agg_date=message_dict['agg_date'])
+
+        elif message_dict['message_type'] == 'GP9':
+            # in this case we don't create a GP9 object as it only has GSP id
+            # instead get/create the GSP object and use it in following GMPs
+            gsp, created = GSP.objects.get_or_create(id=message_dict['gsp_id'])
+
+        elif message_dict['message_type'] == 'GMP':
+            gmp, created = GMP.objects.get_or_create(gsp=gsp,
+                                                     mpd=mpd,
+                                                     sp=message_dict['sp'],
+                                                     ei=message_dict['ei'],
+                                                     vol=message_dict['vol'],
+                                                     ii=message_dict['ii'])
+
+        elif message_dict['message_type'] == 'EPD':
+            # in this case we don't create a EPD object as it only has Interconnector id
+            # instead get/create the Interconnector object and use it in following EMPs
+            interconnector, created = Interconnector.objects.get_or_create(id=message_dict['inter_id'])
+
+        elif message_dict['message_type'] == 'EMP':
+            emp, created = EMP.objects.get_or_create(interconnector=interconnector,
+                                                     mpd=mpd,
+                                                     sp=message_dict['sp'],
+                                                     ei=message_dict['ei'],
+                                                     vol=message_dict['vol'],
+                                                     ii=message_dict['ii'])
+
+        elif message_dict['message_type'] == 'IPD':
+            # in this case we don't create a IPD object as it only has InterGSP id
+            # instead get/create the InterGSP object and use it in following IMPs
+            intergsp, created = InterGSP.objects.get_or_create(id=message_dict['intergsp_id'])
+
+        elif message_dict['message_type'] == 'IMP':
+            imp, created = IMP.objects.get_or_create(intergsp=intergsp,
+                                                     mpd=mpd,
                                                      sp=message_dict['sp'],
                                                      ei=message_dict['ei'],
                                                      vol=message_dict['vol'],

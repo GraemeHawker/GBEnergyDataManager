@@ -5,11 +5,11 @@ for datachecking and type casting
 import datetime as dt
 
 #feeds to process, used to filter input files
-PROCESSED_FEEDS = ['C0291']
+PROCESSED_FEEDS = ['C0301',]
 
 #feeds to ignore (error raised if file found
 #relating to feed not in either of these 2 lists)
-IGNORED_FEEDS = ['C0301','C0421','S0142']
+IGNORED_FEEDS = ['C0291','C0421','S0142']
 
 #definitions of accepted message tags, with hierarchical
 #dictionary to reflect data structure
@@ -49,11 +49,13 @@ FIELDNAMES = {
     'BPI' : [],
     'DB1' : [],
     'DB2' : [],
+    'EPD' : ['inter_id'],
+    'EMP' : ['sp', 'ei', 'vol', 'ii'],
     'FP2' : [],
-    'GMP' : ['sp', 'ei', 'vol', 'ie_ind'],
+    'GMP' : ['sp', 'ei', 'vol', 'ii'],
     'GP9' : ['gsp_id'],
-    'IMP' : ['sp', 'ei', 'vol', 'ie_ind'],
-    'IPD' : ['inter_gsp_group'],
+    'IMP' : ['sp', 'ei', 'vol', 'ii'],
+    'IPD' : ['intergsp_id'],
     'MD1' : [],
     'MD2' : [],
     'MEL' : [],
@@ -94,7 +96,8 @@ FIELD_CASTING_FUNCS = {
     'ii' : lambda x: True if x == 'I' else False,
     'info_imb1' : lambda x: float(x),
     'info_imb2' : lambda x: float(x),
-    'inter_gsp_group' : lambda x: x.strip(),
+    'inter_id' : lambda x: x.strip(),
+    'intergsp_id' : lambda x: x.strip(),
     'nebpca': lambda x: float(x),
     'nebpva': lambda x: float(x),
     'nsbpva': lambda x: float(x),

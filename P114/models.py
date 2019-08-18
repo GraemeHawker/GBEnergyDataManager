@@ -36,7 +36,9 @@ class GSP(models.Model):
     """
     id = models.CharField(max_length=11, primary_key=True)
     gsp_group = models.ForeignKey(GSP_group,
-                                  on_delete=models.PROTECT)
+                                  on_delete=models.PROTECT,
+                                  blank=True,
+                                  null=True)
     name = models.CharField(max_length=100)
     class Meta:
         db_table = 'p114_gsp'
