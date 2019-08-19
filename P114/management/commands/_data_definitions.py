@@ -9,13 +9,13 @@ PROCESSED_FEEDS = ['C0301',]
 
 #feeds to ignore (error raised if file found
 #relating to feed not in either of these 2 lists)
-IGNORED_FEEDS = ['C0291','C0421','S0142']
+IGNORED_FEEDS = ['C0291', 'C0421', 'S0142']
 
 #definitions of accepted message tags, with hierarchical
 #dictionary to reflect data structure
 ACCEPTED_MESSAGES = {
     'C0291' : ['AGV', 'AGP'],
-    'C0301' : ['MPD', 'GP9', 'GMP', 'EPD', 'EMP', 'IPD','IMP'],
+    'C0301' : ['MPD', 'GP9', 'GMP', 'EPD', 'EMP', 'IPD', 'IMP'],
     'C0421' : ['ABV', 'ABP'],
     'S0142' : [],
 }
@@ -26,8 +26,8 @@ IGNORED_MESSAGES = {
     'C0301' : ['AAA', 'ZZZ'],
     'C0421' : ['AAA', 'ZZZ'],
     'S0142' : ['AAA', 'APB', 'APC', 'APD', 'BO2', 'BO3', 'BO4', 'BO6', 'BO7',
-               'BP7','BPH', 'BPI', 'DB1', 'DB2', 'FP2', 'MD1', 'MD2', 'MEL',
-               'MIL','MVR', 'PPC', 'SPI', 'SP7', 'SRH', 'SSD', 'TRA', 'ZZZ'],
+               'BP7', 'BPH', 'BPI', 'DB1', 'DB2', 'FP2', 'MD1', 'MD2', 'MEL',
+               'MIL', 'MVR', 'PPC', 'SPI', 'SP7', 'SRH', 'SSD', 'TRA', 'ZZZ'],
 }
 
 #list of ordered fieldnames for each message type
