@@ -17,7 +17,7 @@ PROCESSED_MESSAGES = {
     'SYSTEM' : ['BSAD', 'DISBSAD', 'NETBSAD', 'MID', 'EBSP', 'NETEBSP',
                 'DISEBSP', 'SOSO', 'FUELINST', 'FUELHH', 'SYSMSG', 'SYSWARN',
                 'FREQ', 'ISPSTACK', 'TEMP', 'INDO', 'ITSDO', 'LOLP', 'NONBM',
-                'INDOD', 'FUELINST', 'FUELHH', 'SYSMSG', 'DCONTROL','SYSWARN'],
+                'INDOD', 'FUELINST', 'FUELHH', 'SYSMSG', 'DCONTROL', 'SYSWARN'],
     'DYNAMIC' : [],
     'INFO' : []
 }

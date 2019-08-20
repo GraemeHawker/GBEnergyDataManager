@@ -231,7 +231,7 @@ class IMP(models.Model):
         index_together = ('intergsp', 'mpd', 'sp')
 
 '''
-class srh(models.Model):
+class SRH(models.Model):
     """
     Settlement Report Header
     """
@@ -259,7 +259,7 @@ class srh(models.Model):
         db_table = 'p114_srh'
         index_together = ('bsc_party', 'sd', 'sr_type')
 
-class spi(models.Model):
+class SPI(models.Model):
     """
     Settlement Period Information
     """
@@ -310,9 +310,6 @@ class spi(models.Model):
                                verbose_name='De Minimis Acceptance \
                                Threshold',
                                help_text='MWh')
-
-
-
     class Meta:
         db_table = 'p114_spi'
         index_together = ('srh', 'sd', 'sr_type')

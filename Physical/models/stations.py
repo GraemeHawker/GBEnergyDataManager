@@ -4,7 +4,7 @@ models relating to physical power station entities
 
 from django.db import models
 from BMRA.models.core import BMU
-from Physical.models.zones import ConnectionSite, TOZone, OC2Zone
+from Physical.models.zones import ConnectionSite, TO_zone, OC2_zone
 
 class StationType(models.Model):
     """
@@ -17,8 +17,8 @@ class PowerStation(models.Model):
     a physical electricity generating station
     """
     name = models.CharField(max_length=100)
-    to_zone = models.ForeignKey(TOZone, on_delete=models.PROTECT, null=True)
-    OC2_zone = models.ForeignKey(OC2Zone, on_delete=models.PROTECT, null=True)
+    to_zone = models.ForeignKey(TO_zone, on_delete=models.PROTECT, null=True)
+    OC2_zone = models.ForeignKey(OC2_zone, on_delete=models.PROTECT, null=True)
     connection_site = models.ForeignKey(ConnectionSite, on_delete=models.PROTECT, null=True)
     station_type = models.ForeignKey(StationType, on_delete=models.PROTECT, null=True)
 
