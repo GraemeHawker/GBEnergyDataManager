@@ -88,7 +88,7 @@ def process_p114_date(p114_date):
     if filenames is not None:
         print('{} relevant files found'.format(len(filenames)))
         for filename in filenames:
-            get_p114_file(filename, overwrite=False)
+            get_p114_file(filename, overwrite=True)
             insert_data(file_to_message_list(filename))
     else:
         print('No relevant files found')

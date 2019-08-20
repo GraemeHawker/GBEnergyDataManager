@@ -880,7 +880,114 @@ def insert_dynamic_data(message_dict):
     ------
 
     """
-    pass
+    from BMRA.models.core import BMU
+    from BMRA.models.dynamic import SIL, SEL, MNZT, NDZ, RURE, RURI, RDRE, RDRI\
+    MDV, MDP, MZT, NTB, NTO
+
+    #check if BMUID already in db, if not insert and log
+    try:
+        bmu = BMU.objects.get(id=message_dict['bmu_id'])
+    except BMU.DoesNotExist:
+        bmu = BMU(id=message_dict['bmu_id'])
+        bmu.save()
+
+    if message_dict['message_subtype'] in ['SIL']:
+        sil, created = SIL.objects.get_or_create(bmu=bmu,
+                                                 te=message_dict['TE'],
+                                                 si=message_dict['SI'])
+        return created
+
+    if message_dict['message_subtype'] in ['SEL']:
+        sel, created = SEL.objects.get_or_create(bmu=bmu,
+                                                 te=message_dict['TE'],
+                                                 si=message_dict['SE'])
+        return created
+
+    if message_dict['message_subtype'] in ['MNZT']:
+        mnzt, created = MNZT.objects.get_or_create(bmu=bmu,
+                                                   te=message_dict['TE'],
+                                                   mn=message_dict['MN'])
+        return created
+
+    if message_dict['message_subtype'] in ['NDZ']:
+        ndz, created = NDZ.objects.get_or_create(bmu=bmu,
+                                                 te=message_dict['TE'],
+                                                 dz=message_dict['DZ'])
+        return created
+
+    if message_dict['message_subtype'] in ['RURE']:
+        rure, created = RURE.objects.get_or_create(bmu=bmu,
+                                                   te=message_dict['TE'],
+                                                   u1=message_dict['U1'],
+                                                   ub=message_dict['UB'],
+                                                   u2=message_dict['U2'],
+                                                   uc=message_dict['UC'],
+                                                   u3=message_dict['U3'])
+        return created
+
+    if message_dict['message_subtype'] in ['RURI']:
+        ruri, created = RURI.objects.get_or_create(bmu=bmu,
+                                                   te=message_dict['TE'],
+                                                   u1=message_dict['U1'],
+                                                   ub=message_dict['UB'],
+                                                   u2=message_dict['U2'],
+                                                   uc=message_dict['UC'],
+                                                   u3=message_dict['U3'])
+        return created
+
+    if message_dict['message_subtype'] in ['RDRE']:
+        rdre, created = RDRE.objects.get_or_create(bmu=bmu,
+                                                   te=message_dict['TE'],
+                                                   r1=message_dict['R1'],
+                                                   rb=message_dict['RB'],
+                                                   r2=message_dict['R2'],
+                                                   rc=message_dict['RC'],
+                                                   r3=message_dict['R3'])
+        return created
+
+    if message_dict['message_subtype'] in ['RDRI']:
+        rdri, created = RDRI.objects.get_or_create(bmu=bmu,
+                                                   te=message_dict['TE'],
+                                                   r1=message_dict['R1'],
+                                                   rb=message_dict['RB'],
+                                                   r2=message_dict['R2'],
+                                                   rc=message_dict['RC'],
+                                                   r3=message_dict['R3'])
+        return created
+
+    if message_dict['message_subtype'] in ['MDV']:
+        mdv, created = MDV.objects.get_or_create(bmu=bmu,
+                                                 te=message_dict['TE'],
+                                                 dv=message_dict['DV'])
+        return created
+
+    if message_dict['message_subtype'] in ['MDP']:
+        mdp, created = MDP.objects.get_or_create(bmu=bmu,
+                                                 te=message_dict['TE'],
+                                                 dp=message_dict['DP'])
+        return created
+
+    if message_dict['message_subtype'] in ['MZT']:
+        mzt, created = MZT.objects.get_or_create(bmu=bmu,
+                                                 te=message_dict['TE'],
+                                                 mz=message_dict['MZ'])
+        return created
+
+    if message_dict['message_subtype'] in ['NTB']:
+        ntb, created = NTB.objects.get_or_create(bmu=bmu,
+                                                 te=message_dict['TE'],
+                                                 db=message_dict['DB'])
+        return created
+
+    if message_dict['message_subtype'] in ['NTO']:
+        nto, created = NTO.objects.get_or_create(bmu=bmu,
+                                                 te=message_dict['TE'],
+                                                 do=message_dict['DO'])
+        return created
+
+    raise ValueError('Insert function not available for message subtype %s'
+                     % message_dict['message_subtype'])
+
 
 def insert_info_data(message_dict):
     """
@@ -899,7 +1006,8 @@ def insert_info_data(message_dict):
     ------
 
     """
-    pass
+    raise ValueError('Insert function not available for message subtype %s'
+                     % message_dict['message_subtype'])
 
 def insert_bp_data(message_dict):
     """
@@ -918,4 +1026,5 @@ def insert_bp_data(message_dict):
     ------
 
     """
-    pass
+    raise ValueError('Insert function not available for message subtype %s'
+                     % message_dict['message_subtype'])

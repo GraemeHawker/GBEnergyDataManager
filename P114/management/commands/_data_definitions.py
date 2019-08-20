@@ -5,11 +5,11 @@ for datachecking and type casting
 import datetime as dt
 
 #feeds to process, used to filter input files
-PROCESSED_FEEDS = ['C0301',]
+PROCESSED_FEEDS = ['C0301','C0291','C0421']
 
 #feeds to ignore (error raised if file found
 #relating to feed not in either of these 2 lists)
-IGNORED_FEEDS = ['C0291','C0421','S0142']
+IGNORED_FEEDS = ['S0142']
 
 #definitions of accepted message tags, with hierarchical
 #dictionary to reflect data structure
@@ -124,5 +124,11 @@ FIELD_CASTING_FUNCS = {
     'tot_dem' : lambda x: float(x),
     'tot_gen' : lambda x: float(x),
     'tot_niv_vol' : lambda x: float(x),
+    'tsoabv': lambda x: float(x),
+    'tsoaov': lambda x: float(x),
+    'tsrabv': lambda x: float(x),
+    'tsraov': lambda x: float(x),
+    'tstabv': lambda x: float(x),
+    'tstaov': lambda x: float(x),
     'vol' : lambda x: float(x),
 }
