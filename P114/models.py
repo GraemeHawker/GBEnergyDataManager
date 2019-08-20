@@ -102,7 +102,7 @@ class AGP(models.Model):
     ii = models.BooleanField(verbose_name='Import/Export indicator',
                              help_text='True for import, False for export')
     vol = models.FloatField(verbose_name='Group take volume',
-                               help_text='MWh')
+                            help_text='MWh')
 
     class Meta:
         db_table = 'p114_agp'
