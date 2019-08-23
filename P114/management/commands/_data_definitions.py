@@ -9,11 +9,7 @@ PROCESSED_FEEDS = ['C0301','C0291','C0421']
 
 #feeds to ignore (error raised if file found
 #relating to feed not in either of these 2 lists)
-<<<<<<< HEAD
-IGNORED_FEEDS = ['S0142']
-=======
 IGNORED_FEEDS = ['C0291', 'C0421', 'S0142']
->>>>>>> ce2f362ddf54f3b9a1fe05c71f8af16898c1c4a6
 
 #definitions of accepted message tags, with hierarchical
 #dictionary to reflect data structure

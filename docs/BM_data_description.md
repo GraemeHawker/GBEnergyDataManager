@@ -335,7 +335,7 @@ Example:
 
 Example:
 
-2017:04:21:01:21:54:GMT: subject=BMRA.DYNAMIC.T_STAY-2.MNZT, message={TE=2017:04:21:01:21:00:GMT,MN=360}
+`2017:04:21:01:21:54:GMT: subject=BMRA.DYNAMIC.T_STAY-2.MNZT, message={TE=2017:04:21:01:21:00:GMT,MN=360}`
 
 #### NDZ: Notice to deviate from zero
   Parameters:
@@ -620,8 +620,6 @@ Details of prices for trades offered between System Operators
 |IC|Char(30)|Contract Identifier|unique string||
 |TQ|Decimal(10,3)|Trade Quantity offered|MW||
 |PT|Decimal(10,2)|Trade Price offered|£/MWh|Value in unit currency per MWh. The currency used (e.g. EUR or GBP) will potentially be different for different SO-SO Trade Types (i.e. different Interconnectors and products)|
-
-Index: TT, ST
 
 Index: TT, ST
 
