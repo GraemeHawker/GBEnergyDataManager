@@ -102,7 +102,7 @@ def insert_data(message_list):
     # created ABV object in the loop
     # TODO: add integrity checks e.g. that numbers of and links between
     # each object in a processed file are consistent with this assumption
-    for message_dict in tqdm(message_list):
+    for message_dict in message_list:
         if message_dict['message_type'] == 'ABV':
             bmu, created = BMU.objects.get_or_create(id=message_dict['bmu_id'])
             sr_type, created = SR_type.objects.get_or_create(id=message_dict['sr_type'])

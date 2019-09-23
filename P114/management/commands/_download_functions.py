@@ -63,7 +63,7 @@ def get_p114_file(filename, overwrite=True):
     ------
 
     """
-    print(filename)
+    #print(filename)
     if not os.path.isfile(P114_INPUT_DIR + filename) or overwrite:
         remote_url = (P114_DOWNLOAD_URL.format(ELEXON_KEY, filename))
         urllib.request.urlretrieve(remote_url,
@@ -87,7 +87,7 @@ def process_p114_date(p114_date):
     filenames = get_p114_filenames_for_date(p114_date)
     if filenames is not None:
         print('{} relevant files found'.format(len(filenames)))
-        for filename in filenames:
+        for filename in tqdm(filenames):
             get_p114_file(filename, overwrite=True)
             insert_data(file_to_message_list(filename))
     else:

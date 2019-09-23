@@ -100,6 +100,10 @@ def message_to_dict(raw_message):
         *[int(x) for x in received_time_string.split(':')[:6]], tzinfo=timezone.utc)
 
     message_type_list = message_parts[0].split(' ')[1].split('.')
+    if len(message_type_list)<2:
+        #occasional badly-formatted messages
+        print('Not able to parse message type for message: {}'.format(raw_message))
+        return None
     message_type = message_type_list[1]
     message_dict['subject'] = message_parts[0].split(' ')[1].split('=')[1]
     message_dict['message_type'] = message_type
@@ -881,7 +885,7 @@ def insert_dynamic_data(message_dict):
 
     """
     from BMRA.models.core import BMU
-    from BMRA.models.dynamic import SIL, SEL, MNZT, NDZ, RURE, RURI, RDRE, RDRI\
+    from BMRA.models.dynamic import SIL, SEL, MNZT, NDZ, RURE, RURI, RDRE, RDRI, \
     MDV, MDP, MZT, NTB, NTO
 
     #check if BMUID already in db, if not insert and log
