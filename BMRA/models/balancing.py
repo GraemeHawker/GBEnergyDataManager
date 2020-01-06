@@ -73,6 +73,16 @@ class BOALF(models.Model):
                              help_text='True for relating to a STOR provider',
                              blank=True,
                              null=True)
+    rn = models.BooleanField(verbose_name='RR Instruction Flag',
+                             help_text='True for relating to a Replacement \
+                             Reserve instruction',
+                             blank=True,
+                             null=True)
+    sc = models.BooleanField(verbose_name='RR Instruction Flag',
+                             help_text='True for relating to a Replacement \
+                             Reserve schedule',
+                             blank=True,
+                             null=True)
     class Meta:
         db_table = 'bmra_boalf'
         index_together = ('bmu', 'ta')

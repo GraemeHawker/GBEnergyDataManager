@@ -42,7 +42,7 @@ UNPROCESSED_MESSAGES = {
 ACCEPTED_MESSAGES = {
     'BM' : {
         'BOAL' : ['NK', 'TA', 'TS', 'AD', 'VA'],
-        'BOALF' : ['NK', 'SO', 'PF', 'TA', 'TS', 'AD', 'VA'],
+        'BOALF' : ['NK', 'SO', 'PF', 'RN', 'SC', 'TA', 'TS', 'AD', 'VA'],
         'BOAV' : ['SD', 'SP', 'NN', 'NK', 'OV', 'BV', 'SA'],
         'BOD' : ['SD', 'SP', 'NN', 'BP', 'OP', 'TS', 'VB'],
         'DISPTAV' : ['SD', 'SP', 'NN', 'OV', 'BV', 'P1', 'P2', 'P3', 'P4', 'P5', 'P6'],
@@ -236,10 +236,12 @@ FIELD_CASTING_FUNCS = {
     'RB' : lambda value: int(value),
     'RC' : lambda value: int(value),
     'RI' : lambda value: True if value == 'T' else False,
+    'RN' : lambda value: True if value == 'T' else False,
     'RP' : lambda value: float(value),
     'RSP' : lambda value: float(value),
     'RV' : lambda value: float(value),
     'SA' : lambda value: True if value == 'S' else False,
+    'SC' : lambda value: True if value == 'T' else False,
     'SD' : lambda value: dt.date(*[int(x) for x in value.split(':')[:3]]),
     'SE' : lambda value: float(value),
     'SF' : lambda value: float(value),

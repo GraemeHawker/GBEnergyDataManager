@@ -305,22 +305,15 @@ def insert_bm_data(message_dict):
                                 ts=message_dict['received_time'],
                                 nk=message_dict['NK']).exists():
             return 0
-        if 'PF' in message_dict:
-            boalf = BOALF(bmu=bmu,
-                          ts=message_dict['received_time'],
-                          nk=message_dict['NK'],
-                          ta=message_dict['TA'],
-                          ad=message_dict['AD'],
-                          so=message_dict['SO'],
-                          pf=message_dict['PF'])
-        else:
-            boalf = BOALF(bmu=bmu,
-                          ts=message_dict['received_time'],
-                          nk=message_dict['NK'],
-                          ta=message_dict['TA'],
-                          ad=message_dict['AD'],
-                          so=message_dict['SO'],
-                          pf=None)
+        boalf = BOALF(bmu=bmu,
+                      ts=message_dict['received_time'],
+                      nk=message_dict['NK'],
+                      ta=message_dict['TA'],
+                      ad=message_dict['AD'],
+                      so=message_dict['SO'],
+                      pf=message_dict.get('PF'),
+                      rn=message_dict.get('RN'),
+                      sc=message_dict.get('SC'))
         boalf.save()
         for data_point in message_dict['data_points'].values():
             boalf_level = BOALFlevel(boalf=boalf,

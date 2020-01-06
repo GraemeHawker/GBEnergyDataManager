@@ -227,6 +227,8 @@ Implemented on 2009-11-09 as part of P217
 |AD|char(1) boolean|Deemed bid-offer flag|'T'/'F'|Indicates whether Bid-Offer was made for an acceptance. Value is 'T' or 'F'. If true, no Bid-Offer was made.|
 |SO|char(1) boolean|SO Flag|'T'/'F'|A value of ‘T’ indicates where an Acceptance or Balancing Services Adjustment Action item should be considered to be potentially impacted by transmission constraints.|
 |PF|char(1) boolean|STOR Flag|'T'/'F'|A value of ‘T’ indicates where an Acceptance or Balancing Services Adjustment Action item should be considered being related to a STOR Provider|
+|RN|char(1) boolean|RR Instruction Flag|'T'/'F'|A value of ‘T’ indicates where an Acceptance or Balancing Services Adjustment Action item should be considered being related to a Replacement Reserve instruction|
+|SC|char(1) boolean|RR Schedule Flag|'T'/'F'|A value of ‘T’ indicates where an Acceptance or Balancing Services Adjustment Action item should be considered being related to a Replacement Reserve schedule|
 |VA|float|Acceptance level value|MW|&nbsp;|
 
 Example:
