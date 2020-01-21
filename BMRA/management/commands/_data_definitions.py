@@ -14,25 +14,43 @@ PROCESSED_MESSAGES = {
             'DISPTAV', 'EBOCF', 'FPN', 'MEL', 'MIL',
             'PTAV', 'QAS', 'QPN'],
     'BP' : [],
-    'SYSTEM' : ['BSAD', 'DISBSAD', 'NETBSAD', 'MID', 'EBSP', 'NETEBSP',
-                'DISEBSP', 'SOSO', 'FUELINST', 'FUELHH', 'SYSMSG', 'SYSWARN',
-                'FREQ', 'ISPSTACK', 'TEMP', 'INDO', 'ITSDO', 'LOLP', 'NONBM',
-                'INDOD', 'FUELINST', 'FUELHH', 'SYSMSG', 'DCONTROL', 'SYSWARN'],
+    'SYSTEM' : ['BSAD', 'DCONTROL', 'DISBSAD', 'DISEBSP', 'EBSP',
+                'FREQ','FUELHH', 'FUELINST', 'INDO', 'INDOD',
+                'ISPSTACK', 'ITSDO', 'LOLP', 'MID', 'NETBSAD',
+                'NETEBSP', 'NONBM', 'SOSO', 'SYSMSG', 'SYSWARN',
+                'TEMP'],
     'DYNAMIC' : [],
     'INFO' : []
 }
 '''
-[]
-['FREQ', 'TEMP', 'INDO', 'ITSDO', 'LOLP', 'NONBM',
-            'INDOD', 'FUELINST', 'FUELHH', 'SYSMSG', 'DCONTROL','SYSWARN']
 # messages which will be ignored (not actually used, just for note keeping)
 UNPROCESSED_MESSAGES = {
-    'BM' : ['BOAL', 'BOALF', 'BOAV', 'BOD',
-            'DISPTAV', 'EBOCF', 'FPN', 'MEL', 'MIL',
-            'PTAV', 'QAS', 'QPN'],
+    'BM' : [],
     'BP' : [],
-    'SYSTEM' : ['BSAD', 'DISBSAD', 'NETBSAD', 'MID', 'EBSP', 'NETEBSP',
-                'DISEBSP', 'SOSO'],
+    'SYSTEM' : [
+        'DF',
+        'FOU2T14D',
+        'FOU2T52W',
+        'IMBALNGC',
+        'INDDEM':,
+        'INDGEN':,
+        'MELNGC',
+        'MID',
+        'NDF',
+        'NDFD',
+        'NDFW',
+        'OCNMFD',
+        'OCNMFD2',
+        'OCNMFW',
+        'OCNMFW2',
+        'TBOD',
+        'TSDF',
+        'TSDFD',
+        'TSDFW',
+        'UOU2T14D',
+        'UOU2T52W',
+        'WINDFOR'
+        ],
     'DYNAMIC' : [],
     'INFO' : []
 }
