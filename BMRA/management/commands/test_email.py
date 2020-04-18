@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-command to generate annual datafiles for given data subsets
+testing sending email
 """
 import datetime as dt
 import pandas as pd
