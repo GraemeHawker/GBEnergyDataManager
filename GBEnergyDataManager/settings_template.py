@@ -129,6 +129,14 @@ BMRA_INPUT_DIR = '/Users/graeme/ElexonData/Unprocessed/'
 BMRA_PROCESSED_DIR = '/Users/graeme/ElexonData/Processed/'
 P114_INPUT_DIR = ''
 
+# Locations for saving flat file data summaries
+# each key should be a recognised BMU subset hardcoded within
+# /BMRA/management/commands/generate_annual_summary.py
+# and each value a valid existing local directory
+DATA_SUMMARY_LOCS = {
+    'example' : '/home/someone/foo/bar/'
+}
+
 # Magic Numbers
 BMRA_start_date = dt.date(2002,1,1) #earliest date of BMRA data for validation
 BMRA_DATA_START_DATE = dt.date(2002,1,1) #first date of data contents
