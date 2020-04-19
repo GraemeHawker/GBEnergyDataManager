@@ -148,3 +148,9 @@ P114_FILE_START_DATE = dt.date(2010,4,1) #earliest date of P114 publication
 NETA_USER = '' #NETA username
 NETA_PWD = '' #NETA password
 NETA_BMU_LIST_URL = 'https://www.netareports.com/dataService?rt=bmunit&username={}&password={}' #url for NETA reports list of BMUs
+
+# email settings
+EMAIL_HOST = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = ''
+EMAIL_PORT = ''
