@@ -90,7 +90,7 @@ def process_bmra_file(date):
     """
     from GBEnergyDataManager.settings import BMRA_INPUT_DIR
 
-
+    process_log = {}
     filename = get_tibco_daily_filenames(date)[0]
     download_bmra_file(filename, True)
     file = gzip.open(BMRA_INPUT_DIR + filename, 'rb')
@@ -101,6 +101,6 @@ def process_bmra_file(date):
         if len(message.strip()) > 0:
             message_dict = message_to_dict(message+'}')
             if message_dict is not None:
-                insert_data(message_dict)
+                success = insert_data(message_dict)
             count += 1
     file.close()

@@ -24,7 +24,8 @@ class Command(BaseCommand):
         email_log[dt.datetime.now()] = 'downloading data for {:%Y-%m-%d}'.format(date)
         try:
             bmra_processed_log = process_bmra_file(date)
-            email_log[dt.datetime.now()] = 'BMRA processing completed, {} files processed'.format(p114_processed)
+            if 
+            email_log[dt.datetime.now()] = 'BMRA processing completed, {} files and {} messages processed'.format(p114_processed)
         except:
             email_log[dt.datetime.now()] = 'BMRA processing failed with error: {}'.format(sys.exc_info()[0])
         try:
