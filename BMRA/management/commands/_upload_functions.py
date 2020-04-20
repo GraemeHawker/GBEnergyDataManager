@@ -5,9 +5,11 @@ Helper functions for uploading data to database
 import datetime as dt
 from itertools import zip_longest
 from django.utils import timezone
+from django.core.mail import send_mail
 from ._data_definitions import PROCESSED_MESSAGES, ACCEPTED_MESSAGES, IGNORED_MESSAGES, FIELD_CASTING_FUNCS
 from ._corrupt_message_list import CORRUPT_MESSAGES
-
+from ._ignored_message_list import IGNORED_SYSMSG, IGNORED_SYSWARN
+from GBEnergyDataManager.settings import SYS_WARN_EMAIL_RECIPIENTS, EMAIL_HOST_USER
 
 def message_part_to_points(raw_message_part,
                            no_points,
@@ -837,6 +839,18 @@ def insert_system_data(message_dict):
                         mt=message_dict['MT'],
                         sm=message_dict['SM'])
         sysmsg.save()
+
+        # email mailing list with contents if not in ignored list
+        if not any(sysmsg in message_dict['SM'] for sysmsg in IGNORED_SYSMSG):
+            send_mail(
+                'BMRA System Message Received',
+                '{:%Y-%m-%d %H:%M:%S} {} {}'.format(message_dict['TP'],
+                                                    message_dict['MT'],
+                                                    message_dict['SM']),
+                EMAIL_HOST_USER,
+                SYS_WARN_EMAIL_RECIPIENTS,
+                fail_silently=False,
+            )
         return 1
 
     if message_dict['message_subtype'] in ['SYSWARN']:
@@ -846,6 +860,17 @@ def insert_system_data(message_dict):
         syswarn = SYSWARN(tp=message_dict['TP'],
                           sw=message_dict['SW'])
         syswarn.save()
+
+        # email mailing list with contents if not in ignored list
+        if not any(sysmsg in message_dict['SW'] for sysmsg in IGNORED_SYSWARN):
+            send_mail(
+                'BMRA System Message Received',
+                '{:%Y-%m-%d %H:%M:%S} {}'.format(message_dict['TP'],
+                                                 message_dict['SW']),
+                EMAIL_HOST_USER,
+                SYS_WARN_EMAIL_RECIPIENTS,
+                fail_silently=False,
+            )
         return 1
 
     if message_dict['message_subtype'] in ['TEMP']:

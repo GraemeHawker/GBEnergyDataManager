@@ -10,7 +10,11 @@ import psycopg2
 import os
 from tqdm import tqdm
 from django.core.management.base import BaseCommand, CommandError
+from django.core.mail import send_mail
 from GBEnergyDataManager.settings import BASE_DIR, DATABASES, NETA_USER, NETA_PWD, NETA_BMU_LIST_URL, DATA_SUMMARY_LOCS
+
+def email_log(log_dict):
+
 
 class Command(BaseCommand):
     help = 'downloads BMRA data for specific date range, expected 2 arguments of form yyyy-m-d'
@@ -20,7 +24,9 @@ class Command(BaseCommand):
         parser.add_argument('year', nargs=1, type=int)
 
     def handle(self, *args, **options):
+        log = {}
         self.stdout.write('{:%Y-%m-%d %H:%M:%S} Started'.format(dt.datetime.now()))
+        log['{:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now())] = 'Started'
 
         # set up start and end dates
         # if fetching data for current year, then set end date to yesterday
@@ -34,11 +40,13 @@ class Command(BaseCommand):
         save_path = os.path.join(DATA_SUMMARY_LOCS[options['subset'][0]], str(options['year'][0]))
         self.stdout.write('{:%Y-%m-%d %H:%M:%S} saving to {}'.format(dt.datetime.now(),
                                                                      save_path))
+        log['{:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now())] = 'Saving to {}'.format(save_path)
         if not os.path.exists(save_path):
             os.mkdir(save_path)
 
         # set up blank DataFrame
         self.stdout.write('{:%Y-%m-%d %H:%M:%S} Creating blank dataframe'.format(dt.datetime.now()))
+        log['{:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now())] = 'Creating blank dataframe'
 
         # create list of clock change dates
         transition_days = [dt.date(x.year, x.month, x.day) for x in pytz.timezone('Europe/London')._utc_transition_times]
@@ -49,6 +57,7 @@ class Command(BaseCommand):
             bmus_df = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/scottish_BMUs_190731.csv'))
             bmu_ids = bmus_df['BMU ID'].values
         else:
+            log['{:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now())] = 'FAILED: subset {} not recognised'.format(options['subset'][0])
             raise ValueError('subset {} not recognised'.format(options['subset'][0]))
 
         blank_df = pd.DataFrame(columns = ['sd', 'sp'])
@@ -76,7 +85,7 @@ class Command(BaseCommand):
                                                                                 DATABASES['default']['HOST'],
                                                                                 DATABASES['default']['PASSWORD']))
         cur = conn.cursor()
-        
+
         # generate bid acceptance values
         self.stdout.write('{:%Y-%m-%d %H:%M:%S} Generating BAVs'.format(dt.datetime.now()))
         combined_BAVs = blank_df.copy()
