@@ -187,7 +187,7 @@ def insert_data(message_dict):
     2: Message not currently in accepted message list, no further action taken
     """
     if message_dict['message_subtype'] not in PROCESSED_MESSAGES[message_dict['message_type']]:
-        return 2
+        return {'unprocessed_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_type'] == 'SYSTEM':
         return insert_system_data(message_dict)
@@ -225,10 +225,14 @@ def insert_bm_data(message_dict):
 
     from BMRA.models.core import BMU
 
+    # dictionary of log messages
+    insert_log = {}
+
     #check if BMUID already in db, if not insert and log
     try:
         bmu = BMU.objects.get(id=message_dict['bmu_id'])
     except BMU.DoesNotExist:
+        insert_log['new_bmu'] = message_dict['bmu_id']
         bmu = BMU(id=message_dict['bmu_id'])
         bmu.save()
 
@@ -237,7 +241,7 @@ def insert_bm_data(message_dict):
         if FPN.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         fpn = FPN(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
@@ -248,13 +252,14 @@ def insert_bm_data(message_dict):
                                  ts=data_point['TS'],
                                  vp=data_point['VP'])
             fpn_level.save()
-        return 1
+        insert_log['new_entries'] = {'fpn' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['MEL']:
         if MEL.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         mel = MEL(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
@@ -265,13 +270,14 @@ def insert_bm_data(message_dict):
                                  ts=data_point['TS'],
                                  ve=data_point['VE'])
             mel_level.save()
-        return 1
+        insert_log['new_entries'] = {'mel' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['MIL']:
         if MIL.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         mil = MIL(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
@@ -282,13 +288,14 @@ def insert_bm_data(message_dict):
                                  ts=data_point['TS'],
                                  vf=data_point['VF'])
             mil_level.save()
-        return 1
+        insert_log['new_entries'] = {'mil' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['BOAL']:
         if BOAL.objects.filter(bmu=bmu,
                                ts=message_dict['received_time'],
                                nk=message_dict['NK']).exists():
-            return 0
+            return insert_log
         boal = BOAL(bmu=bmu,
                     ts=message_dict['received_time'],
                     nk=message_dict['NK'],
@@ -300,13 +307,14 @@ def insert_bm_data(message_dict):
                                    ts=data_point['TS'],
                                    va=data_point['VA'])
             boal_level.save()
-        return 1
+        insert_log['new_entries'] = {'boal' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['BOALF']:
         if BOALF.objects.filter(bmu=bmu,
                                 ts=message_dict['received_time'],
                                 nk=message_dict['NK']).exists():
-            return 0
+            return insert_log
         boalf = BOALF(bmu=bmu,
                       ts=message_dict['received_time'],
                       nk=message_dict['NK'],
@@ -322,7 +330,8 @@ def insert_bm_data(message_dict):
                                      ts=data_point['TS'],
                                      va=data_point['VA'])
             boalf_level.save()
-        return 1
+        insert_log['new_entries'] = {'boalf' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['BOD']:
         if BOD.objects.filter(bmu=bmu,
@@ -330,7 +339,7 @@ def insert_bm_data(message_dict):
                               sd=message_dict['SD'],
                               sp=message_dict['SP'],
                               nn=message_dict['NN']).exists():
-            return 0
+            return insert_log
         #expecting 2 data pairs, raise error if note
         if len(message_dict['data_points']) != 2:
             raise ValueError('2 data points expected for BOD entry, %d found' %
@@ -347,7 +356,8 @@ def insert_bm_data(message_dict):
                   ts2=message_dict['data_points'][2]['TS'],
                   vb2=message_dict['data_points'][2]['VB'])
         bod.save()
-        return 1
+        insert_log['new_entries'] = {'bod' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['BOAV']:
         if BOAV.objects.filter(bmu=bmu,
@@ -355,7 +365,7 @@ def insert_bm_data(message_dict):
                                sd=message_dict['SD'],
                                sp=message_dict['SP'],
                                nn=message_dict['NN']).exists():
-            return 0
+            return insert_log
         boav = BOAV(bmu=bmu,
                     ts=message_dict['received_time'],
                     nk=message_dict['NK'],
@@ -366,7 +376,8 @@ def insert_bm_data(message_dict):
                     bv=message_dict['BV'],
                     sa=message_dict['SA'])
         boav.save()
-        return 1
+        insert_log['new_entries'] = {'boav' : 1}
+        return insert_log
 
 
     if message_dict['message_subtype'] in ['DISPTAV']:
@@ -375,7 +386,7 @@ def insert_bm_data(message_dict):
                                   sp=message_dict['SP'],
                                   nn=message_dict['NN'],
                                   ts=message_dict['received_time']).exists():
-            return 0
+            return insert_log
         disptav = DISPTAV(bmu=bmu,
                           ts=message_dict['received_time'],
                           sd=message_dict['SD'],
@@ -390,14 +401,15 @@ def insert_bm_data(message_dict):
                           p5=message_dict['P5'],
                           p6=message_dict['P6'])
         disptav.save()
-        return 1
+        insert_log['new_entries'] = {'disptav' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['EBOCF']:
         if EBOCF.objects.filter(bmu=bmu,
                                 sd=message_dict['SD'],
                                 sp=message_dict['SP'],
                                 nn=message_dict['NN']).exists():
-            return 0
+            return insert_log
         ebocf = EBOCF(bmu=bmu,
                       ts=message_dict['received_time'],
                       sd=message_dict['SD'],
@@ -406,14 +418,15 @@ def insert_bm_data(message_dict):
                       oc=message_dict['OC'],
                       bc=message_dict['BC'])
         ebocf.save()
-        return 1
+        insert_log['new_entries'] = {'ebocf' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['PTAV']:
         if PTAV.objects.filter(bmu=bmu,
                                sd=message_dict['SD'],
                                sp=message_dict['SP'],
                                nn=message_dict['NN']).exists():
-            return 0
+            return insert_log
         ptav = PTAV(bmu=bmu,
                     ts=message_dict['received_time'],
                     sd=message_dict['SD'],
@@ -422,26 +435,28 @@ def insert_bm_data(message_dict):
                     ov=message_dict['OV'],
                     bv=message_dict['BV'])
         ptav.save()
-        return 1
+        insert_log['new_entries'] = {'ptav' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['QAS']:
         if QAS.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         qas = QAS(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
                   sp=message_dict['SP'],
                   sv=message_dict['SV'])
         qas.save()
-        return 1
+        insert_log['new_entries'] = {'qas' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['QPN']:
         if QPN.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         qpn = QPN(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
@@ -452,7 +467,8 @@ def insert_bm_data(message_dict):
                                  ts=data_point['TS'],
                                  vp=data_point['VP'])
             qpn_level.save()
-        return 1
+        insert_log['new_entries'] = {'qpn' : 1}
+        return insert_log
 
     raise ValueError('Insert function not available for message subtype %s'
                      % message_dict['message_subtype'])
@@ -482,11 +498,12 @@ def insert_system_data(message_dict):
      LOLPlevel, NONBM, INDOD, FUELINST, FUELHH, SYSMSG, DCONTROL, LDSO, FT, \
      SYSWARN, DCONTROLlevel, DF, DFlevel, ZI
 
+    insert_log = {}
     #construct associated SYSTEM object
     if message_dict['message_subtype'] in ['BSAD']:
         if BSAD.objects.filter(sd=message_dict['SD'],
                                sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         bsad = BSAD(sd=message_dict['SD'],
                     sp=message_dict['SP'],
                     a1=message_dict['A1'],
@@ -496,11 +513,12 @@ def insert_system_data(message_dict):
                     a5=message_dict['A5'],
                     a6=message_dict['A6'])
         bsad.save()
-        return 1
+        insert_log['new_entries'] = {'bsad' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['DCONTROL']:
         if DCONTROL.objects.filter(tp=message_dict['TP']).exists():
-            return 0
+            return insert_log
         dcontrol = DCONTROL(tp=message_dict['TP'])
         dcontrol.save()
         for data_point in message_dict['data_points'].values():
@@ -520,16 +538,17 @@ def insert_system_data(message_dict):
                                            so=data_point['SO'],
                                            am=data_point['AM'])
             dcontrol_level.save()
-        return 1
+        insert_log['new_entries'] = {'dcontrol' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['DF']:
         zi = ZI.objects.get_or_create(id=message_dict['ZI'])
-        return 0
+        return insert_log
 
     if message_dict['message_subtype'] in ['DISBSAD']:
         if DISBSAD.objects.filter(sd=message_dict['SD'],
                                   sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         disbsad = DISBSAD(sd=message_dict['SD'],
                           sp=message_dict['SP'],
                           ai=message_dict['AI'],
@@ -538,12 +557,13 @@ def insert_system_data(message_dict):
                           jc=message_dict['JC'],
                           jv=message_dict['JV'])
         disbsad.save()
-        return 1
+        insert_log['new_entries'] = {'disbsad' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['DISEBSP']:
         if DISEBSP.objects.filter(sd=message_dict['SD'],
                                   sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         if 'RSP' in message_dict:
             rsp = message_dict['RSP']
         else:
@@ -579,12 +599,13 @@ def insert_system_data(message_dict):
                           j3=message_dict['J3'],
                           j4=message_dict['J4'])
         disebsp.save()
-        return 1
+        insert_log['new_entries'] = {'disebsp' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['EBSP']:
         if EBSP.objects.filter(sd=message_dict['SD'],
                                sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         ebsp = EBSP(sd=message_dict['SD'],
                     sp=message_dict['SP'],
                     pb=message_dict['PB'],
@@ -603,15 +624,17 @@ def insert_system_data(message_dict):
                     a5=message_dict['A5'],
                     a6=message_dict['A6'])
         ebsp.save()
-        return 1
+        insert_log['new_entries'] = {'ebsp' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['FREQ']:
         if FREQ.objects.filter(ts=message_dict['TS']).exists():
-            return 0
+            return insert_log
         freq = FREQ(ts=message_dict['TS'],
                     sf=message_dict['SF'])
         freq.save()
-        return 1
+        insert_log['new_entries'] = {'freq' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['FUELHH']:
         try:
@@ -623,14 +646,15 @@ def insert_system_data(message_dict):
                                  sp=message_dict['SP'],
                                  tp=message_dict['TP'],
                                  ft=ft).exists():
-            return 0
+            return insert_log
         fuelhh = FUELHH(tp=message_dict['TP'],
                         sd=message_dict['SD'],
                         sp=message_dict['SP'],
                         ft=ft,
                         fg=message_dict['FG'])
         fuelhh.save()
-        return 1
+        insert_log['new_entries'] = {'fuelhh' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['FUELINST']:
         try:
@@ -643,7 +667,7 @@ def insert_system_data(message_dict):
                                    ts=message_dict['TS'],
                                    tp=message_dict['TP'],
                                    ft=ft).exists():
-            return 0
+            return insert_log
         fuelinst = FUELINST(tp=message_dict['TP'],
                             sd=message_dict['SD'],
                             sp=message_dict['SP'],
@@ -651,24 +675,26 @@ def insert_system_data(message_dict):
                             ft=ft,
                             fg=message_dict['FG'])
         fuelinst.save()
-        return 1
+        insert_log['new_entries'] = {'fuelinst' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['INDO']:
         if INDO.objects.filter(sd=message_dict['SD'],
                                sp=message_dict['SP'],
                                tp=message_dict['TP']).exists():
-            return 0
+            return insert_log
         indo = INDO(tp=message_dict['TP'],
                     sd=message_dict['SD'],
                     sp=message_dict['SP'],
                     vd=message_dict['VD'])
         indo.save()
-        return 1
+        insert_log['new_entries'] = {'indo' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['INDOD']:
         if INDOD.objects.filter(sd=message_dict['SD'],
                                 tp=message_dict['TP']).exists():
-            return 0
+            return insert_log
         indod = INDOD(tp=message_dict['TP'],
                       sd=message_dict['SD'],
                       eo=message_dict['EO'],
@@ -676,7 +702,8 @@ def insert_system_data(message_dict):
                       eh=message_dict['EH'],
                       en=message_dict['EN'])
         indod.save()
-        return 1
+        insert_log['new_entries'] = {'indod' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['ISPSTACK']:
         if 'NN' in message_dict:
@@ -691,7 +718,7 @@ def insert_system_data(message_dict):
                                    sp=message_dict['SP'],
                                    ci=message_dict['CI'],
                                    nn=nn).exists():
-            return 0
+            return insert_log
         if 'RSP' in message_dict:
             rsp = message_dict['RSP']
         else:
@@ -720,23 +747,25 @@ def insert_system_data(message_dict):
                             tv=message_dict['TV'],
                             tc=message_dict['TC'])
         ispstack.save()
-        return 1
+        insert_log['new_entries'] = {'ispstack' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['ITSDO']:
         if ITSDO.objects.filter(sd=message_dict['SD'],
                                sp=message_dict['SP'],
                                tp=message_dict['TP']).exists():
-            return 0
+            return insert_log
         itsdo = ITSDO(tp=message_dict['TP'],
                       sd=message_dict['SD'],
                       sp=message_dict['SP'],
                       vd=message_dict['VD'])
         itsdo.save()
-        return 1
+        insert_log['new_entries'] = {'itsdo' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['LOLP']:
         if LOLP.objects.filter(tp=message_dict['TP']).exists():
-            return 0
+            return insert_log
         lolp = LOLP(tp=message_dict['TP'])
         lolp.save()
         for data_point in message_dict['data_points'].values():
@@ -746,25 +775,27 @@ def insert_system_data(message_dict):
                                    lp=data_point['LP'],
                                    dr=data_point['DR'])
             lolp_level.save()
-        return 1
+        insert_log['new_entries'] = {'lolp' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['MID']:
         if MID.objects.filter(mi=message_dict['MI'],
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         mid = MID(mi=message_dict['MI'],
                   sd=message_dict['SD'],
                   sp=message_dict['SP'],
                   m1=message_dict['M1'],
                   m2=message_dict['M2'])
         mid.save()
-        return 1
+        insert_log['new_entries'] = {'mid' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['NETBSAD']:
         if NETBSAD.objects.filter(sd=message_dict['SD'],
                                   sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         netbsad = NETBSAD(sd=message_dict['SD'],
                           sp=message_dict['SP'],
                           a7=message_dict['A7'],
@@ -776,12 +807,13 @@ def insert_system_data(message_dict):
                           a12=message_dict['A12'],
                           a6=message_dict['A6'])
         netbsad.save()
-        return 1
+        insert_log['new_entries'] = {'netbsad' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['NETEBSP']:
         if NETEBSP.objects.filter(sd=message_dict['SD'],
                                   sp=message_dict['SP']).exists():
-            return 0
+            return insert_log
         netebsp = NETEBSP(sd=message_dict['SD'],
                           sp=message_dict['SP'],
                           pb=message_dict['PB'],
@@ -804,23 +836,25 @@ def insert_system_data(message_dict):
                           a12=message_dict['A12'],
                           a6=message_dict['A6'])
         netebsp.save()
-        return 1
+        insert_log['new_entries'] = {'netebsp' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['NONBM']:
         if NONBM.objects.filter(sd=message_dict['SD'],
                                 sp=message_dict['SP'],
                                 tp=message_dict['TP']).exists():
-            return 0
+            return insert_log
         nonbm = NONBM(tp=message_dict['TP'],
                       sd=message_dict['SD'],
                       sp=message_dict['SP'],
                       nb=message_dict['NB'])
         nonbm.save()
-        return 1
+        insert_log['new_entries'] = {'nonbm' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['SOSO']:
         if SOSO.objects.filter(ic=message_dict['IC']).exists():
-            return 0
+            return insert_log
         soso = SOSO(tt=message_dict['TT'],
                     st=message_dict['ST'],
                     td=message_dict['TD'],
@@ -828,13 +862,14 @@ def insert_system_data(message_dict):
                     tq=message_dict['TQ'],
                     pt=message_dict['PT'],)
         soso.save()
-        return 1
+        insert_log['new_entries'] = {'soso' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['SYSMSG']:
         if SYSMSG.objects.filter(tp=message_dict['TP'],
                                  mt=message_dict['MT'],
                                  sm=message_dict['SM']).exists():
-            return 0
+            return insert_log
         sysmsg = SYSMSG(tp=message_dict['TP'],
                         mt=message_dict['MT'],
                         sm=message_dict['SM'])
@@ -851,12 +886,13 @@ def insert_system_data(message_dict):
                 SYS_WARN_EMAIL_RECIPIENTS,
                 fail_silently=False,
             )
-        return 1
+        insert_log['new_entries'] = {'sysmsg' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['SYSWARN']:
         if SYSWARN.objects.filter(tp=message_dict['TP'],
                                   sw=message_dict['SW']).exists():
-            return 0
+            return insert_log
         syswarn = SYSWARN(tp=message_dict['TP'],
                           sw=message_dict['SW'])
         syswarn.save()
@@ -871,12 +907,13 @@ def insert_system_data(message_dict):
                 SYS_WARN_EMAIL_RECIPIENTS,
                 fail_silently=False,
             )
-        return 1
+        insert_log['new_entries'] = {'syswarn' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['TEMP']:
         if TEMP.objects.filter(ts=message_dict['TS'],
                                tp=message_dict['TP']).exists():
-            return 0
+            return insert_log
         temp = TEMP(ts=message_dict['TS'],
                     tp=message_dict['TP'],
                     to=message_dict['TO'],
@@ -884,7 +921,8 @@ def insert_system_data(message_dict):
                     tl=message_dict['TL'],
                     th=message_dict['TH'])
         temp.save()
-        return 1
+        insert_log['new_entries'] = {'temp' : 1}
+        return insert_log
 
 def insert_dynamic_data(message_dict):
     """
@@ -907,36 +945,47 @@ def insert_dynamic_data(message_dict):
     from BMRA.models.dynamic import SIL, SEL, MNZT, NDZ, RURE, RURI, RDRE, RDRI, \
     MDV, MDP, MZT, NTB, NTO
 
+    insert_log = {}
+
     #check if BMUID already in db, if not insert and log
     try:
         bmu = BMU.objects.get(id=message_dict['bmu_id'])
     except BMU.DoesNotExist:
         bmu = BMU(id=message_dict['bmu_id'])
+        insert_log['new_bmu'] = message_dict['bmu_id']
         bmu.save()
 
     if message_dict['message_subtype'] in ['SIL']:
         sil, created = SIL.objects.get_or_create(bmu=bmu,
                                                  te=message_dict['TE'],
                                                  si=message_dict['SI'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'sil' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['SEL']:
         sel, created = SEL.objects.get_or_create(bmu=bmu,
                                                  te=message_dict['TE'],
                                                  si=message_dict['SE'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'sel' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['MNZT']:
         mnzt, created = MNZT.objects.get_or_create(bmu=bmu,
                                                    te=message_dict['TE'],
                                                    mn=message_dict['MN'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'mnzt' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['NDZ']:
         ndz, created = NDZ.objects.get_or_create(bmu=bmu,
                                                  te=message_dict['TE'],
                                                  dz=message_dict['DZ'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'ndz' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['RURE']:
         rure, created = RURE.objects.get_or_create(bmu=bmu,
@@ -946,7 +995,9 @@ def insert_dynamic_data(message_dict):
                                                    u2=message_dict['U2'],
                                                    uc=message_dict['UC'],
                                                    u3=message_dict['U3'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'rure' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['RURI']:
         ruri, created = RURI.objects.get_or_create(bmu=bmu,
@@ -956,7 +1007,9 @@ def insert_dynamic_data(message_dict):
                                                    u2=message_dict['U2'],
                                                    uc=message_dict['UC'],
                                                    u3=message_dict['U3'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'ruri' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['RDRE']:
         rdre, created = RDRE.objects.get_or_create(bmu=bmu,
@@ -966,7 +1019,9 @@ def insert_dynamic_data(message_dict):
                                                    r2=message_dict['R2'],
                                                    rc=message_dict['RC'],
                                                    r3=message_dict['R3'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'rdre' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['RDRI']:
         rdri, created = RDRI.objects.get_or_create(bmu=bmu,
@@ -976,37 +1031,49 @@ def insert_dynamic_data(message_dict):
                                                    r2=message_dict['R2'],
                                                    rc=message_dict['RC'],
                                                    r3=message_dict['R3'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'rdri' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['MDV']:
         mdv, created = MDV.objects.get_or_create(bmu=bmu,
                                                  te=message_dict['TE'],
                                                  dv=message_dict['DV'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'mdv' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['MDP']:
         mdp, created = MDP.objects.get_or_create(bmu=bmu,
                                                  te=message_dict['TE'],
                                                  dp=message_dict['DP'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'mdp' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['MZT']:
         mzt, created = MZT.objects.get_or_create(bmu=bmu,
                                                  te=message_dict['TE'],
                                                  mz=message_dict['MZ'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'mzt' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['NTB']:
         ntb, created = NTB.objects.get_or_create(bmu=bmu,
                                                  te=message_dict['TE'],
                                                  db=message_dict['DB'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'ntb' : 1}
+        return insert_log
 
     if message_dict['message_subtype'] in ['NTO']:
         nto, created = NTO.objects.get_or_create(bmu=bmu,
                                                  te=message_dict['TE'],
                                                  do=message_dict['DO'])
-        return created
+        if created:
+            insert_log['new_entries'] = {'nto' : 1}
+        return insert_log
 
     raise ValueError('Insert function not available for message subtype %s'
                      % message_dict['message_subtype'])

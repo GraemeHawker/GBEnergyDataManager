@@ -14,7 +14,7 @@ from django.core.mail import send_mail
 from GBEnergyDataManager.settings import BASE_DIR, DATABASES, NETA_USER, NETA_PWD, NETA_BMU_LIST_URL, DATA_SUMMARY_LOCS
 
 def email_log(log_dict):
-
+    pass
 
 class Command(BaseCommand):
     help = 'downloads BMRA data for specific date range, expected 2 arguments of form yyyy-m-d'

@@ -90,17 +90,36 @@ def process_bmra_file(date):
     """
     from GBEnergyDataManager.settings import BMRA_INPUT_DIR
 
-    process_log = {}
     filename = get_tibco_daily_filenames(date)[0]
     download_bmra_file(filename, True)
     file = gzip.open(BMRA_INPUT_DIR + filename, 'rb')
     file_content = file.read().decode('utf-8', 'ignore')
     file_rows = [entry for entry in file_content.split('}')]
     count = 0
+    combined_insert_log = {'new_bmus' : [],
+                           'inserts' : {},
+                           'unprocessed_msg' : {}
+                           }
     for message in tqdm(file_rows):
         if len(message.strip()) > 0:
             message_dict = message_to_dict(message+'}')
             if message_dict is not None:
-                success = insert_data(message_dict)
+                insert_log = insert_data(message_dict)
+                if 'new_bmu' in insert_log:
+                    combined_insert_log['new_bmus'].append(insert_log['new_bmu'])
+                if 'new_entries' in insert_log:
+                    for key,value in insert_log['new_entries'].items():
+                        if key in combined_insert_log['inserts']:
+                            combined_insert_log['inserts'][key] += value
+                        else:
+                            combined_insert_log['inserts'][key] = value
+                if 'unprocessed_msg' in insert_log:
+                    for key,value in insert_log['unprocessed_msg'].items():
+                        if key in combined_insert_log['unprocessed_msg']:
+                            combined_insert_log['unprocessed_msg'][key] += value
+                        else:
+                            combined_insert_log['unprocessed_msg'][key] = value
             count += 1
+    combined_insert_log['count'] = count
     file.close()
+    return combined_insert_log
