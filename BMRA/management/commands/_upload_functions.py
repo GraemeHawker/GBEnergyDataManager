@@ -241,7 +241,7 @@ def insert_bm_data(message_dict):
         if FPN.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         fpn = FPN(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
@@ -259,7 +259,7 @@ def insert_bm_data(message_dict):
         if MEL.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         mel = MEL(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
@@ -277,7 +277,7 @@ def insert_bm_data(message_dict):
         if MIL.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         mil = MIL(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
@@ -295,7 +295,7 @@ def insert_bm_data(message_dict):
         if BOAL.objects.filter(bmu=bmu,
                                ts=message_dict['received_time'],
                                nk=message_dict['NK']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         boal = BOAL(bmu=bmu,
                     ts=message_dict['received_time'],
                     nk=message_dict['NK'],
@@ -314,7 +314,7 @@ def insert_bm_data(message_dict):
         if BOALF.objects.filter(bmu=bmu,
                                 ts=message_dict['received_time'],
                                 nk=message_dict['NK']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         boalf = BOALF(bmu=bmu,
                       ts=message_dict['received_time'],
                       nk=message_dict['NK'],
@@ -339,7 +339,7 @@ def insert_bm_data(message_dict):
                               sd=message_dict['SD'],
                               sp=message_dict['SP'],
                               nn=message_dict['NN']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         #expecting 2 data pairs, raise error if note
         if len(message_dict['data_points']) != 2:
             raise ValueError('2 data points expected for BOD entry, %d found' %
@@ -365,7 +365,7 @@ def insert_bm_data(message_dict):
                                sd=message_dict['SD'],
                                sp=message_dict['SP'],
                                nn=message_dict['NN']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         boav = BOAV(bmu=bmu,
                     ts=message_dict['received_time'],
                     nk=message_dict['NK'],
@@ -386,7 +386,7 @@ def insert_bm_data(message_dict):
                                   sp=message_dict['SP'],
                                   nn=message_dict['NN'],
                                   ts=message_dict['received_time']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         disptav = DISPTAV(bmu=bmu,
                           ts=message_dict['received_time'],
                           sd=message_dict['SD'],
@@ -409,7 +409,7 @@ def insert_bm_data(message_dict):
                                 sd=message_dict['SD'],
                                 sp=message_dict['SP'],
                                 nn=message_dict['NN']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         ebocf = EBOCF(bmu=bmu,
                       ts=message_dict['received_time'],
                       sd=message_dict['SD'],
@@ -426,7 +426,7 @@ def insert_bm_data(message_dict):
                                sd=message_dict['SD'],
                                sp=message_dict['SP'],
                                nn=message_dict['NN']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         ptav = PTAV(bmu=bmu,
                     ts=message_dict['received_time'],
                     sd=message_dict['SD'],
@@ -442,7 +442,7 @@ def insert_bm_data(message_dict):
         if QAS.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         qas = QAS(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
@@ -456,7 +456,7 @@ def insert_bm_data(message_dict):
         if QPN.objects.filter(bmu=bmu,
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         qpn = QPN(bmu=bmu,
                   ts=message_dict['received_time'],
                   sd=message_dict['SD'],
@@ -503,7 +503,7 @@ def insert_system_data(message_dict):
     if message_dict['message_subtype'] in ['BSAD']:
         if BSAD.objects.filter(sd=message_dict['SD'],
                                sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         bsad = BSAD(sd=message_dict['SD'],
                     sp=message_dict['SP'],
                     a1=message_dict['A1'],
@@ -518,7 +518,7 @@ def insert_system_data(message_dict):
 
     if message_dict['message_subtype'] in ['DCONTROL']:
         if DCONTROL.objects.filter(tp=message_dict['TP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         dcontrol = DCONTROL(tp=message_dict['TP'])
         dcontrol.save()
         for data_point in message_dict['data_points'].values():
@@ -548,7 +548,7 @@ def insert_system_data(message_dict):
     if message_dict['message_subtype'] in ['DISBSAD']:
         if DISBSAD.objects.filter(sd=message_dict['SD'],
                                   sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         disbsad = DISBSAD(sd=message_dict['SD'],
                           sp=message_dict['SP'],
                           ai=message_dict['AI'],
@@ -563,7 +563,7 @@ def insert_system_data(message_dict):
     if message_dict['message_subtype'] in ['DISEBSP']:
         if DISEBSP.objects.filter(sd=message_dict['SD'],
                                   sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         if 'RSP' in message_dict:
             rsp = message_dict['RSP']
         else:
@@ -605,7 +605,7 @@ def insert_system_data(message_dict):
     if message_dict['message_subtype'] in ['EBSP']:
         if EBSP.objects.filter(sd=message_dict['SD'],
                                sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         ebsp = EBSP(sd=message_dict['SD'],
                     sp=message_dict['SP'],
                     pb=message_dict['PB'],
@@ -629,7 +629,7 @@ def insert_system_data(message_dict):
 
     if message_dict['message_subtype'] in ['FREQ']:
         if FREQ.objects.filter(ts=message_dict['TS']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         freq = FREQ(ts=message_dict['TS'],
                     sf=message_dict['SF'])
         freq.save()
@@ -646,7 +646,7 @@ def insert_system_data(message_dict):
                                  sp=message_dict['SP'],
                                  tp=message_dict['TP'],
                                  ft=ft).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         fuelhh = FUELHH(tp=message_dict['TP'],
                         sd=message_dict['SD'],
                         sp=message_dict['SP'],
@@ -667,7 +667,7 @@ def insert_system_data(message_dict):
                                    ts=message_dict['TS'],
                                    tp=message_dict['TP'],
                                    ft=ft).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         fuelinst = FUELINST(tp=message_dict['TP'],
                             sd=message_dict['SD'],
                             sp=message_dict['SP'],
@@ -682,7 +682,7 @@ def insert_system_data(message_dict):
         if INDO.objects.filter(sd=message_dict['SD'],
                                sp=message_dict['SP'],
                                tp=message_dict['TP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         indo = INDO(tp=message_dict['TP'],
                     sd=message_dict['SD'],
                     sp=message_dict['SP'],
@@ -694,7 +694,7 @@ def insert_system_data(message_dict):
     if message_dict['message_subtype'] in ['INDOD']:
         if INDOD.objects.filter(sd=message_dict['SD'],
                                 tp=message_dict['TP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         indod = INDOD(tp=message_dict['TP'],
                       sd=message_dict['SD'],
                       eo=message_dict['EO'],
@@ -718,7 +718,7 @@ def insert_system_data(message_dict):
                                    sp=message_dict['SP'],
                                    ci=message_dict['CI'],
                                    nn=nn).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         if 'RSP' in message_dict:
             rsp = message_dict['RSP']
         else:
@@ -754,7 +754,7 @@ def insert_system_data(message_dict):
         if ITSDO.objects.filter(sd=message_dict['SD'],
                                sp=message_dict['SP'],
                                tp=message_dict['TP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         itsdo = ITSDO(tp=message_dict['TP'],
                       sd=message_dict['SD'],
                       sp=message_dict['SP'],
@@ -765,7 +765,7 @@ def insert_system_data(message_dict):
 
     if message_dict['message_subtype'] in ['LOLP']:
         if LOLP.objects.filter(tp=message_dict['TP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         lolp = LOLP(tp=message_dict['TP'])
         lolp.save()
         for data_point in message_dict['data_points'].values():
@@ -782,7 +782,7 @@ def insert_system_data(message_dict):
         if MID.objects.filter(mi=message_dict['MI'],
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         mid = MID(mi=message_dict['MI'],
                   sd=message_dict['SD'],
                   sp=message_dict['SP'],
@@ -795,7 +795,7 @@ def insert_system_data(message_dict):
     if message_dict['message_subtype'] in ['NETBSAD']:
         if NETBSAD.objects.filter(sd=message_dict['SD'],
                                   sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         netbsad = NETBSAD(sd=message_dict['SD'],
                           sp=message_dict['SP'],
                           a7=message_dict['A7'],
@@ -813,7 +813,7 @@ def insert_system_data(message_dict):
     if message_dict['message_subtype'] in ['NETEBSP']:
         if NETEBSP.objects.filter(sd=message_dict['SD'],
                                   sp=message_dict['SP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         netebsp = NETEBSP(sd=message_dict['SD'],
                           sp=message_dict['SP'],
                           pb=message_dict['PB'],
@@ -843,7 +843,7 @@ def insert_system_data(message_dict):
         if NONBM.objects.filter(sd=message_dict['SD'],
                                 sp=message_dict['SP'],
                                 tp=message_dict['TP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         nonbm = NONBM(tp=message_dict['TP'],
                       sd=message_dict['SD'],
                       sp=message_dict['SP'],
@@ -854,7 +854,7 @@ def insert_system_data(message_dict):
 
     if message_dict['message_subtype'] in ['SOSO']:
         if SOSO.objects.filter(ic=message_dict['IC']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         soso = SOSO(tt=message_dict['TT'],
                     st=message_dict['ST'],
                     td=message_dict['TD'],
@@ -869,7 +869,7 @@ def insert_system_data(message_dict):
         if SYSMSG.objects.filter(tp=message_dict['TP'],
                                  mt=message_dict['MT'],
                                  sm=message_dict['SM']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         sysmsg = SYSMSG(tp=message_dict['TP'],
                         mt=message_dict['MT'],
                         sm=message_dict['SM'])
@@ -892,7 +892,7 @@ def insert_system_data(message_dict):
     if message_dict['message_subtype'] in ['SYSWARN']:
         if SYSWARN.objects.filter(tp=message_dict['TP'],
                                   sw=message_dict['SW']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         syswarn = SYSWARN(tp=message_dict['TP'],
                           sw=message_dict['SW'])
         syswarn.save()
@@ -913,7 +913,7 @@ def insert_system_data(message_dict):
     if message_dict['message_subtype'] in ['TEMP']:
         if TEMP.objects.filter(ts=message_dict['TS'],
                                tp=message_dict['TP']).exists():
-            return insert_log
+            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         temp = TEMP(ts=message_dict['TS'],
                     tp=message_dict['TP'],
                     to=message_dict['TO'],
@@ -961,7 +961,8 @@ def insert_dynamic_data(message_dict):
                                                  si=message_dict['SI'])
         if created:
             insert_log['new_entries'] = {'sil' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['SEL']:
         sel, created = SEL.objects.get_or_create(bmu=bmu,
@@ -969,7 +970,8 @@ def insert_dynamic_data(message_dict):
                                                  si=message_dict['SE'])
         if created:
             insert_log['new_entries'] = {'sel' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['MNZT']:
         mnzt, created = MNZT.objects.get_or_create(bmu=bmu,
@@ -977,7 +979,8 @@ def insert_dynamic_data(message_dict):
                                                    mn=message_dict['MN'])
         if created:
             insert_log['new_entries'] = {'mnzt' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['NDZ']:
         ndz, created = NDZ.objects.get_or_create(bmu=bmu,
@@ -985,7 +988,8 @@ def insert_dynamic_data(message_dict):
                                                  dz=message_dict['DZ'])
         if created:
             insert_log['new_entries'] = {'ndz' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['RURE']:
         rure, created = RURE.objects.get_or_create(bmu=bmu,
@@ -997,7 +1001,8 @@ def insert_dynamic_data(message_dict):
                                                    u3=message_dict['U3'])
         if created:
             insert_log['new_entries'] = {'rure' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['RURI']:
         ruri, created = RURI.objects.get_or_create(bmu=bmu,
@@ -1009,7 +1014,8 @@ def insert_dynamic_data(message_dict):
                                                    u3=message_dict['U3'])
         if created:
             insert_log['new_entries'] = {'ruri' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['RDRE']:
         rdre, created = RDRE.objects.get_or_create(bmu=bmu,
@@ -1021,7 +1027,8 @@ def insert_dynamic_data(message_dict):
                                                    r3=message_dict['R3'])
         if created:
             insert_log['new_entries'] = {'rdre' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['RDRI']:
         rdri, created = RDRI.objects.get_or_create(bmu=bmu,
@@ -1033,7 +1040,8 @@ def insert_dynamic_data(message_dict):
                                                    r3=message_dict['R3'])
         if created:
             insert_log['new_entries'] = {'rdri' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['MDV']:
         mdv, created = MDV.objects.get_or_create(bmu=bmu,
@@ -1041,7 +1049,8 @@ def insert_dynamic_data(message_dict):
                                                  dv=message_dict['DV'])
         if created:
             insert_log['new_entries'] = {'mdv' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['MDP']:
         mdp, created = MDP.objects.get_or_create(bmu=bmu,
@@ -1049,7 +1058,8 @@ def insert_dynamic_data(message_dict):
                                                  dp=message_dict['DP'])
         if created:
             insert_log['new_entries'] = {'mdp' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['MZT']:
         mzt, created = MZT.objects.get_or_create(bmu=bmu,
@@ -1057,7 +1067,8 @@ def insert_dynamic_data(message_dict):
                                                  mz=message_dict['MZ'])
         if created:
             insert_log['new_entries'] = {'mzt' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['NTB']:
         ntb, created = NTB.objects.get_or_create(bmu=bmu,
@@ -1065,7 +1076,8 @@ def insert_dynamic_data(message_dict):
                                                  db=message_dict['DB'])
         if created:
             insert_log['new_entries'] = {'ntb' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['NTO']:
         nto, created = NTO.objects.get_or_create(bmu=bmu,
@@ -1073,7 +1085,8 @@ def insert_dynamic_data(message_dict):
                                                  do=message_dict['DO'])
         if created:
             insert_log['new_entries'] = {'nto' : 1}
-        return insert_log
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     raise ValueError('Insert function not available for message subtype %s'
                      % message_dict['message_subtype'])

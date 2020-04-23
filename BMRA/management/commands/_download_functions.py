@@ -98,7 +98,8 @@ def process_bmra_file(date):
     count = 0
     combined_insert_log = {'new_bmus' : [],
                            'inserts' : {},
-                           'unprocessed_msg' : {}
+                           'unprocessed_msg' : {},
+                           'duplicate_msg' : {},
                            }
     for message in tqdm(file_rows):
         if len(message.strip()) > 0:
@@ -119,6 +120,12 @@ def process_bmra_file(date):
                             combined_insert_log['unprocessed_msg'][key] += value
                         else:
                             combined_insert_log['unprocessed_msg'][key] = value
+                if 'duplicate_msg' in insert_log:
+                    for key,value in insert_log['duplicate_msg'].items():
+                        if key in combined_insert_log['duplicate_msg']:
+                            combined_insert_log['duplicate_msg'][key] += value
+                        else:
+                            combined_insert_log['duplicate_msg'][key] = value
             count += 1
     combined_insert_log['count'] = count
     file.close()

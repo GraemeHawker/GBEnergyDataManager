@@ -30,14 +30,18 @@ class Command(BaseCommand):
 
         # set up start and end dates
         # if fetching data for current year, then set end date to yesterday
-        start_date = dt.date(options['year'][0],1,1)
-        if options['year'] == (dt.date.today()-dt.timedelta(days=1)).year:
+        # a value of 0 means current year
+        year = options['year'][0]
+        if year == 0:
+            year = dt.date.today().year
+        start_date = dt.date(year,1,1)
+        if year == (dt.date.today()-dt.timedelta(days=1)).year:
             end_date = dt.date.today()-dt.timedelta(days=1)
         else:
-            end_date = dt.date(options['year'][0],12,31)
+            end_date = dt.date(year,12,31)
 
         # check if year folder exists, if not create it
-        save_path = os.path.join(DATA_SUMMARY_LOCS[options['subset'][0]], str(options['year'][0]))
+        save_path = os.path.join(DATA_SUMMARY_LOCS[options['subset'][0]], str(year))
         self.stdout.write('{:%Y-%m-%d %H:%M:%S} saving to {}'.format(dt.datetime.now(),
                                                                      save_path))
         log['{:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now())] = 'Saving to {}'.format(save_path)
