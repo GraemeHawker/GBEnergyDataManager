@@ -59,6 +59,7 @@ class Command(BaseCommand):
         # and subset BMUIDs as columns
         if options['subset'][0] == 'scotland':
             bmus_df = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/scottish_BMUs_190731.csv'))
+            BMU_types = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/scottish_BMUs_190731.csv'), index_col=0)
             bmu_ids = bmus_df['BMU ID'].values
         else:
             log['{:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now())] = 'FAILED: subset {} not recognised'.format(options['subset'][0])
@@ -271,5 +272,50 @@ class Command(BaseCommand):
             combined_metered[bmu_id] = sql_df
 
         combined_metered.to_csv(os.path.join(save_path, 'metered.csv'))
+
+        # generate monthly summaries by BMU
+        self.stdout.write('{:%Y-%m-%d %H:%M:%S} Generating monthly BMU aggregate values'.format(dt.datetime.now()))
+        combined_BAVs.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().to_csv(os.path.join(save_path, 'monthly_BAVs.csv'))
+        combined_OAVs.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().to_csv(os.path.join(save_path, 'monthly_OAVs.csv'))
+        combined_FPNs.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().to_csv(os.path.join(save_path, 'monthly_FPNs.csv'))
+        combined_MELs.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().to_csv(os.path.join(save_path, 'monthly_MELs.csv'))
+        combined_cashflows.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().to_csv(os.path.join(save_path, 'monthly_cashflows.csv'))
+        combined_metered.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().to_csv(os.path.join(save_path, 'monthly_metered.csv'))
+
+        # generate daily summaries by BMU
+        self.stdout.write('{:%Y-%m-%d %H:%M:%S} Generating daily BMU aggregate values'.format(dt.datetime.now()))
+        combined_BAVs.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().to_csv(os.path.join(save_path, 'daily_BAVs.csv'))
+        combined_OAVs.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().to_csv(os.path.join(save_path, 'daily_OAVs.csv'))
+        combined_FPNs.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().to_csv(os.path.join(save_path, 'daily_FPNs.csv'))
+        combined_MELs.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().to_csv(os.path.join(save_path, 'daily_MELs.csv'))
+        combined_cashflows.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().to_csv(os.path.join(save_path, 'daily_cashflows.csv'))
+        combined_metered.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().to_csv(os.path.join(save_path, 'daily_metered.csv'))
+
+        # generate monthly summaries by BMU Type
+        self.stdout.write('{:%Y-%m-%d %H:%M:%S} Generating monthly BMU Type aggregate values'.format(dt.datetime.now()))
+        combined_BAVs.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'monthly_BAVs_bytype.csv'))
+        combined_OAVs.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'monthly_OAVs_bytype.csv'))
+        combined_FPNs.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'monthly_FPNs_bytype.csv'))
+        combined_MELs.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'monthly_MELs_bytype.csv'))
+        combined_cashflows.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'monthly_cashflows_bytype.csv'))
+        combined_metered.sum(axis=0, level=0).groupby(pd.Grouper(freq='M')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'monthly_metered_bytype.csv'))
+
+        # generate daily summaries by BMU
+        self.stdout.write('{:%Y-%m-%d %H:%M:%S} Generating daily BMU Type aggregate values'.format(dt.datetime.now()))
+        combined_BAVs.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'daily_BAVs_bytype.csv'))
+        combined_OAVs.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'daily_OAVs_bytype.csv'))
+        combined_FPNs.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'daily_FPNs_bytype.csv'))
+        combined_MELs.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'daily_MELs_bytype.csv'))
+        combined_cashflows.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'daily_cashflows_bytype.csv'))
+        combined_metered.sum(axis=0, level=0).groupby(pd.Grouper(freq='D')).sum().groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'daily_metered_bytype.csv'))
+
+        # generate summaries by BMU Type
+        self.stdout.write('{:%Y-%m-%d %H:%M:%S} Generating BMU Type aggregate values'.format(dt.datetime.now()))
+        combined_BAVs.groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'BAVs_bytype.csv'))
+        combined_OAVs.groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'OAVs_bytype.csv'))
+        combined_FPNs.groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'FPNs_bytype.csv'))
+        combined_MELs.groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'MELs_bytype.csv'))
+        combined_cashflows.groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'cashflows_bytype.csv'))
+        combined_metered.groupby(BMU_types.Type.to_dict(),axis=1).sum().to_csv(os.path.join(save_path, 'metered_bytype.csv'))
 
         self.stdout.write('{:%Y-%m-%d %H:%M:%S} Finished'.format(dt.datetime.now()))

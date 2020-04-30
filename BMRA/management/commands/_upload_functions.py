@@ -257,6 +257,7 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['MEL']:
         if MEL.objects.filter(bmu=bmu,
+                              ts=message_dict['received_time'],
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
             return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
