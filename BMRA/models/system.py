@@ -55,7 +55,10 @@ class DISBSAD(models.Model):
     sp = models.IntegerField(verbose_name='Settlement period',
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
-    ai = models.IntegerField(verbose_name='Adjustment identifier')
+    ai = models.IntegerField(verbose_name='Adjustment identifier',
+                             help_text='The unique identifier allocated to a \
+                             single Balancing Services Adjustment Action item \
+                             - unique within each settlement period')
     so = models.BooleanField(verbose_name='System Operator Flag',
                              help_text='A value of ‘T’ indicates where an \
                              Acceptance or Balancing Services Adjustment \

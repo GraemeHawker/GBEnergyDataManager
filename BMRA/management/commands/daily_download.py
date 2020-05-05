@@ -38,7 +38,7 @@ class Command(BaseCommand):
         except Exception as e:
             email_log[dt.datetime.now()] = 'BMRA processing failed with error: {} {}'.format(type(e).__name__, e.args)
         try:
-            p114_processed_log = process_p114_date(date)
+            #p114_processed_log = process_p114_date(date)
             email_log[dt.datetime.now()] = 'P114 processing completed'
         except Exception as e:
             email_log[dt.datetime.now()] = 'P114 processing failed with error: {} {}'.format(type(e).__name__, e.args)

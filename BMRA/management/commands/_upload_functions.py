@@ -186,6 +186,13 @@ def insert_data(message_dict):
     1: Message processed successfully
     2: Message not currently in accepted message list, no further action taken
     """
+    '''
+    if message_dict['message_subtype']=='SOSO':
+        if message_dict['IC'] == 'EG_20200502_0100_1':
+            print(message_dict)
+    return {'unprocessed_msg' : {message_dict['message_subtype'] : 1}}
+    '''
+
     if message_dict['message_subtype'] not in PROCESSED_MESSAGES[message_dict['message_type']]:
         return {'unprocessed_msg' : {message_dict['message_subtype'] : 1}}
 
@@ -276,6 +283,7 @@ def insert_bm_data(message_dict):
 
     if message_dict['message_subtype'] in ['MIL']:
         if MIL.objects.filter(bmu=bmu,
+                              ts=message_dict['received_time'],
                               sd=message_dict['SD'],
                               sp=message_dict['SP']).exists():
             return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
@@ -548,7 +556,8 @@ def insert_system_data(message_dict):
 
     if message_dict['message_subtype'] in ['DISBSAD']:
         if DISBSAD.objects.filter(sd=message_dict['SD'],
-                                  sp=message_dict['SP']).exists():
+                                  sp=message_dict['SP'],
+                                  ai=message_dict['AI']).exists():
             return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         disbsad = DISBSAD(sd=message_dict['SD'],
                           sp=message_dict['SP'],
@@ -793,23 +802,24 @@ def insert_system_data(message_dict):
         insert_log['new_entries'] = {'mid' : 1}
         return insert_log
 
+    # for unknown reasons, multiple NETBSAD messages can be present
+    # for the same SP. If we get a message covering an existing SP,
+    # then update the existing object with the new data
     if message_dict['message_subtype'] in ['NETBSAD']:
-        if NETBSAD.objects.filter(sd=message_dict['SD'],
-                                  sp=message_dict['SP']).exists():
-            return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
-        netbsad = NETBSAD(sd=message_dict['SD'],
-                          sp=message_dict['SP'],
-                          a7=message_dict['A7'],
-                          a8=message_dict['A8'],
-                          a11=message_dict['A11'],
-                          a3=message_dict['A3'],
-                          a9=message_dict['A9'],
-                          a10=message_dict['A10'],
-                          a12=message_dict['A12'],
-                          a6=message_dict['A6'])
-        netbsad.save()
-        insert_log['new_entries'] = {'netbsad' : 1}
-        return insert_log
+        netbsad, created = NETBSAD.objects.update_or_create(sd=message_dict['SD'],
+                                  sp=message_dict['SP'],
+                                  defaults={'a7' : message_dict['A7'],
+                                            'a8' : message_dict['A8'],
+                                            'a11' : message_dict['A11'],
+                                            'a3' : message_dict['A3'],
+                                            'a9' : message_dict['A9'],
+                                            'a10' : message_dict['A10'],
+                                            'a12' : message_dict['A12'],
+                                            'a6' : message_dict['A6']})
+        if created:
+            insert_log['new_entries'] = {'netbsad' : 1}
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
 
     if message_dict['message_subtype'] in ['NETEBSP']:
         if NETEBSP.objects.filter(sd=message_dict['SD'],
@@ -854,6 +864,18 @@ def insert_system_data(message_dict):
         return insert_log
 
     if message_dict['message_subtype'] in ['SOSO']:
+        netbsad, created = SOSO.objects.update_or_create(ic=message_dict['IC'],
+                                  defaults={'tt' : message_dict['TT'],
+                                            'st' : message_dict['ST'],
+                                            'td' : message_dict['TD'],
+                                            'ic' : message_dict['IC'],
+                                            'tq' : message_dict['TQ'],
+                                            'pt' : message_dict['PT']})
+        if created:
+            insert_log['new_entries'] = {'soso' : 1}
+            return insert_log
+        return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
+
         if SOSO.objects.filter(ic=message_dict['IC']).exists():
             return {'duplicate_msg' : {message_dict['message_subtype'] : 1}}
         soso = SOSO(tt=message_dict['TT'],
