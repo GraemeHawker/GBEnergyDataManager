@@ -13,14 +13,14 @@ class Command(BaseCommand):
     help = 'downloads all data for previous day'
 
     def add_arguments(self, parser):
-        pass
+        parser.add_argument('days_back', nargs='?', type=int, default=0)
 
     def handle(self, *args, **options):
         email_log = {}
         formatted_report = ''
         self.stdout.write('Started: {:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now()))
         email_log[dt.datetime.now()] = 'Started'
-        date = dt.date.today()-dt.timedelta(days=1)
+        date = dt.date.today()-dt.timedelta(days=options['days_back']+1)
         self.stdout.write('downloading data for {:%Y-%m-%d}'.format(date))
         email_log[dt.datetime.now()] = 'downloading data for {:%Y-%m-%d}'.format(date)
         try:
@@ -38,7 +38,7 @@ class Command(BaseCommand):
         except Exception as e:
             email_log[dt.datetime.now()] = 'BMRA processing failed with error: {} {}'.format(type(e).__name__, e.args)
         try:
-            #p114_processed_log = process_p114_date(date)
+            p114_processed_log = process_p114_date(date)
             email_log[dt.datetime.now()] = 'P114 processing completed'
         except Exception as e:
             email_log[dt.datetime.now()] = 'P114 processing failed with error: {} {}'.format(type(e).__name__, e.args)
