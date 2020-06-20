@@ -25,6 +25,9 @@ class BMU(models.Model):
     class Meta:
         db_table = 'bmra_bmu'
 
+    def __str__(self):
+        return '{} {}'.format(self.id, self.name)
+
 class ZI(models.Model):
     """
     Zone Indicator

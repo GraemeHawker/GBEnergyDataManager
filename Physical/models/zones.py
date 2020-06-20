@@ -8,7 +8,12 @@ class TO_zone(models.Model):
     id = models.CharField(max_length=10,
                           primary_key=True)
     class Meta:
+        verbose_name = 'TO Zone'
         db_table = 'physical_to_zone'
+
+    def __str__(self):
+        return self.id
+
 
 class OC2_zone(models.Model):
     """
@@ -19,7 +24,11 @@ class OC2_zone(models.Model):
     to_zone = models.ForeignKey(TO_zone,
                                 on_delete=models.PROTECT)
     class Meta:
+        verbose_name = 'OC2 Zone'
         db_table = 'physical_oc2_zone'
+
+    def __str__(self):
+        return self.id
 
 class ConnectionSite(models.Model):
     """
@@ -33,4 +42,8 @@ class ConnectionSite(models.Model):
     longitude = models.FloatField(blank=True,
                                   null=True)
     class Meta:
+        verbose_name = 'connection site'
         db_table = 'physical_connection_site'
+
+    def __str__(self):
+        return self.name
