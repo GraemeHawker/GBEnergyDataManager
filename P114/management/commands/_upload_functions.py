@@ -148,6 +148,9 @@ def insert_data(message_list):
             # in this case we don't create a GP9 object as it only has GSP id
             # instead get/create the GSP object and use it in following GMPs
             gsp, created = GSP.objects.get_or_create(id=message_dict['gsp_id'])
+            if gsp.gsp_group is None:
+                gsp.gsp_group = gsp_group
+                gsp.save()
 
         elif message_dict['message_type'] == 'GMP':
             gmp, created = GMP.objects.get_or_create(gsp=gsp,
