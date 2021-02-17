@@ -54,11 +54,11 @@ def sp_to_dt(SD, SP, period_start=True):
     #maximum SP value check, taking into account transition days
     transition_days = [dt.date(x.year, x.month, x.day)
                        for x in pytz.timezone('Europe/London')._utc_transition_times]
-    if SD in transition_days[::2]: #clocks go forward
+    if SD in [x for x in transition_days if x.month<6]: #clocks go forward
         if SP > 46:
             raise ValueError('SP value of %d exceeds maximum value of 46 \
                              for forward clock change date' % SP)
-    elif SD in transition_days[1::2]: #clocks go back
+    elif SD in [x for x in transition_days if x.month>6]: #clocks go back
         if SP > 50:
             raise ValueError('SP value of %d exceeds maximum value of 50 \
                              for backward clock change date' % SP)
@@ -86,9 +86,9 @@ def sp_to_dt(SD, SP, period_start=True):
 
     # DST shift should only be applied on days after transition day
     # (as does not impact calculation until SP resets to 1)
-    if SD in transition_days[::2]:
+    if SD in [x for x in transition_days if x.month<6]:
         pass
-    elif SD in transition_days[1::2] and SP > 2:
+    elif SD in [x for x in transition_days if x.month>6] and SP > 2:
         datetime -= dt.timedelta(hours=1)
     else:
         datetime -= datetime.astimezone(pytz.timezone('Europe/London')).dst()
@@ -134,9 +134,9 @@ def dt_to_sp(datetime, period_start=True):
     # if on day clocks got forward, do not adjust
     # if on day clocks go back, adjust both within and without BST period
     if (datetime.astimezone(pytz.timezone('Europe/London')).dst() != dt.timedelta(0)\
-    and sd_raw not in transition_days[::2])\
+    and sd_raw not in [x for x in transition_days if x.month<6])\
     or (datetime.astimezone(pytz.timezone('Europe/London')).dst() == dt.timedelta(0)\
-    and sd_raw in transition_days[1::2]):
+    and sd_raw in [x for x in transition_days if x.month>6]):
         sp_raw += 2
 
     # shift period by 1 if datetime is ambiguous and to be treated as period end
@@ -148,9 +148,9 @@ def dt_to_sp(datetime, period_start=True):
     # allowing for variable number of SPs on DST transition dates
     if sp_raw < 1:
         sd_raw -= dt.timedelta(days=1)
-        if sd_raw in transition_days[::2]:
+        if sd_raw in [x for x in transition_days if x.month<6]:
             sp_raw = 46 - sp_raw
-        elif sd_raw in transition_days[1::2]:
+        elif sd_raw in [x for x in transition_days if x.month>6]:
             sp_raw = 50 - sp_raw
         else:
             sp_raw = 48 - sp_raw
@@ -160,10 +160,10 @@ def dt_to_sp(datetime, period_start=True):
     if sp_raw > 48 and sd_raw not in transition_days:
         sd_raw += dt.timedelta(days=1)
         sp_raw -= 48
-    if sp_raw > 46 and sd_raw in transition_days[::2]:
+    if sp_raw > 46 and sd_raw in [x for x in transition_days if x.month<6]:
         sd_raw += dt.timedelta(days=1)
         sp_raw -= 46
-    if sp_raw > 50 and sd_raw in transition_days[1::2]:
+    if sp_raw > 50 and sd_raw in [x for x in transition_days if x.month>6]:
         sd_raw += dt.timedelta(days=1)
         sp_raw -= 50
 
@@ -206,9 +206,9 @@ def get_sp_list(sd_start, sd_end, sp_start=None, sp_end=None):
         #maximum SP value check, taking into account transition days
         transition_days = [dt.date(x.year, x.month, x.day)
                            for x in pytz.timezone('Europe/London')._utc_transition_times]
-        if curr_sd in transition_days[::2]: #clocks go forward
+        if curr_sd in [x for x in transition_days if x.month<6]: #clocks go forward
             last_sp = 46
-        elif curr_sd in transition_days[1::2]: #clocks go back
+        elif curr_sd in [x for x in transition_days if x.month>6]: #clocks go back
             last_sp = 50
         else:
             last_sp = 48

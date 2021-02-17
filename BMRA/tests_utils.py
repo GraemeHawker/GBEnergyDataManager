@@ -7,13 +7,15 @@ from django.test import TestCase
 from django.utils import timezone
 from GBEnergyDataManager.utils import sp_to_dt, dt_to_sp, get_sp_list
 
+
 class TimeConversionCase(TestCase):
     """
     Tests for SD/SP timestamp conversion functions
     """
+
     def test_sp_to_dt(self):
         """Can convert settlement period to datetime"""
-        #checks for basic non-DST date
+        # checks for basic non-DST date
         self.assertEqual(sp_to_dt(dt.date(2018, 1, 1), 1),
                          dt.datetime(2018, 1, 1, 0, 0, tzinfo=timezone.utc))
         self.assertEqual(sp_to_dt(dt.date(2018, 1, 1), 1, True),
@@ -45,7 +47,7 @@ class TimeConversionCase(TestCase):
         self.assertEqual(sp_to_dt(dt.date(2018, 1, 1), 48, False),
                          dt.datetime(2018, 1, 2, 0, 0, tzinfo=timezone.utc))
 
-        #checks for date within DST
+        # checks for date within DST
         self.assertEqual(sp_to_dt(dt.date(2018, 7, 1), 1),
                          dt.datetime(2018, 6, 30, 23, 0, tzinfo=timezone.utc))
         self.assertEqual(sp_to_dt(dt.date(2018, 7, 1), 1, True),
@@ -77,7 +79,7 @@ class TimeConversionCase(TestCase):
         self.assertEqual(sp_to_dt(dt.date(2018, 7, 1), 48, False),
                          dt.datetime(2018, 7, 1, 23, 0, tzinfo=timezone.utc))
 
-        #checks for times on DST changeover - clocks going forward
+        # checks for times on DST changeover - clocks going forward
         self.assertEqual(sp_to_dt(dt.date(2018, 3, 25), 1),
                          dt.datetime(2018, 3, 25, 0, 0, tzinfo=timezone.utc))
         self.assertEqual(sp_to_dt(dt.date(2018, 3, 25), 1, True),
@@ -115,7 +117,7 @@ class TimeConversionCase(TestCase):
         self.assertEqual(sp_to_dt(dt.date(2018, 3, 26), 3, False),
                          dt.datetime(2018, 3, 26, 0, 30, tzinfo=timezone.utc))
 
-        #checks for times on DST changeover - clocks going back
+        # checks for times on DST changeover - clocks going back
         self.assertEqual(sp_to_dt(dt.date(2018, 10, 28), 1),
                          dt.datetime(2018, 10, 27, 23, 0, tzinfo=timezone.utc))
         self.assertEqual(sp_to_dt(dt.date(2018, 10, 28), 1, True),
@@ -169,19 +171,19 @@ class TimeConversionCase(TestCase):
         self.assertEqual(sp_to_dt(dt.date(2018, 10, 29), 3, False),
                          dt.datetime(2018, 10, 29, 1, 30, tzinfo=timezone.utc))
 
-        #checks for invalid SP
+        # checks for invalid SP
         self.assertRaises(ValueError, sp_to_dt, dt.date(2018, 1, 1), 0)
         self.assertRaises(ValueError, sp_to_dt, dt.date(2018, 1, 1), -1)
         self.assertRaises(ValueError, sp_to_dt, dt.date(2018, 1, 1), 49)
         self.assertRaises(ValueError, sp_to_dt, dt.date(2018, 3, 25), 47)
 
-        #check for invalid SD Type
+        # check for invalid SD Type
         self.assertRaises(ValueError, sp_to_dt, dt.datetime(2018, 1, 1), 0)
 
     def test_dt_to_sp(self):
         """Can convert datetime to settlement period"""
 
-        #checks for basic non-DST date
+        # checks for basic non-DST date
         self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 0, tzinfo=timezone.utc)),
                          (dt.date(2018, 1, 1), 1))
         self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 1, 0, 0, tzinfo=timezone.utc), True),
@@ -223,7 +225,7 @@ class TimeConversionCase(TestCase):
         self.assertEqual(dt_to_sp(dt.datetime(2018, 1, 2, 0, 0, tzinfo=timezone.utc), False),
                          (dt.date(2018, 1, 1), 48))
 
-        #checks for date within DST
+        # checks for date within DST
         self.assertEqual(dt_to_sp(dt.datetime(2018, 6, 30, 23, 0, tzinfo=timezone.utc)),
                          (dt.date(2018, 7, 1), 1))
         self.assertEqual(dt_to_sp(dt.datetime(2018, 6, 30, 23, 0, tzinfo=timezone.utc), True),
@@ -259,8 +261,7 @@ class TimeConversionCase(TestCase):
         self.assertEqual(dt_to_sp(dt.datetime(2018, 7, 1, 23, 0, tzinfo=timezone.utc), False),
                          (dt.date(2018, 7, 1), 48))
 
-
-        #checks for times on DST changeover - clocks going forward
+        # checks for times on DST changeover - clocks going forward
         self.assertEqual(dt_to_sp(dt.datetime(2018, 3, 25, 0, 0, tzinfo=timezone.utc)),
                          (dt.date(2018, 3, 25), 1))
         self.assertEqual(dt_to_sp(dt.datetime(2018, 3, 25, 0, 0, tzinfo=timezone.utc), True),
@@ -271,7 +272,7 @@ class TimeConversionCase(TestCase):
                          (dt.date(2018, 3, 25), 2))
         self.assertEqual(dt_to_sp(dt.datetime(2018, 3, 25, 1, 0, tzinfo=timezone.utc)),
                          (dt.date(2018, 3, 25), 3))
-        self.assertEqual(dt_to_sp(dt.datetime(2018, 3, 25, 1, 0, tzinfo=timezone.utc),False),
+        self.assertEqual(dt_to_sp(dt.datetime(2018, 3, 25, 1, 0, tzinfo=timezone.utc), False),
                          (dt.date(2018, 3, 25), 2))
         self.assertEqual(dt_to_sp(dt.datetime(2018, 3, 25, 1, 30, tzinfo=timezone.utc)),
                          (dt.date(2018, 3, 25), 4))
@@ -293,8 +294,7 @@ class TimeConversionCase(TestCase):
         self.assertEqual(dt_to_sp(dt.datetime(2018, 3, 26, 0, 0, tzinfo=timezone.utc)),
                          (dt.date(2018, 3, 26), 3))
 
-
-        #checks for times on DST changeover - clocks going back
+        # checks for times on DST changeover - clocks going back
         self.assertEqual(dt_to_sp(dt.datetime(2018, 10, 27, 23, 0, tzinfo=timezone.utc)),
                          (dt.date(2018, 10, 28), 1))
         self.assertEqual(dt_to_sp(dt.datetime(2018, 10, 27, 23, 0, tzinfo=timezone.utc), True),
@@ -348,13 +348,15 @@ class TimeConversionCase(TestCase):
         self.assertEqual(dt_to_sp(dt.datetime(2018, 10, 29, 1, 0, tzinfo=timezone.utc), False),
                          (dt.date(2018, 10, 29), 2))
 
+
 class TimeListCase(TestCase):
     """
     Tests for generating SD/SP lists
     """
+
     def test_get_sp_list(self):
         """Can generate sp lists"""
-        #check for basic non-DST dates
+        # check for basic non-DST dates
         self.assertEqual(get_sp_list(dt.date(2018, 1, 1), dt.date(2018, 1, 2)),
                          [(dt.date(2018, 1, 1), 1),
                           (dt.date(2018, 1, 1), 2),
@@ -453,7 +455,7 @@ class TimeListCase(TestCase):
                           (dt.date(2018, 1, 2), 47),
                           (dt.date(2018, 1, 2), 48)])
 
-        self.assertEqual(get_sp_list(dt.date(2018, 1, 1), dt.date(2018, 1, 2), 21 , 4),
+        self.assertEqual(get_sp_list(dt.date(2018, 1, 1), dt.date(2018, 1, 2), 21, 4),
                          [(dt.date(2018, 1, 1), 21),
                           (dt.date(2018, 1, 1), 22),
                           (dt.date(2018, 1, 1), 23),
@@ -487,7 +489,7 @@ class TimeListCase(TestCase):
                           (dt.date(2018, 1, 2), 3),
                           (dt.date(2018, 1, 2), 4)])
 
-        self.assertEqual(get_sp_list(dt.date(2018, 3, 25), dt.date(2018, 3, 26), 21 , 4),
+        self.assertEqual(get_sp_list(dt.date(2018, 3, 25), dt.date(2018, 3, 26), 21, 4),
                          [(dt.date(2018, 3, 25), 21),
                           (dt.date(2018, 3, 25), 22),
                           (dt.date(2018, 3, 25), 23),
@@ -519,7 +521,7 @@ class TimeListCase(TestCase):
                           (dt.date(2018, 3, 26), 3),
                           (dt.date(2018, 3, 26), 4)])
 
-        self.assertEqual(get_sp_list(dt.date(2018, 10, 28), dt.date(2018, 10, 29), 21 , 4),
+        self.assertEqual(get_sp_list(dt.date(2018, 10, 28), dt.date(2018, 10, 29), 21, 4),
                          [(dt.date(2018, 10, 28), 21),
                           (dt.date(2018, 10, 28), 22),
                           (dt.date(2018, 10, 28), 23),
