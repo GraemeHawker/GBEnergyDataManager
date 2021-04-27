@@ -2,8 +2,8 @@
 
 ## Source
 Based on definitions given in:
-- https://www.elexon.co.uk/data-flow/settlement-report-saa-i014-also-known-as-the-s0142
-- https://www.elexon.co.uk/wp-content/uploads/2015/04/P114_data-items.xlsx
+- https://www.elexon.co.uk/data/key-data-reports/data-flows-available-from-bsc-systems/
+- https://www.elexon.co.uk/documents/about-elexon/data-flows-2/p114-data-items-2/
 
 Other references:
 - Balancing and Settlement Code (BSC)

@@ -28,7 +28,7 @@ class Command(BaseCommand):
             email_log[dt.datetime.now()] = 'BMRA processing completed'
             formatted_report += '\n {} BMRA messages processed'.format(combined_insert_log['count'])
             for new_bmu in combined_insert_log['new_bmus']:
-                formatted_report += '\n New BMU created: '.format(new_bmu)
+                formatted_report += '\n New BMU created: {}'.format(new_bmu)
             for key, value in combined_insert_log['inserts'].items():
                 formatted_report += '\n {} {} messages processed'.format(key,value)
             for key, value in combined_insert_log['unprocessed_msg'].items():

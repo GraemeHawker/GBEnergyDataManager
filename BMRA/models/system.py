@@ -9,6 +9,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from BMRA.models.balancing import check_dates
 from .core import LDSO
 
+
 class BSAD(models.Model):
     """
     Balancing Services Adjustment Data
@@ -42,9 +43,11 @@ class BSAD(models.Model):
                              decimal_places=3,
                              verbose_name='Buy price price adjustment',
                              help_text='£/MWh')
+
     class Meta:
         db_table = 'bmra_bsad'
         index_together = ('sd', 'sp')
+
 
 class DISBSAD(models.Model):
     """
@@ -77,9 +80,11 @@ class DISBSAD(models.Model):
                              decimal_places=3,
                              verbose_name='Adjustment volume',
                              help_text='MWh')
+
     class Meta:
         db_table = 'bmra_disbsad'
         index_together = ('sd', 'sp')
+
 
 class NETBSAD(models.Model):
     """
@@ -99,9 +104,9 @@ class NETBSAD(models.Model):
                              verbose_name='Net Energy Sell Price Volume Adjustment (ESVA)',
                              help_text='MWh')
     a11 = models.DecimalField(max_digits=10,
-                             decimal_places=3,
-                             verbose_name='Net System Sell Price Volume Adjustment (SSVA)',
-                             help_text='MWh')
+                              decimal_places=3,
+                              verbose_name='Net System Sell Price Volume Adjustment (SSVA)',
+                              help_text='MWh')
     a3 = models.DecimalField(max_digits=10,
                              decimal_places=2,
                              verbose_name='Sell Price Price Adjustment (SPA)',
@@ -111,20 +116,22 @@ class NETBSAD(models.Model):
                              verbose_name='Net Energy Buy Price Cost Adjustment (EBCA)',
                              help_text='£')
     a10 = models.DecimalField(max_digits=10,
-                             decimal_places=3,
-                             verbose_name='Net Energy Buy Price Volume Adjustment (EBVA)',
-                             help_text='MWh')
+                              decimal_places=3,
+                              verbose_name='Net Energy Buy Price Volume Adjustment (EBVA)',
+                              help_text='MWh')
     a12 = models.DecimalField(max_digits=10,
-                             decimal_places=3,
-                             verbose_name='Net System Buy Price Volume Adjustment (SBVA)',
-                             help_text='MWh')
+                              decimal_places=3,
+                              verbose_name='Net System Buy Price Volume Adjustment (SBVA)',
+                              help_text='MWh')
     a6 = models.DecimalField(max_digits=10,
                              decimal_places=2,
                              verbose_name='Buy Price Price Adjustment (BPA)',
                              help_text='£')
+
     class Meta:
         db_table = 'bmra_netbsad'
         index_together = ('sd', 'sp')
+
 
 class EBSP(models.Model):
     """
@@ -207,9 +214,11 @@ class EBSP(models.Model):
                              decimal_places=2,
                              verbose_name='Buy price price adjustment',
                              help_text='£/MWh')
+
     class Meta:
         db_table = 'bmra_ebsp'
         index_together = ('sd', 'sp')
+
 
 class NETEBSP(models.Model):
     """
@@ -285,9 +294,9 @@ class NETEBSP(models.Model):
                              verbose_name='Net Energy Sell Price Volume Adjustment (ESVA)',
                              help_text='MWh')
     a11 = models.DecimalField(max_digits=10,
-                             decimal_places=3,
-                             verbose_name='Net System Sell Price Volume Adjustment (SSVA)',
-                             help_text='MWh')
+                              decimal_places=3,
+                              verbose_name='Net System Sell Price Volume Adjustment (SSVA)',
+                              help_text='MWh')
     a3 = models.DecimalField(max_digits=10,
                              decimal_places=2,
                              verbose_name='Sell Price Price Adjustment (SPA)',
@@ -297,20 +306,22 @@ class NETEBSP(models.Model):
                              verbose_name='Net Energy Buy Price Cost Adjustment (EBCA)',
                              help_text='£')
     a10 = models.DecimalField(max_digits=10,
-                             decimal_places=3,
-                             verbose_name='Net Energy Buy Price Volume Adjustment (EBVA)',
-                             help_text='MWh')
+                              decimal_places=3,
+                              verbose_name='Net Energy Buy Price Volume Adjustment (EBVA)',
+                              help_text='MWh')
     a12 = models.DecimalField(max_digits=10,
-                             decimal_places=3,
-                             verbose_name='Net System Buy Price Volume Adjustment (SBVA)',
-                             help_text='MWh')
+                              decimal_places=3,
+                              verbose_name='Net System Buy Price Volume Adjustment (SBVA)',
+                              help_text='MWh')
     a6 = models.DecimalField(max_digits=10,
                              decimal_places=2,
                              verbose_name='Buy Price Price Adjustment (BPA)',
                              help_text='£')
+
     class Meta:
         db_table = 'bmra_netebsp'
         index_together = ('sd', 'sp')
+
 
 class DISEBSP(models.Model):
     """
@@ -336,11 +347,11 @@ class DISEBSP(models.Model):
                           describes the way in which SSP and SBP were calculated',
                           help_text='Valid values defined in BMRA-I006')
     rsp = models.DecimalField(max_digits=10,
-                             decimal_places=3,
-                             verbose_name='Reserve Scarcity Price',
-                             help_text='£/MWh',
-                             blank=True,
-                             null=True)
+                              decimal_places=3,
+                              verbose_name='Reserve Scarcity Price',
+                              help_text='£/MWh',
+                              blank=True,
+                              null=True)
     rp = models.DecimalField(max_digits=10,
                              decimal_places=3,
                              verbose_name='Replacement Price',
@@ -424,6 +435,7 @@ class DISEBSP(models.Model):
         db_table = 'bmra_disebsp'
         index_together = ('sd', 'sp')
 
+
 class SOSO(models.Model):
     """
     So to SO prices
@@ -451,6 +463,7 @@ class SOSO(models.Model):
         db_table = 'bmra_soso'
         index_together = ('tt', 'st')
 
+
 class MID(models.Model):
     """
     Market Index Data
@@ -463,16 +476,18 @@ class MID(models.Model):
     mi = models.CharField(max_length=11,
                           verbose_name='Market Index Data Provider')
     m1 = models.DecimalField(max_digits=10,
-                             decimal_places = 2,
+                             decimal_places=2,
                              verbose_name='Market Index Price',
                              help_text='£/MWh')
     m2 = models.DecimalField(max_digits=10,
-                             decimal_places = 2,
+                             decimal_places=2,
                              verbose_name='Market Index Volume',
                              help_text='MWh')
+
     class Meta:
         db_table = 'bmra_mid'
         index_together = ('mi', 'sd', 'sp')
+
 
 class ISPSTACK(models.Model):
     """
@@ -520,59 +535,60 @@ class ISPSTACK(models.Model):
                              help_text='True indicates the item has been \
                              repriced')
     up = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Bid-offer Original Price',
                              help_text='£/MWh')
     rsp = models.DecimalField(max_digits=10,
-                             decimal_places=3,
-                             verbose_name='Reserve Scarcity Price',
-                             help_text='£/MWh',
-                             blank=True,
-                             null=True)
+                              decimal_places=3,
+                              verbose_name='Reserve Scarcity Price',
+                              help_text='£/MWh',
+                              blank=True,
+                              null=True)
     ip = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Stack Item Original Price',
                              help_text='£/MWh')
     iv = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Stack Item Volume',
                              help_text='MWh')
     da = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='DMAT Adjusted Volume',
                              help_text='MWh')
     av = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Arbitrage Adjusted Volume',
                              help_text='MWh')
     nv = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='NIV Adjusted Volume',
                              help_text='MWh')
     pv = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='PAR Adjusted Volume',
                              help_text='MWh')
     fp = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Stack Item Final Price',
                              help_text='£/MWh')
     tm = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='Transmission Loss Multiplier Value',
                              help_text='MWh')
     tv = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='TLM Adjusted Volume',
                              help_text='MWh')
     tc = models.DecimalField(max_digits=10,
-                             decimal_places = 3,
+                             decimal_places=3,
                              verbose_name='TLM Adjusted Cost',
                              help_text='£')
 
     class Meta:
         db_table = 'bmra_ispstack'
         index_together = ('sd', 'sp', 'ci', 'nn')
+
 
 class TBOD(models.Model):
     """
@@ -584,16 +600,18 @@ class TBOD(models.Model):
                              validators=[MinValueValidator(1),
                                          MaxValueValidator(50)])
     ot = models.DecimalField(max_digits=10,
-                             decimal_places = 2,
+                             decimal_places=2,
                              verbose_name='System wide total offer volume',
                              help_text='MWh')
     bt = models.DecimalField(max_digits=10,
-                             decimal_places = 2,
+                             decimal_places=2,
                              verbose_name='System wide total bid volume',
                              help_text='MWh')
+
     class Meta:
         db_table = 'bmra_tbod'
         index_together = ('sd', 'sp')
+
 
 class SYSMSG(models.Model):
     """
@@ -609,6 +627,7 @@ class SYSMSG(models.Model):
     class Meta:
         db_table = 'bmra_sysmsg'
 
+
 class SYSWARN(models.Model):
     """
     System warning
@@ -621,6 +640,7 @@ class SYSWARN(models.Model):
     class Meta:
         db_table = 'bmra_syswarn'
 
+
 class DCONTROL(models.Model):
     """
     Demand Control Instruction Notification
@@ -628,8 +648,10 @@ class DCONTROL(models.Model):
     tp = models.DateTimeField(primary_key=True,
                               verbose_name='Published time',
                               validators=[check_dates])
+
     class Meta:
         db_table = 'bmra_dcontrol'
+
 
 class DCONTROLlevel(models.Model):
     """
@@ -651,7 +673,7 @@ class DCONTROLlevel(models.Model):
     ti = models.DateTimeField(verbose_name='Time to',
                               validators=[check_dates])
     vo = models.DecimalField(max_digits=10,
-                             decimal_places = 2,
+                             decimal_places=2,
                              verbose_name='Demand control level',
                              help_text='MW')
     so = models.BooleanField(verbose_name='SO flag',
@@ -661,6 +683,7 @@ class DCONTROLlevel(models.Model):
     am = models.CharField(max_length=3,
                           verbose_name='Amendment flag',
                           help_text='ORI : Original, INS : Insert, UPD : Update')
+
     class Meta:
         db_table = 'bmra_dcontrollevel'
         index_together = ['dcontrol', 'tf', 'ds']

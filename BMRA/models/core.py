@@ -32,7 +32,7 @@ class ZI(models.Model):
     """
     Zone Indicator
     """
-    id = models.CharField(max_length=2, primary_key=True)
+    id = models.CharField(max_length=3, primary_key=True)
     class Meta:
         db_table = 'bmra_zi'
 
