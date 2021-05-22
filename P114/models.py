@@ -11,6 +11,8 @@ def check_dates(value):
         raise ValidationError('Date or timestamp not in valid P114 range')
 
 # Create your models here.
+
+# Create your models here.
 class SR_type(models.Model):
     id = models.CharField(max_length=2, primary_key=True)
     order = models.IntegerField(verbose_name='Ordinal Value',
@@ -69,6 +71,7 @@ class InterGSP(models.Model):
     name = models.CharField(max_length=100)
     class Meta:
         db_table = 'p114_intergsp'
+
 
 class AGV(models.Model):
     """

@@ -101,7 +101,7 @@ def process_bmra_file(date):
                            'unprocessed_msg' : {},
                            'duplicate_msg' : {},
                            }
-    for message in file_rows:
+    for message in tqdm(file_rows):
         if len(message.strip()) > 0:
             message_dict = message_to_dict(message+'}')
             if message_dict is not None:

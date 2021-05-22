@@ -61,9 +61,25 @@ class Command(BaseCommand):
         # set up blank dataframe, with settlement periods as index
         # and subset BMUIDs as columns
         if options['subset'][0] == 'scotland':
-            bmus_df = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/scottish_BMUs_190731.csv'))
-            BMU_types = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/scottish_BMUs_190731.csv'), index_col=0)
-            bmu_ids = bmus_df['BMU ID'].values
+            #bmus_df = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/scottish_BMUs_190731.csv'))
+            #BMU_types = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/scottish_BMUs_190731.csv'), index_col=0)
+            #bmu_ids = bmus_df['BMU ID'].values
+            bmus_df = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/ENFORMM_data/Generators.csv'))
+            BMU_types = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/ENFORMM_data/Generators.csv'), index_col=1)
+            bmu_ids = bmus_df[((bmus_df['GSP region']=='South Scotland')
+                               |(bmus_df['GSP region']=='North Scotland'))
+                              &(bmus_df.Type != 'Unknown')
+                              &((bmus_df.BMU.str.startswith('E'))
+                                |(bmus_df.BMU.str.startswith('M'))
+                                |(bmus_df.BMU.str.startswith('T')))].BMU.values
+        elif options['subset'][0] == 'wind':
+            bmus_df = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/ENFORMM_data/Generators.csv'))
+            BMU_types = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/ENFORMM_data/Generators.csv'), index_col=1)
+            bmu_ids = bmus_df[((bmus_df.Type == 'Wind (Offshore)')
+                               | (bmus_df.Type == 'Wind (Onshore)'))
+                              & ((bmus_df.BMU.str.startswith('E'))
+                                 | (bmus_df.BMU.str.startswith('M'))
+                                 | (bmus_df.BMU.str.startswith('T')))].BMU.values
         else:
             log['{:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now())] = 'FAILED: subset {} not recognised'.format(
                 options['subset'][0])

@@ -6,10 +6,12 @@ from django.db import models
 from BMRA.models.core import BMU
 from Physical.models.zones import ConnectionSite, TO_zone, OC2_zone
 
+
 class StationType(models.Model):
     """
     the type of power station
     """
+    id = models.CharField(max_length=5, primary_key=True)
     name = models.CharField(max_length=100)
     class Meta:
         db_table = 'physical_station_type'

@@ -2,13 +2,11 @@
 Helper functions for uploading data to database
 
 """
-import datetime as dt
-from django.utils import timezone
 from ._data_definitions import ACCEPTED_MESSAGES, IGNORED_MESSAGES, \
 FIELDNAMES, FIELD_CASTING_FUNCS
 from GBEnergyDataManager.settings import P114_INPUT_DIR
 import gzip
-from tqdm import tqdm
+
 
 def message_to_dict(raw_message, associated_params=None):
     """
