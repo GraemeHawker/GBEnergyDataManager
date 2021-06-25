@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form id="filterForm">
+        <label for="year">Choose a time:</label>
+        <input type="date" id="system_date" name="system_date" value="2021-01-01" min="2018-01-01">
+        <input type="time" id="system_time" name="system_time" value="00:00">
+        <input type="submit" value="Load" name="_load">
+    </form>
+  <div id="container" style="width: 75%;">
+    <canvas id="population-chart" data-url="{% url 'test_chart_data' %}"></canvas>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+
+    $(function () {
+
+      var $populationChart = $("#population-chart");
+      $.ajax({
+        url: $populationChart.data("url"),
+        success: function (data) {
+
+          var ctx = $populationChart[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                label: 'Population',
+                backgroundColor: 'blue',
+                data: data.data
+              }]          
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Aggregate Generation by Area'
+              }
+            }
+          });
+
+        }
+      });
+
+    });
+
+  </script>
+
+{% endblock %}

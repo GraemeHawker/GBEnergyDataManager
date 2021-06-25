@@ -13,6 +13,7 @@ class StationType(models.Model):
     """
     id = models.CharField(max_length=5, primary_key=True)
     name = models.CharField(max_length=100)
+    supertype = models.CharField(max_length=100)
     class Meta:
         db_table = 'physical_station_type'
 

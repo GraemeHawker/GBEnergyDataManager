@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    {% load static %}
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'BMRA/favicons/favicon.ico' %}"/>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <style>
+        #summary {
+            display: none
+        }
+
+        h1, label {
+            font-family: Arial
+        }
+
+        img {
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container__main {
+            /* Take the remaining height */
+            flex-grow: 1;
+
+            /* Layout the left sidebar, main content and right sidebar */
+            display: flex;
+            flex-direction: row;
+        }
+
+        .container__left {
+            width: 35%;
+        }
+
+        .container__middle {
+            /* Take the remaining width */
+            flex-grow: 1;
+        }
+
+        .container__right {
+            width: 20%;
+        }
+
+        .header__main {
+            flex-direction: row;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <header class="header__main">
+            <div class="header_logo">
+                <img class="strath_logo" src="{% static 'BMRA/img/strath_logo_150_125.jpg' %}">
+            </div>
+            <div class="header_title">
+                <h1>Marginal Emissions Calculator</h1>
+            </div>
+            <form id="filterForm">
+                <label for="year">Choose a time:</label>
+                <input type="date" id="system_date" name="system_date" value="2021-01-01" min="2018-01-01">
+                <input type="time" id="system_time" name="system_time" value="00:00">
+                <input type="submit" value="Load" name="_load">
+            </form>
+        </header>
+        <main class="container__main">
+            <aside class="container__left">
+                <div id="GB_map"></div>
+            </aside>
+
+            <article class="container__middle">
+                <div id="generation"></div>
+                <div id="demand"></div>
+            </article>
+            <nav class="container__right">...</nav>
+        </main>
+        <footer>
+
+        </footer>
+    </div>
+    <script>
+        // Assign the specification to a local variable vlSpec.
+        var vlSpec = {
+            $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+            width: 500,
+            height: 800,
+            data: {
+                url: "{%  static 'BMRA/DNO_min.json' %}",
+                format: {property: "features"}
+            },
+            transform: [{
+                lookup: "id",
+                from: {
+                    data: {
+                        url: "{%  static 'BMRA/dummy_MEs.csv' %}"
+                    },
+                    key: "id",
+                    fields: ["value"]
+                },
+
+            },
+                {calculate: 'datum.value', as: "gCO2/kWh"}],
+            projection: {type: "mercator"},
+            mark: {type: "geoshape",
+                stroke: "#757575",
+                strokeWidth: 0.5
+            },
+            encoding: {
+                fill: {
+                    field: "gCO2/kWh",
+                    type: "quantitative",
+                    scale: {scheme: "yelloworangered"}
+                },
+                tooltip: [{field: "properties.gsp_group", type: "nominal", title: "GSP Group"},
+                          {field: "value", type: "quantitative", title: "gCO2/kWh"}]
+
+            },
+            config: {
+                style: {
+                    cell: {
+                        stroke: "transparent"
+                    }
+                }
+            }
+        };
+
+        // Embed the visualization in the container with id `vis`
+        vegaEmbed('#GB_map', vlSpec, {"actions": false, "mode": "vega-lite"});
+    </script>
+    <script type="text/javascript">
+      var yourVlSpec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+          width: 500,
+          height: 400,
+        description: 'A simple bar chart with embedded data.',
+        data: {
+            url: "{% url 'BMRA:regional_generation_bytype' %}",
+            name: "regional_generation_bytype",
+            format: {type: "csv"}
+
+        },
+        mark: {
+            type: 'bar',
+            orient: 'horizontal',
+            tooltip: true
+        },
+        encoding: {
+            x: {aggregate: 'sum',
+                field: 'total',
+                axis: {title: 'Total Generation (MW)'},
+                },
+            y: {field: 'gsp_group',
+                axis: {title: null},
+                sort: ['North Scotland', 'South Scotland', 'Northern', 'North Western','Yorkshire', 'Merseyside and North Wales', 'South Wales', 'Midlands','East Midlands', 'Eastern', 'South Western', 'Southern', 'London','Southern Eastern'],
+
+            },
+            color: {
+                field: 'bmu_type',
+                scale: {scheme: 'tableau20'}
+            }
+        }
+      };
+      vegaEmbed('#generation', yourVlSpec);
+    </script>
+    <script type="text/javascript">
+      var yourVlSpec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+          width: 500,
+          height: 400,
+        description: 'A simple bar chart with embedded data.',
+        data: {
+            url: "{% url 'BMRA:regional_demand' %}",
+            name: "regional_demand",
+            format: {type: "csv"}
+
+        },
+        mark: {
+            type: 'bar',
+            orient: 'horizontal',
+            tooltip: true
+        },
+        encoding: {
+            x: {aggregate: 'sum',
+                field: 'total',
+                axis: {title: 'Total Demand (MW)'},
+                },
+            y: {field: 'gsp_group',
+                axis: {title: null},
+                sort: ['North Scotland', 'South Scotland', 'Northern', 'North Western','Yorkshire', 'Merseyside and North Wales', 'South Wales', 'Midlands','East Midlands', 'Eastern', 'South Western', 'Southern', 'London','Southern Eastern'],
+
+            },
+            color: {field: 'bmu_type'}
+        }
+      };
+      vegaEmbed('#demand', yourVlSpec);
+    </script>
+{% endblock %}
