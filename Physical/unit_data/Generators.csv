@@ -1,0 +1,1280 @@
+Type,BMU,Name,GSP region
+CHP,2__DPGEN001,Sandbach CHP ,Merseyside and North Wales
+CHP,2__DPGEN002,Stoke CHP ,Merseyside and North Wales
+Battery,2__FRWED001,Rise Carr B ,North East England
+Metalworks,2__JNATP001,Sheerness Steel (nPower Limited) ,South East England
+Metalworks,2__JRWED001,Sheerness Steel (Gaz de France Marketing Ltd) ,South East England
+Metalworks,2__JYELG001,Sheerness Steel (nPower Yorkshire Supply Ltd) ,South East England
+Wind (Onshore),2__KLVDR001,Mynydd y Betws Windfarm ,South Wales
+Battery,2__LRWED001,Lockleaze Battery ,South West England
+CCGT,2__MPGEN001,Thornhill CCGT ,Yorkshire
+CCGT,2__MPGEN002,Castleford CCGT ,Yorkshire
+EfW,2__NSMAR001,Viridor Dunbar EFW ,South Scotland
+Wind (Onshore),2__PENEC001,Rothes Windfarm ,North Scotland
+Hydro,2__PMARB001,Lochaber Hydro ,North Scotland
+Hydro,2__PMARB002,Kinlochleven Hydro ,North Scotland
+Wind (Onshore),2__PPGEN001,Rothes (Cairn Uish) Wind Farm ,North Scotland
+Wind (Onshore),2__PPGEN002,Pauls Hill Windfarm ,North Scotland
+Wind (Onshore),2__PPGEN003,Camster Wind Farm ,North Scotland
+Wind (Onshore),2__PSTAT001,Cairn Uish / Rothes Windfarm Extension ,North Scotland
+Wind (Onshore),2__PSTAT002,Mid Hill Windfarm ,North Scotland
+PV,C__AANGE002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AANGE009,Common Barn Wind Farm ,Eastern
+PV,C__AAXPO002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AAXPO009,Common Barn Wind Farm ,Eastern
+PV,C__ACNDL002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ACNDL009,Common Barn Wind Farm ,Eastern
+PV,C__ACNRG002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ACNRG009,Common Barn Wind Farm ,Eastern
+PV,C__ACOOP002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ACOOP009,Common Barn Wind Farm ,Eastern
+PV,C__ACOUL002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ACOUL009,Common Barn Wind Farm ,Eastern
+PV,C__AECOA002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AECOA009,Common Barn Wind Farm ,Eastern
+PV,C__AECOT002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AECOT009,Common Barn Wind Farm ,Eastern
+PV,C__AEMEB002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AEMEB009,Common Barn Wind Farm ,Eastern
+PV,C__AENDC002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AENDC009,Common Barn Wind Farm ,Eastern
+PV,C__AENEC002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AENEC009,Common Barn Wind Farm ,Eastern
+PV,C__AENRD002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AENRD009,Common Barn Wind Farm ,Eastern
+PV,C__AENRG002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AENRG009,Common Barn Wind Farm ,Eastern
+PV,C__AFSEN002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AFSEN009,Common Barn Wind Farm ,Eastern
+PV,C__AGANY002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AGANY009,Common Barn Wind Farm ,Eastern
+PV,C__AGETW002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AGETW009,Common Barn Wind Farm ,Eastern
+PV,C__AGMTR002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AGMTR009,Common Barn Wind Farm ,Eastern
+PV,C__AGNRG002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AGNRG009,Common Barn Wind Farm ,Eastern
+PV,C__AHAVE002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AHAVE009,Common Barn Wind Farm ,Eastern
+PV,C__AHPOW002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AHPOW009,Common Barn Wind Farm ,Eastern
+PV,C__AHUDS002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AHUDS009,Common Barn Wind Farm ,Eastern
+PV,C__AHYDE002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AHYDE009,Common Barn Wind Farm ,Eastern
+PV,C__AIMPO002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AIMPO009,Common Barn Wind Farm ,Eastern
+PV,C__ALIGH002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ALIGH009,Common Barn Wind Farm ,Eastern
+PV,C__ALIME002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ALIME009,Common Barn Wind Farm ,Eastern
+PV,C__ALOND002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ALOND009,Common Barn Wind Farm ,Eastern
+PV,C__AMAGN002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AMAGN009,Common Barn Wind Farm ,Eastern
+PV,C__AMRCY002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AMRCY009,Common Barn Wind Farm ,Eastern
+PV,C__ANATP002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ANATP009,Common Barn Wind Farm ,Eastern
+PV,C__ANEWP002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ANEWP009,Common Barn Wind Farm ,Eastern
+PV,C__AOXPO002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AOXPO009,Common Barn Wind Farm ,Eastern
+PV,C__APGEN002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__APGEN009,Common Barn Wind Farm ,Eastern
+PV,C__APURE002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__APURE009,Common Barn Wind Farm ,Eastern
+PV,C__ARWED002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ARWED009,Common Barn Wind Farm ,Eastern
+PV,C__ASMAR002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ASMAR009,Common Barn Wind Farm ,Eastern
+PV,C__ASOUT002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ASOUT009,Common Barn Wind Farm ,Eastern
+PV,C__ASPOW002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ASPOW009,Common Barn Wind Farm ,Eastern
+PV,C__ASTAT002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ASTAT009,Common Barn Wind Farm ,Eastern
+PV,C__ASYMB002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ASYMB009,Common Barn Wind Farm ,Eastern
+PV,C__ATGPL002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__ATGPL009,Common Barn Wind Farm ,Eastern
+PV,C__AUKPR002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AUKPR009,Common Barn Wind Farm ,Eastern
+PV,C__AVOLT002,Triangle Farm Solar Park ,Eastern
+Wind (Onshore),C__AVOLT009,Common Barn Wind Farm ,Eastern
+PV,C__DANGE001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DANGE010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DANGE014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DAXPO001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DAXPO010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DAXPO014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DCNDL001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DCNDL010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DCNDL014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DCNRG001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DCNRG010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DCNRG014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DCOOP001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DCOOP010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DCOOP014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DCOUL001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DCOUL010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DCOUL014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DECOA001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DECOA010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DECOA014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DECOT001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DECOT010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DECOT014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DEDGE014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DEMEB001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DEMEB010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DEMEB014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DENDC001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DENDC010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DENDC014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DENRD001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DENRD010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DENRD014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DENRG001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DENRG010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DENRG014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DEXGL001,Charity Farm Solar Farm ,Merseyside and North Wales
+Wind (Onshore),C__DEXGL010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DEXGL014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DFSEN001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DFSEN010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DFSEN014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DGANY001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DGANY010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DGANY014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DGMTR001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DGMTR010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DGMTR014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DGNRG001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DGNRG010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DGNRG014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DHAVE001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DHAVE010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DHAVE014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DHPOW001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DHPOW010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DHPOW014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DHYDE001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DHYDE010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DHYDE014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DIMPO001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DIMPO010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DIMPO014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DLIGH001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DLIGH010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DLIGH014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DLOND001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DLOND010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DLOND014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DMAGN001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DMAGN010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DMAGN014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DMANW001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DMANW010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DMANW014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DNATP001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DNATP010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DNATP014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DOSMI001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DOSMI010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DOSMI014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DOVOE001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DOVOE010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DOVOE014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DOXPO001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DOXPO010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DOXPO014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DPGEN001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DPGEN010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DPGEN014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DPURE001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DPURE010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DPURE014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DREGE001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DREGE010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DREGE014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DRWED001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DRWED010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DRWED014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DSAPH001,Charity Farm Solar Farm ,Merseyside and North Wales
+Wind (Onshore),C__DSAPH010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DSAPH014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DSMAR001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DSMAR010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DSMAR014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DSOUT001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DSOUT010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DSOUT014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DSPOW001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DSPOW010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DSPOW014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DSTAT001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DSTAT010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DSTAT014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DTGPL001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DTGPL010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DTGPL014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DVETS001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DVETS010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DVETS014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+PV,C__DVOLT001,Charity Farm Solar Park ,Merseyside and North Wales
+Wind (Onshore),C__DVOLT010,Brenig Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__DVOLT014,Clocaenog Forest Wind Farm ,Merseyside and North Wales
+Wind (Onshore),C__FANGE003,Moor House Wind Farm ,North East England
+Biomass,C__FANGE012,MGT Teesside ,North East England
+Wind (Onshore),C__FAXPO003,Moor House Wind Farm ,North East England
+Biomass,C__FAXPO012,MGT Teesside ,North East England
+Wind (Onshore),C__FCNDL003,Moor House Wind Farm ,North East England
+Biomass,C__FCNDL012,MGT Teesside ,North East England
+Wind (Onshore),C__FCNRG003,Moor House Wind Farm ,North East England
+Biomass,C__FCNRG012,MGT Teesside ,North East England
+Wind (Onshore),C__FCOOP003,Moor House Wind Farm ,North East England
+Biomass,C__FCOOP012,MGT Teesside ,North East England
+Wind (Onshore),C__FCOUL003,Moor House Wind Farm ,North East England
+Biomass,C__FCOUL012,MGT Teesside ,North East England
+Wind (Onshore),C__FECOT003,Moor House Wind Farm ,North East England
+Biomass,C__FECOT012,MGT Teesside ,North East England
+Wind (Onshore),C__FEMEB003,Moor House Wind Farm ,North East England
+Biomass,C__FEMEB012,MGT Teesside ,North East England
+Wind (Onshore),C__FENDC003,Moor House Wind Farm ,North East England
+Biomass,C__FENDC012,MGT Teesside ,North East England
+Wind (Onshore),C__FENRD003,Moor House Wind Farm ,North East England
+Biomass,C__FENRD012,MGT Teesside ,North East England
+Wind (Onshore),C__FENRG003,Moor House Wind Farm ,North East England
+Biomass,C__FENRG012,MGT Teesside ,North East England
+Biomass,C__FEURO012,MGT Teesside ,North East England
+Wind (Onshore),C__FFLEX003,Moor House Wind Farm ,North East England
+Biomass,C__FFLEX012,MGT Teesside ,North East England
+Wind (Onshore),C__FFSEN003,Moor House Wind Farm ,North East England
+Biomass,C__FFSEN012,MGT Teesside ,North East England
+Wind (Onshore),C__FGANY003,Moor House Wind Farm ,North East England
+Biomass,C__FGANY012,MGT Teesside ,North East England
+Wind (Onshore),C__FGMTR003,Moor House Wind Farm ,North East England
+Biomass,C__FGMTR012,MGT Teesside ,North East England
+Wind (Onshore),C__FGNRG003,Moor House Wind Farm ,North East England
+Biomass,C__FGNRG012,MGT Teesside ,North East England
+Wind (Onshore),C__FHAVE003,Moor House Wind Farm ,North East England
+Biomass,C__FHAVE012,MGT Teesside ,North East England
+Wind (Onshore),C__FHPOW003,Moor House Wind Farm ,North East England
+Biomass,C__FHPOW012,MGT Teesside ,North East England
+Wind (Onshore),C__FHUDS003,Moor House Wind Farm ,North East England
+Biomass,C__FHUDS012,MGT Teesside ,North East England
+Wind (Onshore),C__FHYDE003,Moor House Wind Farm ,North East England
+Biomass,C__FHYDE012,MGT Teesside ,North East England
+Wind (Onshore),C__FIMPO003,Moor House Wind Farm ,North East England
+Biomass,C__FIMPO012,MGT Teesside ,North East England
+Wind (Onshore),C__FLIGH003,Moor House Wind Farm ,North East England
+Biomass,C__FLIGH012,MGT Teesside ,North East England
+Wind (Onshore),C__FLOND003,Moor House Wind Farm ,North East England
+Biomass,C__FLOND012,MGT Teesside ,North East England
+Wind (Onshore),C__FMAGN003,Moor House Wind Farm ,North East England
+Biomass,C__FMAGN012,MGT Teesside ,North East England
+Wind (Onshore),C__FMRCY003,Moor House Wind Farm ,North East England
+Biomass,C__FMRCY012,MGT Teesside ,North East England
+Wind (Onshore),C__FNATP003,Moor House Wind Farm ,North East England
+Biomass,C__FNATP012,MGT Teesside ,North East England
+Wind (Onshore),C__FNEWP003,Moor House Wind Farm ,North East England
+Biomass,C__FNEWP012,MGT Teesside ,North East England
+Wind (Onshore),C__FOSMI003,Moor House Wind Farm ,North East England
+Biomass,C__FOSMI012,MGT Teesside ,North East England
+Wind (Onshore),C__FPGEN003,Moor House Wind Farm ,North East England
+Biomass,C__FPGEN012,MGT Teesside ,North East England
+Wind (Onshore),C__FPOWQ003,Moor House Wind Farm ,North East England
+Biomass,C__FPOWQ012,MGT Teesside ,North East England
+Wind (Onshore),C__FPURE003,Moor House Wind Farm ,North East England
+Biomass,C__FPURE012,MGT Teesside ,North East England
+Wind (Onshore),C__FREGE003,Moor House Wind Farm ,North East England
+Biomass,C__FREGE012,MGT Teesside ,North East England
+Wind (Onshore),C__FRWED003,Moor House Wind Farm ,North East England
+Biomass,C__FRWED012,MGT Teesside ,North East England
+Biomass,C__FSAPH012,MGT Teesside ,North East England
+Wind (Onshore),C__FSMAR003,Moor House Wind Farm ,North East England
+Biomass,C__FSMAR012,MGT Teesside ,North East England
+Wind (Onshore),C__FSOUT003,Moor House Wind Farm ,North East England
+Biomass,C__FSOUT012,MGT Teesside ,North East England
+Wind (Onshore),C__FSPOW003,Moor House Wind Farm ,North East England
+Biomass,C__FSPOW012,MGT Teesside ,North East England
+Wind (Onshore),C__FSTAT003,Moor House Wind Farm ,North East England
+Biomass,C__FSTAT012,MGT Teesside ,North East England
+Wind (Onshore),C__FSYMB003,Moor House Wind Farm ,North East England
+Biomass,C__FSYMB012,MGT Teesside ,North East England
+Wind (Onshore),C__FTGPL003,Moor House Wind Farm ,North East England
+Biomass,C__FTGPL012,MGT Teesside ,North East England
+Wind (Onshore),C__FVETS003,Moor House Wind Farm ,North East England
+Biomass,C__FVETS012,MGT Teesside ,North East England
+Wind (Onshore),C__FVOLT003,Moor House Wind Farm ,North East England
+Biomass,C__FVOLT012,MGT Teesside ,North East England
+CHP,C__JANGE001,K3 CHP Facility ,South East England
+CHP,C__JAXPO001,K3 CHP Facility ,South East England
+CHP,C__JCNDL001,K3 CHP Facility ,South East England
+CHP,C__JCOOP001,K3 CHP Facility ,South East England
+CHP,C__JCOUL001,K3 CHP Facility ,South East England
+CHP,C__JECOA001,K3 CHP Facility ,South East England
+CHP,C__JECOT001,K3 CHP Facility ,South East England
+CHP,C__JEMEB001,K3 CHP Facility ,South East England
+CHP,C__JENDC001,K3 CHP Facility ,South East England
+CHP,C__JENRD001,K3 CHP Facility ,South East England
+CHP,C__JENRG001,K3 CHP Facility ,South East England
+CHP,C__JFSEN001,K3 CHP Facility ,South East England
+CHP,C__JGANY001,K3 CHP Facility ,South East England
+CHP,C__JGMTR001,K3 CHP Facility ,South East England
+CHP,C__JGNRG001,K3 CHP Facility ,South East England
+CHP,C__JHAVE001,K3 CHP Facility ,South East England
+CHP,C__JHPOW001,K3 CHP Facility ,South East England
+CHP,C__JHYDE001,K3 CHP Facility ,South East England
+CHP,C__JIMPO001,K3 CHP Facility ,South East England
+CHP,C__JLIGH001,K3 CHP Facility ,South East England
+CHP,C__JLOND001,K3 CHP Facility ,South East England
+CHP,C__JMAGN001,K3 CHP Facility ,South East England
+CHP,C__JNATP001,K3 CHP Facility ,South East England
+CHP,C__JOXPO001,K3 CHP Facility ,South East England
+CHP,C__JPGEN001,K3 CHP Facility ,South East England
+CHP,C__JPURE001,K3 CHP Facility ,South East England
+CHP,C__JRWED001,K3 CHP Facility ,South East England
+CHP,C__JSMAR001,K3 CHP Facility ,South East England
+CHP,C__JSOUT001,K3 CHP Facility ,South East England
+CHP,C__JSPOW001,K3 CHP Facility ,South East England
+CHP,C__JSTAT001,K3 CHP Facility ,South East England
+CHP,C__JTGPL001,K3 CHP Facility ,South East England
+CHP,C__JVETS001,K3 CHP Facility ,South East England
+CHP,C__JVOLT001,K3 CHP Facility ,South East England
+Wind (Onshore),C__KANGE004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KAXPO004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KCNDL004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KCOOP004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KCOUL004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KECOA004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KECOT004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KEDGE004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KEMEB004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KENDC004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KENRD004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KENRG004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KFSEN004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KGANY004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KGMTR004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KGNRG004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KHAVE004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KHPOW004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KHUDS004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KHYDE004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KIMPO004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KLIGH004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KLOND004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KMAGN004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KNATP004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KNEWP004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KOSMI004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KPGEN004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KPURE004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KREGE004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KRWED004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KSMAR004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KSOUT004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KSPOW004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KSTAT004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KTGPL004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KVETS004,Mynydd Y Gwair Wind Farm ,South Wales
+Wind (Onshore),C__KVOLT004,Mynydd Y Gwair Wind Farm ,South Wales
+EfW,C__MANGE005,Energy Works (Hull) ,Yorkshire
+EfW,C__MAXPO005,Energy Works (Hull) ,Yorkshire
+EfW,C__MCNDL005,Energy Works (Hull) ,Yorkshire
+EfW,C__MCOUL005,Energy Works (Hull) ,Yorkshire
+EfW,C__MECOA005,Energy Works (Hull) ,Yorkshire
+EfW,C__MECOT005,Energy Works (Hull) ,Yorkshire
+EfW,C__MEMEB005,Energy Works (Hull) ,Yorkshire
+EfW,C__MENDC005,Energy Works (Hull) ,Yorkshire
+EfW,C__MENRD005,Energy Works (Hull) ,Yorkshire
+EfW,C__MENRG005,Energy Works (Hull) ,Yorkshire
+EfW,C__MFSEN005,Energy Works (Hull) ,Yorkshire
+EfW,C__MGANY005,Energy Works (Hull) ,Yorkshire
+EfW,C__MGMTR005,Energy Works (Hull) ,Yorkshire
+EfW,C__MGNRG005,Energy Works (Hull) ,Yorkshire
+EfW,C__MHAVE005,Energy Works (Hull) ,Yorkshire
+EfW,C__MHPOW005,Energy Works (Hull) ,Yorkshire
+EfW,C__MHUDS005,Energy Works (Hull) ,Yorkshire
+EfW,C__MHYDE005,Energy Works (Hull) ,Yorkshire
+EfW,C__MIMPO005,Energy Works (Hull) ,Yorkshire
+EfW,C__MLIGH005,Energy Works (Hull) ,Yorkshire
+EfW,C__MLOND005,Energy Works (Hull) ,Yorkshire
+EfW,C__MMAGN005,Energy Works (Hull) ,Yorkshire
+EfW,C__MMRCY005,Energy Works (Hull) ,Yorkshire
+EfW,C__MNATP005,Energy Works (Hull) ,Yorkshire
+EfW,C__MNEWP005,Energy Works (Hull) ,Yorkshire
+EfW,C__MOSMI005,Energy Works (Hull) ,Yorkshire
+EfW,C__MPGEN005,Energy Works (Hull) ,Yorkshire
+EfW,C__MPURE005,Energy Works (Hull) ,Yorkshire
+EfW,C__MRWED005,Energy Works (Hull) ,Yorkshire
+EfW,C__MSAPH005,Energy Works (Hull) ,Yorkshire
+EfW,C__MSMAR005,Energy Works (Hull) ,Yorkshire
+EfW,C__MSOUT005,Energy Works (Hull) ,Yorkshire
+EfW,C__MSPOW005,Energy Works (Hull) ,Yorkshire
+EfW,C__MSTAT005,Energy Works (Hull) ,Yorkshire
+EfW,C__MTGPL005,Energy Works (Hull) ,Yorkshire
+EfW,C__MVETS005,Energy Works (Hull) ,Yorkshire
+EfW,C__MVOLT005,Energy Works (Hull) ,Yorkshire
+Wind (Onshore),C__NANGE013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NAXPO013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NCNDL013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NCOOP013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NCOUL013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NECOA013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NECOT013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NEMEB013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NENDC013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NENEC013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NENRD013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NENRG013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NFSEN013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NGANY013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NGMTR013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NGNRG013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NHAVE013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NHPOW013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NHUDS013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NHYDE013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NIMPO013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NLIGH013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NLOND013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NMAGN006,Kype Muir Wind Farm ,South Scotland
+Wind (Onshore),C__NMAGN007,Middle Muir Wind Farm ,South Scotland
+Wind (Onshore),C__NMAGN013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NNATP013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NNEWP013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NOSMI013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NPGEN013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NPURE013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NRHOD013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NRWED013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NSAPH013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NSMAR013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NSOUT013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NSPOW013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NSTAT013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NVETS013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__NVOLT013,Solwaybank Wind Farm ,South Scotland
+Wind (Onshore),C__PANGE008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PANGE011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PAXPO008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PAXPO011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PCNDL008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PCNDL011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PCNRG008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PCNRG011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PCOOP008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PCOOP011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PCOUL008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PCOUL011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PECOT008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PECOT011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PEMEB008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PEMEB011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PENDC008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PENDC011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PENEC008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PENEC011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PENRD008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PENRD011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PENRG008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PENRG011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PFSEN008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PFSEN011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PGANY008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PGANY011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PGMTR008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PGMTR011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PGNRG008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PGNRG011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PHAVE008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PHAVE011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PHPOW008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PHPOW011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PHYDE008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PHYDE011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PIMPO008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PIMPO011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PLIGH008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PLIGH011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PLOND008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PLOND011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PMARB008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PMARB011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PNATP008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PNATP011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PNEWP008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PNEWP011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__POSMI008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__POSMI011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__POXPO008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__POXPO011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PPGEN008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PPGEN011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PPURE008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PPURE011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PREGE008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PREGE011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PRHOD008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PRHOD011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PRWED008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PRWED011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PSAPH008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PSAPH011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PSMAR001,Achlachan Wind Farm ,North Scotland
+Wind (Onshore),C__PSMAR008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PSMAR011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PSOUT008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PSOUT011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PSPOW008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PSPOW011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PSTAT008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PSTAT011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PTGPL008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PTGPL011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PVETS008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PVETS011,Nanclach Wind Farm ,North Scotland
+Wind (Onshore),C__PVOLT008,Coire Na Cloiche Windfarm ,North Scotland
+Wind (Onshore),C__PVOLT011,Nanclach Wind Farm ,North Scotland
+Transformer,E__MDRX001,Drax Station Transformer ,Yorkshire
+Transformer,E__MDRX002,Drax Station Transformer ,Yorkshire
+Peaker,E_ABERDARE,Aberdare District Energy ,South Wales
+Wind (Onshore),E_ABRTW-1,Auchrobert Wind Farm ,South Scotland
+Demand,E_ABRTW-1_D,Unknown ,South Wales
+CCGT,E_AESB-1,Barry (Under AES Ownership) ,South Wales
+Wind (Onshore),E_AIRSW-1,Airies Windfarm ,South Scotland
+Peaker,E_ALCOA-1,Alcoa Peaker ,South Wales
+Peaker,E_ALDMG-1,Aldershot Military Generator ,Southern England
+Battery,E_ARNKB-1,Bloxwich Battery ,Midlands
+Wind (Onshore),E_ASHWW-1,Andershaw Wind Farm ,South Scotland
+Wind (Onshore),E_ASLVW-1,Assel Valley Wind Farm ,South Scotland
+Demand,E_ASLVW-1_D,Unknown ,South Scotland
+Wind (Onshore),E_BABAW-1,Baillie Wind Farm ,North Scotland
+Demand,E_BAGL-1,Baglan Bay Chemicals ,South Wales
+Peaker,E_BENIG-1,Bentinck ,East Midlands
+Wind (Onshore),E_BETHW-1,Beinn Tharsuinn ,North Scotland
+Battery,E_BHOLB-1,Holes Bay Battery - Tesla Motors Limited ,Southern England
+Wind (Onshore),E_BNWKW-1,Burn of Whilk Windfarm ,North Scotland
+Demand,E_BODD-1,Blyth Offshore Demonstrator Windfarm Demand ,North East England
+Wind (Offshore),E_BODW-1,Blyth Offshore Demonstrator Windfarm Generation ,North East England
+Wind (Onshore),E_BRDUW-1,Braes of Doune ,North Scotland
+Peaker,E_BRGG-1,Brigg ,Yorkshire
+Peaker,E_BRIDGWTR,Bridgewater District Energy ,South West England
+Wind (Onshore),E_BRNLW-1,Brownieleys Windfarm ,North Scotland
+Demand,E_BROUD-1,Unknown ,Yorkshire
+Battery,E_BROXES-1,Broxburn Energy Storage ,South Scotland
+Wind (Onshore),E_BRYBW-1,Berry Burn Windfarm ,North Scotland
+CCGT,E_BRYP-1,Barry ,South Wales
+Peaker,E_BTNHL-1,Barton Hill Peaker ,South West England
+Wind (Onshore),E_BTUIW-2,Beinn An Tuirc 2 Windfarm ,North Scotland
+Wind (Onshore),E_BURBO,Burbo Bank Offshore Windfarm ,Merseyside and North Wales
+Peaker,E_BURGH-1,Burghfield ,Southern England
+Nuclear,E_CALDH-1,Calder Hall ,North West England
+Peaker,E_CAYTG-1,Caythorpe ,Yorkshire
+Peaker,E_CHESP-1,Cheshire Power Station OCGT ,Merseyside and North Wales
+Peaker,E_CHESP-2,Cheshire Power Station East ,Merseyside and North Wales
+Peaker,E_CHESP-3,Cheshire Power Station West ,Merseyside and North Wales
+Peaker,E_CHICK-1,Chickerell ,Southern England
+Peaker,E_CHTRY-1,Chatterley ,Midlands
+Hydro,E_CLAC-1,Clachan Power Station ,North Scotland
+Wind (Onshore),E_CLDRW-1,Clashindarroch Wind Farm ,North Scotland
+Wind (Onshore),E_CLFLW-1,Clachan Flats Windfarm ,North Scotland
+Wind (Onshore),E_CNCLW-1,Coire Na Cloiche Windfarm ,North Scotland
+CCGT,E_CORB-1,Corby ,East Midlands
+Peaker,E_COWE1,Cowes ,Southern England
+Peaker,E_COWE2,Cowes ,Southern England
+Demand,E_COWED,Cowes ,Southern England
+Wind (Onshore),E_CRGTW-1,Craig 2 Wind Farm ,South Scotland
+Battery,E_CRSSB-1,Carnegie Road Battery ,Merseyside and North Wales
+CCGT,E_CWMD-1,Cwm Dyli ,Merseyside and North Wales
+Wind (Onshore),E_DALSW-1,Dalswinton Wind Farm ,South Scotland
+Peaker,E_DBFRM-1,Down Barn Farm Peaker ,Southern England
+Peaker,E_DERW-1,Derwent ,East Midlands
+Peaker,E_DIDC1G,Didcot OCGT Unit 1 ,Southern England
+Peaker,E_DIDC2G,Didcot OCGT Unit 2 ,Southern England
+Peaker,E_DIDC3G,Didcot OCGT Unit 3 ,Southern England
+Peaker,E_DIDC4G,Didcot OCGT Unit 4 ,Southern England
+Demand,E_DIDCBD-1,Didcot B 11kV Station Demand ,Southern England
+Demand,E_DIDCD,Didcot ,Southern England
+Hydro,E_DOLG_H,Dolgarrog ,Merseyside and North Wales
+Demand,E_DOLG_HD,Dolgarrog ,Merseyside and North Wales
+Hydro,E_DOLG_L,Dolgarrog ,Merseyside and North Wales
+Demand,E_DOLG_LD,Dolgarrog ,Merseyside and North Wales
+Hydro,E_DOLG-1,Dolgarrog ,Merseyside and North Wales
+Demand,E_DOLG-1D,Dolgarrog ,Merseyside and North Wales
+Peaker,E_DOWL-1,Dowlais II Peaker ,South Wales
+Transformer,E_DRKPS-STX,Drakelow ,East Midlands
+Hydro,E_FASN-2,Fasnakyle G2 ,North Scotland
+Hydro,E_FASN-3,Fasnakyle G3 ,North Scotland
+Hydro,E_FASN-4,Fasnakyle G4 ,North Scotland
+CCGT,E_FAWN-1,Fawley Cogen ,Southern England
+Demand,E_FAWND,Fawley Cogen Demand ,Southern England
+CCGT,E_FDUN-1,Fort Dunlop ,Midlands
+CHP,E_FELL-1,Fellside ,North West England
+Transformer,E_FERRST1,Ferrybridge Station Transformer ,North East England
+Biomass,E_FIBRE,Fibropower ,Southern England
+Demand,E_FIFO-SLD,Fifoots Point ,South Wales
+Wind (Onshore),E_GDSTW-1,Gordonstown Windfarm ,North Scotland
+Wind (Onshore),E_GFLDW-1,Goole Fields 1 Windfarm ,Yorkshire
+Wind (Onshore),E_GLCHW-1,Glenchamber Wind Farm ,South Scotland
+Demand,E_GLNDOD1,Glendoe Station Demand ,North Scotland
+Wind (Onshore),E_GLOFW-1,Glens of Foudland ,North Scotland
+Wind (Offshore),E_GNFSW-1,Gunfleet Sands Windfarm Unit 1 ,Eastern
+Wind (Offshore),E_GNFSW-2,Gunfleet Sands Windfarm Unit 2 ,Eastern
+Wind (Offshore),E_GNFSW-3,Gunfleet Sands Demo Unit 3 ,Eastern
+Peaker,E_GOSHS-1,Goose House Lane Peaker ,North West England
+Battery,E_GRFLB-1,Greenfield Road Battery ,Eastern
+Peaker,E_GRMAP-1,Grimsby A Power Station ,Yorkshire
+CCGT,E_GYAR-1,Great Yarmouth ,Eastern
+Demand,E_GYARD-1,Great Yarmouth 11kV Station Demand ,Eastern
+Wind (Onshore),E_HBHDW-1,Harburnhead Wind Farm ,South Scotland
+Wind (Onshore),E_HLGLW-1,Hill of Glaschyle Windfarm ,North Scotland
+Wind (Onshore),E_HLTWW-1,Hill of Towie Windfarm  ,North Scotland
+Wind (Onshore),E_HRHLW-1,Hare Hill Extension Wind Farm ,South Scotland
+Demand,E_HRHLW-1_D,Unknown ,South Scotland
+Demand,E_HUNB-11S,Hunterston B 11kV Site Supply ,South Scotland
+CHP,E_HYTHE,Hythe CHP ,Southern England
+Wind (Offshore),E_HYWDW-1,Hywind Generator 1 ,North Scotland
+Peaker,E_INDQ-2,Indian Queens ,South West England
+Transformer,E_IRNPS-STX,Ironbridge B ,Midlands
+Wind (Offshore),E_KINCW-1,Kincardine Offshore Windfarm ,North Scotland
+Demand,E_KINO-S,Kingsnorth ,South East England
+CCGT,E_KLYN-A-1,Kings Lynn ,Eastern
+Demand,E_LBARD-1,Little Barford 33kV Station Demand ,Eastern
+Peaker,E_LCHWT-1,Letchworth ,Eastern
+Peaker,E_LSTWY-1,Lester Way ,Southern England
+Biomass,E_LYNE1,Lynemouth Generator 1 ,North East England
+Biomass,E_LYNE2,Lynemouth Generator 2 ,North East England
+Biomass,E_LYNE3,Lynemouth Generator 3 ,North East England
+Hydro,E_MAEN-1,Maentwrog ,Merseyside and North Wales
+CHP,E_MARK-1,Rothes Bio-Plant CHP 1 ,South Scotland
+CHP,E_MARK-2,Rothes Bio-Plant CHP 2 ,South Scotland
+Peaker,E_MDLWH-1,Middlewich Recip ,Merseyside and North Wales
+Wind (Onshore),E_MINSW-1,Minsca Wind Farm ,South Scotland
+Peaker,E_MORFL-1,Moorfield Drive Peaker ,North West England
+Wind (Onshore),E_MOYE-1,Moy Windfarm ,North Scotland
+Wind (Onshore),E_MOYEW-1,Moy Windfarm ,North Scotland
+Demand,E_OMNDD-1,Ormonde Windfarm Demand ,North West England
+Wind (Onshore),E_OMNDW-1,Ormonde Windfarm ,North West England
+CCGT,E_PETEM1,Peterborough ,Eastern
+Peaker,E_PGPETE,Peakgen Power 2 ,Eastern
+Peaker,E_PLYRK-1,Plymouth Rock Peaker ,South West England
+Battery,E_POTES-1,Port of Tyne Energy Storage ,North East England
+EfW,E_PYEBG-1,Pye Bridge ,East Midlands
+Peaker,E_RAKE-1,Rake Lane Peaker ,North West England
+Demand,E_RATS-S,Ratcliffe on Soar ,East Midlands
+Peaker,E_RDFRB-1,Redfield Road B ,East Midlands
+Demand,E_RDFRD-1,Redfield Road ,East Midlands
+Peaker,E_REDGT-1,Redditch ,Midlands
+Hydro,E_RHEI-1,Rheidol ,Merseyside and North Wales
+Hydro,E_RHEI-2,Rheidol ,Midlands
+Hydro,E_RHEI-3,Rheidol ,Midlands
+Demand,E_RHEI-S,Rheidol ,Merseyside and North Wales
+CCGT,E_ROOS-1,Roosecote ,North West England
+Battery,E_ROOSB-1,Roosecote Battery ,North West England
+Transformer,E_RUGPS-STX,Rugeley Station Transformer ,Midlands
+Demand,E_SEAB-1,Seabank ,South West England
+Demand,E_SEAB-2,Seabank ,South West England
+Peaker,E_SEVINGTN,Sevington District Energy ,South East England
+CCGT,E_SHOS-1,Shoreham ,South East England
+CHP,E_SHOT-1,Shotton CHP ,Merseyside and North Wales
+CHP,E_SHOT-P,Shotton ,Merseyside and North Wales
+Wind (Offshore),E_SHRSW-1,Sheringham Shoals Windfarm Unit 1 ,Eastern
+Wind (Offshore),E_SHRSW-2,Sheringham Shoals Windfarm Unit 2 ,Eastern
+CHP,E_SLOUG,Slough ,Southern England
+Peaker,E_SOLUTIA,Solutia District Energy ,South Wales
+Demand,E_STAYD-1,Staythorpe 11kV Station Demand ,East Midlands
+Peaker,E_SUDME-1,Sudmeadow Peaker ,Midlands
+Wind (Onshore),E_SWBKW-1,Solwaybank Wind Farm ,South Scotland
+Peaker,E_TAYL2G,Taylors Lane ,London
+Peaker,E_TAYL3G,Taylors Lane ,London
+Demand,E_TAYL-S,Taylors Lane ,London
+Peaker,E_TDRVE-1,The Drove ,South West England
+Biomass,E_TGP1,Tilbury Green Power One ,Eastern
+Demand,E_THNTD-1,Thanet Offshore Wind Demand ,South East England
+Wind (Offshore),E_THNTW-1,Thanet Offshore Wind Unit 1 ,South East England
+Wind (Offshore),E_THNTW-2,Thanet Offshore Wind 2 ,South East England
+Wind (Onshore),E_TLYMW-1,Tullymurdoch Wind Farm ,North Scotland
+Peaker,E_TRFPK-1,Trafalgar Park ,East Midlands
+Wind (Onshore),E_TULWW-1,Tullo Windfarm ,North Scotland
+Wind (Onshore),E_TULWW-2,Tullow Windfarm Extension ,North Scotland
+Demand,E_USKM-SLD,Uskmouth ,South Wales
+Transformer,E_WBUPS-STX,West Burton Station Transformer ,East Midlands
+Wind (Offshore),E_WLNYW-2,Walney Offshore Windfarm Unit 2 ,North West England
+Peaker,E_WTRLN-1,Water Lane ,South West England
+Rail,M_ACTLLU_C,Acton Lane London Underground ,London
+Hydro,M_CAS-BEU01,Beauly Cascade ,North Scotland
+Hydro,M_CAS-CLU01,Clunie Cascade ,North Scotland
+Hydro,M_CAS-CON01,Conon Cascade ,North Scotland
+Hydro,M_CAS-GAR01,Garry Cascade ,North Scotland
+Hydro,M_CAS-KIL01,Killin Cascade ,North Scotland
+Hydro,M_CAS-MOR01,Moriston Cascade ,North Scotland
+Transformer,M_DNGB21S,Dungeness B STN TRANS 21 ,South East England
+Transformer,M_DNGB22S,Dungeness B STN TRANS 22 ,South East England
+Transformer,M_DNGB23S,Dungeness B STN TRANS 23 ,South East England
+Transformer,M_EGGPS-1S,Eggborough STN Trans 1 ,Yorkshire
+Transformer,M_EGGPS-2S,Eggborough STN Trans 2 ,Yorkshire
+Metalworks,M_GRTO,Grangetown Steelworks ,North East England
+Transformer,M_HEYM27S,Heysham STN Trans 7 ,North West England
+Transformer,M_HEYM28S,Heysham STN Trans 8 ,North West England
+Transformer,M_HINB-3S,Hinkley Point B STN Trans 3 ,South West England
+Transformer,M_HINB-4S,Hinkley Point B STN Trans 4 ,South West England
+Transformer,M_SIZB-5S,Sizewell STN Trans 5 ,Eastern
+Transformer,M_SIZB-8S,Sizewell STN Trans 8 ,Eastern
+Hydro,M_SLOY-1,Sloy G1 ,North Scotland
+Hydro,M_SLOY-4,Sloy G4 ,North Scotland
+Demand,M_TEMP,Templeborough BOC ,Yorkshire
+CHP,T__DICI001,Weston Point Power Station ,Merseyside and North Wales
+CHP,T__DICI002,Weaver Power Station ,Merseyside and North Wales
+Flywheel,T__HYELT002,Culham JET ,Southern England
+Metalworks,T__KYELT003,Tremorfa Steelworks ,South Wales
+Metalworks,T__MYELT001,British Steel Engineering Steels - Rotherham ,Yorkshire
+Metalworks,T__MYELT004,Stocksbridge Steel Works ,Yorkshire
+Wind (Offshore),T_ABRBO-1,Aberdeen Offshore Wind Farm ,North Scotland
+Coal,T_ABTH7,Aberthaw B ,South Wales
+Peaker,T_ABTH7G,Aberthaw B AGT ,South Wales
+Coal,T_ABTH8,Aberthaw B ,South Wales
+Peaker,T_ABTH8G,Aberthaw B AGT ,South Wales
+Coal,T_ABTH9,Aberthaw B ,South Wales
+Peaker,T_ABTH9G,Aberthaw B AGT ,South Wales
+Demand,T_ABTHD,Aberthaw - Station demand ,South Wales
+Wind (Onshore),T_ACHRW-1,AChruach Wind Farm ,North Scotland
+Wind (Onshore),T_AFTOW-1,Afton Wind Farm ,South Scotland
+Demand,T_AKGLD-2,Aikengall 2 Wind Farm Demand ,South Scotland
+Wind (Onshore),T_AKGLW-2,Aikengall 2 Wind Farm Generation ,South Scotland
+Demand,T_ALUKD-1,Air Liquide ,Yorkshire
+Metalworks,T_ANGLD-1,Anglesey Aluminium ,Merseyside and North Wales
+Wind (Onshore),T_ANSUW-1,An Suidhe Windfarm ,North Scotland
+Wind (Onshore),T_ARCHW-1,Arecleoch Windfarm ,South Scotland
+CCGT,T_BAGE-1,Baglan Bay Unit 1 ,South Wales
+CCGT,T_BAGE-2,Baglan Bay Unit 2 ,South Wales
+Demand,T_BAGED-1,Baglan Energy Park ,South Wales
+Demand,T_BAGTD-1,Unknown ,South Scotland
+Rail,T_BARK_NR,Barking Network Rail ,London
+Coal,T_BARK-1,Barking 2 MGT stage 1 ,London
+Coal,T_BARKB2,Barking 2 MGT stage 2 ,London
+Rail,T_BARK-CTRL,Barking Channel Tunnel Rail Link ,London
+Wind (Onshore),T_BDCHW-1,Bad a Cheo Wind Farm ,North Scotland
+Demand,T_BEATD-1,Beatrice Offshore Windfarm Demand ,North Scotland
+Wind (Offshore),T_BEATO-1,Beatrice Offshore Wind Unit 1 ,North Scotland
+Wind (Offshore),T_BEATO-2,Beatrice Offshore Wind Unit 2 ,North Scotland
+Wind (Offshore),T_BEATO-3,Beatrice Offshore Wind Unit 3 ,North Scotland
+Wind (Offshore),T_BEATO-4,Beatrice Offshore Wind Unit 4 ,North Scotland
+Wind (Onshore),T_BEINW-1,Beinneun Wind Farm ,North Scotland
+Wind (Onshore),T_BHLAW-1,Bhlaraidh Windfarm 1 ,North Scotland
+Wind (Onshore),T_BLKWW-1,Blackcraig Windfarm ,South Scotland
+Wind (Onshore),T_BLLA-1,Black Law Wind Farm ,South Scotland
+Wind (Onshore),T_BLLA-2,Black Law Windfarm Extension ,South Scotland
+Wind (Offshore),T_BOWLW-1,Barrow Offshore Windfarm ,North West England
+Demand,T_BPGRD-1,BP Grangemouth Demand ,South Scotland
+Demand,T_BPGRD-2,BP Grangemouth Demand ,South Scotland
+Wind (Onshore),T_BRBEO-1,Burbo Bank Wind Farm Extension ,Merseyside and North Wales
+Rail,T_BRER_RTK,Brereton Network Rail ,Midlands
+Nuclear,T_BRWE-1,Bradwell ,Eastern
+Nuclear,T_BRWE-2,Bradwell ,Eastern
+Nuclear,T_BRWE-3,Bradwell ,Eastern
+Nuclear,T_BRWE-4,Bradwell ,Eastern
+Nuclear,T_BRWE-5,Bradwell ,Eastern
+Nuclear,T_BRWE-6,Bradwell ,Eastern
+Demand,T_BRWE-D,Bradwell - station demand ,Eastern
+Rail,T_BUSH_RTK,Network Rail - Bushey ,Eastern
+CCGT,T_CARR-1,Carrington Unit 1 ,North West England
+CCGT,T_CARR-2,Carrington Unit 2 ,North West England
+Demand,T_CASKD-1,Castner Kellner (Ineos Chlor) ,Merseyside and North Wales
+CCGT,T_CDCL-1,Cottam Development Centre Limited ,East Midlands
+Wind (Onshore),T_CGTHW-1,Corriegarth Wind Farm ,North Scotland
+Demand,T_CHAPD-1,Chapelcross Demand ,South Scotland
+Demand,T_CLACD-1,Clachan Station Demand ,North Scotland
+Wind (Onshore),T_CLDCW-1,Clyde Central Windfarm ,South Scotland
+Wind (Onshore),T_CLDNW-1,Clyde North Windfarm ,South Scotland
+Wind (Onshore),T_CLDSW-1,Clyde South Windfarm ,South Scotland
+CCGT,T_CNQPS-1,Connahs Quay ,Merseyside and North Wales
+CCGT,T_CNQPS-2,Connahs Quay ,Merseyside and North Wales
+CCGT,T_CNQPS-3,Connahs Quay ,Merseyside and North Wales
+CCGT,T_CNQPS-4,Connahs Quay ,Merseyside and North Wales
+Coal,T_COCK-1,Cockenzie ,South Scotland
+Coal,T_COCK-2,Cockenzie ,South Scotland
+Coal,T_COCK-3,Cockenzie ,South Scotland
+Coal,T_COCK-4,Cockenzie ,South Scotland
+Demand,T_COCKD-1,Cockenzie Station Demand ,South Scotland
+Rail,T_CORM_RTK,Network Rail - Correys Mill ,Eastern
+CCGT,T_COSO-1,Coryton ,Eastern
+Coal,T_COTPS-1,Cottam ,East Midlands
+Coal,T_COTPS-2,Cottam ,East Midlands
+Coal,T_COTPS-3,Cottam ,East Midlands
+Coal,T_COTPS-4,Cottam ,East Midlands
+Demand,T_COTPS-S,Cottam - station demand ,East Midlands
+Wind (Onshore),T_COUWW-1,Cour Wind Farm ,North Scotland
+Wind (Onshore),T_CRDEW-1,Crossdykes Windfarm 2 ,South Scotland
+Wind (Onshore),T_CRDEW-2,Crossdykes Windfarm 1 ,South Scotland
+Demand,T_CRGHD-1,Carraig Gheal Wind Farm Demand ,North Scotland
+Wind (Onshore),T_CRGHW-1,Carraig Gheal Wind Farm ,North Scotland
+Demand,T_CRMLD-1,Corriemoillie Wind Farm Demand ,North Scotland
+Wind (Onshore),T_CRMLW-1,Corriemoillie Wind Farm ,North Scotland
+PS,T_CRUA-1,Crauchan ,North Scotland
+PS,T_CRUA-2,Crauchan ,North Scotland
+PS,T_CRUA-3,Crauchan ,North Scotland
+PS,T_CRUA-4,Crauchan ,North Scotland
+Demand,T_CRUAD-1,Crauchan Station Demand ,North Scotland
+Demand,T_CRYRD-2,Crystal Rig Wind Farm - Phase 2 - Demand ,South Scotland
+Wind (Onshore),T_CRYRW-2,Crystal Rig Wind Farm - Phase 2 ,South Scotland
+Wind (Onshore),T_CRYRW-3,Crystal Rig III Wind Farm ,South Scotland
+Demand,T_DALRD-1,Unknown ,South Scotland
+CCGT,T_DAMC-1,Damhead Creek ,South East England
+Demand,T_DDGND-1,Dudgeon Offshore Wind Farm Station Demand ,Eastern
+Wind (Offshore),T_DDGNO-1,Dudgeon Offshore Wind Farm Generator 1 ,Eastern
+Wind (Offshore),T_DDGNO-2,Dudgeon Offshore Wind Farm Generator 2 ,Eastern
+Wind (Offshore),T_DDGNO-3,Dudgeon Offshore Wind Farm Generator 3 ,Eastern
+Wind (Offshore),T_DDGNO-4,Dudgeon Offshore Wind Farm Generator 4 ,Eastern
+Demand,T_DEAND-1,Deanie Station Demand ,North Scotland
+CCGT,T_DEEP-1,Deeside ,Merseyside and North Wales
+CCGT,T_DIDC1,Didcot A (G) 1 ,Southern England
+Peaker,T_DIDC1G,Didcot A AGT 1 ,Southern England
+CCGT,T_DIDC2,Didcot A (G) 2 ,Southern England
+Peaker,T_DIDC2G,Didcot A AGT 2 ,Southern England
+CCGT,T_DIDC3,Didcot A 3 ,Southern England
+Peaker,T_DIDC3G,Didcot A AGT 3 ,Southern England
+CCGT,T_DIDC4,Didcot A (G) 4 ,Southern England
+Peaker,T_DIDC4G,Didcot A AGT 4 ,Southern England
+CCGT,T_DIDCB5,Didcot B 5 ,Southern England
+CCGT,T_DIDCB6,Didcot B 6 ,Southern England
+Demand,T_DIDCBD,Unknown ,Southern England
+PS,T_DINO-1,Dinorwig ,Merseyside and North Wales
+PS,T_DINO-2,Dinorwig ,Merseyside and North Wales
+PS,T_DINO-3,Dinorwig ,Merseyside and North Wales
+PS,T_DINO-4,Dinorwig ,Merseyside and North Wales
+PS,T_DINO-5,Dinorwig ,Merseyside and North Wales
+PS,T_DINO-6,Dinorwig ,Merseyside and North Wales
+Nuclear,T_DNGB21,Dungeness B ,South East England
+Nuclear,T_DNGB22,Dungeness B ,South East England
+Demand,T_DNGB-D,Dungeness B Station Demand ,South East England
+Wind (Onshore),T_DNLWW-1,Dun Law Extension Windfarm ,South Scotland
+Demand,T_DNLWW-1_D,Unknown ,South Scotland
+Wind (Onshore),T_DOREW-1,Dorenell Wind Farm Unit 1 ,North Scotland
+Wind (Onshore),T_DOREW-2,Dorenell Wind Farm Unit 2 ,North Scotland
+Biomass,T_DRAXX-1,Drax ,Yorkshire
+Peaker,T_DRAXX-10G,Drax AGT ,Yorkshire
+Peaker,T_DRAXX-12G,Drax AGT ,Yorkshire
+Biomass,T_DRAXX-2,Drax ,Yorkshire
+Biomass,T_DRAXX-3,Drax ,Yorkshire
+Biomass,T_DRAXX-4,Drax ,Yorkshire
+Coal,T_DRAXX-5,Drax ,Yorkshire
+Coal,T_DRAXX-6,Drax ,Yorkshire
+Peaker,T_DRAXX-9G,Drax AGT ,Yorkshire
+Coal,T_DRKPS-10,Drakelow  ,East Midlands
+Coal,T_DRKPS-12,Drakelow  ,East Midlands
+Coal,T_DRKPS-9,Drakelow ,East Midlands
+Wind (Onshore),T_DRSLW-1,Dersalloch Windfarm ,South Scotland
+Nuclear,T_DUNG-1,Dungeness A ,South East England
+Nuclear,T_DUNG-2,Dungeness A ,South East England
+Nuclear,T_DUNG-3,Dungeness A ,South East England
+Nuclear,T_DUNG-4,Dungeness A ,South East England
+Demand,T_DUNGA-D,Dungeness - station demand ,South East England
+Wind (Onshore),T_DUNGW-1,Dunmglass Wind Farm ,North Scotland
+Wind (Offshore),T_EAAO-1,East Anglia One 1 Offshore Wind Farm ,Eastern
+Wind (Offshore),T_EAAO-2,East Anglia One 2 Offshore Wind Farm ,Eastern
+Demand,T_ECCFD-1,Unknown ,South Scotland
+Wind (Onshore),T_EDINW-1,Edinbane Windfarm ,North Scotland
+CCGT,T_EECL-1,Enfield Energy ,London
+Coal,T_EGGPS-1,Eggborough ,Yorkshire
+Coal,T_EGGPS-2,Eggborough ,Yorkshire
+Coal,T_EGGPS-3,Eggborough ,Yorkshire
+Coal,T_EGGPS-4,Eggborough ,Yorkshire
+Demand,T_EGGPS-D,Eggborough Station Demand ,Yorkshire
+Demand,T_EGLSD-1,Unknown ,South Scotland
+Demand,T_ELVAD-1,Unknown ,South Scotland
+Hydro,T_ERRO-1,Errochty G1 ,North Scotland
+Hydro,T_ERRO-2,Errochty G2 ,North Scotland
+Hydro,T_ERRO-3,Errochty G3 ,North Scotland
+Wind (Onshore),T_EWHLW-1,Ewe Hill II Wind Farm ,South Scotland
+Demand,T_EXMOSSD-1,Exxon Mossmoran ,South Scotland
+Demand,T_FALGD-1,Fallago Rig Windfarm Demand ,South Scotland
+Wind (Onshore),T_FALGW-1,Fallago Rig Wind Farm ,South Scotland
+Wind (Onshore),T_FARR-1,Farr Wind Farm Unit 1 ,North Scotland
+Wind (Onshore),T_FARR-2,Farr Wind Farm Unit 2 ,North Scotland
+Hydro,T_FASN-1,Fasnakyle G1 ,North Scotland
+Hydro,T_FASN-2,Fasnakyle G2 ,North Scotland
+Hydro,T_FASN-3,Fasnakyle G3 ,North Scotland
+CCGT,T_FAWL1,Fawley ,Southern England
+Peaker,T_FAWL1G,Fawley AGT ,Southern England
+Peaker,T_FAWL2G,Fawley GT 2 ,Southern England
+CCGT,T_FAWL3,Fawley ,Southern England
+Peaker,T_FAWL3G,Fawley AGT ,Southern England
+CCGT,T_FAWL4,Fawley ,Southern England
+Peaker,T_FAWL4G,Fawley AGT ,Southern England
+Demand,T_FAWLD,Fawley - station demand ,Southern England
+Coal,T_FERR-1,Ferrybridge C ,Yorkshire
+Coal,T_FERR-2,Ferrybridge C ,Yorkshire
+Coal,T_FERR-3,Ferrybridge C ,Yorkshire
+Coal,T_FERR-4,Ferrybridge C ,Yorkshire
+Peaker,T_FERR-5G,Ferrybridge C AGT ,Yorkshire
+Peaker,T_FERR-8G,Ferrybridge C AGT ,Yorkshire
+PS,T_FFES-1,Ffestiniog ,Merseyside and North Wales
+PS,T_FFES-2,Ffestiniog ,Merseyside and North Wales
+PS,T_FFES-3,Ffestiniog ,Merseyside and North Wales
+PS,T_FFES-4,Ffestiniog ,Merseyside and North Wales
+Demand,T_FFESST1,Ffestiniog - station demand ,Merseyside and North Wales
+Coal,T_FIDL-1,Fiddlers Ferry ,Merseyside and North Wales
+Coal,T_FIDL-2,Fiddlers Ferry ,Merseyside and North Wales
+Peaker,T_FIDL-2G,Fiddlers Ferry AGT ,Merseyside and North Wales
+Coal,T_FIDL-3,Fiddlers Ferry ,Merseyside and North Wales
+Peaker,T_FIDL-3G,Fiddlers Ferry AGT ,Merseyside and North Wales
+Coal,T_FIDL-4,Fiddlers Ferry ,Merseyside and North Wales
+Demand,T_FIDLST1,Fiddlers Ferry - station demand ,Merseyside and North Wales
+CCGT,T_FIFE-1,Fife CCGT ,South Scotland
+Coal,T_FIFO-13,Fifoots ,South Wales
+Coal,T_FIFO-14,Fifoots ,South Wales
+Coal,T_FIFO-15,Fifoots ,South Wales
+Hydro,T_FINL-1,Finlarig ,North Scotland
+Demand,T_FOXJD-1,Didcot - Foxhall 1 ,Southern England
+Demand,T_FOXJD-2,Didcot - Foxhall 2 ,Southern England
+PS,T_FOYE-1,Foyers G1 ,North Scotland
+PS,T_FOYE-2,Foyers G2 ,North Scotland
+Transformer,T_FOYED-1,Foyers Station Transformer ,North Scotland
+Rail,T_FROD_NR,Network Rail Frodsham ,Merseyside and North Wales
+Wind (Onshore),T_FSDLW-1,Freasdail Wind Farm ,North Scotland
+Demand,T_FSDLW-1_D,Unknown ,North Scotland
+Wind (Offshore),T_GANW-11,Galloper Offshore Windfarm 11 ,East Midlands
+Wind (Offshore),T_GANW-13,Galloper Offshore Windfarm 13 ,East Midlands
+Wind (Offshore),T_GANW-22,Galloper Offshore Windfarm 22 ,East Midlands
+Wind (Offshore),T_GANW-24,Galloper Offshore Windfarm 24 ,East Midlands
+Demand,T_GLEND-1,Dundreggan Station Demand ,North Scotland
+Hydro,T_GLNDO-1,Glendoe ,North Scotland
+Demand,T_GLNDOD1,Glendoe Station Demand ,North Scotland
+Demand,T_GLNG,Grain LNG Terminal ,South East England
+Wind (Onshore),T_GLWSW-1,Galawhistle Wind Farm ,South Scotland
+Wind (Onshore),T_GNAPW-1,Glen App Wind Farm ,South Scotland
+Wind (Offshore),T_GNFSW-1,Gunfleet Sands Windfarm Unit 1 ,Eastern
+Wind (Offshore),T_GNFSW-2,Gunfleet Sands Windfarm Unit 2 ,Eastern
+Demand,T_GNHLD-1,Greenhill Railway Demand 1 ,South Scotland
+Demand,T_GNHLD-2,Greenhill Railway Demand 2 ,South Scotland
+Demand,T_GNHLD-3,Greenhill Railway Demand 3 ,South Scotland
+Demand,T_GORDD-1,Gordonbush Wind Farm Demand ,North Scotland
+Wind (Onshore),T_GORDW-1,Gordonbush Wind Farm ,North Scotland
+Demand,T_GOWKD-1,Unknown ,South Scotland
+CHP,T_GRAI-1,Grain ,South East England
+Peaker,T_GRAI1G,Grain AGT ,South East England
+CHP,T_GRAI-2,Grain ,South East England
+Peaker,T_GRAI2G,Grain AGT ,South East England
+CHP,T_GRAI-3,Grain ,South East England
+Peaker,T_GRAI3G,Grain AGT ,South East England
+CHP,T_GRAI-4,Grain ,South East England
+Peaker,T_GRAI4G,Grain AGT ,South East England
+Peaker,T_GRAI5G,Grain AGT ,South East England
+CHP,T_GRAI-6,Grain CHP ,South East England
+CHP,T_GRAI-7,Grain CHP ,South East England
+CHP,T_GRAI-8,Grain CHP ,South East England
+Demand,T_GRAI-S,Grain - station demand ,South East England
+Wind (Offshore),T_GRGBW-1,Greater Gabbard Offshore Windfarm ,Eastern
+Wind (Offshore),T_GRGBW-2,Greater Gabbard Offshore Windfarm ,Eastern
+Wind (Offshore),T_GRGBW-3,Greater Gabbard Offshore Windfarm ,Eastern
+Wind (Onshore),T_GRIFW-1,Griffin Wind Farm Unit 1 ,North Scotland
+Wind (Onshore),T_GRIFW-2,Griffin Wind Farm Unit 2 ,North Scotland
+Demand,T_GRIFWD-1,Griffin Wind Farm Demand ,North Scotland
+CHP,T_GRMO-1,Grangemouth CHP Ltd ,South Scotland
+Wind (Offshore),T_GYMR-15,Gwynt y Mor Wind Farm East 15 ,Merseyside and North Wales
+Wind (Offshore),T_GYMR-17,Gwynt y Mor Wind Farm East 16 ,Merseyside and North Wales
+Wind (Offshore),T_GYMR-26,Gwynt y Mor Wind Farm West 26 ,Merseyside and North Wales
+Wind (Offshore),T_GYMR-28,Gwynt y Mor Wind Farm West 28 ,Merseyside and North Wales
+Demand,T_GYMRD-16,Gwynt y Mor Wind Farm Onshore Demand 16 ,Merseyside and North Wales
+Demand,T_GYMRD-2,Gwynt y Mor Wind Farm Onshore Estimated Demand 2 ,Merseyside and North Wales
+Demand,T_GYMRD-E10,Gwynt y Mor Wind Farm East Offshore Demand 10 ,Merseyside and North Wales
+Demand,T_GYMRD-E11,Gwynt y Mor Wind Farm East Offshore Estimated Demand 11 ,Merseyside and North Wales
+Demand,T_GYMRD-W10,Gwynt y Mor Wind Farm West Offshore Demand 10 ,Merseyside and North Wales
+Demand,T_GYMRD-W11,Gwynt y Mor Wind Farm West Offshore Estimated Demand 11 ,Merseyside and North Wales
+Wind (Offshore),T_GYMRW-1,Gwynt y Mor Offshore Wind Farm Unit 1 ,Merseyside and North Wales
+Wind (Offshore),T_GYMRW-2,Gwynt y Mor Offshore Wind Farm Unit 2 ,Merseyside and North Wales
+Wind (Onshore),T_HADHW-1,Hadyard Hill Wind Farm ,South Scotland
+Wind (Onshore),T_HALSW-1,Halsary Windfarm ,North Scotland
+Rail,T_HARK_NR,Harker Network Rail ,North West England
+Nuclear,T_HEYM11,Heysham 1 ,North West England
+Nuclear,T_HEYM12,Heysham 1 ,North West England
+Nuclear,T_HEYM27,Heysham 2 ,North West England
+Nuclear,T_HEYM28,Heysham 2 ,North West England
+Demand,T_HEYM2-D,Heysham 2 Station Demand ,North West England
+Nuclear,T_HINB-7,Hinkley Point B ,South West England
+Nuclear,T_HINB-8,Hinkley Point B ,South West England
+Demand,T_HINB-D,Hinkley Point B Station Demand ,South West England
+Demand,T_HINPA-D,Hinkley Point A Demand ,South West England
+Wind (Offshore),T_HMGTO-1,Humber Offshore Wind Farm Unit 1 ,Yorkshire
+Wind (Offshore),T_HMGTO-2,Humber Offshore Wind Farm Unit 2 ,Yorkshire
+Coal,T_HMRPS-1,High Marnham ,East Midlands
+Coal,T_HMRPS-2,High Marnham ,East Midlands
+Coal,T_HMRPS-3,High Marnham ,East Midlands
+Coal,T_HMRPS-4,High Marnham ,East Midlands
+Coal,T_HMRPS-5,High Marnham ,East Midlands
+Transformer,T_HMRPS-STX,High Marnham station demand ,East Midlands
+Wind (Offshore),T_HOWAO-1,Hornsea Offshore Windfarm 1 ,Yorkshire
+Wind (Offshore),T_HOWAO-2,Hornsea Offshore Windfarm 2 ,Yorkshire
+Wind (Offshore),T_HOWAO-3,Hornsea Offshore Windfarm 3 ,Yorkshire
+Demand,T_HPC-CES,Hinkley Point C Construction Supply ,South West England
+Wind (Onshore),T_HRSTW-1,Harestanes Windfarm ,South Scotland
+Nuclear,T_HRTL-1,Hartlepool ,North East England
+Nuclear,T_HRTL-2,Hartlepool ,North East England
+CHP,T_HUMR-1,Immingham CHP ,Yorkshire
+Demand,T_HUMRD-1,Immingham CHP ,Yorkshire
+Nuclear,T_HUNB-7,Hunterston Generator 7 ,South Scotland
+Nuclear,T_HUNB-8,Hunterston Generator 8 ,South Scotland
+Demand,T_HUNB-D,Hunterston B Station Demand ,South Scotland
+Rail,T_IMPRK-1,Imperial Park Network Rail 1 ,South Wales
+Rail,T_IMPRK-2,Imperial Park Network Rail 2 ,South Wales
+Peaker,T_INDQ-1,Indian Queens ,South West England
+Demand,T_INGAD-1,Invergarry Station Demand ,North Scotland
+Demand,T_INWID-1,Unknown ,South Scotland
+Coal,T_IRNPS-1,Ironbridge B ,Midlands
+Coal,T_IRNPS-2,Ironbridge B ,Midlands
+CHP,T_JGPR-1,JG Pears Low Marnham CHP ,East Midlands
+CCGT,T_KEAD-1,Keadby 1 ,Yorkshire
+Demand,T_KEAD-2,Keadby 2 ,Yorkshire
+Peaker,T_KEADGT-3,Keadby GT ,Yorkshire
+Battery,T_KEMB-1,Kemsley Battery ,South East England
+Wind (Onshore),T_KILBW-1,Kilbraur Windfarm ,North Scotland
+Demand,T_KILBWD-1,Kilbraur Windfarm Demand ,North Scotland
+CCGT,T_KILLPG-1,Killingholme 2 ,Yorkshire
+CCGT,T_KILLPG-2,Killingholme 2 ,Yorkshire
+CCGT,T_KILNS-1,Killingholme 1 ,Yorkshire
+Coal,T_KINO-1,Kingsnorth ,South East England
+Peaker,T_KINO1G,Kingsnorth AGT ,South East England
+Coal,T_KINO-2,Kingsnorth ,South East England
+Coal,T_KINO-3,Kingsnorth ,South East England
+Coal,T_KINO-4,Kingsnorth ,South East England
+Peaker,T_KINO4G,Kingsnorth AGT ,South East England
+Wind (Onshore),T_KLGLW-1,Kilgallioch Wind Farm ,South Scotland
+Wind (Onshore),T_KPMRW-1,Kype Muir Windfarm ,South Scotland
+Demand,T_KSGND-1,Kensal Green Railway Demand 1 ,London
+Demand,T_KSGND-2,Kensal Green Railway Demand 1 ,London
+Wind (Onshore),T_KTHLW-1,Keith Hill Windfarm ,South Scotland
+CCGT,T_LAGA-1,Langage ,South West England
+Wind (Offshore),T_LARYW-1,London Array Windfarm Unit 1 ,South East England
+Wind (Offshore),T_LARYW-2,London Array Windfarm Unit 2 ,South East England
+Wind (Offshore),T_LARYW-3,London Array Windfarm Unit 3 ,South East England
+Wind (Offshore),T_LARYW-4,London Array Windfarm Unit 4 ,South East England
+CCGT,T_LBAR-1,Little Barford ,Eastern
+Peaker,T_LBAR-1G,Little Barford OCGT ,Eastern
+Demand,T_LBARD,Little Barford Station Demand ,Eastern
+Rail,T_LBUZ_RTK,Network Rail - Leighton Buzzard ,Eastern
+Wind (Onshore),T_LCLTW-1,Lochluichart Windfarm ,North Scotland
+Coal,T_LITTD1,Littlebrook D ,South East England
+Peaker,T_LITTD1G,Littlebrook D AGT ,South East England
+Coal,T_LITTD2,Littlebrook D ,South East England
+Peaker,T_LITTD2G,Littlebrook D AGT ,South East England
+Coal,T_LITTD3,Littlebrook D ,South East England
+Peaker,T_LITTD3G,Littlebrook D AGT ,South East England
+Demand,T_LITTDD,Littlebrook - station demand ,South East England
+Metalworks,T_LLWSD-1,Llanwern Steelworks ,South Wales
+Wind (Offshore),T_LNCSW-1,Lincs Offshore Wind Farm Unit 1 ,Eastern
+Wind (Offshore),T_LNCSW-2,Lincs Offshore Wind Farm Unit 2 ,Eastern
+Wind (Onshore),T_LNCSW-3,Lincs Wind Farm (Onshore) ,East Midlands
+Coal,T_LOAN-1,Longannet ,South Scotland
+Coal,T_LOAN-2,Longannet ,South Scotland
+Coal,T_LOAN-3,Longannet ,South Scotland
+Coal,T_LOAN-4,Longannet ,South Scotland
+Demand,T_LOAND-1,Longannet Station Demand ,South Scotland
+Demand,T_LOAND-2,Longannet Station Demand ,South Scotland
+Demand,T_LONDG-D,London Gateway Demand ,Eastern
+Rail,T_LONGB-RTK,Network Rail - Long Buckby Wharf ,East Midlands
+Demand,T_LUICD-1,Luichart Station Demand ,North Scotland
+Demand,T_MARMD-1,Unknown ,South Scotland
+Demand,T_MEADD-1,Caledonian Paper ,South Scotland
+CCGT,T_MEDP-1,Medway ,South East England
+Wind (Onshore),T_MIDMW-1,Middle Muir Wind Farm ,South Scotland
+Wind (Onshore),T_MILWW-1,Millennium Wind Farm ,North Scotland
+Demand,T_MILWWD-1,Millennium Wind Farm Demand ,North Scotland
+Wind (Onshore),T_MKHLW-1,Mark Hill Windfarm ,South Scotland
+Demand,T_MOSED-1,Unknown ,South Scotland
+CCGT,T_MRWD-1,Marchwood ,Southern England
+Wind (Onshore),T_MYGPW-1,Minnygap Wind Farm ,South Scotland
+Hydro,T_NANT-1,Nant ,North Scotland
+Demand,T_NEE-TYN01,ATMEL Tynemouth ,North East England
+Battery,T_NURSB-1,Nursling Battery ,Southern England
+Rail,T_NWCRS-1,New Cross 1 Network Rail ,London
+Rail,T_NWCRS-2,New Cross 2 Network Rail ,London
+Nuclear,T_OLDS1,Oldbury ,Midlands
+Nuclear,T_OLDS2,Oldbury ,Midlands
+Demand,T_OLDS-D,Oldbury - station demand ,Midlands
+Demand,T_OMNDD-1,Ormonde Windfarm Demand ,North West England
+Wind (Onshore),T_OMNDW-1,Ormonde Windfarm Unit 1 ,North West England
+Rail,T_OXEN_NR,Network Rail Oxenholme ,North West England
+Demand,T_PARHD-1,Unknown ,South Scotland
+Rail,T_PATB_RTK,Railtrack - Patford Bridge ,East Midlands
+CCGT,T_PEHE-1,Peterhead Block 1 ,North Scotland
+CCGT,T_PEHE-2,Peterhead Unit 2 ,North Scotland
+Peaker,T_PEHE-3G,Peterhead GT3 ,North Scotland
+Peaker,T_PEHE-4G,Peterhead GT4 ,North Scotland
+Transformer,T_PEHED-1,Peterhead Stn Txs ,North Scotland
+CCGT,T_PEMB-11,Pembroke Power Station - Unit 1 ,South Wales
+CCGT,T_PEMB-21,Pembroke Power Station - Unit 2 ,South Wales
+CCGT,T_PEMB-31,Pembroke Power Station - Unit 3 ,South Wales
+CCGT,T_PEMB-41,Pembroke Power Station - Unit 4 ,South Wales
+CCGT,T_PEMB-51,Pembroke Power Station - Unit 5 ,South Wales
+Wind (Onshore),T_PGBIW-1,Pogbie Wind Farm ,South Scotland
+Battery,T_PNYCB-1,Pen y Cymoedd Battery ,South Wales
+Wind (Onshore),T_PNYCW-1,Pen y Cymoedd Wind Farm ,South Wales
+Demand,T_PNYCWD-1,Pen y Cymoedd Wind Farm Station Demand ,South Wales
+Demand,T_POOBD-1,Unknown ,South Scotland
+Rail,T_POPP_3RTK,Railtrack - Poppleton ,North East England
+Demand,T_PORGD-1,Unknown ,South Scotland
+Demand,T_PUDMD-1,Pudding Mill Lane 1 ,London
+Demand,T_PUDMD-2,Pudding Mill Lane 2 ,London
+Coal,T_RATS-1,Ratcliffe on Soar ,East Midlands
+Coal,T_RATS-2,Ratcliffe on Soar ,East Midlands
+Coal,T_RATS-3,Ratcliffe on Soar ,East Midlands
+Coal,T_RATS-4,Ratcliffe on Soar ,East Midlands
+Peaker,T_RATSGT-2,Ratcliffe on Soar AGT ,East Midlands
+Peaker,T_RATSGT-4,Ratcliffe on Soar AGT ,East Midlands
+Demand,T_RAVED-1,Corus Dalzell ,South Scotland
+Wind (Offshore),T_RCBKO-1,Race Bank Offshore Wind Farm Unit 1 ,Eastern
+Demand,T_RCBKO-1_D,Unknown ,Eastern
+Wind (Offshore),T_RCBKO-2,Race Bank Offshore Wind Farm Unit 2 ,Eastern
+Demand,T_RCBKO-2_D,Unknown ,Eastern
+Wind (Offshore),T_RMPNO-1,Rampion Offshore Windfarm 1 ,South East England
+Wind (Offshore),T_RMPNO-2,Rampion Offshore Windfarm 2 ,South East England
+CCGT,T_ROCK-1,Rocksavage ,Merseyside and North Wales
+Wind (Offshore),T_RREW-1,Robin Rigg East ,North West England
+Wind (Offshore),T_RRWW-1,Robin Rigg West ,North West England
+Peaker,T_RUGGT-6,Rugeley B AGT ,Midlands
+Peaker,T_RUGGT-7,Rugeley B AGT ,Midlands
+Coal,T_RUGPS-6,Rugeley B ,Midlands
+Coal,T_RUGPS-7,Rugeley B ,Midlands
+Demand,T_RYHAD-1,Essendine 1 ,East Midlands
+Demand,T_RYHAD-2,Essendine 2 ,East Midlands
+CCGT,T_RYHPS-1,Rye House ,Eastern
+Demand,T_SACOD-1,Unknown ,South Scotland
+Demand,T_SANQD-1,Sanquhar Community Wind Farm Demand ,South Scotland
+Wind (Onshore),T_SANQW-1,Sanquhar Community Wind Farm Generation ,South Scotland
+CCGT,T_SCCL-1,Saltend South ,Yorkshire
+CCGT,T_SCCL-2,Saltend South ,Yorkshire
+CCGT,T_SCCL-3,Saltend South ,Yorkshire
+Demand,T_SCCL-4,Saltend South - lstation demand ,Yorkshire
+CCGT,T_SEAB-1,Seabank 1 ,South West England
+CCGT,T_SEAB-2,Seabank 2 ,South West England
+CCGT,T_SEEL-1,Spalding Energy Expansion ,East Midlands
+Rail,T_SELL-1,Sellinge High speed rail link ,South East England
+Demand,T_SELLD-1,IFA 1 Site Supplies ,North West England
+Demand,T_SFGSD-1,St Fergus Compressor 1 ,North Scotland
+Demand,T_SFGSD-2,St Fergus Compressor 2 ,North Scotland
+Demand,T_SFILD-1,St. Fillans Station Demand ,North Scotland
+Demand,T_SGGLD-1,Saint Gobain ,Yorkshire
+CCGT,T_SHBA-1,South Humber Bank 1 ,Yorkshire
+CCGT,T_SHBA-2,South Humber Bank 2 ,Yorkshire
+Wind (Offshore),T_SHRSW-1,Sheringham Shoals Windfarm Unit 1 ,Eastern
+Wind (Offshore),T_SHRSW-2,Sheringham Shoals Windfarm Unit 2 ,Eastern
+Biomass,T_SIMEC-1,Simec Biofuel Unit 1 ,South Wales
+Rail,T_SINGL1,Singlewell High Speed rail Link ,South East England
+Nuclear,T_SIZB-1,Sizewell B ,Eastern
+Nuclear,T_SIZB-2,Sizewell B ,Eastern
+Demand,T_SIZB-5AS,Sizewell A & B Site Supplies ,Eastern
+Demand,T_SIZB-D,Sizewell B Station Demand ,Eastern
+Nuclear,T_SIZEA1,Sizewell A ,Eastern
+Nuclear,T_SIZEA2,Sizewell A ,Eastern
+Demand,T_SIZEA-D,Sizewell - station demand ,Eastern
+Hydro,T_SLOY-2,Sloy G2 ,North Scotland
+Hydro,T_SLOY-3,Sloy G3 ,North Scotland
+Demand,T_SLOYD-1,Sloy Station Demand ,North Scotland
+Demand,T_SNDND-1,Sundon 1 Railway Demand ,Eastern
+Demand,T_SNDND-2,Sundon 2 Railway Demand ,Eastern
+Demand,T_SPGFD-1,Springfield 1 ,North West England
+Demand,T_SPGFD-2,Springfield 2 ,North West England
+CCGT,T_SPLN-1,Spalding ,East Midlands
+CCGT,T_STAY-1,Staythorpe Unit 1 ,East Midlands
+CCGT,T_STAY-2,Staythorpe Unit 2 ,East Midlands
+CCGT,T_STAY-3,Staythorpe Unit 3 ,East Midlands
+CCGT,T_STAY-4,Staythorpe Unit 4 ,East Midlands
+Rail,T_STBRD-1,Stallybridge Network Rail 1 ,North West England
+Rail,T_STBRD-2,Stallybridge Network Rail 2 ,North West England
+Demand,T_STFERGD-1,St. Fergus Mobil ,North Scotland
+Wind (Onshore),T_STLGW-1,Stronelairg Windfarm 1 ,North Scotland
+Wind (Onshore),T_STLGW-2,Stronelairg Windfarm 2 ,North Scotland
+Wind (Onshore),T_STLGW-3,Stronelairg Windfarm 3 ,North Scotland
+Wind (Onshore),T_STRNW-1,Strathy North Wind Farm 1 ,North Scotland
+CCGT,T_SUTB-1,Sutton Bridge ,Eastern
+CCGT,T_SVRP-10,Severn Power Unit 10 ,South Wales
+CCGT,T_SVRP-20,Severn Power Unit 20 ,South Wales
+Wind (Onshore),T_TDBNW-1,Toddleburn Wind Farm ,South Scotland
+CCGT,T_TESI-1,Teesside ,Yorkshire
+CCGT,T_TESI-2,Teesside ,Yorkshire
+Rail,T_THNJD-1,Thingley Junction 1 ,Southern England
+Rail,T_THNJD-2,Thingley Junction 2 ,Southern England
+Wind (Offshore),T_THNTO-1,Thanet Offshore Windfarm Unit 1 ,South East England
+Wind (Offshore),T_THNTO-2,Thanet Offshore Windfarm Unit 2 ,South East England
+Peaker,T_TILB0G,Tilbury B AGT ,Eastern
+Biomass,T_TILB10,Tilbury B ,Eastern
+Biomass,T_TILB-7,Tilbury B ,Eastern
+Peaker,T_TILB7G,Tilbury B AGT ,Eastern
+Biomass,T_TILB-8,Tilbury B ,Eastern
+Peaker,T_TILB8G,Tilbury B AGT ,Eastern
+Biomass,T_TILB-9,Tilbury B ,Eastern
+Peaker,T_TILB9G,Tilbury B AGT ,Eastern
+Demand,T_TILBD,Tilbury - station demand ,Eastern
+Metalworks,T_TINSD-1,Tinsley Park Steelworks ,Yorkshire
+Wind (Offshore),T_TKNEW-1,Triton Knoll Offshore Windfarm 1 ,East Midlands
+Wind (Onshore),T_TKNWW-1,Unknown ,East Midlands
+Demand,T_TODSD-1,BS Tod Point Supply ,North East England
+Nuclear,T_TORN-1,Torness Generator 1 ,South Scotland
+Nuclear,T_TORN-2,Torness Generator 2 ,South Scotland
+Demand,T_TORN-D,Torness Station Demand ,South Scotland
+Demand,T_TRAWS-D,Trawsfynydd Stn Dem ,Merseyside and North Wales
+Wind (Onshore),T_TRLGW-1,Tralorg Wind Farm ,South Scotland
+Demand,T_TSRED-1,MGT TEESSIDE TEESREP CSU - E.ON UK plc ,North East England
+Biomass,T_TSREP-1,MGT Teesside Renewable Power Station ,North East England
+Biomass,T_USKM-13,Uskmouth ,South Wales
+Biomass,T_USKM-14,Uskmouth ,South Wales
+Biomass,T_USKM-15,Uskmouth ,South Wales
+Peaker,T_WBUGT-1,West Burton AGT ,East Midlands
+Peaker,T_WBUGT-4,West Burton AGT ,East Midlands
+Coal,T_WBUPS-1,West Burton A Unit 1 ,East Midlands
+Coal,T_WBUPS-2,West Burton A Unit 2 ,East Midlands
+Coal,T_WBUPS-3,West Burton A Unit 3 ,East Midlands
+Coal,T_WBUPS-4,West Burton A Unit 4 ,East Midlands
+CCGT,T_WBURB-1,West Burton B Unit 1 ,East Midlands
+CCGT,T_WBURB-2,West Burton B Unit 2 ,East Midlands
+CCGT,T_WBURB-3,West Burton B Unit 3 ,East Midlands
+Battery,T_WBURB-41,West Burton B Battery ,East Midlands
+Battery,T_WBURB-43,West Burton B Battery ,East Midlands
+Wind (Offshore),T_WDNSO-1,West of Duddon Sands 1 - OFTO ,North West England
+Wind (Offshore),T_WDNSO-2,West of Duddon Sands 2 - OFTO ,North West England
+Wind (Offshore),T_WDNSW-1,West of Duddon Sands 1 Windfarm ,North West England
+Wind (Offshore),T_WDNSW-2,West of Duddon Sands 2 Windfarm ,North West England
+Wind (Onshore),T_WHIHW-1,Whiteside Hill Windfarm ,South Scotland
+Wind (Onshore),T_WHILW-1,Whitelee Wind Farm ,South Scotland
+Wind (Onshore),T_WHILW-2,Whitelee Windfarm Extension ,South Scotland
+Demand,T_WHISTLD-1,HMNB Whistlefield ,North Scotland
+Demand,T_WILCT-1,Wilton Demand ,North East England
+Wind (Onshore),T_WISTW-2,Brockloch Rig 2 Windfarm ,South Scotland
+Wind (Offshore),T_WLNYO-2,Walney Offshore Windfarm Unit 2 ,North West England
+Wind (Offshore),T_WLNYO-3,Walney Offshore Windfarm (Extension) ,North West England
+Wind (Offshore),T_WLNYO-4,Walney Offshore Windfarm (Extension) ,North West England
+Wind (Offshore),T_WLNYW-1,Walney Offshore Windfarm Unit 1 ,North West England
+Demand,T_WTMSD-1,Westermost Rough Windfarm Onshore Demand ,Yorkshire
+Wind (Offshore),T_WTMSO-1,Westermost Rough Windfarm ,Yorkshire
+Nuclear,T_WYLF-1,Wylfa ,Merseyside and North Wales
+Nuclear,T_WYLF-2,Wylfa ,Merseyside and North Wales
+Nuclear,T_WYLF-3,Wylfa ,Merseyside and North Wales
+Nuclear,T_WYLF-4,Wylfa ,Merseyside and North Wales
+Demand,T_WYLF-D1,Wylfa - station demand ,Merseyside and North Wales
+Demand,T_WYLF-D2,Wylfa - station demand ,Merseyside and North Wales
+Demand,T_WYLF-D3,Wylfa - station demand ,Merseyside and North Wales
+Virtual parties,V__BEROV001,East Midlands GSP Group - Erova Energy Limited ,East Midlands
+Virtual parties,V__GHABI001,Red Scar ,North West England
+Virtual parties,V__HHABI001,Roundponds ,Southern England
+Virtual parties,V__LFLEX001,South Western Virtual BM Unit - Flexitricity Limited ,South West England
+Virtual parties,V__NFLEX001,South Scotland GSP Group - Flexitricity Limited ,South Scotland
+Virtual parties,V__PFLEX001,North Scotland GSP Group - Flexitricity Limited ,North Scotland
+Battery,T_COWB-1,Cowley Battery,Southern England
+Wind (Onshore),T_DOUGW-1,Douglas West Wind Farm,South Scotland
+Wind (Onshore),T_GLNKW-1,Glen Kyllachy Wind Farm,North Scotland
+Wind (Onshore),T_GORDW-2,Gordonbush Wind Farm Extension,North Scotland
+Wind (Offshore),T_HOWBO-3,Hornsea B Offshore Wind Farm,Yorkshire
+Wind (Onshore),T_WDRGW-1,Windy Rig Wind Farm,South Scotland
+Virtual parties,V__BADEL001,East Midlands GSP Group - Adela Energy Limited ,East Midlands
+Virtual parties,V__EADEL001,Midlands GSP Group - Adela Energy Limited ,Midlands
+Virtual parties,V__GADEL001,North Western GSP Group - Adela Energy Limited ,North West England
+Virtual parties,V__HADEL001,Southern GSP Group - Adela Energy Limited ,Southern England
+Virtual parties,V__KGAZP001,South Wales GSP Group - Gazprom Marketing and Trading Ltd,South Wales
+Virtual parties,V__KGAZP002,South Wales GSP Group - Gazprom Marketing and Trading Ltd,South Wales
+Virtual parties,V__MADEL001,Yorkshire GSP Group - Adela Energy Limited ,Yorkshire
+Wind (Onshore),E_BTUIW-3,Beinn An Tuirc III Wind Farm ,North Scotland

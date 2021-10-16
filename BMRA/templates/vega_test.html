@@ -6,6 +6,29 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <script>
+    function openTab(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+    </script>
     <style>
         #summary {
             display: none
@@ -50,6 +73,48 @@
             flex-direction: row;
         }
 
+         /* Style the tab */
+        .tab {
+          overflow: hidden;
+          border: 1px solid #ccc;
+          background-color: #f1f1f1;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+          background-color: inherit;
+          float: left;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 14px 16px;
+          transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+          background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+          background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+          display: none;
+          padding: 6px 12px;
+          border: 1px solid #ccc;
+          border-top: none;
+            animation: fadeEffect 1s; /* Fading effect takes 1 second */
+        }
+
+        /* Go from zero to full opacity */
+        @keyframes fadeEffect {
+          from {opacity: 0;}
+          to {opacity: 1;}
+        }
     </style>
 {% endblock %}
 
@@ -62,24 +127,63 @@
             <div class="header_title">
                 <h1>Marginal Emissions Calculator</h1>
             </div>
+
+        </header>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Live')" id="defaultOpen">Live</button>
+            <button class="tablinks" onclick="openTab(event, 'Historical')">Historical</button>
+            <button class="tablinks" onclick="openTab(event, 'Future')">Future Scenarios</button>
+        </div>
+        <div id="Historical" class="tabcontent">
             <form id="filterForm">
-                <label for="year">Choose a time:</label>
+                <label for="system_date">Choose a time:</label>
                 <input type="date" id="system_date" name="system_date" value="2021-01-01" min="2018-01-01">
                 <input type="time" id="system_time" name="system_time" value="00:00">
                 <input type="submit" value="Load" name="_load">
             </form>
-        </header>
-        <main class="container__main">
-            <aside class="container__left">
-                <div id="GB_map"></div>
-            </aside>
+            <main class="container__main">
+                <aside class="container__left">
+                    <div id="GB_historical_map"></div>
+                </aside>
 
-            <article class="container__middle">
-                <div id="generation"></div>
-                <div id="demand"></div>
-            </article>
-            <nav class="container__right">...</nav>
-        </main>
+                <article class="container__middle">
+                    <div id="generation"></div>
+                    <div id="demand"></div>
+                </article>
+                <nav class="container__right"></nav>
+            </main>
+        </div>
+        <div id="Future" class="tabcontent">
+            <form id="scenarioForm">
+                <label for="scenario_year">Year:</label>
+                <select name="scenario_year" id="scenario_year">
+                    <option value="2025">2025</option>
+                    <option value="2030">2030</option>
+                    <option value="2035">2035</option>
+                    <option value="2040">2040</option>
+                    <option value="2045">2045</option>
+                </select>
+                <label for="scenario_name">Scenario:</label>
+                <select name="scenario_name" id="scenario_name">
+                    <option value="steady_progression">Steady Progression</option>
+                    <option value="system_transformation">System Transformation</option>
+                    <option value="consumer_transformation">Consumer Transformation</option>
+                    <option value="leading_the_way">Leading The Way</option>
+                </select>
+                <a href="https://www.nationalgrideso.com/future-energy/future-energy-scenarios/fes-2021">What are these?</a>
+            </form>
+            <br />
+            <main class="container__main">
+                <aside class="container__left">
+                    <div id="GB_future_map"></div>
+                </aside>
+
+                <article class="container__middle">
+                    <div id="projected_MEs"></div>
+                </article>
+                <nav class="container__right"></nav>
+            </main>
+        </div>
         <footer>
 
         </footer>
@@ -131,7 +235,8 @@
         };
 
         // Embed the visualization in the container with id `vis`
-        vegaEmbed('#GB_map', vlSpec, {"actions": false, "mode": "vega-lite"});
+        vegaEmbed('#GB_historical_map', vlSpec, {"actions": false, "mode": "vega-lite"});
+        vegaEmbed('#GB_future_map', vlSpec, {"actions": false, "mode": "vega-lite"});
     </script>
     <script type="text/javascript">
       var yourVlSpec = {
@@ -199,5 +304,75 @@
         }
       };
       vegaEmbed('#demand', yourVlSpec);
+    </script>
+    <script>
+    // Assign the specification to a local variable vlSpec.
+        var vlSpec = {
+            $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+            width: 500,
+            height: 800,
+            data: {
+                url: "{%  static 'BMRA/DNO_min.json' %}",
+                format: {property: "features"}
+            },
+            transform: [{
+                lookup: "id",
+                from: {
+                    data: {
+                        url: "{%  static 'BMRA/dummy_MEs_2.csv' %}"
+                    },
+                    key: "id",
+                    fields: ["value"]
+                },
+
+            },
+                {calculate: 'datum.value', as: "gCO2/kWh"}],
+            projection: {type: "mercator"},
+            mark: {type: "geoshape",
+                stroke: "#757575",
+                strokeWidth: 0.5
+            },
+            encoding: {
+                fill: {
+                    field: "gCO2/kWh",
+                    type: "quantitative",
+                    scale: {scheme: "yelloworangered",
+                            rangeMin: 0,
+                            rangeMax: 700}
+                },
+                tooltip: [{field: "properties.gsp_group", type: "nominal", title: "GSP Group"},
+                          {field: "value", type: "quantitative", title: "gCO2/kWh"}]
+
+            },
+            config: {
+                style: {
+                    cell: {
+                        stroke: "transparent"
+                    }
+                }
+            }
+        };
+
+        // Embed the visualization in the container with id `vis`
+        vegaEmbed('#GB_future_map', vlSpec, {"actions": false, "mode": "vega-lite"});
+    </script>
+    <script>
+        var projected_MEs_spec = {
+            $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+                    width: 800,
+                    height: 400,
+            description: "Project MEs over time.",
+            data: { url: "{%  static 'BMRA/projected_MEs_2020.csv' %}" },
+            transform: [{filter: "datum.symbol==='SE'"}],
+            mark: 'line',
+            encoding: {
+                x: {field: "date", type: "temporal"},
+                y: {field: "value", type: "quantitative"}
+            }
+        }
+        vegaEmbed('#projected_MEs', projected_MEs_spec);
+    </script>
+    <script>
+        document.getElementById("defaultOpen").click();
     </script>
 {% endblock %}

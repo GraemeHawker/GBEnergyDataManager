@@ -1,0 +1,627 @@
+Type,BMU,Name,GSP region
+IC: Manx,E_MANXENR-1,Manx Power ,North West England
+IC: BritNed (Demand),I_EAD-BRTN1,Britned Interconnector (Demand) - National Grid ,South East England
+IC: ElecLink (Demand),I_EAD-ELEC1,ElecLink Interconnector (Demand - Error Administrator ,South East England
+IC: East/West (Demand),I_EAD-EWIC1,East West Interconnector (Demand) - Error Administrator ,Merseyside and North Wales
+IC: IFA (Demand),I_EAD-FRAN1,IFA1 Interconnector (Demand) - National Grid Company (NGC) ,South East England
+IC: IFA (Demand),I_EAD-IFA2,IFA2 Interconnector (Demand) - NG ESO ,South East England
+IC: Moyle (Demand),I_EAD-MOYL1,Moyle Interconnector (Demand) - National Grid Company (NGC) ,South Scotland
+IC: Nemo (Demand),I_EAD-NEMO1,NEMO Interconnector (Demand) - Error Administrator ,South East England
+IC: Scottish (Demand),I_EAD-SCOT1,Scottish Interconnector (Demand) - National Grid Company (NGC) ,South Scotland
+IC: BritNed (Generation),I_EAG-BRTN1,Britned Interconnector (Generation) - National Grid ,South East England
+IC: ElecLink (Generation),I_EAG-ELEC1,ElecLink Interconnector (Generation - Error Administrator ,South East England
+IC: East/West (Generation),I_EAG-EWIC1,East West Interconnector (Generation) - Error Administrator ,Merseyside and North Wales
+IC: IFA (Generation),I_EAG-FRAN1,IFA1 Interconnector (Generation) - National Grid Company (NGC) ,South East England
+IC: IFA (Generation),I_EAG-IFA2,IFA2 Interconnector (Generation) - NG ESO ,South East England
+IC: Moyle (Generation),I_EAG-MOYL1,Moyle Interconnector (Generation) - National Grid Company (NGC) ,South Scotland
+IC: Nemo (Generation),I_EAG-NEMO1,NEMO Interconnector (Generation) - Error Administrator ,South East England
+IC: Scottish (Generation),I_EAG-SCOT1,Scottish Interconnector (Generation) - National Grid Company (NGC) ,South Scotland
+IC: Scottish (Generation),I_FROMSCOT,Scottish Interconnector (Generation) - Economy Power ,South Scotland
+IC: IFA (Demand),I_I2D-ALEU1,IFA1 Interconnector (Demand) - Alphataraxia Europium BV (ATX),South East England
+IC: IFA (Demand),I_I2D-AXPO1,IFA2 Interconnector (Demand) - Axpo Solutions AG ,South East England
+IC: IFA (Demand),I_I2D-BKWE1,IFA2 Interconnector (Demand) - BKW Energie AG ,South East England
+IC: IFA (Demand),I_I2D-BPGM1,IFA2 Interconnector (Demand) - BP Gas Marketing Limited ,South East England
+IC: IFA (Demand),I_I2D-CBST1,IFA2 Interconnector (Demand) - Cobblestone Energy ,South East England
+IC: IFA (Demand),I_I2D-CENT1,IFA2 Interconnector (Demand) - Centrica Energy Trading A/S ,South East England
+IC: IFA (Demand),I_I2D-CEZC1,IFA2 Interconnector (Demand) - CEZ A/S ,South East England
+IC: IFA (Demand),I_I2D-CNGS1,IFA2 Interconnector (Demand) - Cenergise Limited ,South East England
+IC: IFA (Demand),I_I2D-CNRE1,IFA2 Interconnector (Demand) - Unknown,South East England
+IC: IFA (Demand),I_I2D-CONV1,IFA2 Interconnector (Demand) - Convex Energy GmbH (GEAG),South East England
+IC: IFA (Demand),I_I2D-DSKC1,IFA2 Interconnector (Demand) - Danske Commodities A/S ,South East England
+IC: IFA (Demand),I_I2D-DUGE1,IFA2 Interconnector (Demand) - DXT Commodities SA ,South East England
+IC: IFA (Demand),I_I2D-DVAL1,IFA2 Interconnector (Demand) - EDF TRADING LIMITED (EDFT),South East England
+IC: IFA (Demand),I_I2D-EDFT1,IFA2 Interconnector (Demand) - DVALIN ApS (DVALIN),South East England
+IC: IFA (Demand),I_I2D-EDMK1,IFA2 Interconnector (Demand) - Energi Danmark A/S ,South East England
+IC: IFA (Demand),I_I2D-ELEE1,IFA2 Interconnector (Demand) - Electrabel SA ,South East England
+IC: IFA (Demand),I_I2D-ELTR1,IFA2 Interconnector (Demand) - ElectroRoute Energy Trading ,South East England
+IC: IFA (Demand),I_I2D-GASE1,IFA2 Interconnector (Demand) - GDF SUEZ Trading (GASELYS),South East England
+IC: IFA (Demand),I_I2D-GAZP1,IFA2 Interconnector (Demand) - GAZPROM MARKETING & TRADING LD ,South East England
+IC: IFA (Demand),I_I2D-GRMT1,IFA2 Interconnector (Demand) - A/S Global Risk Management Ltd ,South East England
+IC: IFA (Demand),I_I2D-IBES1,IFA2 Interconnector (Demand) - IBERDROLA GENERACION ESPANA (IBEGENES),South East England
+IC: IFA (Demand),I_I2D-INCM1,IFA2 Interconnector (Demand) - IN COMMODITIES A/S ,South East England
+IC: IFA (Demand),I_I2D-MCRA1,IFA2 Interconnector (Demand) - Mercuria Energy Trading SA ,South East England
+IC: IFA (Demand),I_I2D-MFTE1,IFA2 Interconnector (Demand) - MFT Energy A/S ,South East England
+IC: IFA (Demand),I_I2D-NDPL1,IFA2 Interconnector (Demand) - European Market Coupling ,South East England
+IC: IFA (Demand),I_I2D-NEAS1,IFA2 Interconnector (Demand) - NEAS Energy Ltd. (CNDA),South East England
+IC: IFA (Demand),I_I2D-NEHO1,IFA2 Interconnector (Demand) - Nordic Energy House ApS ,South East England
+IC: IFA (Demand),I_I2D-NTPL1,IFA2 Interconnector (Demand) -  Nvalue AG,South East England
+IC: IFA (Demand),I_I2D-NVAL1,IFA2 Interconnector (Demand) - Northpool BV ,South East England
+IC: IFA (Demand),I_I2D-OMPX1,IFA2 Interconnector (Demand) - Unknown,South East England
+IC: IFA (Demand),I_I2D-OPMX1,IFA2 Interconnector (Demand) - Optimax Energy GmbH ,South East England
+IC: IFA (Demand),I_I2D-PWMR1,IFA2 Interconnector (Demand) - PowerMart ApS ,South East England
+IC: IFA (Demand),I_I2D-SETL1,IFA2 Interconnector (Demand) - Shell Energy Europe Limited ,South East England
+IC: IFA (Demand),I_I2D-SSEG1,IFA2 Interconnector (Demand) - SSE Energy Supply Limited,South East England
+IC: IFA (Demand),I_I2D-STAT1,IFA2 Interconnector (Demand) - Statkraft Markets Gmbh ,South East England
+IC: IFA (Demand),I_I2D-TGPL1,IFA2 Interconnector (Demand) - Total Gas & Power Ltd ,South East England
+IC: IFA (Demand),I_I2D-TRLS1,IFA2 Interconnector (Demand) - TrailStone Renewables GmbH ,South East England
+IC: IFA (Demand),I_I2D-VSAL1,IFA2 Interconnector (Demand) - VITOL SA ,South East England
+IC: IFA (Demand),I_I2D-VTET1,IFA2 Interconnector (Demand) - Vattenfall Energy Trading ,South East England
+IC: IFA (Demand),I_I2D-XNON1,IFA2 Interconnector (Demand) - XENON Capital Markets Ltd ,South East England
+IC: IFA (Generation),I_I2G-ALEU1,IFA2 Interconnector (Generation) - Alphataraxia Europium BV,South East England
+IC: IFA (Generation),I_I2G-AXPO1,IFA2 Interconnector (Generation) - Axpo Solutions AG ,South East England
+IC: IFA (Generation),I_I2G-BKWE1,IFA2 Interconnector (Generation) - BKW Energie AG ,South East England
+IC: IFA (Generation),I_I2G-BPGM1,IFA2 Interconnector (Generation) - BP Gas Marketing Limited ,South East England
+IC: IFA (Generation),I_I2G-CBST1,IFA2 Interconnector (Generation) - Cobblestone Energy ,South East England
+IC: IFA (Generation),I_I2G-CENT1,IFA2 Interconnector (Generation) - Centrica Energy Trading A/S ,South East England
+IC: IFA (Generation),I_I2G-CEZC1,IFA2 Interconnector (Generation) - CEZ A/S ,South East England
+IC: IFA (Generation),I_I2G-CNGS1,IFA2 Interconnector (Generation) - Cenergise Limited ,South East England
+IC: IFA (Generation),I_I2G-CNRE1,IFA2 Interconnector (Generation) - Unknown,South East England
+IC: IFA (Generation),I_I2G-CONV1,IFA2 Interconnector (Generation) - Convex Energy GmbH (GEAG),South East England
+IC: IFA (Generation),I_I2G-DSKC1,IFA2 Interconnector (Generation) - Danske Commodities A/S ,South East England
+IC: IFA (Generation),I_I2G-DUGE1,IFA2 Interconnector (Generation) - DVALIN ApS (DVALIN),South East England
+IC: IFA (Generation),I_I2G-DVAL1,IFA2 Interconnector (Generation) - DXT Commodities SA ,South East England
+IC: IFA (Generation),I_I2G-EDFT1,IFA2 Interconnector (Generation) - EDF TRADING LIMITED (EDFT),South East England
+IC: IFA (Generation),I_I2G-EDMK1,IFA2 Interconnector (Generation) - Energi Danmark A/S ,South East England
+IC: IFA (Generation),I_I2G-ELEE1,IFA2 Interconnector (Generation) - Electrabel SA ,South East England
+IC: IFA (Generation),I_I2G-ELTR1,IFA2 Interconnector (Generation) - GDF SUEZ Trading (GASELYS),South East England
+IC: IFA (Generation),I_I2G-GASE1,IFA2 Interconnector (Generation) - ElectroRoute Energy Trading ,South East England
+IC: IFA (Generation),I_I2G-GAZP1,IFA2 Interconnector (Generation) - GAZPROM MARKETING & TRADING LD ,South East England
+IC: IFA (Generation),I_I2G-GRMT1,IFA2 Interconnector (Generation) - A/S Global Risk Management Ltd ,South East England
+IC: IFA (Generation),I_I2G-IBES1,IFA2 Interconnector (Generation) - IBERDROLA GENERACION ESPANA (IBEGENES),South East England
+IC: IFA (Generation),I_I2G-INCM1,IFA2 Interconnector (Generation) - IN COMMODITIES A/S ,South East England
+IC: IFA (Generation),I_I2G-MCRA1,IFA2 Interconnector (Generation) - Mercuria Energy Trading SA ,South East England
+IC: IFA (Generation),I_I2G-MFTE1,IFA2 Interconnector (Generation) - MFT Energy A/S ,South East England
+IC: IFA (Generation),I_I2G-NDPL1,IFA2 Interconnector (Generation) - European Market Coupling ,South East England
+IC: IFA (Generation),I_I2G-NEAS1,IFA2 Interconnector (Generation) - NEAS Energy Ltd. (CNDA),South East England
+IC: IFA (Generation),I_I2G-NEHO1,IFA2 Interconnector (Generation) - Nordic Energy House ApS ,South East England
+IC: IFA (Generation),I_I2G-NTPL1,IFA2 Interconnector (Generation) - Northpool BV ,South East England
+IC: IFA (Generation),I_I2G-NVAL1,IFA2 Interconnector (Generation) - Nvalue AG,South East England
+IC: IFA (Generation),I_I2G-OMPX1,IFA2 Interconnector (Generation) - Unknown,South East England
+IC: IFA (Generation),I_I2G-OPMX1,IFA2 Interconnector (Generation) - Optimax Energy GmbH ,South East England
+IC: IFA (Generation),I_I2G-PWMR1,IFA2 Interconnector (Generation) - PowerMart ApS ,South East England
+IC: IFA (Generation),I_I2G-SETL1,IFA2 Interconnector (Generation) - Shell Energy Europe Limited ,South East England
+IC: IFA (Generation),I_I2G-SSEG1,IFA2 Interconnector (Generation) - SSE Energy Supply Limited,South East England
+IC: IFA (Generation),I_I2G-STAT1,IFA2 Interconnector (Generation) - Statkraft Markets Gmbh ,South East England
+IC: IFA (Generation),I_I2G-TGPL1,IFA2 Interconnector (Generation) - Total Gas & Power Ltd ,South East England
+IC: IFA (Generation),I_I2G-TRLS1,IFA2 Interconnector (Generation) - TrailStone Renewables GmbH ,South East England
+IC: IFA (Generation),I_I2G-VSAL1,IFA2 Interconnector (Generation) - VITOL SA ,South East England
+IC: IFA (Generation),I_I2G-VTET1,IFA2 Interconnector (Generation) - Vattenfall Energy Trading ,South East England
+IC: IFA (Generation),I_I2G-XNON1,IFA2 Interconnector (Generation) - XENON Capital Markets Ltd ,South East England
+IC: BritNed (Demand),I_IBD-ARON1,Britned Interconnector (Demand) - J.Aron and Company ,South East England
+IC: BritNed (Demand),I_IBD-BARC1,Britned Interconnector (Demand) - Barclays Bank plc ,South East England
+IC: BritNed (Demand),I_IBD-BPGE1,Britned Interconnector (Demand) - BP Gas Marketing Limited ,South East England
+IC: BritNed (Demand),I_IBD-BRTN1,Britned Interconnector (Demand) - BritNed Development Ltd ,South East England
+IC: BritNed (Demand),I_IBD-CBST1,Britned Interconnector (Demand) - Cobblestone Energy ,South East England
+IC: BritNed (Demand),I_IBD-CENT1,Britned Interconnector (Demand) - Centrica Energy Limited ,South East England
+IC: BritNed (Demand),I_IBD-CGML1,Britned Interconnector (Demand) - Citigroup Global Markets Ltd ,South East England
+IC: BritNed (Demand),I_IBD-CNGS1,Britned Interconnector (Demand) - Cenergise Limited ,South East England
+IC: BritNed (Demand),I_IBD-DBNK1,Britned Interconnector (Demand) - Deutsche Bank AG London ,South East England
+IC: BritNed (Demand),I_IBD-DNGN1,Britned Interconnector (Demand) - Dong Energy Markets ,South East England
+IC: BritNed (Demand),I_IBD-DSKC1,Britned Interconnector (Demand) - Danske Commodities A/S ,South East England
+IC: BritNed (Demand),I_IBD-DUFE1,Britned Interconnector (Demand) - DXT Commodities SA ,South East England
+IC: BritNed (Demand),I_IBD-DVAL1,Britned Interconnector (Demand) - DVALIN ApS ,South East England
+IC: BritNed (Demand),I_IBD-EDFT1,Britned Interconnector (Demand) - EDF Trading Limited ,South East England
+IC: BritNed (Demand),I_IBD-EDMK1,Britned Interconnector (Demand) - Energi Danmark A/S ,South East England
+IC: BritNed (Demand),I_IBD-EGEN1,Britned Interconnector (Demand) - Endesa Generacion SAU ,South East England
+IC: BritNed (Demand),I_IBD-EGLE1,Britned Interconnector User - EG Laufenburg ,South East England
+IC: BritNed (Demand),I_IBD-ELEE1,Britned Interconnector (Demand) - Electrabel SA ,South East England
+IC: BritNed (Demand),I_IBD-ELTR1,Britned Interconnector (Demand) - ElectroRoute Energy Trading ,South East England
+IC: BritNed (Demand),I_IBD-ENEL1,Britned Interconnector (Demand) - Enel Trade SpA ,South East England
+IC: BritNed (Demand),I_IBD-ENET1,Britned Interconnector (Demand) - Eneco Energy Trade ,South East England
+IC: BritNed (Demand),I_IBD-EOET1,Britned Interconnector (Demand) - E.ON Energy Trading SE ,South East England
+IC: BritNed (Demand),I_IBD-ERVA1,Britned Interconnector (Demand) - Erova Energy Limited ,South East England
+IC: BritNed (Demand),I_IBD-ETSA1,Britned Interconnector (Demand) - ENDESA TRADING SA ,South East England
+IC: BritNed (Demand),I_IBD-FPCD1,IFA1 Interconnector (Demand) - Freepoint Commodities Europe ,South East England
+IC: BritNed (Demand),I_IBD-GAZP1,Britned Interconnector (Demand) - Gazprom Marketing & Trading Limited ,South East England
+IC: BritNed (Demand),I_IBD-IBER1,Britned Interconnector (Demand) - Iberdrola Generacion S.A.U. ,South East England
+IC: BritNed (Demand),I_IBD-IBES1,Britned Interconnector (Demand) - Iberdrola Generacion Espana ,South East England
+IC: BritNed (Demand),I_IBD-IDCE1,Britned Interconnector (Demand) - DC Energy Trading B.V. ,South East England
+IC: BritNed (Demand),I_IBD-INCM1,Britned Interconnector (Demand) -  In Commodities A/S ,South East England
+IC: BritNed (Demand),I_IBD-JPMS1,Britned Interconnector (Demand) - JP Morgan Securities Plc ,South East England
+IC: BritNed (Demand),I_IBD-KCST1,Britned Interconnector (Demand) - KOCH SUPPLY & TRADING SARL ,South East England
+IC: BritNed (Demand),I_IBD-LTFD1,Britned Interconnector (Demand) - Lightfield Ltd ,South East England
+IC: BritNed (Demand),I_IBD-MCRA1,Britned Interconnector (Demand) - Mercuria Energy Trading SA ,South East England
+IC: BritNed (Demand),I_IBD-MFTE1,Britned Interconnector (Demand) - MFT Energy A/S ,South East England
+IC: BritNed (Demand),I_IBD-MLCE1,Britned Interconnector (Demand) - Merrill Lynch Commodities Ltd ,South East England
+IC: BritNed (Demand),I_IBD-MQBK1,Britned Interconnector (Demand) - Macquarie Bank Limited ,South East England
+IC: BritNed (Demand),I_IBD-MSCG1,Britned Interconnector (Demand) - Morgan Stanley ,South East England
+IC: BritNed (Demand),I_IBD-MSCGI,Unknown ,South East England
+IC: BritNed (Demand),I_IBD-NBCF1,Britned Interconnector (Demand) - Noble Clean Fuels Limited ,South East England
+IC: BritNed (Demand),I_IBD-NEAS1,Britned Interconnector (Demand) - NEAS Energy A/S ,South East England
+IC: BritNed (Demand),I_IBD-NEHO1,Britned Interconnector (Demand) - Nordic Energy House ApS ,South East England
+IC: BritNed (Demand),I_IBD-NTPL1,Britned Interconnector (Demand) - Northpool BV ,South East England
+IC: BritNed (Demand),I_IBD-OMPX1,Britned Interconnector (Demand) - Unknown,South East England
+IC: BritNed (Demand),I_IBD-OPMX1,Britned Interconnector (Demand) - Optimax Energy GmbH ,South East England
+IC: BritNed (Demand),I_IBD-PTRS1,Britned Interconnector (Demand) - Petroineos Trading Ltd ,South East England
+IC: BritNed (Demand),I_IBD-PWMR1,Britned Interconnector (Demand) -  PowerMart ApS ,South East England
+IC: BritNed (Demand),I_IBD-PZEM1,Britned Interconnector (Demand) - PZEM Energy B.V. ,South East England
+IC: BritNed (Demand),I_IBD-RWES1,Britned Interconnector (Demand) - RWE Supply and Trading GmbH ,South East England
+IC: BritNed (Demand),I_IBD-SETL1,Britned Interconnector (Demand) - Shell Energy Europe Limited ,South East England
+IC: BritNed (Demand),I_IBD-SSEG1,Britned Interconnector (Demand) - SSE Energy Supply Limited,South East England
+IC: BritNed (Demand),I_IBD-STAT1,Britned Interconnector (Demand) - Statkraft Markets Gmbh ,South East England
+IC: BritNed (Demand),I_IBD-TGPL1,Britned Interconnector (Demand) - Total Gas & Power Ltd ,South East England
+IC: BritNed (Demand),I_IBD-TRLS1,Britned Interconnector (Demand) - Trailstone GMBH ,South East England
+IC: BritNed (Demand),I_IBD-VETR1,Britned Interconnector (Demand) - Vattenfall Trading Services ,South East England
+IC: BritNed (Demand),I_IBD-VSAL1,Britned Interconnector (Demand) - Vitol SA ,South East England
+IC: BritNed (Demand),I_IBD-XNON1,Britned Interconnector (Demand) - XENON CAPITAL MARKETS LTD ,South East England
+IC: BritNed (Generation),I_IBG-ARON1,Britned Interconnector (Generation) - J.Aron and Company ,South East England
+IC: BritNed (Generation),I_IBG-BARC1,Britned Interconnector (Generation) - Barclays Bank plc ,South East England
+IC: BritNed (Generation),I_IBG-BPGE1,Britned Interconnector (Generation) - BP Gas Marketing Limited ,South East England
+IC: BritNed (Generation),I_IBG-BRTN1,Britned Interconnector (Generation) - BritNed Development Ltd ,South East England
+IC: BritNed (Generation),I_IBG-CBST1,Britned Interconnector (Generation) - Cobblestone Energy ,South East England
+IC: BritNed (Generation),I_IBG-CENT1,Britned Interconnector (Generation) - Centrica Energy Limited ,South East England
+IC: BritNed (Generation),I_IBG-CGML1,Britned Interconnector (Generation) - Citigroup Global Markets Ltd ,South East England
+IC: BritNed (Generation),I_IBG-CNGS1,Britned Interconnector (Generation) - Cenergise Limited ,South East England
+IC: BritNed (Generation),I_IBG-DBNK1,Britned Interconnector (Generation) - Deutsche Bank AG London ,South East England
+IC: BritNed (Generation),I_IBG-DNGN1,Britned Interconnector (Generation) - Dong Energy Markets ,South East England
+IC: BritNed (Generation),I_IBG-DSKC1,Britned Interconnector (Generation) - Danske Commodities A/S ,South East England
+IC: BritNed (Generation),I_IBG-DUFE1,Britned Interconnector (Generation) - DXT Commodities SA ,South East England
+IC: BritNed (Generation),I_IBG-DVAL1,Britned Interconnector (Generation) - DVALIN ApS ,South East England
+IC: BritNed (Generation),I_IBG-EDFT1,Britned Interconnector (Generation) - EDF Trading Limited ,South East England
+IC: BritNed (Generation),I_IBG-EDMK1,Britned Interconnector (Generation) - Energi Danmark A/S ,South East England
+IC: BritNed (Generation),I_IBG-EGEN1,Britned Interconnector (Generation) - Endesa Generacion SAU ,South East England
+IC: BritNed (Generation),I_IBG-EGLE1,Britned Interconnector (Generation) - Axpo Solutions AG (EGL),South East England
+IC: BritNed (Generation),I_IBG-ELEE1,Britned Interconnector (Generation) - Electrabel SA ,South East England
+IC: BritNed (Generation),I_IBG-ELTR1,Britned Interconnector (Generation) - ElectroRoute Energy Trading ,South East England
+IC: BritNed (Generation),I_IBG-ENEL1,Britned Interconnector (Generation) - Enel Trade SpA ,South East England
+IC: BritNed (Generation),I_IBG-ENET1,Britned Interconnector (Generation) - Eneco Energy Trade ,South East England
+IC: BritNed (Generation),I_IBG-EOET1,Britned Interconnector (Generation) - E.ON Energy Trading SE ,South East England
+IC: BritNed (Generation),I_IBG-ERVA1,Britned Interconnector (Generation) - Erova Energy Limited ,South East England
+IC: BritNed (Generation),I_IBG-ETSA1,Britned Interconnector (Generation) - ENDESA TRADING SA ,South East England
+IC: BritNed (Generation),I_IBG-FPCD1,Britned Interconnector (Generation) - Freepoint Commodities Europe ,South East England
+IC: BritNed (Generation),I_IBG-GAZP1,Britned Interconnector (Generation) - Gazprom Marketing & Trading Limited ,South East England
+IC: BritNed (Generation),I_IBG-IBER1,Britned Interconnector (Generation) - Iberdrola Generacion S.A.U. ,South East England
+IC: BritNed (Generation),I_IBG-IBES1,Britned Interconnector (Generation) - Iberdrola Generacion Espana ,South East England
+IC: BritNed (Generation),I_IBG-IDCE1,Britned Interconnector (Generation) - DC Energy Trading B.V. ,South East England
+IC: BritNed (Generation),I_IBG-INCM1,Britned Interconnector (Generation) -  In Commodities A/S ,South East England
+IC: BritNed (Generation),I_IBG-JPMS1,Britned Interconnector (Generation) - JP Morgan Securities Plc ,South East England
+IC: BritNed (Generation),I_IBG-KCST1,Britned Interconnector (Generation) - KOCH SUPPLY & TRADING SARL ,South East England
+IC: BritNed (Generation),I_IBG-LTFD1,Britned Interconnector (Generation) - Lightfield Ltd ,South East England
+IC: BritNed (Generation),I_IBG-MCRA1,Britned Interconnector (Generation) - Mercuria Energy Trading SA ,South East England
+IC: BritNed (Generation),I_IBG-MFTE1,Britned Interconnector (Generation) - MFT Energy A/S ,South East England
+IC: BritNed (Generation),I_IBG-MLCE1,Britned Interconnector (Generation) - Merrill Lynch Commodities Ltd ,South East England
+IC: BritNed (Generation),I_IBG-MQBK1,Britned Interconnector (Generation) - Macquarie Bank Limited ,South East England
+IC: BritNed (Generation),I_IBG-MSCG1,Britned Interconnector (Generation) - Morgan Stanley ,South East England
+IC: BritNed (Generation),I_IBG-MSCGI,Unknown ,South East England
+IC: BritNed (Generation),I_IBG-NBCF1,Britned Interconnector (Generation) - Noble Clean Fuels Limited ,South East England
+IC: BritNed (Demand),I_IBG-NEAS1,Britned Interconnector (Generation) - NEAS Energy A/S ,South East England
+IC: BritNed (Generation),I_IBG-NEHO1,Britned Interconnector (Generation) - Nordic Energy House ApS ,South East England
+IC: BritNed (Generation),I_IBG-NTPL1,Britned Interconnector (Generation) - Northpool BV ,South East England
+IC: BritNed (Generation),I_IBG-OMPX1,Britned Interconnector (Generation) - Unknown,South East England
+IC: BritNed (Generation),I_IBG-OPMX1,Britned Interconnector (Generation) - Optimax Energy GmbH ,South East England
+IC: BritNed (Generation),I_IBG-PTRS1,Britned Interconnector (Generation) - Petroineos Trading Ltd ,South East England
+IC: BritNed (Generation),I_IBG-PWMR1,Britned Interconnector (Generation) - PowerMart ApS ,South East England
+IC: BritNed (Generation),I_IBG-PZEM1,Britned Interconnector (Generation) - PZEM Energy B.V. ,South East England
+IC: BritNed (Generation),I_IBG-RWES1,Britned Interconnector (Generation) - RWE Supply and Trading GmbH ,South East England
+IC: BritNed (Generation),I_IBG-SETL1,Britned Interconnector (Generation) - Shell Energy Europe Limited ,South East England
+IC: BritNed (Generation),I_IBG-SSEG1,Britned Interconnector (Generation) - SSE Energy Supply Limited,South East England
+IC: BritNed (Generation),I_IBG-STAT1,Britned Interconnector (Generation) - Statkraft Markets Gmbh ,South East England
+IC: BritNed (Generation),I_IBG-TGPL1,Britned Interconnector (Generation) - Total Gas & Power Ltd ,South East England
+IC: BritNed (Generation),I_IBG-TRLS1,Britned Interconnector (Generation) - Trailstone GMBH ,South East England
+IC: BritNed (Generation),I_IBG-VETR1,Britned Interconnector (Generation) - Vattenfall Trading Services ,South East England
+IC: BritNed (Generation),I_IBG-VSAL1,Britned Interconnector (Generation) - Vitol SA ,South East England
+IC: BritNed (Generation),I_IBG-XNON1,Britned Interconnector (Generation) - XENON CAPITAL MARKETS LTD ,South East England
+IC: ElecLink (Demand),I_IED-ELEC1,ElecLink Interconnector (Demand - ElecLink Ltd ,South East England
+IC: East/West (Demand),I_IED-EWIC1,East West Interconnector (Demand) - EirGrid Interconnector Limited ,Merseyside and North Wales
+IC: IFA (Demand),I_IED-FRAN1,IFA1 Interconnector (Demand) - National Grid Company ,South East England
+IC: IFA (Demand),I_IED-IFA2,IFA2 Interconnector (Demand) - National Grid IFA 2 Limited ,South East England
+IC: Moyle (Demand),I_IED-MOYL1,Moyle Interconnector (Demand) - SONI Ltd ,South Scotland
+IC: Scottish (Demand),I_IED-SCOT1,Scottish Interconnector (Demand) - SP Transmission Ltd ,South Scotland
+IC: ElecLink (Generation),I_IEG-ELEC1,ElecLink Interconnector (Generation - ElecLink Ltd ,South East England
+IC: East/West (Generation),I_IEG-EWIC1,East West Interconnector (Generation) - EirGrid Interconnector Limited ,Merseyside and North Wales
+IC: IFA (Generation),I_IEG-FRAN1,IFA1 Interconnector (Generation) - National Grid Company ,South East England
+IC: IFA (Generation),I_IEG-IFA2,IFA2 Interconnector (Generation) - National Grid IFA 2 Limited ,South East England
+IC: Moyle (Generation),I_IEG-MOYL1,Moyle Interconnector (Generation) - SONI Ltd ,South Scotland
+IC: Scottish (Generation),I_IEG-SCOT1,Scottish Interconnector (Generation) - SP Transmission Ltd ,South Scotland
+IC: IFA (Demand),I_IFD-ACCE1,IFA1 Interconnector (Demand) - Accord Energy ,South East England
+IC: IFA (Demand),I_IFD-AELE1,IFA1 Interconnector (Demand) - Aquila Energy Limited ,South East England
+IC: IFA (Demand),I_IFD-AEPE1,IFA1 Interconnector (Demand) - AEP Energy Services Limited ,South East England
+IC: IFA (Demand),I_IFD-ALEU1,IFA1 Interconnector (Demand) - Alphataraxia Europium BV (ATX),South East England
+IC: IFA (Demand),I_IFD-ARON1,IFA1 Interconnector (Demand) - J.Aron & Company ,South East England
+IC: IFA (Demand),I_IFD-AXIE1,IFA1 Interconnector (Demand) - Entergy-Koch Trading Ltd ,South East England
+IC: IFA (Demand),I_IFD-AXPO1,IFA1 Interconnector (Demand) - AXPO ,South East England
+IC: IFA (Demand),I_IFD-BARB1,IFA1 Interconnector (Demand) - Barclays Bank plc ,South East England
+IC: IFA (Demand),I_IFD-BEGE1,IFA1 Interconnector (Demand) - BE Power & Energy Trading Ltd ,South East England
+IC: IFA (Demand),I_IFD-BHPB1,IFA1 Interconnector (Demand) - BHP Billiton Marketing AG ,South East England
+IC: IFA (Demand),I_IFD-BKWE1,IFA1 Interconnector (Demand) - BKW FMB Energie AG ,South East England
+IC: IFA (Demand),I_IFD-BNPS1,IFA1 Interconnector (Demand) - BNP Paribas ,South East England
+IC: IFA (Demand),I_IFD-BPGE1,IFA1 Interconnector (Demand) - BP Gas Marketing Limited ,South East England
+IC: IFA (Demand),I_IFD-BPGEI,IFA1 Interconnector (Demand) - BP Gas Marketing Ltd ,South East England
+IC: IFA (Demand),I_IFD-BTGP1,IFA1 Interconnector (Demand) - Engelhart CTP (Switzerland) SA ,South East England
+IC: IFA (Demand),I_IFD-CARE1,IFA1 Interconnector (Demand) - Cargill PLC ,South East England
+IC: IFA (Demand),I_IFD-CBST1,IFA Interconnector (Demand) - Cobblestone Energy ,South East England
+IC: IFA (Demand),I_IFD-CECG1,IFA1 Interconnector (Demand) - Constellation Energy C.G. Inc. ,South East England
+IC: IFA (Demand),I_IFD-CEZC1,IFA1 Interconnector (Demand) - CEZ A.S.,South East England
+IC: IFA (Demand),I_IFD-CGML1,IFA1 Interconnector (Demand) - Citigroup Global Markets Ltd ,South East England
+IC: IFA (Demand),I_IFD-CGTE1,IFA1 Interconnector (Demand) - Cinergy Global Trading Limited ,South East England
+IC: IFA (Demand),I_IFD-CNGS1,IFA1 Interconnector (Generation) - Cenergise Limited ,South East England
+IC: IFA (Demand),I_IFD-CNRE1,IFA1 Interconnector (Demand) - Compagnie Nationale du Rhone ,South East England
+IC: IFA (Demand),I_IFD-CONV1,IFA1 Interconnector (Demand) - Convex Energy GmbH (GEAG),South East England
+IC: IFA (Demand),I_IFD-DBNK1,IFA1 Interconnector (Demand) - Deutsche Bank AG London ,South East England
+IC: IFA (Demand),I_IFD-DNGN1,IFA1 Interconnector (Demand) - Dong Energy Markets ,South East England
+IC: IFA (Demand),I_IFD-DSKC1,IFA1 Interconnector (Demand) - Danske Commodities A/S ,South East England
+IC: IFA (Demand),I_IFD-DUFE1,IFA1 Interconnector (Demand - DXT Commodities SA ,South East England
+IC: IFA (Demand),I_IFD-DUKE1,IFA1 Interconnector (Demand) - Duke Energy ,South East England
+IC: IFA (Demand),I_IFD-DVAL1,IFA1 Interconnector (Demand) - DVALIN ApS ,South East England
+IC: IFA (Demand),I_IFD-DYNE1,IFA1 Interconnector (Demand) - Dynegy ,South East England
+IC: IFA (Demand),I_IFD-ECCA1,IFA1 Interconnector (Demand) - ECC AG ,South East England
+IC: IFA (Demand),I_IFD-EDEF1,IFA1 Interconnector (Demand) - EDF GENERATION ,South East England
+IC: IFA (Demand),I_IFD-EDFT1,IFA1 Interconnector (Demand) - EDF TRADING LIMITED ,South East England
+IC: IFA (Demand),I_IFD-EDMK1,IFA1 Interconnector (Demand) - Energi Danmark A/S ,South East England
+IC: IFA (Demand),I_IFD-EGEN1,IFA1 Interconnector (Demand) - Endesa Generacion SAU ,South East England
+IC: IFA (Demand),I_IFD-EGLE1,IFA1 Interconnector (Demand) - EG Laufenburg ,South East England
+IC: IFA (Demand),I_IFD-ELEE1,IFA1 Interconnector (Demand) - Electrabel SA ,South East England
+IC: IFA (Demand),I_IFD-ELTR1,IFA1 Interconnector (Demand) - ElectroRoute Energy Trading ,South East England
+IC: IFA (Demand),I_IFD-ENEL1,IFA1 Interconnector (Demand) - Enel Trade SpA ,South East England
+IC: IFA (Demand),I_IFD-ENET1,IFA1 Interconnector (Demand) - Eneco Energy Trade ,South East England
+IC: IFA (Demand),I_IFD-ENRE1,IFA1 Interconnector (Demand) - Enron ,South East England
+IC: IFA (Demand),I_IFD-ENVM1,IFA1 Interconnector (Demand) - Energya VM Gestion De Energia ,South East England
+IC: IFA (Demand),I_IFD-EOET1,IFA1 Interconnector (Demand) - E.ON Energy Trading AG ,South East England
+IC: IFA (Demand),I_IFD-EOSE1,IFA1 Interconnector (Demand) - Energie Ouest Suisse (EOS) (EOSTRAD) ,South East England
+IC: IFA (Demand),I_IFD-ERVA1,IFA1 Interconnector (Demand) - Erova Energy Limited ,South East England
+IC: IFA (Demand),I_IFD-ETSA1,IFA1 Interconnector (Demand) - ENDESA TRADING SA ,South East England
+IC: IFA (Demand),I_IFD-EWSE1,IFA1 Interconnector (Demand) - Edelweiss Energia S.p.A ,South East England
+IC: IFA (Demand),I_IFD-FHCE1,IFA1 Interconnector (Demand) - First Hydro Company ,South East England
+IC: IFA (Demand),I_IFD-FPCD1,IFA1 Interconnector (Demand) - Freepoint Commodities Europe ,South East England
+IC: IFA (Demand),I_IFD-GASE1,IFA1 Interconnector (Demand) - Gaselys ,South East England
+IC: IFA (Demand),I_IFD-GAZP1,IFA1 Interconnector (Demand) - Gazprom Marketing & Trading Ltd ,South East England
+IC: IFA (Demand),I_IFD-GDFE1,IFA1 Interconnector (Demand) - Gaz de France Marketing Ltd ,South East England
+IC: IFA (Demand),I_IFD-GLTR1,IFA1 Interconnector (Demand) -  GAELECTRIC ICT ROI ,South East England
+IC: IFA (Demand),I_IFD-GRMT1,IFA1 Interconnector (Demand) - A/S Global Risk Management Ltd ,South East England
+IC: IFA (Demand),I_IFD-HEPG1,IFA1 Interconnector (Demand) - Hess Energy Power & Gas Co UK ,South East England
+IC: IFA (Demand),I_IFD-IBER1,IFA1 Interconnector (Demand) - Iberdrola Generacion S.A.U. ,South East England
+IC: IFA (Demand),I_IFD-IBES1,IFA1 Interconnector (Demand) - Iberdrola Generacion Espana ,South East England
+IC: IFA (Demand),I_IFD-INCM1,IFA1 Interconnector (Demand) -  In Commodities A/S ,South East England
+IC: IFA (Demand),I_IFD-INNE1,IFA1 Interconnector (Demand) - RWE INNOGY ,South East England
+IC: IFA (Demand),I_IFD-JPMS1,IFA1 Interconnector (Demand) - JP Morgan Securities Ltd ,South East England
+IC: IFA (Demand),I_IFD-JPMV1,IFA1 Interconnector (Demand) - JPMorgan Ventures Energy Corp (JPMVEC) ,South East England
+IC: IFA (Demand),I_IFD-KCST1,IFA1 Interconnector (Demand) - KOCH SUPPLY & TRADING SARL ,South East England
+IC: IFA (Demand),I_IFD-LPAS1,IFA1 Interconnector (Demand) - El Paso Merchant Energy Europe ,South East England
+IC: IFA (Demand),I_IFD-LTFD1,IFA1 Interconnector (Demand) - Lightfield Ltd ,South East England
+IC: IFA (Demand),I_IFD-MCRA1,IFA1 Interconnector (Demand) - Mercuria Energy Trading SA ,South East England
+IC: IFA (Demand),I_IFD-MFTE1,IFA1 Interconnector (Demand) - MFT Energy A/S ,South East England
+IC: IFA (Demand),I_IFD-MKFT1,IFA1 Interconnector (Demand) - Markedskraft ASA ,South East England
+IC: IFA (Demand),I_IFD-MQBK1,IFA1 Interconnector (Demand) - Macquarie Bank Limited ,South East England
+IC: IFA (Demand),I_IFD-MSCG1,IFA1 Interconnector (Demand) - Morgan Stanley ,South East England
+IC: IFA (Demand),I_IFD-NBCF1,IFA1 Interconnector (Demand) - Noble Clean Fuels Limited ,South East England
+IC: IFA (Demand),I_IFD-NEAS1,IFA1 Interconnector (Demand) - Nordjysk Elhandel A/S ,South East England
+IC: IFA (Demand),I_IFD-NEHO1,IFA1 Interconnector (Demand) - Nordic Energy House ApS ,South East England
+IC: IFA (Demand),I_IFD-NEXE1,IFA1 Interconnector (Demand) - Nexen Energy Marketing London ,South East England
+IC: IFA (Demand),I_IFD-NSDQ1,IFA1 Interconnector (Demand) - NASDAQ OMX Stockholm AB ,South East England
+IC: IFA (Demand),I_IFD-NTPL1,IFA1 Interconnector (Demand) - Northpool BV ,South East England
+IC: IFA (Demand),I_IFD-NVAL1,IFA1 Interconnector (Demand) - Nvalue AG ,South East England
+IC: IFA (Demand),I_IFD-OMPX1,IFA1 Interconnector (Demand) - Unknown,South East England
+IC: IFA (Demand),I_IFD-OPMX1,IFA1 Interconnector (Demand) - Optimax Energy GmbH ,South East England
+IC: IFA (Demand),I_IFD-PGEN1,IFA1 Interconnector (Demand) - E.ON UK plc ,South East England
+IC: IFA (Demand),I_IFD-PTRS1,IFA1 Interconnector (Demand) - Petroineos Trading Ltd ,South East England
+IC: IFA (Demand),I_IFD-PWMR1,IFA1 Interconnector (Demand) -  PowerMart ApS ,South East England
+IC: IFA (Demand),I_IFD-RBOS1,IFA1 Interconnector (Demand) - The Royal Bank of Scotland Plc ,South East England
+IC: IFA (Demand),I_IFD-RWES1,IFA1 Interconnector (Demand) - RWE Supply and Trading GmbH ,South East England
+IC: IFA (Demand),I_IFD-RWESI,IFA1 Interconnector (Demand) - RWE Supply and Trading GmbH ,South East England
+IC: IFA (Demand),I_IFD-SEME1,IFA1 Interconnector (Demand) - Sempra Energy Europe Ltd ,South East England
+IC: IFA (Demand),I_IFD-SETL1,IFA1 Interconnector (Demand) - Shell Energy Trading Limited ,South East England
+IC: IFA (Demand),I_IFD-SPEM1,IFA1 Interconnector (Demand) - SP Energy Management Ltd ,South East England
+IC: IFA (Demand),I_IFD-SSEG1,IFA1 Interconnector (Demand) - SSE Energy Supply Limited,South East England
+IC: IFA (Demand),I_IFD-STAT1,IFA1 Interconnector (Demand) - Statkraft Markets Gmbh ,South East England
+IC: IFA (Demand),I_IFD-TFEE1,IFA1 Interconnector (Demand) - Total Gas & Power Ltd ,South East England
+IC: IFA (Demand),I_IFD-TRLS1,IFA1 Interconnector (Demand) - Trailstone GMBH ,South East England
+IC: IFA (Demand),I_IFD-TXUE1,IFA1 Interconnector (Demand) - TXU Europe ,South East England
+IC: IFA (Demand),I_IFD-UFGN1,IFA1 Interconnector (Demand) - Union Fenosa Generation SA ,South East England
+IC: IFA (Demand),I_IFD-VATT1,IFA1 Interconnector (Demand) - Vattenfall AB ,South East England
+IC: IFA (Demand),I_IFD-VSAL1,IFA1 Interconnector (Demand) - VITOL SA ,South East England
+IC: IFA (Demand),I_IFD-VTFS1,IFA1 Interconnector (Demand) - Vattenfall Trading Services ,South East England
+IC: IFA (Demand),I_IFD-WILE1,IFA1 Interconnector (Demand) - Williams Energy Europe ,South East England
+IC: IFA (Demand),I_IFD-XNON1,IFA Interconnector (Demand) - XENON CAPITAL MARKETS LTD ,South East England
+IC: IFA (Generation),I_IFG_ELEEI,Unknown ,South East England
+IC: IFA (Generation),I_IFG-ACCE1,IFA1 Interconnector (Generation) - Accord Energy ,South East England
+IC: IFA (Generation),I_IFG-AELE1,IFA1 Interconnector (Generation) - Aquila Energy Limited ,South East England
+IC: IFA (Generation),I_IFG-AEPE1,IFA1 Interconnector (Generation) - AEP Energy Services Limited ,South East England
+IC: IFA (Generation),I_IFG-ALEU1,IFA1 Interconnector (Generation) - Alphataraxia Europium BV (ATX),South East England
+IC: IFA (Generation),I_IFG-ARON1,IFA1 Interconnector (Generation) - J.Aron & Company ,South East England
+IC: IFA (Generation),I_IFG-AXIE1,IFA1 Interconnector (Generation) - Entergy-Koch Trading Ltd ,South East England
+IC: IFA (Generation),I_IFG-AXPO1,IFA1 Interconnector (Generation) - AXPO ,South East England
+IC: IFA (Generation),I_IFG-BARB1,IFA1 Interconnector (Generation) - Barclays Bank plc ,South East England
+IC: IFA (Generation),I_IFG-BEGE1,IFA1 Interconnector (Generation) - BE Power & Energy Trading Ltd ,South East England
+IC: IFA (Generation),I_IFG-BHPB1,IFA1 Interconnector (Generation) - BHP Billiton Marketing AG ,South East England
+IC: IFA (Generation),I_IFG-BKWE1,IFA1 Interconnector (Generation) - BKW FMB Energie AG ,South East England
+IC: IFA (Generation),I_IFG-BNPS1,IFA1 Interconnector (Generation) - BNP Paribas ,South East England
+IC: IFA (Generation),I_IFG-BPGE1,IFA1 Interconnector (Generation) - BP Gas Marketing Limited ,South East England
+IC: IFA (Generation),I_IFG-BPGEI,IFA1 Interconnector (Generation) - BP Gas Marketing Ltd ,South East England
+IC: IFA (Generation),I_IFG-BTGP1,IFA1 Interconnector (Generation) - Engelhart CTP (Switzerland) SA ,South East England
+IC: IFA (Generation),I_IFG-CARE1,IFA1 Interconnector (Generation) - Cargill PLC ,South East England
+IC: IFA (Generation),I_IFG-CBST1,IFA Interconnector (Generation) - Cobblestone Energy ,South East England
+IC: IFA (Generation),I_IFG-CECG1,IFA1 Interconnector (Generation) - Constellation Energy C.G. Inc. ,South East England
+IC: IFA (Generation),I_IFG-CEZC1,IFA1 Interconnector (Generation) - CEZ A.S.,South East England
+IC: IFA (Generation),I_IFG-CGML1,IFA1 Interconnector (Generation) - Citigroup Global Markets Ltd ,South East England
+IC: IFA (Generation),I_IFG-CGTE1,IFA1 Interconnector (Generation) - Cinergy Global Trading Limited ,South East England
+IC: IFA (Demand),I_IFG-CNGS1,IFA1 Interconnector (Demand) - Cenergise Limited ,South East England
+IC: IFA (Generation),I_IFG-CNRE1,IFA1 Interconnector (Generation) - Compagnie Nationale du Rhone ,South East England
+IC: IFA (Generation),I_IFG-CONV1,IFA1 Interconnector (Generation) - Convex Energy GmbH (GEAG),South East England
+IC: IFA (Generation),I_IFG-DBNK1,IFA1 Interconnector (Generation) - Deutsche Bank AG London ,South East England
+IC: IFA (Generation),I_IFG-DNGN1,IFA1 Interconnector (Generation) - Dong Energy Markets ,South East England
+IC: IFA (Generation),I_IFG-DSKC1,IFA1 Interconnector (Generation) - Danske Commodities A/S ,South East England
+IC: IFA (Generation),I_IFG-DUFE1,IFA1 Interconnector (Generation - DXT Commodities SA ,South East England
+IC: IFA (Generation),I_IFG-DUKE1,IFA1 Interconnector (Generation) - Duke Energy ,South East England
+IC: IFA (Generation),I_IFG-DVAL1,IFA1 Interconnector (Generation) - DVALIN ApS ,South East England
+IC: IFA (Generation),I_IFG-DYNE1,IFA1 Interconnector (Generation) - Dynegy ,South East England
+IC: IFA (Generation),I_IFG-ECCA1,IFA1 Interconnector (Generation) - ECC AG ,South East England
+IC: IFA (Generation),I_IFG-EDEF1,IFA1 Interconnector (Generation) - EDF GENERATION ,South East England
+IC: IFA (Generation),I_IFG-EDFT1,IFA1 Interconnector (Generation) - EDF TRADING LIMITED ,South East England
+IC: IFA (Generation),I_IFG-EDMK1,IFA1 Interconnector (Generation) - Energi Danmark A/S ,South East England
+IC: IFA (Generation),I_IFG-EGEN1,IFA1 Interconnector (Generation) - Endesa Generacion SAU ,South East England
+IC: IFA (Generation),I_IFG-EGLE1,IFA1 Interconnector (Generation) - EG Laufenburg ,South East England
+IC: IFA (Generation),I_IFG-ELEE1,IFA1 Interconnector (Generation) - Electrabel SA ,South East England
+IC: IFA (Generation),I_IFG-ELTR1,IFA1 Interconnector (Generation) - ElectroRoute Energy Trading ,South East England
+IC: IFA (Generation),I_IFG-ENEL1,IFA1 Interconnector (Generation) - Enel Trade SpA ,South East England
+IC: IFA (Generation),I_IFG-ENET1,IFA1 Interconnector (Generation) - Eneco Energy Trade ,South East England
+IC: IFA (Generation),I_IFG-ENRE1,IFA1 Interconnector (Generation) - Enron ,South East England
+IC: IFA (Generation),I_IFG-ENVM1,IFA1 Interconnector (Generation) - Energya VM Gestion De Energia ,South East England
+IC: IFA (Generation),I_IFG-EOET1,IFA1 Interconnector (Generation) - E.ON Energy Trading AG ,South East England
+IC: IFA (Generation),I_IFG-EOSE1,IFA1 Interconnector (Generation) - Energie Ouest Suisse (EOS) (EOSTRAD) ,South East England
+IC: IFA (Generation),I_IFG-ERVA1,IFA1 Interconnector (Generation) - Erova Energy Limited ,South East England
+IC: IFA (Generation),I_IFG-ETSA1,IFA1 Interconnector (Generation) - ENDESA TRADING SA ,South East England
+IC: IFA (Generation),I_IFG-EWSE1,IFA1 Interconnector (Generation) - Edelweiss Energia S.p.A ,South East England
+IC: IFA (Generation),I_IFG-FHCE1,IFA1 Interconnector (Generation) - First Hydro Company ,South East England
+IC: IFA (Generation),I_IFG-FPCD1,IFA1 Interconnector (Generation) - Freepoint Commodities Europe ,South East England
+IC: IFA (Generation),I_IFG-GASE1,IFA1 Interconnector (Generation) - Gaselys ,South East England
+IC: IFA (Generation),I_IFG-GAZP1,IFA1 Interconnector (Generation) - Gazprom Marketing & Trading Ltd ,South East England
+IC: IFA (Generation),I_IFG-GDFE1,IFA1 Interconnector (Generation) - Gaz de France Marketing Ltd ,South East England
+IC: IFA (Generation),I_IFG-GLTR1,IFA1 Interconnector (Generation) -  GAELECTRIC ICT ROI ,South East England
+IC: IFA (Generation),I_IFG-GRMT1,IFA1 Interconnector (Generation) - A/S Global Risk Management Ltd ,South East England
+IC: IFA (Generation),I_IFG-HEPG1,IFA1 Interconnector (Generation) - Hess Energy Power & Gas Co UK ,South East England
+IC: IFA (Generation),I_IFG-IBER1,IFA1 Interconnector (Generation) - Iberdrola Generacion S.A.U. ,South East England
+IC: IFA (Generation),I_IFG-IBES1,IFA1 Interconnector (Generation) - Iberdrola Generacion Espana ,South East England
+IC: IFA (Generation),I_IFG-INCM1,IFA1 Interconnector (Generation) -  In Commodities A/S ,South East England
+IC: IFA (Generation),I_IFG-INNE1,IFA1 Interconnector (Generation) - RWE INNOGY ,South East England
+IC: IFA (Generation),I_IFG-JPMS1,IFA1 Interconnector (Generation) - JP Morgan Securities Ltd ,South East England
+IC: IFA (Generation),I_IFG-JPMV1,IFA1 Interconnector (Generation) - JPMorgan Ventures Energy Corp (JPMVEC) ,South East England
+IC: IFA (Generation),I_IFG-KCST1,IFA1 Interconnector (Generation) - KOCH SUPPLY & TRADING SARL ,South East England
+IC: IFA (Generation),I_IFG-LPAS1,IFA1 Interconnector (Generation) - El Paso Merchant Energy Europe ,South East England
+IC: IFA (Generation),I_IFG-LTFD1,IFA Interconnector (Generation) - Lightfield Ltd ,South East England
+IC: IFA (Generation),I_IFG-MCRA1,IFA1 Interconnector (Generation) - Mercuria Energy Trading SA ,South East England
+IC: IFA (Generation),I_IFG-MFTE1,IFA1 Interconnector (Generation) - MFT Energy A/S ,South East England
+IC: IFA (Generation),I_IFG-MKFT1,IFA1 Interconnector (Generation) - Markedskraft ASA ,South East England
+IC: IFA (Generation),I_IFG-MQBK1,IFA1 Interconnector (Generation) - Macquarie Bank Limited ,South East England
+IC: IFA (Generation),I_IFG-MSCG1,IFA1 Interconnector (Generation) - Morgan Stanley ,South East England
+IC: IFA (Generation),I_IFG-NBCF1,IFA1 Interconnector (Generation) - Noble Clean Fuels Limited ,South East England
+IC: IFA (Generation),I_IFG-NEAS1,IFA1 Interconnector (Generation) - Nordjysk Elhandel A/S ,South East England
+IC: IFA (Generation),I_IFG-NEHO1,IFA1 Interconnector (Generation) - Nordic Energy House ApS ,South East England
+IC: IFA (Generation),I_IFG-NEXE1,IFA1 Interconnector (Generation) - Nexen Energy Marketing London ,South East England
+IC: IFA (Generation),I_IFG-NSDQ1,IFA1 Interconnector (Generation) - NASDAQ OMX Stockholm AB ,South East England
+IC: IFA (Generation),I_IFG-NTPL1,IFA Interconnector (Generation) - Northpool BV ,South East England
+IC: IFA (Generation),I_IFG-NVAL1,IFA Interconnector (Generation) - Nvalue AG,South East England
+IC: IFA (Generation),I_IFG-OMPX1,IFA Interconnector (Generation) - Unknown,South East England
+IC: IFA (Generation),I_IFG-OPMX1,IFA Interconnector (Generation) - Optimax Energy GmbH ,South East England
+IC: IFA (Generation),I_IFG-PGEN1,IFA1 Interconnector (Generation) - E.ON UK plc ,South East England
+IC: IFA (Generation),I_IFG-PTRS1,IFA1 Interconnector (Generation) - Petroineos Trading Ltd ,South East England
+IC: IFA (Generation),I_IFG-PWMR1,IFA1 Interconnector (Generation) - PowerMart ApS ,South East England
+IC: IFA (Generation),I_IFG-RBOS1,IFA1 Interconnector (Generation) - The Royal Bank of Scotland Plc ,South East England
+IC: IFA (Generation),I_IFG-RWES1,IFA Interconnector (Generation) - RWE Supply and Trading GmbH ,South East England
+IC: IFA (Generation),I_IFG-RWESI,IFA Interconnector (Generation) - RWE Supply and Trading GmbH ,South East England
+IC: IFA (Generation),I_IFG-SEME1,IFA1 Interconnector (Generation) - Sempra Energy Europe Ltd ,South East England
+IC: IFA (Generation),I_IFG-SETL1,IFA1 Interconnector (Generation) - Shell Energy Trading Limited ,South East England
+IC: IFA (Generation),I_IFG-SPEM1,IFA1 Interconnector (Generation) - SP Energy Management Ltd ,South East England
+IC: IFA (Generation),I_IFG-SSEG1,IFA1 Interconnector (Generation) - SSE Energy Supply Limited,South East England
+IC: IFA (Generation),I_IFG-STAT1,IFA1 Interconnector (Generation) - Statkraft Markets Gmbh ,South East England
+IC: IFA (Generation),I_IFG-TFEE1,IFA1 Interconnector (Generation) - Total Gas & Power Ltd ,South East England
+IC: IFA (Generation),I_IFG-TRLS1,IFA1 Interconnector (Generation) - Trailstone GMBH ,South East England
+IC: IFA (Generation),I_IFG-TXUE1,IFA1 Interconnector (Generation) - TXU Europe ,South East England
+IC: IFA (Generation),I_IFG-UFGN1,IFA1 Interconnector (Generation) - Union Fenosa Generation SA ,South East England
+IC: IFA (Generation),I_IFG-VATT1,IFA1 Interconnector (Generation) - Vattenfall AB ,South East England
+IC: IFA (Generation),I_IFG-VSAL1,IFA1 Interconnector (Generation) - VITOL SA ,South East England
+IC: IFA (Generation),I_IFG-VTFS1,IFA1 Interconnector (Generation) - Vattenfall Trading Services ,South East England
+IC: IFA (Generation),I_IFG-WILE1,IFA1 Interconnector (Generation) - Williams Energy Europe ,South East England
+IC: IFA (Generation),I_IFG-XNON1,IFA Interconnector (Generation) - XENON CAPITAL MARKETS LTD ,South East England
+IC: East/West (Demand),I_IID-AXPO1,East West Interconnector (Demand) - Axpo Trading AG ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-BDGS1,East West Interconnector (Demand) - Bord Gais Energy ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-BGSE1,East West Interconnector (Demand) - Bord Gais Energy Limited ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-BRKF1,East West Interconnector (Demand) - Brookfield Renewable Supply ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-CAPT1,East West Interconnector (Demand) - Captured Carbon ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-CNGS1,East West Interconnector (Demand) - Cenergise Limited ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-DSKC1,East West Interconnector (Demand) - Danske Commodities A/S ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-ECCA1,East West Interconnector (Demand) - EEC AG ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-EGEN1,East West Interconnector (Demand) - ENDESA Generacion SAU ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-ELTR1,East West Interconnector (Demand) - ElectroRoute Energy Trading ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-ENGI1,East West Interconnector (Demand) - Energi Danmark A/S ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-ERVA1,East West Interconnector (Demand) - Erova Energy Limited ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-ESBI1,East West Interconnector (Demand) - ESBIG Trading Ltd ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-ESBI2,East West Interconnector (Demand) - ESBIG Trading Ltd ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-ETSA1,East West Interconnector (Demand) - Endesa Trading SA ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-GLTR1,East West Interconnector (Demand) - GAELECTRIC ICT ROI ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-INCM1,East West Interconnector (Demand) -  In Commodities A/S ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-LTFD1,East West Interconnector (Demand) - Lightfield Ltd ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-NSEN1,East West Interconnector (Demand) - NEAS Energy A/S ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-PRNI1,East West Interconnector (Demand) - NIE Energy Ltd ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-RWES1,East West Interconnector (Demand) - RWE Supply and Trading GmbH ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-SEEL1,East West Interconnector (Demand) - Shell Energy Europe Limited ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-SSES1,East West Interconnector (Demand) - SSE Energy Supply Limited ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-STAT1,East West Interconnector (Demand) - Statkraft Markets Gmbh ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-TRLS1,East West Interconnector (Demand) - Trailstone GMBH ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-VAYU1,East West Interconnector (Demand) - Vayu Limited ,Merseyside and North Wales
+IC: East/West (Demand),I_IID-VESL1,East West Interconnector (Demand) - Viridian Energy Supply Ltd ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-AXPO1,East West Interconnector (Generation) - Axpo Trading AG ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-BDGS1,East West Interconnector (Generation) - Bord Gais Energy ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-BGSE1,East West Interconnector (Generation) - Bord Gais Energy Limited ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-BRKF1,East West Interconnector (Generation) - Brookfield Renewable Supply ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-CAPT1,East West Interconnector (Generation) - Captured Carbon ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-CNGS1,East West Interconnector (Production) - Cenergise Limited ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-DSKC1,East West Interconnector (Generation) - Danske Commodities A/S ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-ECCA1,East West Interconnector (Generation) - EEC AG ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-EGEN1,East West Interconnector (Generation) - ENDESA Generacion SAU ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-ELTR1,East West Interconnector (Generation) - ElectroRoute Energy Trading ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-ENGI1,East West Interconnector (Generation) - Energi Danmark A/S ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-ERVA1,East West Interconnector (Production) - Erova Energy Limited ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-ESBI1,East West Interconnector (Generation) - ESBIG Trading Ltd ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-ESBI2,East West Interconnector (Production) - ESBIG Trading Ltd ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-ETSA1,East West Interconnector (Generation) - Endesa Trading SA ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-GLTR1,East West Interconnector (Generation) - GAELECTRIC ICT ROI ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-INCM1,East West Interconnector (Generation) -  In Commodities A/S ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-LTFD1,East West Interconnector (Generation) - Lightfield Ltd ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-NSEN1,East West Interconnector (Generation) - NEAS Energy A/S ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-PRNI1,East West Interconnector (Generation) - NIE Energy Ltd ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-RWES1,East West Interconnector (Generation) - RWE Supply and Trading GmbH ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-SEEL1,East West Interconnector (Production) - Shell Energy Europe Limited ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-SSES1,East West Interconnector (Generation) - SSE Energy Supply Limited ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-STAT1,East West Interconnector (Generation) - Statkraft Markets Gmbh ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-TRLS1,East West Interconnector (Generation) - Trailstone GMBH ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-VAYU1,East West Interconnector (Generation) - Vayu Limited ,Merseyside and North Wales
+IC: East/West (Generation),I_IIG-VESL1,East West Interconnector (Generation) - Viridian Energy Supply Ltd ,Merseyside and North Wales
+IC: ElecLink (Demand),I_ILD-ELEC1,Unknown ,South East England
+IC: ElecLink (Demand),I_ILD-NDPL1,ElecLink Interconnector (Demand - European Market Coupling ,South East England
+IC: ElecLink (Generation),I_ILG-ELEC1,Unknown ,South East England
+IC: ElecLink (Generation),I_ILG-NDPL1,ElecLink Interconnector (Generation - European Market Coupling ,South East England
+IC: Moyle (Demand),I_IMD-AIRL1,Moyle Interconnector (Demand) - Airtricity Ltd. ,South Scotland
+IC: Moyle (Demand),I_IMD-AXPO1,Moyle Interconnector (Demand) - Axpo Trading AG ,South Scotland
+IC: Moyle (Demand),I_IMD-BDGS1,Moyle Interconnector (Demand) - Bord Gais Energy ,South Scotland
+IC: Moyle (Demand),I_IMD-BGSE1,Moyle Interconnector (Demand) - Bord Gais Energy Limited ,South Scotland
+IC: Moyle (Demand),I_IMD-BRKF1,Moyle Interconnector (Demand) - Brookfield Renewable Supply ,South Scotland
+IC: Moyle (Demand),I_IMD-CAPT1,Moyle Interconnector (Demand) - Captured Carbon ,South Scotland
+IC: Moyle (Demand),I_IMD-CNGS1,Moyle Interconnector User (Demand) - Cenergise Limited ,South Scotland
+IC: Moyle (Demand),I_IMD-DSKC1,Moyle Interconnector (Demand) - Danske Commodities A/S ,South Scotland
+IC: Moyle (Demand),I_IMD-ECCA1,Moyle Interconnector (Demand) - EEC AG ,South Scotland
+IC: Moyle (Demand),I_IMD-EGEN1,Moyle Interconnector (Demand) - Endesa Generacion SAU ,South Scotland
+IC: Moyle (Demand),I_IMD-ELTR1,Moyle Interconnector (Demand) - ElectroRoute Energy Trading ,South Scotland
+IC: Moyle (Demand),I_IMD-ENGI1,Moyle Interconnector (Demand) - Energi Danmark A/S ,South Scotland
+IC: Moyle (Demand),I_IMD-ERVA1,Moyle Interconnector (Demand) - Erova Energy Limited ,South Scotland
+IC: Moyle (Demand),I_IMD-ESBE1,Moyle Interconnector (Demand) - ESB Independent Energy (NI) ,South Scotland
+IC: Moyle (Demand),I_IMD-ESBI1,Moyle Interconnector (Demand) - ESBIG Trading Ltd ,South Scotland
+IC: Moyle (Demand),I_IMD-ETSA1,Moyle Interconnector (Demand) - ENDESA TRADING SA ,South Scotland
+IC: Moyle (Demand),I_IMD-GLTR1,Moyle Interconnector (Demand) - GAELECTRIC ICT ROI ,South Scotland
+IC: Moyle (Demand),I_IMD-INCM1,Moyle Interconnector (Demand) -  In Commodities A/S ,South Scotland
+IC: Moyle (Demand),I_IMD-LTFD1,Moyle Interconnector (Demand) - Lightfield Ltd ,South Scotland
+IC: Moyle (Demand),I_IMD-NIRE1,Moyle Interconnector (Demand) - Northern Ireland Electricity ,South Scotland
+IC: Moyle (Demand),I_IMD-NSEN1,Moyle Interconnector (Demand) - NEAS Energy A/S ,South Scotland
+IC: Moyle (Demand),I_IMD-PRNI1,Moyle Interconnector (Demand) - NIE Energy Ltd ,South Scotland
+IC: Moyle (Demand),I_IMD-RWEM1,Moyle Interconnector (Demand) - RWE NPOWER PLC ,South Scotland
+IC: Moyle (Demand),I_IMD-RWES1,Moyle Interconnector (Demand) - RWE Supply and Trading GmbH ,South Scotland
+IC: Moyle (Demand),I_IMD-SEEL1,Moyle Interconnector (Demand) - Shell Energy Europe Limited ,South Scotland
+IC: Moyle (Demand),I_IMD-SPEM1,Moyle Interconnector (Demand) - SP Energy Management Ltd ,South Scotland
+IC: Moyle (Demand),I_IMD-SSIR1,Moyle Interconnector (Demand) - SSE (IRELAND) LIMITED ,South Scotland
+IC: Moyle (Demand),I_IMD-SSTH1,Moyle Interconnector (Demand) - SSE Energy Supply Limited ,South Scotland
+IC: Moyle (Demand),I_IMD-STAT1,Moyle Interconnector (Demand) - Statkraft Markets Gmbh ,South Scotland
+IC: Moyle (Demand),I_IMD-TRLS1,Moyle Interconnector (Demand) - Trailstone GMBH ,South Scotland
+IC: Moyle (Demand),I_IMD-VESL1,Moyle Interconnector (Demand) - VIRIDIAN ENERGY SUPPLY LTD ,South Scotland
+IC: Moyle (Generation),I_IMG-AIRL1,Moyle Interconnector (Generation) - Airtricity Ltd. ,South Scotland
+IC: Moyle (Generation),I_IMG-AXPO1,Moyle Interconnector (Generation) - Axpo Trading AG ,South Scotland
+IC: Moyle (Generation),I_IMG-BDGS1,Moyle Interconnector (Generation) - Bord Gais Energy ,South Scotland
+IC: Moyle (Generation),I_IMG-BGSE1,Moyle Interconnector (Generation) - Bord Gais Energy Limited ,South Scotland
+IC: Moyle (Generation),I_IMG-BRKF1,Moyle Interconnector (Generation) - Brookfield Renewable Supply ,South Scotland
+IC: Moyle (Generation),I_IMG-CAPT1,Moyle Interconnector (Generation) - Captured Carbon ,South Scotland
+IC: Moyle (Generation),I_IMG-CNGS1,Moyle Interconnector User (Generation) - Cenergise Limited ,South Scotland
+IC: Moyle (Generation),I_IMG-DSKC1,Moyle Interconnector (Generation) - Danske Commodities A/S ,South Scotland
+IC: Moyle (Generation),I_IMG-ECCA1,Moyle Interconnector (Generation) - EEC AG ,South Scotland
+IC: Moyle (Generation),I_IMG-EGEN1,Moyle Interconnector (Generation) - Endesa Generacion SAU ,South Scotland
+IC: Moyle (Generation),I_IMG-ELTR1,Moyle Interconnector (Generation) - ElectroRoute Energy Trading ,South Scotland
+IC: Moyle (Generation),I_IMG-ENGI1,Moyle Interconnector (Generation) - Energi Danmark A/S ,South Scotland
+IC: Moyle (Generation),I_IMG-ERVA1,Moyle Interconnector (Generation) - Erova Energy Limited ,South Scotland
+IC: Moyle (Generation),I_IMG-ESBE1,Moyle Interconnector (Generation) - ESB Independent Energy (NI) ,South Scotland
+IC: Moyle (Generation),I_IMG-ESBI1,Moyle Interconnector (Generation) - ESBIG Trading Ltd ,South Scotland
+IC: Moyle (Generation),I_IMG-ETSA1,Moyle Interconnector (Generation) - ENDESA TRADING SA ,South Scotland
+IC: Moyle (Generation),I_IMG-GLTR1,Moyle Interconnector (Generation) - GAELECTRIC ICT ROI ,South Scotland
+IC: Moyle (Generation),I_IMG-INCM1,Moyle Interconnector (Generation) -  In Commodities A/S ,South Scotland
+IC: Moyle (Generation),I_IMG-LTFD1,Moyle Interconnector (Generation) - Lightfield Ltd ,South Scotland
+IC: Moyle (Generation),I_IMG-NIRE1,Moyle Interconnector (Generation) - Northern Ireland Electricity ,South Scotland
+IC: Moyle (Generation),I_IMG-NSEN1,Moyle Interconnector (Generation) - NEAS Energy A/S ,South Scotland
+IC: Moyle (Generation),I_IMG-PRNI1,Moyle Interconnector (Generation) - NIE Energy Ltd ,South Scotland
+IC: Moyle (Generation),I_IMG-RWEM1,Moyle Interconnector (Generation) - RWE NPOWER PLC ,South Scotland
+IC: Moyle (Generation),I_IMG-RWES1,Moyle Interconnector (Generation) - RWE Supply and Trading GmbH ,South Scotland
+IC: Moyle (Generation),I_IMG-SEEL1,Moyle Interconnector (Generation) - Shell Energy Europe Limited ,South Scotland
+IC: Moyle (Generation),I_IMG-SPEM1,Moyle Interconnector (Generation) - SP Energy Management Ltd ,South Scotland
+IC: Moyle (Generation),I_IMG-SSIR1,Moyle Interconnector (Generation) - SSE (IRELAND) LIMITED ,South Scotland
+IC: Moyle (Generation),I_IMG-SSTH1,Moyle Interconnector (Generation) - SSE Energy Supply Limited ,South Scotland
+IC: Moyle (Generation),I_IMG-STAT1,Moyle Interconnector (Generation) - Statkraft Markets Gmbh ,South Scotland
+IC: Moyle (Generation),I_IMG-TRLS1,Moyle Interconnector (Generation) - Trailstone GMBH ,South Scotland
+IC: Moyle (Generation),I_IMG-VESL1,Moyle Interconnector (Generation) - VIRIDIAN ENERGY SUPPLY LTD ,South Scotland
+IC: Nemo (Demand),I_IND-ARON1,NEMO Interconnector (Demand) - J.Aron & Company ,South East England
+IC: Nemo (Demand),I_IND-AXPO1,NEMO Interconnector (Demand) - Axpo Solutions AG ,South East England
+IC: Nemo (Demand),I_IND-BKWE1,NEMO Interconnector (Demand) - BKW Energie AG ,South East England
+IC: Nemo (Demand),I_IND-BPGM1,NEMO Interconnector (Demand) - BP Gas Marketing Limited ,South East England
+IC: Nemo (Demand),I_IND-CBST1,NEMO Interconnector (Demand) - Cobblestone Energy ,South East England
+IC: Nemo (Demand),I_IND-CENT1,NEMO Interconnector (Demand) - Centrica Energy Limited (ACCORD),South East England
+IC: Nemo (Demand),I_IND-CNGS1,NEMO Interconnector (Demand) - Cenergise Limited ,South East England
+IC: Nemo (Demand),I_IND-DSKC1,NEMO Interconnector (Demand) - Danske Commodities A/S ,South East England
+IC: Nemo (Demand),I_IND-DUFE1,NEMO Interconnector (Demand - DXT Commodities SA ,South East England
+IC: Nemo (Demand),I_IND-DVAL1,NEMO Interconnector (Demand) - DVALIN ApS ,South East England
+IC: Nemo (Demand),I_IND-EDFT1,NEMO Interconnector (Demand) - EDF TRADING LIMITED ,South East England
+IC: Nemo (Demand),I_IND-EDMK1,NEMO Interconnector (Demand) - Energi Danmark A/S ,South East England
+IC: Nemo (Demand),I_IND-ELEE1,NEMO Interconnector (Demand) - Electrabel SA ,South East England
+IC: Nemo (Demand),I_IND-ELTR1,NEMO Interconnector (Demand) - ElectroRoute Energy Trading ,South East England
+IC: Nemo (Demand),I_IND-ENET1,NEMO Interconnector (Demand) - Eneco Energy Trade ,South East England
+IC: Nemo (Demand),I_IND-GASE1,NEMO Interconnector (Demand) - GDF SUEZ Trading ,South East England
+IC: Nemo (Demand),I_IND-GAZP1,NEMO Interconnector (Demand) - Gazprom Marketing and Trading Ltd ,South East England
+IC: Nemo (Demand),I_IND-INCM1,NEMO Interconnector (Demand) - In Commodities A/S ,South East England
+IC: Nemo (Demand),I_IND-KCST1,NEMO Interconnector (Demand) - KOCH SUPPLY & TRADING SARL ,South East England
+IC: Nemo (Demand),I_IND-MCRA1,NEMO Interconnector (Demand) - Mercuria Energy Trading SA ,South East England
+IC: Nemo (Demand),I_IND-MFTE1,NEMO Interconnector (Demand) - MFT Energy A/S ,South East England
+IC: Nemo (Demand),I_IND-NDPL1,NEMO Interconnector (Demand) - Nordpool European Market Coupling ,South East England
+IC: Nemo (Demand),I_IND-NEAS1,NEMO Interconnector (Demand) - NEAS Energy A/S ,South East England
+IC: Nemo (Demand),I_IND-NEMO1,NEMO Interconnector (Demand) - Nemo Link Limited ,South East England
+IC: Nemo (Demand),I_IND-NTPL1,NEMO Interconnector (Demand) - Northpool BV ,South East England
+IC: Nemo (Demand),I_IND-OMPX1,NEMO Interconnector (Demand) - Unknown ,South East England
+IC: Nemo (Demand),I_IND-OPMX1,NEMO Interconnector (Demand) - Optimax Energy GmbH ,South East England
+IC: Nemo (Demand),I_IND-PWMR1,NEMO Interconnector (Demand) - PowerMart ApS ,South East England
+IC: Nemo (Demand),I_IND-SETL1,NEMO Interconnector (Demand) - Shell Energy Europe Limited ,South East England
+IC: Nemo (Demand),I_IND-SSEG1,NEMO Interconnector (Demand) - SSE Energy Supply Limited,South East England
+IC: Nemo (Demand),I_IND-STAT1,NEMO Interconnector (Demand) - Statkraft Markets Gmbh ,South East England
+IC: Nemo (Demand),I_IND-TGPL1,NEMO Interconnector (Demand) - Total Gas & Power Ltd ,South East England
+IC: Nemo (Demand),I_IND-TRLS1,NEMO Interconnector (Demand) - Trailstone GmbH ,South East England
+IC: Nemo (Demand),I_IND-VSAL1,NEMO Interconnector (Demand) - VITOL SA ,South East England
+IC: Nemo (Demand),I_IND-VTET1,NEMO Interconnector (Demand) - Vattenfall Energy Trading ,South East England
+IC: Nemo (Demand),I_IND-XNON1,NEMO Interconnector (Demand) - XENON CAPITAL MARKETS LTD ,South East England
+IC: Nemo (Generation),I_ING-ARON1,NEMO Interconnector (Generation) - J.Aron & Company ,South East England
+IC: Nemo (Generation),I_ING-AXPO1,NEMO Interconnector (Generation) - Axpo Solutions AG ,South East England
+IC: Nemo (Generation),I_ING-BKWE1,NEMO Interconnector (Generation) - BKW Energie AG ,South East England
+IC: Nemo (Generation),I_ING-BPGM1,NEMO Interconnector (Generation) - BP Gas Marketing Limited ,South East England
+IC: Nemo (Generation),I_ING-CBST1,NEMO Interconnector (Generation) - Cobblestone Energy ,South East England
+IC: Nemo (Generation),I_ING-CENT1,NEMO Interconnector (Generation) - Centrica Energy Limited (ACCORD),South East England
+IC: Nemo (Generation),I_ING-CNGS1,NEMO Interconnector (Generation) - Cenergise Limited ,South East England
+IC: Nemo (Generation),I_ING-DSKC1,NEMO Interconnector (Generation) - Danske Commodities A/S ,South East England
+IC: Nemo (Generation),I_ING-DUFE1,NEMO Interconnector (Generation - DXT Commodities SA ,South East England
+IC: Nemo (Generation),I_ING-DVAL1,NEMO Interconnector (Generation) - DVALIN ApS ,South East England
+IC: Nemo (Generation),I_ING-EDFT1,NEMO Interconnector (Generation) - EDF TRADING LIMITED ,South East England
+IC: Nemo (Generation),I_ING-EDMK1,NEMO Interconnector (Generation) - Energi Danmark A/S ,South East England
+IC: Nemo (Generation),I_ING-ELEE1,NEMO Interconnector (Generation) - Electrabel SA ,South East England
+IC: Nemo (Generation),I_ING-ELTR1,NEMO Interconnector (Generation) - ElectroRoute Energy Trading ,South East England
+IC: Nemo (Generation),I_ING-ENET1,NEMO Interconnector (Generation) - Eneco Energy Trade ,South East England
+IC: Nemo (Generation),I_ING-GASE1,NEMO Interconnector (Generation) - GDF SUEZ Trading ,South East England
+IC: Nemo (Generation),I_ING-GAZP1,NEMO Interconnector (Generation) - Gazprom Marketing and Trading Ltd ,South East England
+IC: Nemo (Generation),I_ING-INCM1,NEMO Interconnector (Generation) - In Commodities A/S ,South East England
+IC: Nemo (Generation),I_ING-KCST1,NEMO Interconnector (Generation) - KOCH SUPPLY & TRADING SARL ,South East England
+IC: Nemo (Generation),I_ING-MCRA1,NEMO Interconnector (Generation) - Mercuria Energy Trading SA ,South East England
+IC: Nemo (Generation),I_ING-MFTE1,NEMO Interconnector (Generation) - MFT Energy A/S ,South East England
+IC: Nemo (Generation),I_ING-NDPL1,NEMO Interconnector (Generation) - Nordpool European Market Coupling ,South East England
+IC: Nemo (Generation),I_ING-NEAS1,NEMO Interconnector (Generation) - NEAS Energy A/S ,South East England
+IC: Nemo (Generation),I_ING-NEMO1,NEMO Interconnector (Generation) - Nemo Link Limited ,South East England
+IC: Nemo (Generation),I_ING-NTPL1,NEMO Interconnector (Generation) - Northpool BV ,South East England
+IC: Nemo (Generation),I_ING-OMPX1,NEMO Interconnector (Generation) - Unknown,South East England
+IC: Nemo (Generation),I_ING-OPMX1,NEMO Interconnector (Generation) - Optimax Energy GmbH ,South East England
+IC: Nemo (Generation),I_ING-PWMR1,NEMO Interconnector (Generation) - PowerMart ApS ,South East England
+IC: Nemo (Generation),I_ING-SETL1,NEMO Interconnector (Generation) - Shell Energy Europe Limited ,South East England
+IC: Nemo (Generation),I_ING-SSEG1,NEMO Interconnector (Generation) - SSE Energy Supply Limited,South East England
+IC: Nemo (Generation),I_ING-STAT1,NEMO Interconnector (Generation) - Statkraft Markets Gmbh ,South East England
+IC: Nemo (Generation),I_ING-TGPL1,NEMO Interconnector (Generation) - Total Gas & Power Ltd ,South East England
+IC: Nemo (Generation),I_ING-TRLS1,NEMO Interconnector (Generation) - Trailstone GmbH ,South East England
+IC: Nemo (Generation),I_ING-VSAL1,NEMO Interconnector (Generation) - VITOL SA ,South East England
+IC: Nemo (Generation),I_ING-VTET1,NEMO Interconnector (Generation) - Vattenfall Energy Trading ,South East England
+IC: Nemo (Generation),I_ING-XNON1,NEMO Interconnector (Generation) - XENON CAPITAL MARKETS LTD ,South East England
+IC: Scottish (Demand),I_INTOSCOT,Scottish Interconnector (Demand) - Economy Power ,South Scotland
+IC: Scottish (Demand),I_ISD-CHAP1,Scottish Interconnector (Demand) - Magnox Electric PLC ,South Scotland
+IC: Scottish (Demand),I_ISD-EDFT1,Scottish Interconnector (Demand) - EDF TRADING LIMITED ,South Scotland
+IC: Scottish (Demand),I_ISD-PGEN1,Scottish Interconnector (Demand) - E.ON UK plc ,South Scotland
+IC: Scottish (Demand),I_ISD-SPOW1,Scottish Interconnector (Demand) - SP Generation Ltd ,South Scotland
+IC: Scottish (Demand),I_ISD-SSTH1,Scottish Interconnector (Demand) - SSE Energy Supply Limited ,South Scotland
+IC: Scottish (Generation),I_ISG-CHAP1,Scottish Interconnector (Generation) - Magnox Electric PLC ,South Scotland
+IC: Scottish (Generation),I_ISG-EDFT1,Scottish Interconnector (Generation) - EDF TRADING LIMITED ,South Scotland
+IC: Scottish (Generation),I_ISG-PGEN1,Scottish Interconnector (Generation) - E.ON UK plc ,South Scotland
+IC: Scottish (Generation),I_ISG-SPOW1,Scottish Interconnector (Generation) - SP Generation Ltd ,South Scotland
+IC: Scottish (Generation),I_ISG-SSTH1,Scottish Interconnector (Generation) - SSE Energy Supply Limited ,South Scotland

@@ -4,8 +4,11 @@ from django.http import HttpResponse, JsonResponse
 from django.db.models import Sum
 from django.shortcuts import render
 import csv
+import requests
 from django.core import serializers
 from BMRA.models import BMU, FPN, FPNlevel
+import pandas as pd
+from GBEnergyDataManager.settings import ELEXON_KEY, LIVE_BOA_URL
 
 
 def test_chart(request):
@@ -98,4 +101,25 @@ def regional_demand(request):
                          x['fpn__bmu__type__supertype'],
                          x['total']])
 
+    return response
+
+
+def live_boas(request):
+    """
+    generates list of Bid-Offer Acceptances from live BMRS datafeed
+    """
+    boa_feed = requests.get(LIVE_BOA_URL.format(ELEXON_KEY))
+    current_boas = pd.read_xml(boa_feed.text, xpath=".//item")
+
+    response = HttpResponse(
+        content_type='text/csv',
+        # headers={'Content-Disposition': 'attachment; filename="regional_generation_bytype.csv"'},
+    )
+    writer = csv.writer(response, quoting=csv.QUOTE_NONE)
+    writer.writerow(['bmu_id', 'bmu_type', 'intensity'])
+    for key, current_BOA in current_boas.to_dict(orient='index').items():
+        bmu = BMU.objects.get(id=current_BOA['bmuName'])
+        writer.writerow([current_BOA['bmuName'],
+                         bmu.ft,
+                         0])
     return response
