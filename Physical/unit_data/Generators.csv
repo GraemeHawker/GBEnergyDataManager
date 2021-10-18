@@ -1278,3 +1278,25 @@ Virtual parties,V__KGAZP001,South Wales GSP Group - Gazprom Marketing and Tradin
 Virtual parties,V__KGAZP002,South Wales GSP Group - Gazprom Marketing and Trading Ltd,South Wales
 Virtual parties,V__MADEL001,Yorkshire GSP Group - Adela Energy Limited ,Yorkshire
 Wind (Onshore),E_BTUIW-3,Beinn An Tuirc III Wind Farm ,North Scotland
+Battery,E_ARNKB-2,Hutton Battery Storage,North West England
+Wind (Onshore),E_BLARW-1,Blary Hill Wind Farm,North Scotland
+Battery,E_CONTB-1,Contego Battery Storage,South East England
+Wind (Onshore),T_AKGLW-3,Aikengall 2A Wind Farm,South Scotland
+Demand,T_MILTON-1,Didcot Data Centre,Southern England
+Demand,T_MILTON-2,Didcot Data Centre,Southern England
+Wind (Offshore),T_MOWEO-1,Moray East Offshore Wind Farm 1,North Scotland
+Wind (Offshore),T_MOWEO-2,Moray East Offshore Wind Farm 2,North Scotland
+Wind (Offshore),T_MOWEO-3,Moray East Offshore Wind Farm 3,North Scotland
+Demand,T_NCTBM-1,New Cross SGT4 Tertiary - Tunnel Boring,London
+Wind (Onshore),T_TWSHW-1,Twentyshilling Hill Wind Farm,South Scotland
+Battery,T_WHLWB-1,Whitelee Wind Farm Battery,South Scotland
+Virtual parties,V__BGAZP001,East Midlands GSP Group - Gazprom Marketing and Trading Ltd,East Midlands
+Virtual parties,V__BGBLO001,East Midlands GSP Group - GridBeyond Ltd.,East Midlands
+Virtual parties,V__EGAZP001,Midlands GSP Group - Gazprom Marketing and Trading Ltd,Midlands
+Virtual parties,V__EGBLO001,Midlands GSP Group - GridBeyond Ltd.,Midlands
+Virtual parties,V__FGBLO001,North Eastern GSP Group - GridBeyond Ltd.,North East England
+Virtual parties,V__GGAZP001,North Western GSP Group - Gazprom Marketing and Trading Ltd,North West England
+Virtual parties,V__LCEND001,South Western GSP Group - Wavehub Offshore Wind and Wave,South West England
+Virtual parties,V__MEROV001,Yorkshire GSP Group - Erova Energy Ltd,Yorkshire
+Virtual parties,V__MGAZP001,Yorkshire GSP Group - Gazprom Marketing and Trading Ltd,Yorkshire
+Virtual parties,V__MGBLO001,Yorkshire GSP Group - GridBeyond Ltd.,Yorkshire

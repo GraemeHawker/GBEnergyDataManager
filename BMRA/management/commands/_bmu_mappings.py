@@ -57,6 +57,8 @@ type_mapping = {
     'IC: Moyle (Generation)' : 'ICMOY',
     'IC: Nemo (Generation)' : 'ICNEM',
     'IC: Scottish (Generation)' : 'ICSCO',
+    'IC: North Sea Link (Generation)' : 'ICNOR',
+    'IC: North Sea Link (Demand)' : 'ICNOR',
     'Unclassified' : 'UNKNO',
     'Unknown' : 'UNKNO'
 }

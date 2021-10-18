@@ -194,7 +194,7 @@ IC: BritNed (Generation),I_IBG-MQBK1,Britned Interconnector (Generation) - Macqu
 IC: BritNed (Generation),I_IBG-MSCG1,Britned Interconnector (Generation) - Morgan Stanley ,South East England
 IC: BritNed (Generation),I_IBG-MSCGI,Unknown ,South East England
 IC: BritNed (Generation),I_IBG-NBCF1,Britned Interconnector (Generation) - Noble Clean Fuels Limited ,South East England
-IC: BritNed (Demand),I_IBG-NEAS1,Britned Interconnector (Generation) - NEAS Energy A/S ,South East England
+IC: BritNed (Generation),I_IBG-NEAS1,Britned Interconnector (Generation) - NEAS Energy A/S ,South East England
 IC: BritNed (Generation),I_IBG-NEHO1,Britned Interconnector (Generation) - Nordic Energy House ApS ,South East England
 IC: BritNed (Generation),I_IBG-NTPL1,Britned Interconnector (Generation) - Northpool BV ,South East England
 IC: BritNed (Generation),I_IBG-OMPX1,Britned Interconnector (Generation) - Unknown,South East England
@@ -625,3 +625,26 @@ IC: Scottish (Generation),I_ISG-EDFT1,Scottish Interconnector (Generation) - EDF
 IC: Scottish (Generation),I_ISG-PGEN1,Scottish Interconnector (Generation) - E.ON UK plc ,South Scotland
 IC: Scottish (Generation),I_ISG-SPOW1,Scottish Interconnector (Generation) - SP Generation Ltd ,South Scotland
 IC: Scottish (Generation),I_ISG-SSTH1,Scottish Interconnector (Generation) - SSE Energy Supply Limited ,South Scotland
+IC: IFA (Demand),I_I2D-EPCO1,IFA2 Interconnector (Demand) - EP Commodities A.S.,South East England
+IC: IFA (Demand),I_I2D-HELI1,IFA2 Interconnector (Demand) - Helios Power Trading A.S.,South East England
+IC: IFA (Demand),I_I2D-MQBN1,IFA2 Interconnector (Demand) - Macquarie Bank Ltd.,South East England
+IC: IFA (Demand),I_I2D-NITR1,IFA2 Interconnector (Demand) - Nitor A.S.,South East England
+IC: IFA (Generation),I_I2G-EPCO1,IFA2 Interconnector (Generation) - EP Commodities A.S.,South East England
+IC: IFA (Generation),I_I2G-HELI1,IFA2 Interconnector (Generation) - Helios Power Trading A.S.,South East England
+IC: IFA (Generation),I_I2G-MQBN1,IFA2 Interconnector (Generation) - Macquarie Bank Ltd.,South East England
+IC: IFA (Generation),I_I2G-NITR1,IFA2 Interconnector (Generation) - Nitor A.S.,South East England
+IC: BritNed (Demand),I_IBD-CEZC1,Britned Interconnector (Demand) - CEZ A.S.,South East England
+IC: BritNed (Demand),I_IBD-HELI1,Britned Interconnector (Demand) - Helios Power Trading A.S.,South East England
+IC: BritNed (Generation),I_IBG-CEZC1,Britned Interconnector (Generation) - CEZ A.S.,South East England
+IC: BritNed (Generation),I_IBG-HELI1,Britned Interconnector (Generation) - Helios Power Trading A.S.,South East England
+IC: North Sea Link (Generation),I_IEG-NSL1,North Sea Link (Generation) - National Grid North Sea Link,North East England
+IC: IFA (Demand),I_IFD-EPCO1,IFA1 Interconnector (Demand) - EP Commodities A.S.,South East England
+IC: IFA (Demand),I_IFD-HELI1,IFA1 Interconnector (Demand) - Helios Power Trading A.S.,South East England
+IC: IFA (Demand),I_IFD-MQBN1,IFA1 Interconnector (Demand) - Macquarie Bank Ltd.,South East England
+IC: IFA (Generation),I_IFG-EPCO1,IFA1 Interconnector (Generation) - EP Commodities A.S.,South East England
+IC: IFA (Generation),I_IFG-HELI1,IFA1 Interconnector (Generation) - Helios Power Trading A.S.,South East England
+IC: IFA (Generation),I_IFG-MQBN1,IFA1 Interconnector (Generation) - Macquarie Bank Ltd.,South East England
+IC: Nemo (Demand),I_IND-CEZC1,NEMO Interconnector (Demand) - CEZ A.S.,South East England
+IC: Nemo (Generation),I_ING-CEZC1,NEMO Interconnector (Generation) - CEZ A.S.,South East England
+IC: North Sea Link (Demand),I_ISD-NDPL1,North Sea Link (Demand) - Nordpool Market Coupling,North East England
+IC: North Sea Link (Generation),I_ISG-NDPL1,North Sea Link (Generation) - Nordpool Market Coupling,North East England
