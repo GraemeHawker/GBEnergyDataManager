@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+import math
+
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Sum
 from django.shortcuts import render
@@ -8,6 +11,8 @@ import requests
 from django.core import serializers
 from BMRA.models import BMU, FPN, FPNlevel
 import pandas as pd
+import numpy as np
+import os
 from GBEnergyDataManager.settings import ELEXON_KEY, LIVE_BOA_URL
 
 
@@ -24,7 +29,18 @@ def d3_test2(request):
 
 
 def vega_test(request):
-    return render(request, 'vega_test.html')
+    local_dir = os.path.dirname(__file__)
+    regional_data = pd.read_csv(os.path.join(local_dir, 'static/BMRA/regional_data_3.csv'))
+    regional_data.rename(columns={'region': 'GSP Region',
+                                  'marginal_region': 'Marginal Region',
+                                  'marginal_bmu': 'Marginal BMU',
+                                  'bmu_name': 'Name',
+                                  'bmu_type': 'Type',
+                                  'intensity': 'Emissions (gCO2/kWh)'},
+                         inplace=True)
+    context = {'regional_data': regional_data.to_html(index=False,
+                                                      classes='styled-table')}
+    return render(request, 'vega_test.html', context)
 
 
 def test_chart_data(request):

@@ -80,6 +80,22 @@ class DISBSAD(models.Model):
                              decimal_places=3,
                              verbose_name='Adjustment volume',
                              help_text='MWh')
+    px = models.CharField(max_length=100,
+                          blank=True,
+                          verbose_name='The name or unique identifier of the person who provides Balancing Services outside of the Balancing Mechanism',
+                          help_text='')
+    ax = models.CharField(max_length=100,
+                          blank=True,
+                          verbose_name='The name or unique identifier of the asset providing the relevant Balancing Services Adjustment Action',
+                          help_text='')
+    tx = models.CharField(max_length=100,
+                          blank=True,
+                          verbose_name='Whether the Balancing Service was procured by NETSO through a tender',
+                          help_text='')
+    sx = models.CharField(max_length=100,
+                          blank=True,
+                          verbose_name='The type of Balancing Service procured',
+                          help_text='')
 
     class Meta:
         db_table = 'bmra_disbsad'

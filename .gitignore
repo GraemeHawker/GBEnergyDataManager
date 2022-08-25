@@ -122,3 +122,6 @@ dmypy.json
 # password filter for bfg
 sensitive_strings.txt
 old scripts/
+
+# pycharm
+.idea

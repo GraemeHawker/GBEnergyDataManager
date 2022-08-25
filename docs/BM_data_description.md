@@ -473,6 +473,8 @@ Implemented on 2009-11-09 as part of P217
 
 https://www.elexon.co.uk/mod-proposal/p217-revised-tagging-process-and-calculation-of-cash-out-prices/
 
+New fields (PX,AX,TX,SX) added as part of P399 on 2021-11-04 https://www.elexon.co.uk/mod-proposal/p399/
+
 | Fieldname | Datatype | Description | Units | Comments |
 | --------- | -------- | ----------- | ----- | -------- |
 |AI|integer|Adjustment Identifier|Unique integer||
@@ -480,12 +482,16 @@ https://www.elexon.co.uk/mod-proposal/p217-revised-tagging-process-and-calculati
 |PF|char(1) boolean|STOR Flag|'T'/'F'|A value of ‘T’ indicates where an Acceptance or Balancing Services Adjustment Action item should be considered being related to a STOR Provider|
 |JC|decimal(10,2)|Adjustment cost|£|Blank where zero / null if unpriced|
 |JV|decimal(10,3)|Adjustment volume|MWh|&nbsp;|
+|PX|string|BSAD Party ID| |The name or unique identifier of the person who provides Balancing Services outside of the Balancing Mechanism|
+|AX|string|BSAD Asset ID| |The name or unique identifier of the asset providing the relevant Balancing Services Adjustment Action|
+|TX|string|Service Type| |Whether the Balancing Service was procured by NETSO through a tender| 
+|SX|string|Tendered Status| |The type of Balancing Service procured|
 
 Index: SD, SP
 
 Example:
 
-`2017:04:21:00:09:12:GMT: subject=BMRA.SYSTEM.DISBSAD, message={SD=2017:04:21:00:00:00:GMT,SP=5,AI=4,SO=T,PF=F,JC=9360.0,JV=120.0}`
+`2021:11:04:00:09:27:GMT: subject=BMRA.SYSTEM.DISBSAD, message={SD=2021:11:04:00:00:00:GMT,SP=3,AI=12,SO=F,PF=F,JC=-1489.75,JV=-12.5,PX=Trailstone Renewables GmbH,AX=I2D-TRLS1,TX=Tendered,SX=Energy}`
 
 #### NETBSAD: Balancing Services Adjustment Data
 Implemented on 2009-11-09 as part of P217

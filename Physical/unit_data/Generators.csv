@@ -669,6 +669,7 @@ Peaker,E_RAKE-1,Rake Lane Peaker ,North West England
 Demand,E_RATS-S,Ratcliffe on Soar ,East Midlands
 Peaker,E_RDFRB-1,Redfield Road B ,East Midlands
 Demand,E_RDFRD-1,Redfield Road ,East Midlands
+EfW,E_RDSCR-1,Redscar,North West England
 Peaker,E_REDGT-1,Redditch ,Midlands
 Hydro,E_RHEI-1,Rheidol ,Merseyside and North Wales
 Hydro,E_RHEI-2,Rheidol ,Midlands
@@ -698,6 +699,7 @@ Biomass,E_TGP1,Tilbury Green Power One ,Eastern
 Demand,E_THNTD-1,Thanet Offshore Wind Demand ,South East England
 Wind (Offshore),E_THNTW-1,Thanet Offshore Wind Unit 1 ,South East England
 Wind (Offshore),E_THNTW-2,Thanet Offshore Wind 2 ,South East England
+Peaker,E_THRNL-1,Thornhill Power Station,Yorkshire
 Wind (Onshore),E_TLYMW-1,Tullymurdoch Wind Farm ,North Scotland
 Peaker,E_TRFPK-1,Trafalgar Park ,East Midlands
 Wind (Onshore),E_TULWW-1,Tullo Windfarm ,North Scotland
@@ -1300,3 +1302,50 @@ Virtual parties,V__LCEND001,South Western GSP Group - Wavehub Offshore Wind and 
 Virtual parties,V__MEROV001,Yorkshire GSP Group - Erova Energy Ltd,Yorkshire
 Virtual parties,V__MGAZP001,Yorkshire GSP Group - Gazprom Marketing and Trading Ltd,Yorkshire
 Virtual parties,V__MGBLO001,Yorkshire GSP Group - GridBeyond Ltd.,Yorkshire
+Wind (Onshore),T_KENNW-1,Kennoxhead Wind Farm,South Scotland
+Stabiliser,T_KTHRS-1,Keith Greener Grid Park 1,North Scotland
+Stabiliser,T_KTHRS-2,Keith Greener Grid Park 2,North Scotland
+Battery,E_BURWB-1,Burwell Battery,Eastern
+Virtual parties,V__EFLEX001,Midlands GSP Group - Flexitricity Ltd,Midlands
+Battery,E_BARNB-1,Hunningley Stairfoot Battery,Yorkshire
+Peaker,E_CROYD-2,Whitetower Energy Croydon,South East England
+Peaker,E_DERBY-1,Whitetower Energy Derby,East Midlands
+Peaker,E_EXETR-2,Whitetower Energy Exeter,South West England
+Stabiliser,E_RASSP-1,Rassau Synchronous Compensator,South Wales
+Peaker,E_THRNL-1,Whitetower Energy Thornhill,Yorkshire
+Peaker,E_VKING-2,Whitetower Energy Viking,North East England
+Wind (Onshore),T_DALQW-1,Dalquhandy Wind Farm,South Scotland
+Wind (Offshore),T_HOWBO-1,Hornsea B Offshore Wind Farm,Yorkshire
+Wind (Offshore),T_HOWBO-2,Hornsea B Offshore Wind Farm,Yorkshire
+Stabiliser,T_KILLSC-1,Killingholme Synchronous Compensator,Yorkshire
+Stabiliser,T_KILLSC-2,Killingholme Synchronous Compensator,Yorkshire
+Stabiliser,T_LRDSC-1,Lister Drive Synchronous Compensator,Merseyside and North Wales
+Stabiliser,T_LRDSC-2,Lister Drive Synchronous Compensator,Merseyside and North Wales
+Battery,T_PINFB-1,Capenhurst Battery 1,Merseyside and North Wales
+Battery,T_PINFB-2,Capenhurst Battery 2,Merseyside and North Wales
+Battery,T_PINFB-3,Capenhurst Battery 3,Merseyside and North Wales
+Battery,T_PINFB-4,Capenhurst Battery 4,Merseyside and North Wales
+Demand,T_PINFD-5,Capenhurst Battery Demand 1,Merseyside and North Wales
+Demand,T_PINFD-6,Capenhurst Battery Demand 1,Merseyside and North Wales
+Demand,T_SGRWD-1,Seagreen 1 Offshore Windfarm Demand 1,North Scotland
+Wind (Offshore),T_SGRWO-6,Seagreen 1 Offshore Windfarm 6,North Scotland
+Wind (Onshore),T_SOKYW-1,South Kyle 1 Wind Farm,South Scotland
+Virtual parties,V__AENEL001,Eastern GSP Group - Enel X UK Ltd,Eastern
+Virtual parties,V__AZENO002,Eastern GSP Group - Zenobe,Eastern
+Virtual parties,V__BCEND002,East Midlands GSP Group - Centrica Business Solutions,East Midlands
+Virtual parties,V__BCEND004,East Midlands GSP Group - Centrica Business Solutions,East Midlands
+Virtual parties,V__BFLEX002,East Midlands GSP Group - Flexitricity Ltd,East Midlands
+Virtual parties,V__DWELS001,Merseyside and North Wales GSP Group - Welsh Power Group Ltd,Merseyside and North Wales
+Virtual parties,V__DWELS002,Merseyside and North Wales GSP Group - Welsh Power Group Ltd,Merseyside and North Wales
+Virtual parties,V__EFLEX001,Midlands GSP Group - Flexitricity Ltd,Midlands
+Virtual parties,V__GWELS001,North Western GSP Group - Welsh Power Group Ltd,North West England
+Virtual parties,V__HADEL002,Southern GSP Group - Adela Energy Limited ,Southern England
+Virtual parties,V__HWELS001,Southern GSP Group - Welsh Power Group Ltd,Southern England
+Virtual parties,V__HWELS002,Southern GSP Group - Welsh Power Group Ltd,Southern England
+Virtual parties,V__JZENO001,South Eastern GSP Group - Zenobe,South East England
+Virtual parties,V__KWELS001,South Wales GSP Group - Welsh Power Group Ltd,South Wales
+Virtual parties,V__KWELS002,South Wales GSP Group - Welsh Power Group Ltd,South Wales
+Virtual parties,V__LCEND005,South Western GSP Group - Centrica Business Solutions ,South West England
+Virtual parties,V__MCEND002,Yorkshire GSP Group - Centrica Business Solutions,Yorkshire
+Virtual parties,V__MFLEX001,Yorkshire GSP Group - Flexitricity Ltd,Yorkshire
+Virtual parties,V__NFLEX002,South Scotland GSP Group - Flexitricity Limited ,South Scotland

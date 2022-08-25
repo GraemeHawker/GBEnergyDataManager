@@ -37,22 +37,25 @@ class Command(BaseCommand):
             for key, value in combined_insert_log['duplicate_msg'].items():
                 formatted_report += '\n {} {} messages duplicates'.format(key, value)
         except Exception as e:
+            combined_insert_log = {'new_bmus': 0}
             email_log[dt.datetime.now()] = 'BMRA processing failed with error: {} {}'.format(type(e).__name__, e.args)
+            print(email_log)
         try:
             p114_processed_log = process_p114_date(date)
             email_log[dt.datetime.now()] = 'P114 processing completed'
         except Exception as e:
             email_log[dt.datetime.now()] = 'P114 processing failed with error: {} {}'.format(type(e).__name__, e.args)
+            print(email_log)
         self.stdout.write('Finished: {:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now()))
         email_log[dt.datetime.now()] = 'Finished'
         formatted_report += '\n' + '\n'.join("{:%Y-%m-%d %H:%M:%S} {}".format(k, v) for (k, v) in email_log.items())
         subject = 'File processing report for {:%Y-%m-%d}'.format(date)
         if len(combined_insert_log['new_bmus']) > 0:
             subject = 'NEW BMUs - ' + subject
-        send_mail(
-            subject,
-            formatted_report,
-            'graeme.hawker@strath.ac.uk',
-            ['graeme.hawker@strath.ac.uk'],
-            fail_silently=False,
-        )
+        #send_mail(
+        #    subject,
+        #    formatted_report,
+        #    'graeme.hawker@strath.ac.uk',
+        #    ['graeme.hawker@strath.ac.uk'],
+        #    fail_silently=False,
+        #)

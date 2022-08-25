@@ -1,0 +1,15 @@
+region,marginal_region,marginal_bmu,bmu_name,bmu_type,intensity
+North Scotland,North Scotland,T_ERRO-1,Errochty G1 ,Hydro,0.0
+South Scotland,North West England,T_CARR-1,Carrington Unit 1 ,CCGT,374.8
+North West England,North West England,T_CARR-1,Carrington Unit 1 ,CCGT,374.8
+North East England,East Midlands,T_RATS-4,Ratcliffe on Soar ,Coal,827.9
+Yorkshire and the Humber,East Midlands,T_RATS-4,Ratcliffe on Soar ,Coal,827.9
+Merseyside and North Wales,Merseyside and North Wales,T_CNQPS-2,Connahs Quay ,CCGT,381.3
+South Wales,South Wales,T_PEMB-11,Pembroke Power Station - Unit 1 ,CCGT,374.8
+West Midlands,South East England,T_GRAI-7,Grain CHP ,CHP,366.0
+East Midlands,East Midlands,T_RATS-4,Ratcliffe on Soar ,Coal,827.9
+South West England,South West England,T_SEAB-1,Seabank 1 ,CCGT,388.0
+South England,South East England,T_GRAI-7,Grain CHP ,CHP,366.0
+East England,South East England,T_GRAI-7,Grain CHP ,CHP,366.0
+London,London,T_EECL-1,Enfield Energy ,CCGT,391.4
+South East England,South East England,T_GRAI-7,Grain CHP ,CHP,366.0

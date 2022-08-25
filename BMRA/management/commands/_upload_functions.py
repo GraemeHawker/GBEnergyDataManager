@@ -44,8 +44,13 @@ def message_part_to_points(raw_message_part,
     # subdivide into iterables each containing single set of key,value pairs
     # see https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
     if len(raw_message_part.split(',')) % no_points != 0:
-        raise ValueError("Unexpected number of key/value pairs %s"
-                         % raw_message_part)
+        raise ValueError("Unexpected number of key/value pairs for message_type %s \
+         and message_subtype %s with expected no_points %d and length %d: %s"
+                         % (message_type,
+                         message_subtype,
+                         no_points,
+                         len(raw_message_part.split(',')),
+                         raw_message_part))
     data_length = len(raw_message_part.split(',')) // no_points
     for data_set in zip_longest(*[iter(raw_message_part.split(','))] * data_length,
                                 fillvalue='error'):
@@ -153,6 +158,8 @@ def message_to_dict(raw_message):
         if key in ['NP', 'NR']:  # process multiple datapoints
             raw_message_part = raw_message[raw_message.rfind(key):-1]
             raw_message_part = raw_message_part[raw_message_part.find(',') + 1:]
+            #if raw_message_part.split(',')[0] == 'TS=2022:06:29:22:00:00:GMT':
+            #    print(raw_message)
             message_dict['data_points'] = message_part_to_points(
                 raw_message_part,
                 int(value.strip()),
@@ -1348,14 +1355,25 @@ def insert_system_data(message_dict):
 
         # email mailing list with contents if not in ignored list
         if not any(sysmsg in message_dict['SW'] for sysmsg in IGNORED_SYSWARN):
-            send_mail(
+            from django.core.mail import EmailMessage
+            email = EmailMessage(
+                subject='BMRA System Message Received',
+                body='{:%Y-%m-%d %H:%M:%S} {}'.format(message_dict['TP'],
+                                                 message_dict['SW']),
+                from_email='graeme@lutralutra.co.uk',
+                to=['graeme.hawker@strath.ac.uk'],
+                reply_to=['graeme@lutralutra.co.uk'],
+                headers={'Content-Type': 'text/plain'},
+            )
+            #email.send()
+            '''send_mail(
                 'BMRA System Message Received',
                 '{:%Y-%m-%d %H:%M:%S} {}'.format(message_dict['TP'],
                                                  message_dict['SW']),
                 EMAIL_HOST_USER,
                 SYS_WARN_EMAIL_RECIPIENTS,
                 fail_silently=False,
-            )
+            )'''
         insert_log['new_entries'] = {'syswarn': 1}
         return insert_log
 

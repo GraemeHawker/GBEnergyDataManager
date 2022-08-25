@@ -12,6 +12,7 @@ testing sending email
 from django.core.management.base import BaseCommand, CommandError
 #from GBEnergyDataManager.settings import BASE_DIR, DATABASES, NETA_USER, NETA_PWD, NETA_BMU_LIST_URL, DATA_SUMMARY_LOCS
 from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 
 
 class Command(BaseCommand):
@@ -21,10 +22,12 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        send_mail(
-            'test email',
-            'test message',
-            'graeme.hawker@strath.ac.uk',
-            ['graeme.hawker@strath.ac.uk'],
-            fail_silently=False,
+        email = EmailMessage(
+            subject='test',
+            body='test',
+            from_email='graeme@lutralutra.co.uk',
+            to=['graeme.hawker@strath.ac.uk'],
+            reply_to=['graeme@lutralutra.co.uk'],
+            headers={'Content-Type': 'text/plain'},
         )
+        email.send()

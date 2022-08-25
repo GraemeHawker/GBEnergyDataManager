@@ -23,3 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^BMRA/', include('BMRA.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+admin.site.site_title = "Marginal Emissions Calculator"
+admin.site.site_header = "Marginal Emissions Calculator"
+admin.site.index_title = "Site Administration"

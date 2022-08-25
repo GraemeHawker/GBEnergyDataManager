@@ -115,6 +115,50 @@
           from {opacity: 0;}
           to {opacity: 1;}
         }
+
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .styled-table th {
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        .styled-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+
+
+
     </style>
 {% endblock %}
 
@@ -122,17 +166,28 @@
     <div class="container">
         <header class="header__main">
             <div class="header_logo">
-                <img class="strath_logo" src="{% static 'BMRA/img/strath_logo_150_125.jpg' %}">
+                <img class="strath_logo" src="{% static 'BMRA/img/CHP-MM_logo.png' %}">
             </div>
-            <div class="header_title">
-                <h1>Marginal Emissions Calculator</h1>
-            </div>
-
         </header>
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'Live')" id="defaultOpen">Live</button>
             <button class="tablinks" onclick="openTab(event, 'Historical')">Historical</button>
             <button class="tablinks" onclick="openTab(event, 'Future')">Future Scenarios</button>
+            <a href="{% url 'admin:index' %}"><button class="tablinks" ">Site Admin</button></a>
+        </div>
+        <div id="Live" class="tabcontent">
+            <main class="container__main">
+                <aside class="container__left">
+                    <div id="GB_live_map"></div>
+                </aside>
+
+                <article class="container__middle">
+                    {{ regional_data|safe  }}
+                </article>
+                <nav class="container__right">
+
+                </nav>
+            </main>
         </div>
         <div id="Historical" class="tabcontent">
             <form id="filterForm">
@@ -185,9 +240,58 @@
             </main>
         </div>
         <footer>
-
         </footer>
     </div>
+    <script>
+    // Assign the specification to a local variable vlSpec.
+        var vlSpec = {
+            $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+            width: 500,
+            height: 800,
+            data: {
+                url: "{%  static 'BMRA/DNO_min.json' %}",
+                format: {property: "features"}
+            },
+            transform: [{
+                lookup: "id",
+                from: {
+                    data: {
+                        url: "{%  static 'BMRA/live_MEs_3.csv' %}"
+                    },
+                    key: "id",
+                    fields: ["value"]
+                },
+
+            },
+                {calculate: 'datum.value', as: "gCO2/kWh"}],
+            projection: {type: "mercator"},
+            mark: {type: "geoshape",
+                stroke: "#757575",
+                strokeWidth: 0.5
+            },
+            encoding: {
+                fill: {
+                    field: "gCO2/kWh",
+                    type: "quantitative",
+                    scale: {scheme: "yelloworangered",
+                            domain: [0,1000]}
+                },
+                tooltip: [{field: "properties.gsp_group", type: "nominal", title: "GSP Group"},
+                          {field: "value", type: "quantitative", title: "gCO2/kWh"}]
+
+            },
+            config: {
+                style: {
+                    cell: {
+                        stroke: "transparent"
+                    }
+                }
+            }
+        };
+
+        // Embed the visualization in the container with id `vis`
+        vegaEmbed('#GB_live_map', vlSpec, {"actions": false, "mode": "vega-lite"});
+    </script>
     <script>
         // Assign the specification to a local variable vlSpec.
         var vlSpec = {

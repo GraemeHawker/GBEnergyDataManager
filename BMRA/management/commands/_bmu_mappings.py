@@ -22,6 +22,7 @@ type_mapping = {
     'Nuclear' : 'NUC',
     'Rail' : 'RAIL',
     'Flywheel' : 'FLY',
+    'Stabiliser' : 'STAB',
     'Coal' : 'COAL',
     'PS' : 'PS',
     'Virtual parties' : 'VIRT',

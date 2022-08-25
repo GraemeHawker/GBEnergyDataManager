@@ -49,7 +49,7 @@ key=INSERT_KEY&filename=tib_messages.2018-09-15.gz
             +'-'+str('%02d' %(int(curr_date.month),))
             +'-'+str('%02d' %(int(curr_date.day),))+'.gz')
         curr_date += dt.timedelta(days=1)
-
+    #print(filename_list)
     return filename_list
 
 def download_bmra_file(filename, overwrite):
@@ -107,6 +107,7 @@ def process_bmra_file(date):
             if message_dict is not None:
                 if message_dict['message_subtype'] not in []:
                     insert_log = insert_data(message_dict)
+                    #insert_log = []
                     if 'new_bmu' in insert_log:
                         combined_insert_log['new_bmus'].append(insert_log['new_bmu'])
                     if 'new_entries' in insert_log:
