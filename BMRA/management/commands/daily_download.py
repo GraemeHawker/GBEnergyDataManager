@@ -15,6 +15,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('days_back', nargs='?', type=int, default=0)
+        parser.add_argument('--no_insert', action='store_true', help='process but don\'t insert into db')
 
     def handle(self, *args, **options):
         email_log = {}
@@ -25,7 +26,7 @@ class Command(BaseCommand):
         self.stdout.write('downloading data for {:%Y-%m-%d}'.format(date))
         email_log[dt.datetime.now()] = 'downloading data for {:%Y-%m-%d}'.format(date)
         try:
-            combined_insert_log = process_bmra_file(date)
+            combined_insert_log = process_bmra_file(date, no_insert=options['no_insert'])
             email_log[dt.datetime.now()] = 'BMRA processing completed'
             formatted_report += '\n {} BMRA messages processed'.format(combined_insert_log['count'])
             for new_bmu in combined_insert_log['new_bmus']:
@@ -41,7 +42,7 @@ class Command(BaseCommand):
             email_log[dt.datetime.now()] = 'BMRA processing failed with error: {} {}'.format(type(e).__name__, e.args)
             print(email_log)
         try:
-            p114_processed_log = process_p114_date(date)
+            p114_processed_log = process_p114_date(date, no_insert=options['no_insert'])
             email_log[dt.datetime.now()] = 'P114 processing completed'
         except Exception as e:
             email_log[dt.datetime.now()] = 'P114 processing failed with error: {} {}'.format(type(e).__name__, e.args)

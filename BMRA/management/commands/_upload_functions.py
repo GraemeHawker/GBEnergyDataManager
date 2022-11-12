@@ -12,7 +12,8 @@ from ._ignored_message_list import IGNORED_SYSMSG, IGNORED_SYSWARN
 from GBEnergyDataManager.settings import SYS_WARN_EMAIL_RECIPIENTS, EMAIL_HOST_USER
 
 
-def message_part_to_points(raw_message_part,
+def message_part_to_points(raw_message,
+                           raw_message_part,
                            no_points,
                            message_type,
                            message_subtype):
@@ -23,6 +24,10 @@ def message_part_to_points(raw_message_part,
 
     Parameters
     ----------
+
+    raw_message : string
+        the original full message string
+
     raw_message_part : string
         the BM datapoints substring
 
@@ -44,6 +49,7 @@ def message_part_to_points(raw_message_part,
     # subdivide into iterables each containing single set of key,value pairs
     # see https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
     if len(raw_message_part.split(',')) % no_points != 0:
+        print(raw_message)
         raise ValueError("Unexpected number of key/value pairs for message_type %s \
          and message_subtype %s with expected no_points %d and length %d: %s"
                          % (message_type,
@@ -57,6 +63,7 @@ def message_part_to_points(raw_message_part,
         data_dict[data_set_count] = dict()
         for data_point in data_set:
             if data_point == 'error':
+                print(raw_message)
                 raise ValueError("Unexpected number of key/value pairs %s"
                                  % raw_message_part)
             key, value = data_point.split('=')
@@ -64,6 +71,7 @@ def message_part_to_points(raw_message_part,
                 data_dict[data_set_count][key.strip()] = FIELD_CASTING_FUNCS[
                     key.strip()](value.strip())
             else:
+                print(raw_message)
                 raise ValueError('message key %s not recognised for \
                 message type %s and message subtype %s %s' %
                                  (key, message_type,
@@ -158,9 +166,10 @@ def message_to_dict(raw_message):
         if key in ['NP', 'NR']:  # process multiple datapoints
             raw_message_part = raw_message[raw_message.rfind(key):-1]
             raw_message_part = raw_message_part[raw_message_part.find(',') + 1:]
-            #if raw_message_part.split(',')[0] == 'TS=2022:06:29:22:00:00:GMT':
-            #    print(raw_message)
+            #if raw_message_part.split(',')[0] == 'TS=2022:09:22:19:00:00:GMT':
+                #print(raw_message)
             message_dict['data_points'] = message_part_to_points(
+                raw_message,
                 raw_message_part,
                 int(value.strip()),
                 message_type,
@@ -169,6 +178,7 @@ def message_to_dict(raw_message):
         elif key in ACCEPTED_MESSAGES[message_type][message_subtype]:
             message_dict[key] = FIELD_CASTING_FUNCS[key](value)
         else:
+            print(raw_message)
             raise ValueError('message key %s not recognised for \
             message type %s and message subtype %s %s' %
                              (key, message_dict['message_type'],

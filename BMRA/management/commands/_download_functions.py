@@ -79,7 +79,7 @@ def download_bmra_file(filename, overwrite):
             BMRA_INPUT_DIR + filename)
 
 @transaction.atomic #all succeeds for single day or rollback
-def process_bmra_file(date):
+def process_bmra_file(date, no_insert=False):
     """
     downloads and processes single BMRA file corresponding to given date
 
@@ -106,8 +106,10 @@ def process_bmra_file(date):
             message_dict = message_to_dict(message+'}')
             if message_dict is not None:
                 if message_dict['message_subtype'] not in []:
-                    insert_log = insert_data(message_dict)
-                    #insert_log = []
+                    if no_insert:
+                        insert_log = []
+                    else:
+                        insert_log = insert_data(message_dict)
                     if 'new_bmu' in insert_log:
                         combined_insert_log['new_bmus'].append(insert_log['new_bmu'])
                     if 'new_entries' in insert_log:

@@ -69,7 +69,7 @@ def get_p114_file(filename, overwrite=True):
         urllib.request.urlretrieve(remote_url,
                                    P114_INPUT_DIR + filename)
 
-def process_p114_date(p114_date):
+def process_p114_date(p114_date, no_insert=False):
     """
     Retrieves data for nominated day and processes it
 
@@ -89,6 +89,9 @@ def process_p114_date(p114_date):
         print('{} relevant files found'.format(len(filenames)))
         for filename in tqdm(filenames):
             get_p114_file(filename, overwrite=True)
-            insert_data(file_to_message_list(filename))
+            if no_insert:
+                file_to_message_list(filename)
+            else:
+                insert_data(file_to_message_list(filename))
     else:
         print('No relevant files found')
