@@ -13,4 +13,7 @@ CORRUPT_MESSAGES = [
     '2022:09:22:19:32:49:GMT: subject=BMRA.BM.E_BURWB-1.MIL', # inconsistent number of point values
     '2022:10:18:04:28:58:GMT: subject=BMRA.BM.E_BURWB-1.MIL', # inconsistent number of point values
     '2022:10:18:12:30:23:GMT: subject=BMRA.BM.E_BURWB-1.MIL', # inconsistent number of point values
+    '2022:09:14:22:59:07:GMT: subject=BMRA.BM.E_BURWB-1.MIL', # inconsistent number of point values
+    '2022:10:14:21:28:46:GMT: subject=BMRA.BM.E_BURWB-1.MIL',
+    '2022:11:04:10:05:26:GMT: subject=BMRA.BM.E_BURWB-1.MIL',
 ]

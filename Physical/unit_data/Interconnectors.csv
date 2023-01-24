@@ -769,3 +769,73 @@ IC: Nemo (Generation),I_ING-GLEN1,NEMO Interconnector (Generation) - Glencore En
 IC: Nemo (Generation),I_ING-LMUS1,NEMO Interconnector (Generation) - Luminus SA,South East England
 IC: Scottish (Demand),I_ISD-DMCC1,Scottish Interconnector (Demand) - Cobblestone Energy DMCC,South Scotland
 IC: Scottish (Generation),I_ISG-DMCC1,Scottish Interconnector (Generation) - Cobblestone Energy DMCC,South Scotland
+IC: IFA (Demand),I_I2D-ALIP1,IFA2 Interconnector (Demand) - Alipes Energy ApS,South East England
+IC: IFA (Demand),I_I2D-CETL1,IFA2 Interconnector (Demand) - Conrad Energy,South East England
+IC: IFA (Demand),I_I2D-HART1,IFA2 Interconnector (Demand) - HAPPGCO,South East England
+IC: IFA (Demand),I_I2D-OUTL1,IFA2 Interconnector (Demand) - Outlook Energy,South East England
+IC: IFA (Demand),I_I2D-RESP1,IFA2 Interconnector (Demand) - Respect Energy S.A.,South East England
+IC: IFA (Demand),I_I2D-TRFG1,IFA2 Interconnector (Demand) - Trafigura Trading Sarl,South East England
+IC: IFA (Generation),I_I2G-ALIP1,IFA2 Interconnector (Generation) - Alipes Energy ApS,South East England
+IC: IFA (Generation),I_I2G-CETL1,IFA2 Interconnector (Generation) - Conrad Energy,South East England
+IC: IFA (Generation),I_I2G-HART1,IFA2 Interconnector (Generation) - HAPPGCO,South East England
+IC: IFA (Generation),I_I2G-OUTL1,IFA2 Interconnector (Generation) - Outlook Energy,South East England
+IC: IFA (Generation),I_I2G-RESP1,IFA2 Interconnector (Generation) - Respect Energy S.A.,South East England
+IC: IFA (Generation),I_I2G-TRFG1,IFA2 Interconnector (Generation) - Trafigura Trading Sarl,South East England
+IC: BritNed (Demand),I_IBD-ALIP1,Britned Interconnector (Demand) - Alipes Energy ApS,South East England
+IC: BritNed (Demand),I_IBD-ALPE1,Britned Interconnector (Demand) - Alpha Energy ApS,South East England
+IC: BritNed (Demand),I_IBD-ENGM1,Britned Interconnector (Demand) - Engie Global Markets,South East England
+IC: BritNed (Demand),I_IBD-EZCO1,Britned Interconnector (Demand) - ENZEE Commodities A/S,South East England
+IC: BritNed (Demand),I_IBD-RESP1,Britned Interconnector (Demand) - Respect Energy S.A.,South East England
+IC: BritNed (Demand),I_IBD-TRFG1,Britned Interconnector (Demand) - Trafigura Trading Sarl,South East England
+IC: BritNed (Generation),I_IBG-ALIP1,Britned Interconnector (Generation) - Alipes Energy ApS,South East England
+IC: BritNed (Generation),I_IBG-ALPE1,Britned Interconnector (Generation) - Alpha Energy ApS,South East England
+IC: BritNed (Generation),I_IBG-ENGM1,Britned Interconnector (Generation) - Engie Global Markets,South East England
+IC: BritNed (Generation),I_IBG-EZCO1,Britned Interconnector (Generation) - ENZEE Commodities A/S,South East England
+IC: BritNed (Generation),I_IBG-RESP1,Britned Interconnector (Generation) - Respect Energy S.A.,South East England
+IC: BritNed (Generation),I_IBG-TRFG1,Britned Interconnector (Generation) - Trafigura Trading Sarl,South East England
+IC: IFA (Demand),I_IFD-ALIP1,IFA1 Interconnector (Demand) - Alipes Energy ApS,South East England
+IC: IFA (Demand),I_IFD-CETL1,IFA1 Interconnector (Demand) - Conrad Energy,South East England
+IC: IFA (Demand),I_IFD-HART1,IFA1 Interconnector (Demand) - HAPPGCO,South East England
+IC: IFA (Demand),I_IFD-OUTL1,IFA1 Interconnector (Demand) - Outlook Energy,South East England
+IC: IFA (Demand),I_IFD-RESP1,IFA1 Interconnector (Demand) - Respect Energy S.A.,South East England
+IC: IFA (Demand),I_IFD-TRFG1,IFA1 Interconnector (Demand) - Trafigura Trading Sarl,South East England
+IC: IFA (Generation),I_IFG-ALIP1,IFA1 Interconnector (Generation) - Alipes Energy ApS,South East England
+IC: IFA (Generation),I_IFG-CETL1,IFA1 Interconnector (Generation) - Conrad Energy,South East England
+IC: IFA (Generation),I_IFG-HART1,IFA1 Interconnector (Generation) - HAPPGCO,South East England
+IC: IFA (Generation),I_IFG-OUTL1,IFA1 Interconnector (Generation) - Outlook Energy,South East England
+IC: IFA (Generation),I_IFG-RESP1,IFA1 Interconnector (Generation) - Respect Energy S.A.,South East England
+IC: IFA (Generation),I_IFG-TRFG1,IFA1 Interconnector (Generation) - Trafigura Trading Sarl,South East England
+IC: ElecLink (Demand),I_ILD-ARON1,ElecLink Interconnector (Demand) - J.Aron & Company,South East England
+IC: ElecLink (Demand),I_ILD-CENT1,ElecLink Interconnector (Demand) - Centrica Energy Trading A/S,South East England
+IC: ElecLink (Demand),I_ILD-CETL1,ElecLink Interconnector (Demand) - Conrad Energy,South East England
+IC: ElecLink (Demand),I_ILD-EPCO1,ElecLink Interconnector (Demand) - EP Commodities A/S,South East England
+IC: ElecLink (Demand),I_ILD-NEHO1,ElecLink Interconnector (Demand) - Nordic Energy House ApS,South East England
+IC: ElecLink (Demand),I_ILD-NORL1,ElecLink Interconnector (Demand) - Norlys Energy Trading A/S,South East England
+IC: ElecLink (Demand),I_ILD-OPMX1,ElecLink Interconnector (Demand) - Optimax Energy GmbH,South East England
+IC: ElecLink (Demand),I_ILD-RESP1,ElecLink Interconnector (Demand) - Respect Energy S.A.,South East England
+IC: ElecLink (Demand),I_ILD-RWES1,ElecLink Interconnector (Demand) - RWE Supply and Trading GmbH,South East England
+IC: ElecLink (Demand),I_ILD-SETL1,ElecLink Interconnector (Demand) - Shell Energy Europe Ltd,South East England
+IC: ElecLink (Demand),I_ILD-TRFG1,ElecLink Interconnector (Demand) - Trafigura Trading Sarl,South East England
+IC: ElecLink (Generation),I_ILG-ARON1,ElecLink Interconnector (Generation) - J.Aron & Company,South East England
+IC: ElecLink (Generation),I_ILG-CENT1,ElecLink Interconnector (Generation) - Centrica Energy Trading A/S,South East England
+IC: ElecLink (Generation),I_ILG-CETL1,ElecLink Interconnector (Generation) - Conrad Energy,South East England
+IC: ElecLink (Generation),I_ILG-EPCO1,ElecLink Interconnector (Generation) - EP Commodities A/S,South East England
+IC: ElecLink (Generation),I_ILG-HELI1,ElecLink Interconnector (Generation) - Helios Power Trading A/S,South East England
+IC: ElecLink (Generation),I_ILG-NEHO1,ElecLink Interconnector (Generation) - Nordic Energy House ApS,South East England
+IC: ElecLink (Generation),I_ILG-NORL1,ElecLink Interconnector (Generation) - Norlys Energy Trading A/S,South East England
+IC: ElecLink (Generation),I_ILG-OPMX1,ElecLink Interconnector (Generation) - Optimax Energy GmbH,South East England
+IC: ElecLink (Generation),I_ILG-RESP1,ElecLink Interconnector (Generation) - Respect Energy S.A.,South East England
+IC: ElecLink (Generation),I_ILG-RWES1,ElecLink Interconnector (Generation) - RWE Supply and Trading GmbH,South East England
+IC: ElecLink (Generation),I_ILG-TRFG1,ElecLink Interconnector (Generation) - Trafigura Trading Sarl,South East England
+IC: Nemo (Demand),I_IND-ALIP1,NEMO Interconnector (Demand) - Alipes Energy ApS,South East England
+IC: Nemo (Demand),I_IND-ALPE1,NEMO Interconnector (Demand) - Alpha Energy ApS,South East England
+IC: Nemo (Demand),I_IND-NEHO1,NEMO Interconnector (Demand) - Nordic Energy House ApS,South East England
+IC: Nemo (Demand),I_IND-RESP1,NEMO Interconnector (Demand) - Respect Energy S.A.,South East England
+IC: Nemo (Demand),I_IND-RWES1,NEMO Interconnector (Demand) - RWE Supply and Trading GmbH,South East England
+IC: Nemo (Demand),I_IND-TRFG1,NEMO Interconnector (Demand) - Trafigura Trading Sarl,South East England
+IC: Nemo (Generation),I_ING-ALIP1,NEMO Interconnector (Generation) - Alipes Energy ApS,South East England
+IC: Nemo (Generation),I_ING-ALPE1,NEMO Interconnector (Generation) - Alpha Energy ApS,South East England
+IC: Nemo (Generation),I_ING-NEHO1,NEMO Interconnector (Generation) - Nordic Energy House ApS,South East England
+IC: Nemo (Generation),I_ING-RESP1,NEMO Interconnector (Generation) - Respect Energy S.A.,South East England
+IC: Nemo (Generation),I_ING-RWES1,NEMO Interconnector (Generation) - RWE Supply and Trading GmbH,South East England
+IC: Nemo (Generation),I_ING-TRFG1,NEMO Interconnector (Generation) - Trafigura Trading Sarl,South East England

@@ -1349,3 +1349,34 @@ Virtual parties,V__LCEND005,South Western GSP Group - Centrica Business Solution
 Virtual parties,V__MCEND002,Yorkshire GSP Group - Centrica Business Solutions,Yorkshire
 Virtual parties,V__MFLEX001,Yorkshire GSP Group - Flexitricity Ltd,Yorkshire
 Virtual parties,V__NFLEX002,South Scotland GSP Group - Flexitricity Limited ,South Scotland
+Battery,E_ARBRB-1,Arbroath Battery Storage,North Scotland
+Battery,E_BROFB-1,Brook Farm Battery,Eastern
+Battery,E_HAWKB-1,Hawkers Hill Battery,Southern England
+Peaker,E_PGBARY,Peak Gen Barry,South Wales
+Peaker,E_PGBRKL,Peak Gen Bracknell,Southern England
+Peaker,E_PGEXTR,Peak Gen Exeter,South West England
+Peaker,E_PGFARE,Peak Gen Fareham,Southern England
+Peaker,E_PGHVNT,Peak Gen Havant,Southern England
+Peaker,E_PGLLAN,Peak Gen Llandarcy,South Wales
+Peaker,E_PGSOUT,Peak Gen (unknown),Southern England
+Battery,E_PILLB-1,Pillswood 1 Battery Storage,Yorkshire
+Battery,E_PILLB-2,Pillswood 2 Battery Storage,Yorkshire
+Battery,E_SKELB-1,Skelmersdale Battery Storage,North West England
+Battery,T_BUSTB-1,Bustleholme Battery Storage,Midlands
+Wind (Onshore),T_CREAW-1,Creag Riabhach Wind Farm,North Scotland
+Wind (Onshore),T_CUMHW-1,Cumberhead Wind Farm,South Scotland
+Stabiliser,T_GRAISC-1,Grain Synchronous Compensator 1,South East England
+Stabiliser,T_GRAISC-2,Grain Synchronous Compensator 2,South East England
+Wind (Onshore),T_KYPEW-1,Kype Muir Wind Farm Extension,South Scotland
+PV,T_LARKS-1,Larks Green Solar,South West England
+Wind (Onshore),T_SAKNW-1,Sandy Knowe Wind Farm,South Scotland
+Wind (Offshore),T_SGRWO-1,Seagreen Wind Farm 1,North Scotland
+Wind (Offshore),T_SGRWO-2,Seagreen Wind Farm 2,North Scotland
+Wind (Offshore),T_SGRWO-3,Seagreen Wind Farm 3,North Scotland
+Wind (Offshore),T_SGRWO-4,Seagreen Wind Farm 4,North Scotland
+Wind (Offshore),T_SGRWO-5,Seagreen Wind Farm 5,North Scotland
+Demand,T_UNPKD-1,Union Park Data Centre 1,London
+Demand,T_UNPKD-2,Union Park Data Centre 2,London
+Virtual parties,V__AHABI003,Eastern GSP Group - Habitat Energy,Eastern
+Virtual parties,V__GHABI002,North Western GSP Group - Habitat Energy,North West England
+Virtual parties,V__JADEL001,South Eastern GSP Group - Adela Energy,South East England
