@@ -1,15 +1,15 @@
 region,marginal_region,marginal_bmu,bmu_name,bmu_type,intensity
-North Scotland,North Scotland,T_BDCHW-1,Bad a Cheo Wind Farm ,Wind (Onshore),0.0
-South Scotland,South Scotland,V__NFLEX001,South Scotland GSP Group - Flexitricity Limited ,Virtual parties,0.0
-North West England,North West England,2__GANGE004,North Western GSP Group - Limejump Energy Limited ,GSP: North West England,0.0
-North East England,East Midlands,T_STAY-3,Staythorpe Unit 3 ,CCGT,378.0
-Yorkshire and the Humber,East Midlands,T_STAY-3,Staythorpe Unit 3 ,CCGT,378.0
-Merseyside and North Wales,Merseyside and North Wales,2__DSTAT001,Merseyside and North Wales GSP Group - Statkraft Markets Gmbh ,GSP: Merseyside and North Wales,0.0
-South Wales,South Wales,2__KANGE001,South Wales GSP Group - Limejump Energy Limited ,GSP: South Wales,0.0
-West Midlands,South East England,T_MEDP-1,Medway ,CCGT,394.9
-East Midlands,East Midlands,T_STAY-3,Staythorpe Unit 3 ,CCGT,378.0
-South West England,South West England,2__LSTAT001,South Western GSP Group - Statkraft Markets Gmbh ,GSP: South West England,0.0
-South England,South East England,T_MEDP-1,Medway ,CCGT,394.9
-East England,South East England,T_MEDP-1,Medway ,CCGT,394.9
-London,London,T_EECL-1,Enfield Energy ,CCGT,391.4
-South East England,South East England,T_MEDP-1,Medway ,CCGT,394.9
+North Scotland,North Scotland,T_NANT-1,Nant ,Hydro,0.0
+South Scotland,South Scotland,T_KENNW-1,Kennoxhead Wind Farm,Wind (Onshore),0.0
+North West England,North West England,T_CARR-2,Carrington Unit 2 ,CCGT,378.7
+North East England,East Midlands,T_CDCL-1,Cottam Development Centre Limited ,CCGT,395.6
+Yorkshire and the Humber,East Midlands,T_CDCL-1,Cottam Development Centre Limited ,CCGT,395.6
+Merseyside and North Wales,Merseyside and North Wales,T_DINO-2,Dinorwig ,PS,519.6
+South Wales,South Wales,T_PEMB-51,Pembroke Power Station - Unit 5 ,CCGT,378.7
+West Midlands,South East England,T_GRAI-8,Grain CHP ,CHP,366.0
+East Midlands,East Midlands,T_CDCL-1,Cottam Development Centre Limited ,CCGT,395.6
+South West England,South East England,T_GRAI-8,Grain CHP ,CHP,366.0
+South England,South East England,T_GRAI-8,Grain CHP ,CHP,366.0
+East England,South East England,T_GRAI-8,Grain CHP ,CHP,366.0
+London,South East England,T_GRAI-8,Grain CHP ,CHP,366.0
+South East England,South East England,T_GRAI-8,Grain CHP ,CHP,366.0

@@ -232,7 +232,7 @@ class Command(BaseCommand):
         self.stdout.write('{:%Y-%m-%d %H:%M:%S} Generating cashflows'.format(dt.datetime.now()))
         combined_cashflows = blank_df.copy()
 
-        query = 'SELECT sd, sp, sum(oc)-sum(bc) as cashflow \
+        query = 'SELECT sd, sp, sum(oc) as cashflow \
         FROM public.bmra_ebocf \
         where bmu_id=\'{}\' \
         and sd>=\'{:%Y-%m-%d}\' \
@@ -249,7 +249,28 @@ class Command(BaseCommand):
             sql_df.rename(columns={'cashflow': bmu_id}, inplace=True)
             combined_cashflows.update(sql_df)
 
-        combined_cashflows.to_csv(os.path.join(save_path, 'cashflows.csv'))
+        combined_cashflows.to_csv(os.path.join(save_path, 'offer_cashflows.csv'))
+
+        combined_cashflows = blank_df.copy()
+
+        query = 'SELECT sd, sp, sum(bc) as cashflow \
+                FROM public.bmra_ebocf \
+                where bmu_id=\'{}\' \
+                and sd>=\'{:%Y-%m-%d}\' \
+                and sd<=\'{:%Y-%m-%d}\' \
+                group by sd, sp \
+                order by sd, sp;'
+
+        for bmu_id in tqdm(bmu_ids, desc='total'):
+            sql_df = pd.read_sql(query.format(bmu_id,
+                                              start_date,
+                                              end_date),
+                                 conn)
+            sql_df = sql_df.set_index(['sd', 'sp'])
+            sql_df.rename(columns={'cashflow': bmu_id}, inplace=True)
+            combined_cashflows.update(sql_df)
+
+        combined_cashflows.to_csv(os.path.join(save_path, 'bid_cashflows.csv'))
 
         # calculate P114 metered values by settlement period
         self.stdout.write('{:%Y-%m-%d %H:%M:%S} Generating metered values'.format(dt.datetime.now()))

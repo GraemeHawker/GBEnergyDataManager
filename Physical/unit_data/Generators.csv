@@ -1380,3 +1380,33 @@ Demand,T_UNPKD-2,Union Park Data Centre 2,London
 Virtual parties,V__AHABI003,Eastern GSP Group - Habitat Energy,Eastern
 Virtual parties,V__GHABI002,North Western GSP Group - Habitat Energy,North West England
 Virtual parties,V__JADEL001,South Eastern GSP Group - Adela Energy,South East England
+Battery,E_BROAB-1,Broadditch Battery,South East England
+Battery,E_CHAPB-1,Chapel Farm Battery,Eastern
+Battery,E_CUPAB-1,Coupar Battery,North Scotland
+Battery,E_DOLLB-1,Dollymans Battery,Eastern
+Battery,E_FARNB-1,Farnham Battery,Southern England
+Wind (Onshore),E_GRGRW-1,Greengairs East Wind Farm,South Scotland
+Battery,E_NEWTB-1,Newton Wood Battery,East Midlands
+Battery,E_TOLLB-1,Tollgate Battery,Eastern
+Solar,T_BURWS-1,Burwell Solar Farm,Eastern
+Battery,T_COVNB-1,Pivot Power Coventry,Midlands
+Demand,T_COWBD-1,Cowley Tesla 1,Southern England
+Demand,T_COWBD-2,Cowley Tesla 2,Southern England
+Demand,T_COWBD-3,Cowley Tesla 3,Southern England
+Demand,T_DBAWD-1,Dogger Bank Offshore Windfarm Demand,Yorkshire
+Wind (Offshore),T_DBAWO-1,Dogger Bank Offshore Windfarm 1,Yorkshire
+Wind (Offshore),T_DBAWO-2,Dogger Bank Offshore Windfarm 2,Yorkshire
+Wind (Offshore),T_DBAWO-3,Dogger Bank Offshore Windfarm 3,Yorkshire
+Wind (Offshore),T_DBAWO-4,Dogger Bank Offshore Windfarm 4,Yorkshire
+Wind (Offshore),T_DBAWO-5,Dogger Bank Offshore Windfarm 5,Yorkshire
+Demand,T_FERGD-1,Network Rail Ferguslie 1,South Scotland
+Demand,T_FERGD-2,Network Rail Ferguslie 2,South Scotland
+Demand,T_NNGAD-1,Neart Na Gaoithe Offshore Windfarm Demand,South Scotland
+Wind (Offshore),T_NNGAO-1,Neart Na Gaoithe Offshore Windfarm 1,South Scotland
+Demand,T_TONTED-1,Network Rail Tonteg,South Wales
+Battery,T_WISHB-1,Wishaw Battery,South Scotland
+Demand,T_WISHD-1,Wishaw Battery Demand,South Scotland
+Virtual parties,V__AFLEX002,Eastern GSP Group - Flexitricity Ltd,Eastern
+Virtual parties,V__ECEND007,Midlands GSP Group - Centrica Business Solutions,Midlands
+Virtual parties,V__NHABI005,Camilla Battery,South Scotland
+Virtual parties,V__PHABI004,Fordtown Battery,North Scotland

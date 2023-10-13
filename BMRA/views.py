@@ -58,8 +58,8 @@ def test_chart_data(request):
 
 # Create your views here.
 def list_unused_BMUs(request):
-    unused_BMUs = BMU.objects.filter(powerstationbmu__isnull=True).order_by('id')
-    return HttpResponse("<br />".join([str(x) for x in unused_BMUs]))
+    unused_BMUs = BMU.objects.filter(name='').order_by('id')
+    return HttpResponse("<h1>Unknown BMUs</h1>"+"<br />".join([str(x) for x in unused_BMUs]))
 
 
 def regional_generation_bytype(request):
