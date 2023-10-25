@@ -123,6 +123,7 @@ STATIC_URL = '/static/'
 
 # Elexon values
 ELEXON_BASEURL = 'https://downloads.elexonportal.co.uk/bmradataarchive/download'
+LIVE_BOA_URL = ''
 ELEXON_KEY = ''
 
 # Local folders for file processing
@@ -150,8 +151,14 @@ NETA_USER = '' #NETA username
 NETA_PWD = '' #NETA password
 NETA_BMU_LIST_URL = 'https://www.netareports.com/dataService?rt=bmunit&username={}&password={}' #url for NETA reports list of BMUs
 
+# P114 downloads
+P114_LIST_URL = 'https://downloads.elexonportal.co.uk/p114/list?key={}&date={:04d}-{:02d}-{:02d}'
+P114_DOWNLOAD_URL = 'https://downloads.elexonportal.co.uk/p114/download?key={}&filename={}'
+
 # email settings
 EMAIL_HOST = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_HOST_USER = ''
 EMAIL_PORT = ''
+SYS_WARN_EMAIL_RECIPIENTS = False
+EMAIL_HOST_USER = False
