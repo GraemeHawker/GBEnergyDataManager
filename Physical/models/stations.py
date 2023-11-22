@@ -11,7 +11,7 @@ class StationType(models.Model):
     """
     the type of power station
     """
-    id = models.CharField(max_length=5, primary_key=True)
+    id = models.CharField(max_length=10, primary_key=True)
     name = models.CharField(max_length=100)
     supertype = models.CharField(max_length=100)
     class Meta:

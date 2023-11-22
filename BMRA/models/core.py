@@ -58,7 +58,7 @@ class FT(models.Model):
     Fuel type
     """
     id = models.CharField(max_length=10, primary_key=True)
-    default_ei = models.FloatField(verbose_name='Default emissions intensity (gCO2/kWh)')
+    default_ei = models.FloatField(verbose_name='Default emissions intensity (gCO2/kWh)', blank=True, null=True)
 
     class Meta:
         db_table = 'bmra_ft'
