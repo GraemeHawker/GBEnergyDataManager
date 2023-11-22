@@ -1,0 +1,3 @@
+REM example daily batch file calling daily download and data aggregation commands via anaconda environment
+call "C:/Users/nxb12137/AppData/Local/anaconda3/Scripts/activate.bat" GBEnergyDataManager & cd "C:/Users/nxb12137/code/GBEnergyDataManager" & python manage.py daily_download
+call "C:/Users/nxb12137/AppData/Local/anaconda3/Scripts/activate.bat" GBEnergyDataManager & cd "C:/Users/nxb12137/code/GBEnergyDataManager" & python manage.py generate_annual_summary scotland 0
