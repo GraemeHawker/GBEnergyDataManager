@@ -81,6 +81,10 @@ class Command(BaseCommand):
                               & ((bmus_df.BMU.str.startswith('E'))
                                  | (bmus_df.BMU.str.startswith('M'))
                                  | (bmus_df.BMU.str.startswith('T')))].BMU.values
+        elif options['subset'][0] == 'all':
+            bmus_df = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/Generators.csv'))
+            BMU_types = pd.read_csv(os.path.join(BASE_DIR, 'Physical/unit_data/Generators.csv'), index_col=1)
+            bmu_ids = bmus_df.BMU.values
         else:
             log['{:%Y-%m-%d %H:%M:%S}'.format(dt.datetime.now())] = 'FAILED: subset {} not recognised'.format(
                 options['subset'][0])
